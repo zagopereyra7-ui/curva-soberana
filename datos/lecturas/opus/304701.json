@@ -1,0 +1,73 @@
+{
+ "titulos": [
+  {
+   "articulo": "ARTÍCULO 1º",
+   "nombre": "Bono del Tesoro Nacional en pesos cero cupón con ajuste por CER vencimiento 15 de diciembre de 2025",
+   "tipo": "bono_cer",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "CER",
+   "fecha_emision": "2024-03-15",
+   "fecha_vencimiento": "2025-12-15",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "cero_cupon_descuento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "",
+   "amortizacion": [
+    {
+     "fecha": "2025-12-15",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": 10,
+   "ley_aplicable": "argentina",
+   "notas": "Cero cupón a descuento: no hay tasa ni fechas de pago de intereses. La base de cálculo no figura en el texto. Punto I del artículo 1º. Colocado exclusivamente en la operación de conversión (art. 11 decreto 331/2022), suscribible en pesos o con Títulos Elegibles; monto conjunto con los demás títulos del artículo de hasta VE $60 billones. Canasta: 30%. Agente de Cálculo: Oficina Nacional de Crédito Público. Denominación mínima VNO $1."
+  },
+  {
+   "articulo": "ARTÍCULO 1º",
+   "nombre": "Bono del Tesoro Nacional en pesos cero cupón con ajuste por CER vencimiento 15 de diciembre de 2026",
+   "tipo": "bono_cer",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "CER",
+   "fecha_emision": "2024-03-15",
+   "fecha_vencimiento": "2026-12-15",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "cero_cupon_descuento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "",
+   "amortizacion": [
+    {
+     "fecha": "2026-12-15",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": 10,
+   "ley_aplicable": "argentina",
+   "notas": "Cero cupón a descuento: no hay tasa ni fechas de pago de intereses. La base de cálculo no figura en el texto. Punto II del artículo 1º. Colocado exclusivamente en la operación de conversión (art. 11 decreto 331/2022), suscribible en pesos o con Títulos Elegibles; monto conjunto de hasta VE $60 billones. Canasta: 30%. Denominación mínima VNO $1."
+  },
+  {
+   "articulo": "ARTÍCULO 1º",
+   "nombre": "Bono del Tesoro Nacional en pesos cero cupón con ajuste por CER vencimiento 15 de diciembre de 2027",
+   "tipo": "bono_cer",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "CER",
+   "fecha_emision": "2024-03-15",
+   "fecha_vencimiento": "2027-12-15",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "cero_cupon_descuento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "",
+   "amortizacion": [
+    {
+     "fecha": "2027-12-15",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": 10,
+   "ley_aplicable": "argentina",
+   "notas": "Cero cupón a descuento: no hay tasa ni fechas de pago de intereses. La base de cálculo no figura en el texto. Punto III del artículo 1º. Colocado exclusivamente en la operación de conversión (art. 11 decreto 331/2022), suscribible en pesos o con Títulos Elegibles; monto conjunto de hasta VE $60 billones. Canasta: 25%. Denominación mínima VNO $1. No se incluye la ampliación del Bono CER vencimiento 30/06/2028 (emitido por RESFC-2024-8), que también forma parte de la canasta (15%)."
+  }
+ ]
+}

@@ -1,0 +1,29 @@
+{
+ "titulos": [
+  {
+   "articulo": "ARTÍCULO 1º",
+   "nombre": "Letra del Tesoro Nacional en pesos a tasa TAMAR con vencimiento 30 de abril de 2027",
+   "tipo": "tamar",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2026-11-13",
+   "fecha_vencimiento": "2027-04-30",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "capitalizable_al_vencimiento",
+   "fechas_pago_intereses": [
+    "2027-04-30"
+   ],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2027-04-30",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "ley_aplicable": "argentina",
+   "notas": "Devenga intereses a la tasa efectiva mensual 'TAMAR TEM', capitalizable mensualmente hasta el vencimiento; los intereses se pagan junto con el capital al vencimiento (VPV). TAMAR: promedio aritmético simple de la TAMAR promedio bancos privados (depósitos a plazo fijo de más de $1.000.000.000) publicada por el BCRA, desde 10 días hábiles antes de la fecha de emisión hasta 10 días hábiles antes del vencimiento. Se suma un margen que será determinado en la licitación del 11/11/2026 y se mantiene hasta el vencimiento. Las fórmulas de cálculo no figuran en el texto. No hay tasa fija ni TEM fija: tasa nominal y TEM quedan en null. Precio de emisión: a la par. Denominación mínima: VNO $1. Licitación por efectivo del 11/11/2026; el monto máximo conjunto con las ampliaciones del art. 2 es VE $15.821.753.874.736. Se negocia en A3 Mercados SA. Las ampliaciones del art. 2 (Letra capitalizable 29/01/2027, Bono capitalizable 30/06/2027 y Letra dólar linked 15/01/2027) no se incluyen por ser reaperturas."
+  }
+ ]
+}

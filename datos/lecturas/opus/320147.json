@@ -1,0 +1,104 @@
+{
+ "titulos": [
+  {
+   "articulo": "ARTÍCULO 1º",
+   "nombre": "Bono del Tesoro Nacional en pesos a tasa dual con vencimiento 16 de marzo de 2026",
+   "tipo": "dual",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2025-01-29",
+   "fecha_vencimiento": "2026-03-16",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": 2.25,
+   "intereses": "capitalizable_al_vencimiento",
+   "fechas_pago_intereses": [
+    "2026-03-16"
+   ],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2026-03-16",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "ley_aplicable": "argentina",
+   "notas": "Tasa dual: al vencimiento se paga el máximo entre (a) VN capitalizado mensualmente a TEM fija 2,25% y (b) VN capitalizado mensualmente a TAMAR TEM. TAMAR = promedio aritmético simple de TAMAR bancos privados (depósitos > $1.000 millones) publicada por el BCRA desde 10 días hábiles antes de la emisión hasta 10 días hábiles antes del vencimiento; la fórmula de TAMAR TEM y de VPV no figura en el texto. No usa CER, por eso rezago CER = null. Emitido junto con otros tres bonos duales por hasta VE $25 billones en conjunto, colocado exclusivamente en operación de conversión (25% de la canasta). Denominación mínima VNO $1."
+  },
+  {
+   "articulo": "ARTÍCULO 1º",
+   "nombre": "Bono del Tesoro Nacional en pesos a tasa dual con vencimiento 30 de junio de 2026",
+   "tipo": "dual",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2025-01-29",
+   "fecha_vencimiento": "2026-06-30",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": 2.19,
+   "intereses": "capitalizable_al_vencimiento",
+   "fechas_pago_intereses": [
+    "2026-06-30"
+   ],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2026-06-30",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "ley_aplicable": "argentina",
+   "notas": "Tasa dual: al vencimiento se paga el máximo entre (a) VN capitalizado mensualmente a TEM fija 2,19% y (b) VN capitalizado mensualmente a TAMAR TEM. TAMAR = promedio aritmético simple de TAMAR bancos privados publicada por el BCRA desde 10 días hábiles antes de la emisión hasta 10 días hábiles antes del vencimiento; la fórmula de TAMAR TEM y de VPV no figura en el texto. No usa CER. Colocado exclusivamente en operación de conversión (25% de la canasta), monto conjunto hasta VE $25 billones. Denominación mínima VNO $1."
+  },
+  {
+   "articulo": "ARTÍCULO 1º",
+   "nombre": "Bono del Tesoro Nacional en pesos a tasa dual con vencimiento 15 de septiembre de 2026",
+   "tipo": "dual",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2025-01-29",
+   "fecha_vencimiento": "2026-09-15",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": 2.17,
+   "intereses": "capitalizable_al_vencimiento",
+   "fechas_pago_intereses": [
+    "2026-09-15"
+   ],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2026-09-15",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "ley_aplicable": "argentina",
+   "notas": "Tasa dual: al vencimiento se paga el máximo entre (a) VN capitalizado mensualmente a TEM fija 2,17% y (b) VN capitalizado mensualmente a TAMAR TEM. TAMAR = promedio aritmético simple de TAMAR bancos privados publicada por el BCRA desde 10 días hábiles antes de la emisión hasta 10 días hábiles antes del vencimiento; la fórmula de TAMAR TEM y de VPV no figura en el texto. No usa CER. Colocado exclusivamente en operación de conversión (25% de la canasta), monto conjunto hasta VE $25 billones. Denominación mínima VNO $1."
+  },
+  {
+   "articulo": "ARTÍCULO 1º",
+   "nombre": "Bono del Tesoro Nacional en pesos a tasa dual con vencimiento 15 de diciembre de 2026",
+   "tipo": "dual",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2025-01-29",
+   "fecha_vencimiento": "2026-12-15",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": 2.14,
+   "intereses": "capitalizable_al_vencimiento",
+   "fechas_pago_intereses": [
+    "2026-12-15"
+   ],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2026-12-15",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "ley_aplicable": "argentina",
+   "notas": "Tasa dual: al vencimiento se paga el máximo entre (a) VN capitalizado mensualmente a TEM fija 2,14% y (b) VN capitalizado mensualmente a TAMAR TEM. TAMAR = promedio aritmético simple de TAMAR bancos privados publicada por el BCRA desde 10 días hábiles antes de la emisión hasta 10 días hábiles antes del vencimiento; la fórmula de TAMAR TEM y de VPV no figura en el texto. No usa CER. Colocado exclusivamente en operación de conversión (25% de la canasta), monto conjunto hasta VE $25 billones. Denominación mínima VNO $1."
+  }
+ ]
+}
