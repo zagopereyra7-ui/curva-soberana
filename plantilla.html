@@ -57,6 +57,23 @@ ul,ol{padding-left:20px;color:var(--text-2)} li{margin:4px 0}
 a{color:var(--s1)}
 .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
 .steps .card b{display:block;margin-bottom:4px}
+.calc{cursor:pointer;border-bottom:1px dotted var(--muted)}
+.calc:hover{color:var(--s1);border-bottom-color:var(--s1)}
+tr.click{cursor:pointer} tr.click:hover td{background:var(--grid)}
+.ver{font-size:12px;color:var(--s1);cursor:pointer;white-space:nowrap}
+dialog{border:1px solid var(--border);border-radius:12px;background:var(--surface);color:var(--text);padding:0;
+  width:min(760px,calc(100vw - 32px));max-height:calc(100vh - 48px)}
+dialog::backdrop{background:rgba(0,0,0,.45)}
+dialog .head{position:sticky;top:0;background:var(--surface);border-bottom:1px solid var(--border);padding:14px 18px;display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+dialog .head h3{margin:0;font-size:17px}
+dialog .body{padding:6px 18px 18px;font-size:14px}
+dialog .body h4{font-size:14px;margin:16px 0 4px}
+dialog .body p{color:var(--text-2)}
+dialog .cerrar{font:inherit;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:8px;padding:4px 10px;cursor:pointer}
+.formula{font-family:ui-monospace,Consolas,monospace;font-size:13px;background:var(--bg);border:1px solid var(--grid);border-radius:8px;padding:8px 10px;margin:6px 0;overflow-x:auto;white-space:pre}
+.ok{color:var(--up);font-weight:600}
+.vs{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:8px 0}
+.vs .card .v{font-size:22px;font-weight:650;font-variant-numeric:tabular-nums}
 </style>
 </head>
 <body>
@@ -86,6 +103,14 @@ a{color:var(--s1)}
     <div class="tablewrap"><table id="tabla-exp"></table></div>
   </div>
 
+  <h2>Mercado contra economistas</h2>
+  <p class="note">Lo que esperan los precios de los bonos contra la mediana del <b>REM</b> (encuesta mensual del BCRA a unos 40 economistas) y de su <b>Top 10</b> (los que mejor pronosticaron antes). Inflación: promedio mensual en la misma ventana del CER. Dólar: A3500 esperado al vencimiento. Tocá una fila para ver la cuenta.</p>
+  <div class="card"><div class="tablewrap"><table id="tabla-rem"></table></div><p class="note" id="nota-rem"></p></div>
+
+  <h2>¿Quién le pega más?</h2>
+  <p class="note">Todos los días se guarda qué espera cada uno. Cuando se cumple la fecha, se compara con el CER y el dólar que realmente hubo. Gana el que quedó más cerca.</p>
+  <div id="aciertos"></div>
+
   <h2>Cómo se cargan los bonos (IA)</h2>
   <p class="note">Las condiciones de cada bono (fechas, tasa, amortización, ajuste) no vienen con el precio: están en las resoluciones del Tesoro publicadas en el Boletín Oficial. Un modelo de IA las lee y arma la ficha de cada bono.</p>
   <div class="steps" id="steps"></div>
@@ -102,10 +127,12 @@ a{color:var(--s1)}
   </ul>
 </main>
 <div class="tt" id="tt"></div>
+<dialog id="dlg"><div class="head"><div><h3 id="dlg-t"></h3><span class="note" id="dlg-s"></span></div><button class="cerrar" onclick="dlg.close()">Cerrar ✕</button></div><div class="body" id="dlg-b"></div></dialog>
 <script>
 const D = {{DATOS}};
 const E = {{EXPECT}};
 const C = {{CONTROLES}};
+const LIQ = '{{LIQ_ISO}}';
 const fmt = (x, d=2) => x==null ? '—' : x.toLocaleString('es-AR',{minimumFractionDigits:d,maximumFractionDigits:d});
 const fdate = s => s.split('-').reverse().join('/');
 const tt = document.getElementById('tt');
@@ -179,16 +206,18 @@ function render(){
     c.addEventListener('mousemove',e=>{ const p=D.find(d=>d.ticker===c.dataset.t);
       showTip(e, `<b>${p.ticker}</b> · ${p.grupo}<br>${cfg.eje}: ${fmt(p.tir)}% · Duration ${fmt(p.md)}<br>Vence ${fdate(p.vto)} · ${p.detalle}${p.revisar?`<br><span class="flag">${p.motivo}</span>`:''}${p.ops!=null?`<br>${p.ops} operaciones · ${p.spread==null?'sin puntas':fmt(p.spread)+'% entre puntas'}`:''}`); });
     c.addEventListener('mouseleave',hideTip);
+    c.style.cursor='pointer'; c.addEventListener('click',()=>{hideTip(); explicarBono(c.dataset.t);});
   });
-  document.getElementById('nota-curva').textContent = cfg.nota;
-  let h=`<tr><th>Bono</th><th>Grupo</th><th>Precio</th><th>Var. día</th><th>${cfg.eje}</th><th>Duration</th><th>Vencimiento</th><th>Detalle</th><th>Condiciones</th></tr>`;
+  document.getElementById('nota-curva').textContent = cfg.nota + ' Tocá un punto o una fila para ver cómo se calcula.';
+  let h=`<tr><th>Bono</th><th>Grupo</th><th>Precio</th><th>Var. día</th><th>${cfg.eje}</th><th>Duration</th><th>Vencimiento</th><th>Detalle</th><th>Condiciones</th><th></th></tr>`;
   for(const p of pts.sort((a,b)=>a.md-b.md)){
     const cls=p.var>0?'up':p.var<0?'down':'';
-    h+=`<tr><td><b>${p.ticker}</b>${p.revisar?` <span class="flag" title="${p.motivo}">⚠</span>`:''}</td><td>${p.grupo}</td><td>${fmt(p.precio)}</td>`+
+    h+=`<tr class="click" data-t="${p.ticker}"><td><b>${p.ticker}</b>${p.revisar?` <span class="flag" title="${p.motivo}">⚠</span>`:''}</td><td>${p.grupo}</td><td>${fmt(p.precio)}</td>`+
        `<td class="${cls}">${p.var>0?'+':''}${fmt(p.var)}%</td><td>${fmt(p.tir)}%</td><td>${fmt(p.md)}</td><td>${fdate(p.vto)}</td><td>${p.detalle}</td>`+
-       `<td>${p.url?`<a href="${p.url}" target="_blank" rel="noopener">${p.fuente}</a>`:p.fuente}</td></tr>`;
+       `<td>${p.url?`<a href="${p.url}" target="_blank" rel="noopener">${p.fuente}</a>`:p.fuente}</td><td class="ver">Ver cálculo ›</td></tr>`;
   }
   document.getElementById('tabla').innerHTML=h;
+  document.querySelectorAll('#tabla tr.click').forEach(tr=>tr.addEventListener('click',e=>{ if(e.target.closest('a')) return; explicarBono(tr.dataset.t); }));
 }
 document.getElementById('tabs').innerHTML = Object.entries(CURVAS).map(([k,v])=>`<button role="tab" data-k="${k}">${v.nombre} (${D.filter(d=>d.curva===k).length})</button>`).join('');
 document.querySelectorAll('#tabs button').forEach(b=>b.addEventListener('click',()=>{actual=b.dataset.k; render();}));
@@ -235,6 +264,191 @@ render();
   ];
   document.getElementById('steps').innerHTML = pasos.map(([t,d])=>`<div class="card"><b>${t}</b><span class="note">${d}</span></div>`).join('');
 })();
+
+// ==================== "Cómo se llega a este número" ====================
+const dlg = document.getElementById('dlg');
+const DIA = 864e5;
+const dd = s => new Date(s+'T00:00:00');
+const dias = (a,b) => Math.round((dd(b)-dd(a))/DIA);
+const pct = (x,d=2) => x==null?'—':fmt(x,d)+'%';
+const MESN = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+const nomMes = k => { const [y,m]=k.split('-'); return MESN[+m-1]+' '+y; };
+function abrir(t, sub, html){ document.getElementById('dlg-t').textContent=t; document.getElementById('dlg-s').innerHTML=sub;
+  document.getElementById('dlg-b').innerHTML=html; dlg.showModal(); document.getElementById('dlg-b').scrollTop=0; }
+
+function tablaFlujos(fl, y){
+  let h='<div class="tablewrap"><table><tr><th>Fecha de pago</th><th>Monto</th><th>Días desde hoy</th><th>Años (días/365)</th><th>Valor hoy a la TIR</th></tr>';
+  let svp=0, st=0; const filas=[];
+  for(const [f,m] of fl){ const n=dias(LIQ,f), t=n/365, vp=m/Math.pow(1+y,t); svp+=vp; st+=vp*t; filas.push([f,m,n,t,vp]); }
+  const mostrar = filas.length>14 ? [...filas.slice(0,7), null, ...filas.slice(-6)] : filas;
+  for(const r of mostrar) h+= r ? `<tr><td>${fdate(r[0])}</td><td>${fmt(r[1],4)}</td><td>${r[2]}</td><td>${fmt(r[3],3)}</td><td>${fmt(r[4],4)}</td></tr>`
+                              : `<tr><td colspan="5" class="note">… ${filas.length-13} pagos más …</td></tr>`;
+  h+=`<tr><td><b>Suma</b></td><td>${fmt(filas.reduce((a,r)=>a+r[1],0),4)}</td><td></td><td></td><td><b>${fmt(svp,4)}</b></td></tr></table></div>`;
+  return {html:h, svp, mac: svp ? st/svp : 0};
+}
+
+const QUE = {
+  letra_capitalizable_pesos:'LECAP: letra en pesos que no paga nada en el medio. Al vencimiento devuelve 100 más una tasa fija mensual capitalizada (TEM) que se fijó en la licitación.',
+  bono_capitalizable_pesos:'BONCAP: igual que una LECAP pero a más plazo. Paga todo junto al vencimiento: 100 más la TEM capitalizada.',
+  bono_tasa_fija_pesos:'Bono en pesos a tasa fija con cupón (BONTE): paga intereses periódicos y devuelve el capital al final.',
+  bono_dolares:'Bonar nuevo en dólares (ley argentina). Las condiciones las leyó la IA de la resolución del Boletín Oficial.',
+  letra_cer:'Letra CER: el capital se ajusta por inflación (coeficiente CER) y se cobra todo al vencimiento.',
+  letra_dolar_linked:'Letra dollar linked: se compra y se cobra en pesos, pero el monto es 100 dólares al tipo de cambio oficial (A3500) del vencimiento.',
+  bono_dolar_linked:'Bono dollar linked: se cobra en pesos el equivalente a 100 dólares al tipo de cambio oficial (A3500) del vencimiento.',
+};
+
+function explicarBono(tk){
+  const p=D.find(d=>d.ticker===tk), c=p.calc||{}, y=p.tir/100, fl=c.flujos||[], pc=c.precio_calc;
+  let h='';
+  let que = QUE[c.tipo] || '';
+  if(c.tipo==='canje') que = `Bono del canje de deuda de 2020, ${String(c.ley).includes('York')?'ley Nueva York (Global)':'ley argentina (Bonar)'}. Paga cupones cada 6 meses con una tasa que va subiendo (step up) y devuelve el capital en cuotas. Las condiciones están en los Decretos 676 y 701/2020.`;
+  if(c.tipo==='bono_cer') que = c.cupon ? `BONCER: capital ajustado por inflación (CER), con cupón de ${fmt(c.cupon,2)}% anual sobre el capital ajustado y amortización en cuotas.` : 'Bono CER cero cupón: capital ajustado por inflación (CER), se cobra todo al vencimiento.';
+  h+=`<h4>1. Qué es</h4><p>${que}</p>`;
+  if(c.nombre) h+=`<p class="note">Nombre oficial: ${c.nombre}.</p>`;
+
+  h+=`<h4>2. Precio</h4><p>Último cierre en BYMA (vía data912): <b>${fmt(p.precio)}</b> por cada 100 de valor nominal original${p.curva==='dolares'?' (especie en dólares MEP)':' (en pesos)'}. Se liquida el ${fdate(LIQ)} (T+1).</p>`;
+  if(c.tipo==='canje') h+=`<p>Ya devolvió ${fmt(100-c.residual,1)} de cada 100: queda un capital (residual) de <b>${fmt(c.residual,2)}</b>. Con los intereses corridos (${fmt(c.corridos,4)}) el valor técnico es ${fmt(c.residual+c.corridos,4)}. Paridad = precio ÷ valor técnico = <b>${fmt(c.paridad*100,1)}%</b>: si es menor a 100%, se compra con descuento.</p>`;
+  if(p.curva==='cer') h+=`<p>El precio en pesos incluye la inflación acumulada desde la emisión. Para calcular la tasa <i>real</i> se saca esa inflación:</p>
+<div class="formula">Coeficiente CER = CER de ${c.rezago} días hábiles antes de hoy ÷ CER de ${c.rezago} días hábiles antes de la emisión (${fdate(c.emision)})
+                = ${fmt(c.cer_hoy,4)} ÷ ${fmt(c.cer_base,4)} = ${fmt(c.coef_cer,4)}
+Precio real     = ${fmt(p.precio)} ÷ ${fmt(c.coef_cer,4)} = ${fmt(pc,4)}  (en "pesos de la emisión")</div>`;
+  if(p.curva==='dolar_linked') h+=`<div class="formula">Precio en dólares = ${fmt(p.precio)} ÷ A3500 ${fmt(c.a3500)} = US$ ${fmt(pc,4)} cada 100</div>`;
+
+  if(c.tipo==='letra_capitalizable_pesos'||c.tipo==='bono_capitalizable_pesos'){
+    h+=`<h4>3. Cuánto paga</h4><p>TEM de la licitación: <b>${fmt(c.tem_emision,2)}%</b> mensual${c.licitacion&&c.licitacion.tirea_pct?` (TIREA de corte ${fmt(c.licitacion.tirea_pct,2)}%)`:''}, sacada del comunicado oficial de su primera licitación (lo leyó la IA).</p>
+<div class="formula">Pago al vencimiento = 100 × (1 + TEM) ^ (meses de 30 días entre emisión y vencimiento)
+                    = 100 × (1 + ${fmt(c.tem_emision,2)}%) ^ (días 30/360 desde el ${fdate(c.emision)} ÷ 30)
+                    = ${fmt(c.vpv,4)}</div>`;
+  } else {
+    h+=`<h4>3. Pagos que quedan</h4><p>${fl.length} pago${fl.length>1?'s':''} por cada 100 nominales originales${p.curva==='cer'?', en términos reales (después se ajustan por CER)':p.curva==='dolar_linked'?', en dólares (se cobran en pesos al A3500)':''}.</p>`;
+  }
+
+  const t = tablaFlujos(fl, y);
+  h+=`<h4>4. TIR: la tasa que iguala pagos y precio</h4>
+<p>La TIR es la única tasa que, usada para traer cada pago a hoy, hace que la suma dé exactamente el precio. Se busca por prueba y error: la computadora prueba tasas hasta que coincide.</p>
+<div class="formula">Precio = Σ  pago ÷ (1 + TIR) ^ (días hasta el pago ÷ 365)
+${fmt(pc,4)} ≈ ${fmt(t.svp,4)}   con TIR = ${pct(p.tir,3)}  ${Math.abs(t.svp-pc)<0.01?'✓':''}</div>${t.html}`;
+  if(p.curva==='cer') h+=`<p>Como los pagos y el precio están en términos reales, la TIR es <b>real</b>: lo que rinde por encima de la inflación.</p>`;
+  if(p.curva==='dolar_linked') h+=`<p>Como todo está en dólares al oficial, la TIR es <b>en dólares</b>: lo que rinde si el A3500 acompaña.</p>`;
+  if(c.tem_mercado!=null) h+=`<p>Expresada como TEM: (1 + TIR)^(30/365) − 1 = <b>${fmt(c.tem_mercado*100,2)}%</b> mensual. Comparala con la TEM de licitación (${fmt(c.tem_emision,2)}%): si es más baja, el bono subió de precio desde que salió.</p>`;
+
+  h+=`<h4>5. Duration: plazo promedio y riesgo de precio</h4>
+<div class="formula">Duration (Macaulay) = Σ años × valor hoy ÷ Σ valor hoy = ${fmt(t.mac,3)} años
+Duration modificada = ${fmt(t.mac,3)} ÷ (1 + ${pct(p.tir,2)}) = ${fmt(p.md,3)}</div>
+<p>Lectura: si la TIR de este bono sube 1 punto, el precio cae alrededor de <b>${fmt(p.md,2)}%</b> (y sube lo mismo si la TIR baja 1 punto).</p>`;
+
+  h+=`<h4>6. Controles</h4><p>${p.ops!=null?`Operaciones en el día: ${p.ops}. Diferencia entre comprador y vendedor: ${p.spread==null?'sin puntas':fmt(p.spread)+'%'}. `:''}${p.revisar?`<span class="flag">Fuera de la curva: ${p.motivo}.</span> Se muestra pero no se usa para dibujar la curva ni para las expectativas.`:'<span class="ok">Pasa los controles</span> (liquidez y distancia a sus vecinos).'}</p>
+<p class="note">Condiciones: ${p.url?`<a href="${p.url}" target="_blank" rel="noopener">${p.fuente}</a>`:p.fuente}.</p>`;
+  abrir(`${p.ticker} · ${p.grupo}`, `Vence ${fdate(p.vto)} · TIR ${pct(p.tir)} · Duration ${fmt(p.md)}`, h);
+}
+
+// Meses de IPC que cubre la ventana del CER (regla del BCRA: del 16 del mes m al 15 del m+1 se reparte la inflación del mes m-1)
+function mesIPC(s){ const d=dd(s); let y=d.getFullYear(), m=d.getMonth()+1-(d.getDate()>=16?1:2); while(m<1){m+=12;y--;} return `${y}-${String(m).padStart(2,'0')}`; }
+function sigMes(k){ const [y,m]=k.split('-').map(Number); return m===12?`${y+1}-01`:`${y}-${String(m+1).padStart(2,'0')}`; }
+const MABR={ene:1,feb:2,mar:3,abr:4,may:5,jun:6,jul:7,ago:8,sep:9,oct:10,nov:11,dic:12};
+function remMes(rem, k){
+  const ipc=rem.ipc; if(ipc[k]!=null) return [ipc[k],'pregunta mensual'];
+  const ms=Object.keys(ipc).filter(x=>/^\d{4}-\d{2}$/.test(x)).sort(); if(k<ms[0]) return [ipc[ms[0]],'pregunta mensual'];
+  if(ipc['12m']){ const h=ipc['12m'].hasta, fin=`20${h.slice(-2)}-${String(MABR[h.slice(0,3)]).padStart(2,'0')}`;
+    if(k<=fin) return [(Math.pow(1+ipc['12m'].valor/100,1/12)-1)*100, `próx. 12 meses ${fmt(ipc['12m'].valor,1)}% → mensual`]; }
+  const a=ipc[k.slice(0,4)]; if(a!=null) return [(Math.pow(1+a/100,1/12)-1)*100, `año ${k.slice(0,4)} ${fmt(a,1)}% → mensual`];
+  return [null,'sin pronóstico'];
+}
+
+function explicarExpect(tk){
+  const e=E.find(x=>x.ticker===tk); let h='';
+  const vc=e.vecinos_cer||[], vd=e.vecinos_dl||[];
+  const interp=(v,campo)=> v.length===2 ? `${v[0].ticker} (${v[0].dias} días, ${pct(v[0].tir)}) y ${v[1].ticker} (${v[1].dias} días, ${pct(v[1].tir)})
+  TIR a ${e.dias} días = ${fmt(v[0].tir,3)} + (${fmt(v[1].tir,3)} − ${fmt(v[0].tir,3)}) × (${e.dias} − ${v[0].dias}) ÷ (${v[1].dias} − ${v[0].dias}) = ${pct(e[campo],3)}` : '';
+  h+=`<h4>La idea</h4><p>Si un inversor puede elegir entre una LECAP (tasa fija) y un bono CER del mismo plazo, los precios se acomodan hasta que le da lo mismo cuál comprar. La inflación que hace que rindan igual es la que "espera" el mercado. Lo mismo con el dollar linked y el dólar oficial.</p>`;
+  let n=1;
+  if(e.tir_cer!=null){
+    h+=`<h4>${n++}. Inflación implícita</h4>
+<div class="formula">TIR de la ${e.ticker} (tasa fija, vence ${fdate(e.vto)}, ${e.dias} días): ${pct(e.tir_fija,3)}
+TIR real CER al mismo plazo, interpolada entre
+  ${interp(vc,'tir_cer')}
+
+Inflación implícita anual = (1 + ${pct(e.tir_fija,2)}) ÷ (1 + ${pct(e.tir_cer,2)}) − 1 = ${pct(e.inflacion_anual,2)}
+Mensual equivalente       = (1 + ${pct(e.inflacion_anual,2)}) ^ (1/12) − 1 = ${pct(e.inflacion_mensual,2)}</div>`;
+    if(e.ventana_cer){
+      const [a,b]=e.ventana_cer, m0=mesIPC(a), m1=mesIPC(b);
+      h+=`<h4>${n++}. ¿Qué meses de inflación cubre?</h4><p>El bono CER ajusta con el CER de 10 días hábiles antes, y el CER reparte la inflación de cada mes entre el 16 del mes siguiente y el 15 del otro. Por eso esta comparación cubre el CER del <b>${fdate(a)}</b> al <b>${fdate(b)}</b>, que refleja la inflación de <b>${nomMes(m0)}</b> (en parte) a <b>${nomMes(m1)}</b> (en parte), no la de hoy al vencimiento.</p>
+<div class="formula">Suba del CER esperada por el mercado = ((1 + TIR fija) ÷ (1 + TIR real)) ^ (${e.dias} ÷ 365) − 1 = ${pct(e.cer_suba_mercado,3)}
+Promedio mensual en la ventana       = ${pct(e.inf_mens_mercado,2)}</div>`;
+      if(C.rem){
+        const ms=[]; for(let k=m0; k<=m1; k=sigMes(k)) ms.push(k);
+        h+=`<h4>${n++}. Lo mismo según el REM (edición ${C.rem_edicion})</h4><p>Se toma la inflación mensual que espera el REM para cada mes y se pasa por la misma regla del CER. Los días con CER ya publicado (hasta el ${fdate(C.cer_publicado_hasta)}) usan el dato real.</p>
+<div class="tablewrap"><table><tr><th>Mes de inflación</th><th>REM (mediana)</th><th>Top 10</th><th>De dónde sale</th></tr>`+
+        ms.map(k=>{
+          // la inflación del mes k entra al CER entre el 16 de k+1 y el 15 de k+2: si ese tramo ya está publicado, se usa el dato real
+          const k2=sigMes(sigMes(k)), publicado = `${k2}-15` <= C.cer_publicado_hasta;
+          if(publicado) return `<tr><td>${nomMes(k)}</td><td colspan="2" style="text-align:center">dato real del INDEC</td><td>ya está en el CER publicado</td></tr>`;
+          const r=remMes(C.rem.total,k), t=remMes(C.rem.top10,k); return `<tr><td>${nomMes(k)}</td><td>${pct(r[0])}</td><td>${pct(t[0])}</td><td>${r[1]}</td></tr>`; }).join('')+
+        `</table></div><div class="formula">Suba del CER según REM    = ${pct(e.cer_suba_rem,3)} → ${pct(e.inf_mens_rem)} mensual
+Suba del CER según Top 10 = ${pct(e.cer_suba_top10,3)} → ${pct(e.inf_mens_top10)} mensual
+Mercado                   = ${pct(e.cer_suba_mercado,3)} → ${pct(e.inf_mens_mercado)} mensual</div>`;
+        if(e.inf_mens_rem!=null) h+=`<p>${e.inf_mens_mercado>e.inf_mens_rem?'El mercado espera <b>más</b> inflación que los economistas en esta ventana. Parte puede ser una prima: los inversores pagan algo extra por cubrirse con CER.':'El mercado espera <b>menos</b> inflación que los economistas en esta ventana.'}</p>`;
+      }
+    }
+  }
+  if(e.tir_dl!=null){
+    h+=`<h4>${n++}. Dólar oficial esperado</h4>
+<div class="formula">TIR dollar linked al mismo plazo, interpolada entre
+  ${interp(vd,'tir_dl')}
+
+Devaluación implícita anual = (1 + ${pct(e.tir_fija,2)}) ÷ (1 + ${pct(e.tir_dl,2)}) − 1 = ${pct(e.devaluacion_anual,2)}
+A3500 esperado al ${fdate(e.vto)} = A3500 hoy ${fmt(e.a3500_hoy)} × (1 + ${pct(e.devaluacion_anual,2)}) ^ (${e.dias} ÷ 365) = ${fmt(e.tc_mercado)}</div>`;
+    if(e.tc_rem!=null) h+=`<p>El REM pregunta el A3500 promedio de cada mes. Tomando ese promedio como valor del día 15 e interpolando, para el ${fdate(e.vto)} espera <b>${fmt(e.tc_rem)}</b> (Top 10: <b>${fmt(e.tc_top10)}</b>). Mercado: <b>${fmt(e.tc_mercado)}</b>.</p>`;
+  }
+  abrir(`Qué espera el mercado: ${e.ticker}`, `Vence ${fdate(e.vto)} · ${e.dias} días`, h);
+}
+
+// ==================== Mercado contra economistas ====================
+(function(){
+  const t=document.getElementById('tabla-rem');
+  if(!C.rem){ t.outerHTML='<p class="note">Todavía no se bajó ninguna edición del REM.</p>'; return; }
+  let h=`<tr><th>LECAP/BONCAP</th><th>Vence</th><th>Inflación: mercado</th><th>REM</th><th>Top 10</th><th>Dólar: mercado</th><th>REM</th><th>Top 10</th><th></th></tr>`;
+  for(const e of E){
+    h+=`<tr class="click" data-t="${e.ticker}"><td><b>${e.ticker}</b></td><td>${fdate(e.vto)}</td>`+
+       `<td>${pct(e.inf_mens_mercado)}</td><td>${pct(e.inf_mens_rem)}</td><td>${pct(e.inf_mens_top10)}</td>`+
+       `<td>${e.tc_mercado?fmt(e.tc_mercado,0):'—'}</td><td>${e.tc_rem?fmt(e.tc_rem,0):'—'}</td><td>${e.tc_top10?fmt(e.tc_top10,0):'—'}</td><td class="ver">Ver cálculo ›</td></tr>`;
+  }
+  t.innerHTML=h;
+  t.querySelectorAll('tr.click').forEach(tr=>tr.addEventListener('click',()=>explicarExpect(tr.dataset.t)));
+  document.getElementById('nota-rem').innerHTML=`Inflación: promedio mensual en la ventana del CER de cada bono. Dólar: A3500 esperado al vencimiento. REM edición ${C.rem_edicion} (<a href="${C.rem.fuente}" target="_blank" rel="noopener">Excel del BCRA</a>). Sin pronóstico (—) cuando la encuesta no llega a ese plazo.`;
+})();
+
+// ==================== ¿Quién le pega más? ====================
+(function(){
+  const A=C.aciertos||{}, R=A.resumen||{}, box=document.getElementById('aciertos');
+  const nombres={mercado:'Mercado (bonos)', rem:'REM', top10:'Top 10 REM'};
+  const casos = (R.inflacion?R.inflacion.mercado.casos:0) + (R.dolar?R.dolar.mercado.casos:0);
+  if(!casos){
+    const fines=E.map(e=>e.ventana_cer&&e.ventana_cer[1]).filter(Boolean).sort();
+    const vtos=E.map(e=>e.vto).sort();
+    box.innerHTML=`<div class="card"><p>Todavía no se cumplió ninguna fecha. El registro empezó con los precios del 11/11/2026 y la edición ${C.rem_edicion} del REM, y crece todos los días.</p>
+<p class="note">Primer resultado de inflación: cuando el BCRA publique el CER del ${fines.length?fdate(fines[0]):'—'} (lo publica alrededor del día 15 del mes anterior). Primer resultado de dólar: el ${vtos.length?fdate(vtos[0]):'—'}, vencimiento de la LECAP más corta. El error de inflación se mide en puntos de inflación mensual; el de dólar, en % del valor.</p></div>`;
+    return;
+  }
+  let h='';
+  for(const [k,tit,u] of [['inflacion','Inflación','pp mensuales'],['dolar','Dólar oficial','%']]){
+    const r=R[k]; if(!r||!r.mercado.casos) continue;
+    const mejor=Object.keys(nombres).filter(q=>r[q].error_medio!=null).sort((a,b)=>r[a].error_medio-r[b].error_medio)[0];
+    h+=`<h3>${tit}</h3><div class="vs">`+Object.keys(nombres).map(q=>`<div class="card"><div class="note">${nombres[q]}${q===mejor?' · <span class="ok">más cerca</span>':''}</div><div class="v">${r[q].error_medio==null?'—':fmt(r[q].error_medio,2)+' '+u}</div><div class="note">error promedio · gana ${r[q].gana} de ${r[q].casos}</div></div>`).join('')+`</div>`;
+    const filas=A[k].slice(-12).reverse();
+    h+=`<div class="tablewrap"><table><tr><th>Pronóstico del</th><th>Bono</th><th>Real</th><th>Mercado</th><th>REM</th><th>Top 10</th></tr>`+
+       filas.map(f=>`<tr><td>${fdate(f.fecha)}</td><td>${f.ticker}</td><td><b>${k==='dolar'?fmt(f.real,0):pct(f.real)}</b></td>`+['mercado','rem','top10'].map(q=>`<td>${f[q]==null?'—':k==='dolar'?fmt(f[q],0):pct(f[q])}</td>`).join('')+`</tr>`).join('')+`</table></div>`;
+  }
+  box.innerHTML=`<div class="card">${h}</div>`;
+})();
+
+// KPIs y tabla de expectativas: también se pueden tocar
+document.querySelectorAll('#kpis .kpi').forEach(k=>{
+  const lab=k.querySelector('.l').textContent, m=k.querySelector('.n').textContent.match(/\((\w+)\)/);
+  if(lab.startsWith('TIR GD30')){ k.style.cursor='pointer'; k.title='Ver cálculo'; k.addEventListener('click',()=>explicarBono('GD30')); }
+  else if(m && E.find(e=>e.ticker===m[1])){ k.style.cursor='pointer'; k.title='Ver cálculo'; k.addEventListener('click',()=>explicarExpect(m[1])); }
+});
+document.querySelectorAll('#tabla-exp tr').forEach((tr,i)=>{ const b=tr.querySelector('b'); if(i && b){ tr.classList.add('click'); tr.addEventListener('click',()=>explicarExpect(b.textContent)); } });
 </script>
 </body>
 </html>

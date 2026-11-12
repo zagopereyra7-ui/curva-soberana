@@ -4,8 +4,9 @@
 2. IA: lee solo las resoluciones que todavía no tienen lectura (necesita ANTHROPIC_API_KEY).
 3. Comunicados de licitación: baja los nuevos.
 4. Tickers: empareja lo que cotiza hoy con los títulos leídos.
-5. Tasas: para LECAP/BONCAP nuevas busca su primera licitación y la IA lee la tasa.
-6. Valuación y página (actualizar.py).
+5. REM: baja la encuesta mensual de expectativas del BCRA si salió una nueva.
+6. Tasas: para LECAP/BONCAP nuevas busca su primera licitación y la IA lee la tasa.
+7. Valuación, mercado vs. REM y página (actualizar.py).
 
 Uso: python diario.py      -> registro en datos/log_diario.txt
 """
@@ -35,6 +36,7 @@ def main() -> None:
     import actualizar
     import descargar_resoluciones
     import leer_con_ia
+    import rem
     import resultados_licitacion
     import tasas
     import tickers
@@ -49,6 +51,7 @@ def main() -> None:
     paso("Comunicados de licitación", lambda: (resultados_licitacion.listar(paginas=2, hasta_anio=datetime.now().year),
                                                resultados_licitacion.bajar_todos()), reg)
     paso("Tickers", tickers.generar, reg)
+    paso("REM del BCRA", rem.actualizar, reg)
     if hay_clave:
         paso("Tasas de licitación", tasas.main, reg)
     paso("Valuación y página", actualizar.main, reg)

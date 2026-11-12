@@ -66,6 +66,11 @@ def vpv_capitalizable(t: dict, tem_pct: float) -> float:
     return 100 * (1 + tem_pct / 100) ** (c.dias_30_360(e, v) / 30)
 
 
+def flujos_futuros(flujos: list[tuple[date, float]], liq: date) -> list[list]:
+    """Pagos que quedan, para mostrar la cuenta: [fecha de pago, monto por 100 VN]."""
+    return [[c.dia_habil(f).isoformat(), round(m, 6)] for f, m in flujos if c.dia_habil(f) > liq]
+
+
 def _tir(flujos: list[tuple[date, float]], precio: float, liq: date) -> tuple[float, float]:
     fut = [(c.dia_habil(f), m) for f, m in flujos if c.dia_habil(f) > liq]
     t = [(f - liq).days / 365 for f, _ in fut]
@@ -98,15 +103,18 @@ def valuar(ticker: str, t: dict, precio: float, liq: date, tasas: dict, cer: dic
         vpv = vpv_capitalizable(t, tem)
         y, d = _tir([(v, vpv)], precio, liq)
         return Valuacion(ticker, "pesos_fija", precio, y, d, dias, v,
-                         {"tem_emision": tem, "vpv": vpv, "tem_mercado": (1 + y) ** (30 / 365) - 1})
+                         {"tem_emision": tem, "vpv": vpv, "tem_mercado": (1 + y) ** (30 / 365) - 1,
+                          "emision": t["fecha_emision"], "flujos": flujos_futuros([(v, vpv)], liq), "precio_calc": precio})
     if tipo == "bono_tasa_fija_pesos":
         fl = flujos_cupon(t, tasas[ticker]["tasa_cupon_pct"])
         y, d = _tir(fl, precio, liq)
-        return Valuacion(ticker, "pesos_fija", precio, y, d, dias, v, {"cupon": tasas[ticker]["tasa_cupon_pct"]})
+        return Valuacion(ticker, "pesos_fija", precio, y, d, dias, v, {"cupon": tasas[ticker]["tasa_cupon_pct"],
+                         "flujos": flujos_futuros(fl, liq), "precio_calc": precio})
     if tipo == "bono_dolares":
         fl = flujos_cupon(t, t["tasa_nominal_anual_pct"])
         y, d = _tir(fl, precio, liq)
-        return Valuacion(ticker, "dolares", precio, y, d, dias, v, {"cupon": t["tasa_nominal_anual_pct"]})
+        return Valuacion(ticker, "dolares", precio, y, d, dias, v, {"cupon": t["tasa_nominal_anual_pct"],
+                         "flujos": flujos_futuros(fl, liq), "precio_calc": precio})
     if tipo in ("letra_cer", "bono_cer"):
         rez = t["dias_habiles_rezago_cer"] or 10
         cer_base = valor_en(cer, restar_habiles(date.fromisoformat(t["fecha_emision"]), rez))
@@ -119,12 +127,15 @@ def valuar(ticker: str, t: dict, precio: float, liq: date, tasas: dict, cer: dic
             flujos = [(v, 100.0)]
         y, d = _tir(flujos, precio_real, liq)
         return Valuacion(ticker, "cer", precio, y, d, dias, v,
-                         {"coef_cer": cer_hoy / cer_base, "precio_real": precio_real, "cupon": cupon})
+                         {"coef_cer": cer_hoy / cer_base, "precio_real": precio_real, "cupon": cupon,
+                          "cer_hoy": cer_hoy, "cer_base": cer_base, "rezago": rez, "emision": t["fecha_emision"],
+                          "flujos": flujos_futuros(flujos, liq), "precio_calc": precio_real})
     if tipo in ("letra_dolar_linked", "bono_dolar_linked"):
         tc = valor_en(a3500, liq)
         precio_usd = precio / tc                           # precio en dólares al oficial de hoy
         y, d = _tir([(v, 100.0)], precio_usd, liq)
-        return Valuacion(ticker, "dolar_linked", precio, y, d, dias, v, {"a3500": tc, "precio_usd": precio_usd})
+        return Valuacion(ticker, "dolar_linked", precio, y, d, dias, v, {"a3500": tc, "precio_usd": precio_usd,
+                         "flujos": flujos_futuros([(v, 100.0)], liq), "precio_calc": precio_usd})
     return None
 
 

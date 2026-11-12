@@ -11,7 +11,10 @@ from datetime import date, datetime, timedelta
 from pathlib import Path
 
 import calculos as c
+import expectativas as X
 import feriados as F
+import quien_acierta as Q
+import rem as R
 import instrumentos as I
 import tickers as T
 
@@ -69,6 +72,15 @@ def marcar_fuera_de_curva(filas: list[dict]) -> None:
             peor["motivo"] = f"Lejos de su curva: {desvio:.1f} puntos contra sus vecinos"
 
 
+def vecinos(filas: list[dict], curva: str, dias: int) -> list[dict]:
+    """Los dos bonos de la curva (sin los marcados) entre los que se interpola ese plazo."""
+    pts = sorted([f for f in filas if f["curva"] == curva and not f["revisar"]], key=lambda f: f["dias"])
+    for a, b in zip(pts, pts[1:]):
+        if a["dias"] <= dias <= b["dias"]:
+            return [a, b]
+    return []
+
+
 def fuente_titulo(t: dict, idx_bo: dict) -> dict:
     if t["resolucion"] in idx_bo:
         n = idx_bo[t["resolucion"]]
@@ -86,7 +98,7 @@ def main() -> None:
     cierre = fecha_precio("GD30D")
     liq = c.liquidacion_t1(date.fromisoformat(cierre))
     cer = I.serie_bcra(30, "2020-08-01", (liq + timedelta(days=60)).isoformat())
-    a3500 = I.serie_bcra(5, (liq - timedelta(days=30)).isoformat(), liq.isoformat())
+    a3500 = I.serie_bcra(5, "2026-10-01", liq.isoformat())  # desde el inicio del registro de expectativas
     filas: list[dict] = []
 
     # 1) canje 2020 (flujos cargados a mano desde los decretos)
@@ -103,6 +115,10 @@ def main() -> None:
                           "var": p.get("pct_change") or 0.0, "fuente": "Decretos 676 y 701/2020 (carga manual)",
                           "detalle": f"Paridad {r.paridad * 100:.1f}%"})
             filas[-1]["spread"], filas[-1]["ops"], filas[-1]["motivo_liquidez"] = liquidez(p)
+            filas[-1]["calc"] = {"tipo": "canje", "precio_calc": p["c"], "ley": ley,
+                                 "residual": r.residual, "corridos": r.intereses_corridos, "paridad": r.paridad,
+                                 "flujos": [[fl.fecha_pago.isoformat(), round(fl.interes + fl.amortizacion, 6)]
+                                            for fl in c.flujos(f) if fl.fecha_pago > liq]}
 
     # 2) bonos leídos por la IA
     tasas = json.loads((BASE / "datos" / "tasas_licitacion.json").read_text(encoding="utf-8"))
@@ -138,6 +154,9 @@ def main() -> None:
                       "var": p.get("pct_change") or 0.0, "detalle": det,
                       **fuente_titulo(t, idx_bo)})
         filas[-1]["spread"], filas[-1]["ops"], filas[-1]["motivo_liquidez"] = liquidez(p)
+        filas[-1]["calc"] = {"tipo": t["tipo"], "nombre": t["nombre"], **v.extra}
+        if r["ticker"] in tasas:
+            filas[-1]["calc"]["licitacion"] = {k: tasas[r["ticker"]].get(k) for k in ("tem_capitalizacion_pct", "tirea_pct", "tasa_cupon_pct")}
 
     marcar_fuera_de_curva(filas)
 
@@ -148,23 +167,40 @@ def main() -> None:
     for f in sorted([f for f in filas if f["curva"] == "pesos_fija" and not f["revisar"] and f["dias"] > 30], key=lambda f: f["dias"]):
         real = I.interpolar(curva_cer, f["dias"])
         dl = I.interpolar(curva_dl, f["dias"])
+        vec = lambda curva: [{"ticker": x["ticker"], "dias": x["dias"], "tir": x["tir"]} for x in vecinos(filas, curva, f["dias"])]
         inf = ((1 + f["tir"] / 100) / (1 + real / 100) - 1) * 100 if real is not None else None
         dev = ((1 + f["tir"] / 100) / (1 + dl / 100) - 1) * 100 if dl is not None else None
         if inf is None and dev is None:
             continue
         expect.append({"ticker": f["ticker"], "vto": f["vto"], "dias": f["dias"], "tir_fija": f["tir"],
+                       "vecinos_cer": vec("cer"), "vecinos_dl": vec("dolar_linked"),
                        "tir_cer": real, "inflacion_anual": inf,
                        "inflacion_mensual": ((1 + inf / 100) ** (1 / 12) - 1) * 100 if inf is not None else None,
                        "tir_dl": dl, "devaluacion_anual": dev,
                        "devaluacion_mensual": ((1 + dev / 100) ** (1 / 12) - 1) * 100 if dev is not None else None})
 
+    # 4) misma ventana según el REM (total y Top 10) y registro para ver después quién acertó
+    rem = R.cargar()
+    if rem:
+        for e in expect:
+            e.update(X.comparar(e, liq, cer, a3500, rem["total"], "rem"))
+            e.update(X.comparar(e, liq, cer, a3500, rem["top10"], "top10"))
+        Q.guardar(cierre, rem["edicion"], expect)
+    aciertos = Q.tablero(cer, a3500)
+
     (BASE / "datos").mkdir(exist_ok=True)
+    # historial: una foto por fecha de precios (si se corre dos veces el mismo día, se reemplaza)
     hist = BASE / "datos" / "historial.csv"
-    nuevo = not hist.exists()
-    with hist.open("a", newline="", encoding="utf-8") as fh:
+    previas = []
+    if hist.exists():
+        with hist.open(encoding="utf-8") as fh:
+            previas = [r for r in csv.reader(fh)][1:]
+        vistas = set()
+        previas = [r for r in previas if r[0] != cierre and not ((r[0], r[2]) in vistas or vistas.add((r[0], r[2])))]
+    with hist.open("w", newline="", encoding="utf-8") as fh:
         w = csv.writer(fh)
-        if nuevo:
-            w.writerow(["fecha_precio", "liquidacion", "ticker", "curva", "precio", "tir", "md"])
+        w.writerow(["fecha_precio", "liquidacion", "ticker", "curva", "precio", "tir", "md"])
+        w.writerows(previas)
         for x in filas:
             w.writerow([cierre, liq.isoformat(), x["ticker"], x["curva"], x["precio"], round(x["tir"], 4), round(x["md"], 4)])
 
@@ -175,7 +211,10 @@ def main() -> None:
                       "motivos": {f["ticker"]: f["motivo"] for f in filas if f["revisar"]},
                       "costo_ia": round(sum(uso[k]["costo_usd"] for k in ("opus", "resultados") if k in uso), 2),
                       "resoluciones": len(list((BASE / "datos" / "lecturas" / "opus").glob("*.json"))),
-                      "a3500": I.valor_en(a3500, liq), "cer": I.valor_en(cer, liq)})
+                      "a3500": I.valor_en(a3500, liq), "cer": I.valor_en(cer, liq),
+                      "rem_edicion": rem["edicion"] if rem else None, "aciertos": aciertos,
+                      "rem": {k: rem[k] for k in ("total", "top10", "fuente")} if rem else None,
+                      "cer_publicado_hasta": max(cer).isoformat()})
     plantilla = (BASE / "plantilla.html").read_text(encoding="utf-8")
     out = (plantilla
            .replace("{{DATOS}}", json.dumps(filas, ensure_ascii=False))
@@ -183,6 +222,7 @@ def main() -> None:
            .replace("{{CONTROLES}}", json.dumps(controles, ensure_ascii=False))
            .replace("{{CIERRE}}", date.fromisoformat(cierre).strftime("%d/%m/%Y"))
            .replace("{{LIQ}}", liq.strftime("%d/%m/%Y"))
+           .replace("{{LIQ_ISO}}", liq.isoformat())
            .replace("{{GENERADO}}", datetime.now().strftime("%d/%m/%Y %H:%M")))
     (BASE / "docs").mkdir(exist_ok=True)
     (BASE / "docs" / "index.html").write_text(out, encoding="utf-8")
