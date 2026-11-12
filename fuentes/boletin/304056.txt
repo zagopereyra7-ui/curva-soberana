@@ -1,0 +1,71 @@
+table tr td {border: 1px solid grey; border-spacing: 0px; border-collapse: collapse; padding: 5px; font-size: 12px; text-align: center;} Ciudad de Buenos Aires, 23/2/2024
+ Visto el expediente EX-2024-18898506- -APN-DGDA#MEC, las leyes 24.156 de Administración Financiera y de los Sistemas de Control del Sector Público Nacional, y 27.701 de Presupuesto General de la Administración Nacional para el ejercicio 2023, vigente conforme el artículo 27 de la ley 24.156 y sus modificatorias, en los términos del decreto 88 del 26 de diciembre de 2023, los decretos 1344 del 4 de octubre de 2007, 820 del 25 de octubre de 2020, 436 del 29 de agosto de 2023 (DECNU-2023-436-APN-PTE), 56 del 16 de diciembre de 2023 (DNU-2023-56-APN-PTE), y 23 del 4 de enero de 2024 (DNU-2024-23-APN-PTE), y la resolución conjunta 9 del 24 de enero de 2019 de la Secretaría de Finanzas y de la Secretaría de Hacienda, ambas del ex Ministerio de Hacienda (RESFC-2019-9-APN-SECH#MHA), y
+ CONSIDERANDO:
+ Que en el Título III de la ley 24.156 de Administración Financiera y de los Sistemas de Control del Sector Público Nacional se regula el Sistema de Crédito Público, estableciéndose en el artículo 60 que las entidades de la Administración Nacional no podrán formalizar ninguna operación de crédito público que no esté contemplada en la ley de presupuesto general del año respectivo o en una ley específica.
+ Que en el artículo 37 de la ley 27.701 de Presupuesto General de la Administración Nacional para el ejercicio 2023, con las modificaciones dispuestas en los artículos 5° del decreto 436 del 29 de agosto de 2023 (DECNU-2023-436-APN-PTE), 2° del decreto 56 del 16 de diciembre de 2023 (DNU-2023-56-APN-PTE) y 1° del decreto 23 del 4 de enero de 2024 (DNU-2024-23-APN-PTE), vigente conforme el artículo 27 de la ley 24.156 y sus modificatorias, en los términos del decreto 88 del 26 de diciembre de 2023, se autoriza al Órgano Responsable de la coordinación de los sistemas de Administración Financiera a realizar operaciones de crédito público por los montos, especificaciones y destino del financiamiento indicados en la planilla anexa al mencionado artículo.
+ Que en el apartado I del artículo 6° del anexo al decreto 1344 del 4 de octubre de 2007, modificado mediante el artículo 5° del decreto 820 del 25 de octubre de 2020, se establece que las funciones de Órgano Responsable de la coordinación de los sistemas que integran la Administración Financiera del Sector Público Nacional, serán ejercidas conjuntamente por la Secretaría de Finanzas y la Secretaría de Hacienda, ambas del actual Ministerio de Economía.
+ Que a través del artículo 2° de la resolución conjunta 9 del 24 de enero de 2019 de la Secretaría de Finanzas y de la Secretaría de Hacienda, ambas del ex Ministerio de Hacienda (RESFC-2019-9-APN-SECH#MHA), se sustituyeron las normas de “Procedimiento para la Colocación de Instrumentos de Deuda Pública”, aprobadas mediante el artículo 1° de la resolución 162 del 7 de septiembre de 2017 del ex Ministerio de Finanzas (RESOL-2017-162-APN-MF).
+ Que se ha considerado conveniente proceder a la emisión del “Bono del Tesoro Nacional en pesos cero cupón con ajuste por CER vencimiento 30 de junio de 2025”, del “Bono del Tesoro Nacional vinculado al dólar estadounidense cero cupón con vencimiento 30 de junio de 2025”, y del “Bono del Tesoro Nacional vinculado al dólar estadounidense cero cupón con vencimiento 30 de junio de 2026”.
+ Que las operaciones que se impulsan se encuentran dentro de los límites establecidos en la planilla anexa al artículo 37 de la ley 27.701, con las modificaciones dispuestas en los artículos 5° del decreto 436/2023, 2° del decreto 56/2023 y 1° del decreto 23/2024, vigente conforme el artículo 27 de la ley 24.156 y sus modificatorias, en los términos del decreto 88/2023.
+ Que el servicio jurídico permanente del Ministerio de Economía ha tomado la intervención que le compete.
+ Que esta medida se dicta en virtud de las facultades previstas en el artículo 37 de la ley 27.701 -con las modificaciones dispuestas en los artículos 5° del decreto 436/2023, 2° del decreto 56/2023 y 1° del decreto 23/2024-, vigente conforme el artículo 27 de la ley 24.156 y sus modificatorias, en los términos del decreto 88/2023, y en el apartado I del artículo 6º del anexo al decreto 1344/2007.
+ Por ello,
+ EL SECRETARIO DE FINANZAS
+ Y
+ EL SECRETARIO DE HACIENDA
+ RESUELVEN:
+ ARTÍCULO 1º.- Dispónese la emisión del “Bono del Tesoro Nacional en pesos cero cupón con ajuste por CER vencimiento 30 de junio de 2025”, por un monto de hasta valor nominal original pesos cinco billones (VNO $ 5.000.000.000.000), con las siguientes condiciones financieras:
+ Fecha de emisión: 28 de febrero de 2024.
+ Fecha de vencimiento: 30 de junio de 2025.
+ Plazo: aproximadamente un (1) año y cuatro (4) meses.
+ Moneda de denominación, suscripción y pago: pesos.
+ Intereses: cero cupón (0) -a descuento-.
+ Amortización: íntegra al vencimiento. El capital será ajustado conforme lo estipulado en la cláusula “Ajuste de Capital”.
+ Ajuste de Capital: el saldo de capital del bono será ajustado conforme al Coeficiente de Estabilización de Referencia (CER) referido en el artículo 4º del decreto 214 del 3 de febrero de 2002, informado por el Banco Central de la República Argentina (BCRA), correspondiente al período transcurrido entre los diez (10) días hábiles anteriores a la fecha de emisión y los diez (10) días hábiles anteriores a la fecha de vencimiento del servicio de amortización de capital correspondiente. La Oficina Nacional de Crédito Público dependiente de la Subsecretaría de Financiamiento de la Secretaría de Finanzas del Ministerio de Economía, será el Agente de Cálculo. La determinación del monto del ajuste efectuado por el Agente de Cálculo será, salvo error manifiesto, final y válido para todas las partes.
+ Denominación mínima: será de valor nominal original pesos uno (VNO $ 1).
+ Colocación: la suscripción se llevará a cabo, en uno (1) o varios tramos, según lo determine la Secretaría de Finanzas del Ministerio de Economía, conforme a las normas de procedimiento aprobadas mediante la resolución conjunta 9 del 24 de enero de 2019 de la Secretaría de Finanzas y de la Secretaría de Hacienda, ambas del ex Ministerio de Hacienda (RESFC-2019-9-APN-SECH#MHA).
+ Negociación: serán negociables y se solicitará su cotización en el Mercado Abierto Electrónico (MAE) y en bolsas y mercados de valores del país.
+ Titularidad: se emitirán Certificados Globales a nombre de la Central de Registro y Liquidación de Pasivos Públicos y Fideicomisos Financieros (CRYL) del BCRA, en su carácter de Agente de Registro.
+ Exenciones impositivas: gozará de todas las exenciones impositivas dispuestas en las leyes y reglamentaciones vigentes en la materia.
+ Atención de los servicios financieros: los pagos se cursarán a través del BCRA mediante transferencias de fondos en las respectivas cuentas de efectivo que posean los titulares de cuentas de registro en esa institución.
+ Ley aplicable: ley de la República Argentina.
+ ARTÍCULO 2º.- Dispónese la emisión del “Bono del Tesoro Nacional vinculado al dólar estadounidense cero cupón con vencimiento 30 de junio de 2025” por un monto de hasta valor nominal original dólares estadounidenses seis mil millones (VNO USD 6.000.000.000), con las siguientes condiciones financieras:
+ Fecha de emisión: 28 de febrero de 2024.
+ Fecha de vencimiento: 30 de junio de 2025.
+ Plazo: aproximadamente un (1) año y cuatro (4) meses.
+ Moneda de denominación: dólares estadounidenses.
+ Moneda de suscripción: pesos al tipo de cambio de referencia publicado por el BCRA en función de la Comunicación “A” 3500 correspondiente al día hábil previo a la fecha de licitación (T-1).
+ Moneda de Pago: pesos al tipo de cambio aplicable.
+ Tipo de cambio aplicable: Es el tipo de cambio de referencia publicado por el BCRA en función de la Comunicación “A” 3500 correspondiente al tercer día hábil previo a la fecha de pago de la amortización.
+ Intereses: cero cupón (0) -a descuento-.
+ Amortización: íntegra al vencimiento al tipo de cambio aplicable.
+ Denominación mínima: será de valor nominal original dólares estadounidenses uno (VNO USD 1).
+ Colocación: la suscripción se llevará a cabo, en uno (1) o varios tramos, según lo determine la Secretaría de Finanzas, conforme a las normas de procedimiento aprobadas mediante la resolución conjunta 9/2019 de la Secretaría de Finanzas y de la Secretaría de Hacienda.
+ Negociación: serán negociables y se solicitará su cotización en el MAE y en bolsas y mercados de valores del país.
+ Titularidad: se emitirán Certificados Globales a nombre de la CRYL del BCRA, en su carácter de Agente de Registro.
+ Exenciones impositivas: gozará de todas las exenciones impositivas dispuestas en las leyes y reglamentaciones vigentes en la materia.
+ Atención de los servicios financieros: los pagos se cursarán a través del BCRA mediante transferencias de fondos en las respectivas cuentas de efectivo que posean los titulares de cuentas de registro en esa institución.
+ Ley aplicable: ley de la República Argentina.
+ ARTÍCULO 3º.- Dispónese la emisión del “Bono del Tesoro Nacional vinculado al dólar estadounidense cero cupón con vencimiento 30 de junio de 2026” por un monto de hasta valor nominal original dólares estadounidenses seis mil millones (VNO USD 6.000.000.000), con las siguientes condiciones financieras:
+ Fecha de emisión: 28 de febrero de 2024.
+ Fecha de vencimiento: 30 de junio de 2026.
+ Plazo: aproximadamente dos (2) años y cuatro (4) meses.
+ Moneda de denominación: dólares estadounidenses.
+ Moneda de suscripción: pesos al tipo de cambio de referencia publicado por el BCRA en función de la Comunicación “A” 3500 correspondiente al día hábil previo a la fecha de licitación (T-1).
+ Moneda de Pago: pesos al tipo de cambio aplicable.
+ Tipo de cambio aplicable: Es el tipo de cambio de referencia publicado por el BCRA en función de la Comunicación “A” 3500 correspondiente al tercer día hábil previo a la fecha de pago de la amortización.
+ Intereses: cero cupón (0) -a descuento-.
+ Amortización: íntegra al vencimiento al tipo de cambio aplicable.
+ Denominación mínima: será de valor nominal original dólares estadounidenses uno (VNO USD 1).
+ Colocación: la suscripción se llevará a cabo, en uno (1) o varios tramos, según lo determine la Secretaría de Finanzas del Ministerio de Economía, conforme a las normas de procedimiento aprobadas mediante la resolución conjunta 9/2019 de la Secretaría de Finanzas y de la Secretaría de Hacienda.
+ Negociación: serán negociables y se solicitará su cotización en el MAE y en bolsas y mercados de valores del país.
+ Titularidad: se emitirán Certificados Globales a nombre de la CRYL del BCRA, en su carácter de Agente de Registro.
+ Exenciones impositivas: gozará de todas las exenciones impositivas dispuestas en las leyes y reglamentaciones vigentes en la materia.
+ Atención de los servicios financieros: los pagos se cursarán a través del BCRA mediante transferencias de fondos en las respectivas cuentas de efectivo que posean los titulares de cuentas de registro en esa institución.
+ Ley aplicable: ley de la República Argentina.
+ ARTÍCULO 4º.- Autorízase a las/los titulares de la Oficina Nacional de Crédito Público, o de la Dirección de Administración de la Deuda Pública, o de la Dirección de Operaciones de Crédito Público, o de la Dirección de Programación e Información Financiera, o de la Dirección de Análisis del Financiamiento, o de la Coordinación de Títulos Públicos, o de la Coordinación de Emisión de Deuda Interna, a suscribir en forma indistinta la documentación necesaria para la implementación de las operaciones dispuestas en los artículos 1º a 3º de esta resolución.
+ ARTÍCULO 5º.- Esta medida entrará en vigencia a partir del día de su dictado.
+ ARTÍCULO 6º.- Comuníquese, publíquese, dese a la Dirección Nacional del Registro Oficial y archívese.
+ Pablo Quirno Magrane - Carlos Jorge Guberman
+ e. 27/02/2024 N° 8902/24 v. 27/02/2024
+ Fecha de publicación 27/02/2024

@@ -1,0 +1,26 @@
+{
+ "titulos": [
+  {
+   "articulo": "ARTÍCULO 1º",
+   "nombre": "Letra del Tesoro Nacional en Dólares Estadounidenses a descuento con vencimiento 19 de febrero de 2027",
+   "tipo": "otro",
+   "moneda_denominacion": "USD",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2026-02-13",
+   "fecha_vencimiento": "2027-02-19",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "cero_cupon_descuento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "",
+   "amortizacion": [
+    {
+     "fecha": "2027-02-19",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Tipo 'otro': es una letra a descuento en dólares estadounidenses y no hay categoría específica. Monto: hasta VNO USD 1.228.159.232,62. Precio de suscripción: USD 984,98 por cada VNO USD 1.000. Interés cupón cero (a descuento), sin tasa explícita. El texto no especifica la base de cálculo. Moneda de emisión, suscripción y pago: dólares estadounidenses. Denominación mínima: VNO USD 0,01. Colocación directa al Sector Público Nacional (art. 54 ley 27.798). Es intransferible y no tiene cotización. Se emite en el marco del vencimiento de la Letra en USD a descuento con vencimiento 13/02/2026 (RESFC-2025-7-APN-SH#MEC)."
+  }
+ ]
+}

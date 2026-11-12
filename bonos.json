@@ -1,0 +1,42 @@
+{
+  "_fuente": "Decreto 701/2020, anexo 'Condiciones de emisión de los títulos nuevos' (fuentes/decreto_701_2020.pdf). Bonares (AL/AE): Decreto 676/2020, Anexo IV (fuentes/decreto_676_2020_anexo4.pdf), mismas cuotas y tasas que el Global del mismo año. Cargado por Claude a mano el 10/11/2026.",
+  "_estado_verificacion": "Globales y Bonares verificados por Claude contra los decretos (verificar_decreto.py y lectura del Anexo IV) el 10/11/2026; revisión del usuario en control/control_decreto.xlsx pendiente",
+  "familias": {
+    "2029": {
+      "nombre": "Amortizable en USD 1% 2029",
+      "bonos": {"GD29": "Ley Nueva York", "AL29": "Ley argentina"},
+      "amortizacion": {"cuotas": 10, "primera": "2025-01-09", "ultima": "2029-07-09", "primera_pct": null},
+      "tasas": [["2020-09-04", 1.00]]
+    },
+    "2030": {
+      "nombre": "Step Up USD 2030",
+      "bonos": {"GD30": "Ley Nueva York", "AL30": "Ley argentina"},
+      "amortizacion": {"cuotas": 13, "primera": "2024-07-09", "ultima": "2030-07-09", "primera_pct": 4.0},
+      "tasas": [["2020-09-04", 0.125], ["2021-07-09", 0.50], ["2023-07-09", 0.75], ["2027-07-09", 1.75]]
+    },
+    "2035": {
+      "nombre": "Step Up USD 2035",
+      "bonos": {"GD35": "Ley Nueva York", "AL35": "Ley argentina"},
+      "amortizacion": {"cuotas": 10, "primera": "2031-01-09", "ultima": "2035-07-09", "primera_pct": null},
+      "tasas": [["2020-09-04", 0.125], ["2021-07-09", 1.125], ["2022-07-09", 1.50], ["2023-07-09", 3.625], ["2024-07-09", 4.125], ["2027-07-09", 4.75], ["2028-07-09", 5.00]]
+    },
+    "2038": {
+      "nombre": "Step Up USD 2038",
+      "bonos": {"GD38": "Ley Nueva York", "AE38": "Ley argentina"},
+      "amortizacion": {"cuotas": 22, "primera": "2027-07-09", "ultima": "2038-01-09", "primera_pct": null},
+      "tasas": [["2020-09-04", 0.125], ["2021-07-09", 2.00], ["2022-07-09", 3.875], ["2023-07-09", 4.25], ["2024-07-09", 5.00]]
+    },
+    "2041": {
+      "nombre": "Step Up USD 2041",
+      "bonos": {"GD41": "Ley Nueva York", "AL41": "Ley argentina"},
+      "amortizacion": {"cuotas": 28, "primera": "2028-01-09", "ultima": "2041-07-09", "primera_pct": null},
+      "tasas": [["2020-09-04", 0.125], ["2021-07-09", 2.50], ["2022-07-09", 3.50], ["2029-07-09", 4.875]]
+    },
+    "2046": {
+      "nombre": "Step Up USD 2046",
+      "bonos": {"GD46": "Ley Nueva York"},
+      "amortizacion": {"cuotas": 44, "primera": "2025-01-09", "ultima": "2046-07-09", "primera_pct": null},
+      "tasas": [["2020-09-04", 0.125], ["2021-07-09", 1.125], ["2022-07-09", 1.50], ["2023-07-09", 3.625], ["2024-07-09", 4.125], ["2027-07-09", 4.375], ["2028-07-09", 5.00]]
+    }
+  }
+}

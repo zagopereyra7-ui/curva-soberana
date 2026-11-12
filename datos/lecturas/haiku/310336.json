@@ -1,0 +1,48 @@
+{
+ "titulos": [
+  {
+   "articulo": "ARTÍCULO 1º",
+   "nombre": "Letra del Tesoro Nacional capitalizable en pesos con vencimiento 17 de enero de 2025",
+   "tipo": "letra_capitalizable_pesos",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2024-07-12",
+   "fecha_vencimiento": "2025-01-17",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "capitalizable_al_vencimiento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2025-01-17",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Monto de hasta VNO $5.400.000.000.000. Precio de emisión a la par. Tasa efectiva mensual (Tm), capitalizable mensualmente, a determinar en la licitación; el texto no fija su valor. Denominación mínima VNO $1. Suscripción en uno o varios tramos según determine la Secretaría de Finanzas. Negociable, con cotización en MAE y bolsas y mercados de valores del país. Certificados Globales a nombre de CRYL del BCRA como Agente de Registro. Exenciones impositivas según normativa vigente. Pagos a través del BCRA. Ley aplicable: argentina."
+  },
+  {
+   "articulo": "ARTÍCULO 2º",
+   "nombre": "Bono del Tesoro Nacional vinculado al dólar estadounidense cero cupón con vencimiento 30 de junio de 2027",
+   "tipo": "bono_dolar_linked",
+   "moneda_denominacion": "USD",
+   "ajuste_capital": "tipo_cambio_A3500",
+   "fecha_emision": "2024-07-12",
+   "fecha_vencimiento": "2027-06-30",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "cero_cupon_descuento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "no especificada en el texto",
+   "amortizacion": [
+    {
+     "fecha": "2027-06-30",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Monto de hasta VNO USD 6.100.000.000. Plazo aproximado de 2 años y 11 meses. Denominación en dólares estadounidenses; suscripción en pesos al tipo de cambio A3500 del día hábil previo a la licitación (T-1). Pago en pesos al tipo de cambio aplicable, que es el de Comunicación A 3500 del tercer día hábil previo a la fecha de pago de la amortización. Amortización íntegra al vencimiento al tipo de cambio aplicable. Denominación mínima VNO USD 1. Suscripción en uno o varios tramos. Negociable, con cotización en MAE y bolsas y mercados de valores del país. Certificados Globales a nombre de CRYL del BCRA. Exenciones impositivas según normativa vigente. Ley aplicable: argentina."
+  }
+ ]
+}

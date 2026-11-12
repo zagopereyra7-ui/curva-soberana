@@ -1,0 +1,70 @@
+{
+ "titulos": [
+  {
+   "articulo": "ARTÍCULO 1º",
+   "nombre": "Letra del Tesoro Nacional capitalizable en pesos con vencimiento 15 de septiembre de 2026",
+   "tipo": "letra_capitalizable_pesos",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2026-05-29",
+   "fecha_vencimiento": "2026-09-15",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "capitalizable_al_vencimiento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2026-09-15",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Tasa efectiva mensual capitalizable mensualmente, a determinar en la licitación del 27/05/2026. Monto máximo VNO $ 6.000.000.000.000. Precio de emisión a la par. Denominación mínima VNO $ 1. Certificados globales a nombre de CRYL del BCRA. Negociable en A3 Mercados SA y bolsas del país."
+  },
+  {
+   "articulo": "ARTÍCULO 2º",
+   "nombre": "Letra del Tesoro Nacional vinculada al dólar estadounidense cero cupón con vencimiento 31 de julio de 2026",
+   "tipo": "letra_dolar_linked",
+   "moneda_denominacion": "USD",
+   "ajuste_capital": "tipo_cambio_A3500",
+   "fecha_emision": "2026-05-29",
+   "fecha_vencimiento": "2026-07-31",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "cero_cupon_descuento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "null",
+   "amortizacion": [
+    {
+     "fecha": "2026-07-31",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Denominada en USD, suscripción y pago en pesos al tipo de cambio Com. A 3500 (T-1 para suscripción; tercer día hábil previo al pago para amortización). Precio de emisión determinado en la licitación del 27/05/2026. Monto máximo VNO USD 4.306.000.000. Denominación mínima VNO USD 1. Base de cálculo no especificada en el texto."
+  },
+  {
+   "articulo": "ARTÍCULO 3º",
+   "nombre": "Letra del Tesoro Nacional vinculada al dólar estadounidense cero cupón con vencimiento 31 de marzo de 2027",
+   "tipo": "letra_dolar_linked",
+   "moneda_denominacion": "USD",
+   "ajuste_capital": "tipo_cambio_A3500",
+   "fecha_emision": "2026-05-29",
+   "fecha_vencimiento": "2027-03-31",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "cero_cupon_descuento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "null",
+   "amortizacion": [
+    {
+     "fecha": "2027-03-31",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Denominada en USD, suscripción y pago en pesos al tipo de cambio Com. A 3500 (T-1 para suscripción; tercer día hábil previo al pago para amortización). Precio de colocación determinado en la licitación del 27/05/2026. Monto máximo VNO USD 4.306.000.000. Denominación mínima VNO USD 1. Base de cálculo no especificada en el texto."
+  }
+ ]
+}

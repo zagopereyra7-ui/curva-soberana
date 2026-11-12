@@ -1,0 +1,37 @@
+{
+ "titulos": [
+  {
+   "articulo": "ARTÍCULO 1º",
+   "nombre": "Letra del Tesoro Nacional Intransferible en Dólares Estadounidenses vencimiento 7 de enero de 2030",
+   "tipo": "otro",
+   "moneda_denominacion": "USD",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2025-01-07",
+   "fecha_vencimiento": "2030-01-07",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "semestral",
+   "fechas_pago_intereses": [
+    "2025-07-07",
+    "2026-01-07",
+    "2026-07-07",
+    "2027-01-07",
+    "2027-07-07",
+    "2028-01-07",
+    "2028-07-07",
+    "2029-01-07",
+    "2029-07-07",
+    "2030-01-07"
+   ],
+   "base_calculo": "null",
+   "amortizacion": [
+    {
+     "fecha": "2030-01-07",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Monto de hasta VNO USD 37.960.128, colocado directamente al BCRA a la par en el marco del artículo 9° del decreto 1104/2024. Intereses semestrales según la tasa que devenguen las reservas internacionales del BCRA para el mismo período, con tope en la tasa SOFR TERM a un año más un margen de 0,71513% menos 1 punto porcentual, aplicada sobre el capital efectivamente suscripto. La ONCP es el agente de cálculo. No se informa tasa nominal ni base de cálculo; las fechas de pago de intereses se generaron por regla semestral hasta el vencimiento, ya que el texto no las enumera expresamente."
+  }
+ ]
+}

@@ -1,0 +1,44 @@
+{
+ "titulos": [
+  {
+   "nombre": "LETRA DEL TESORO NACIONAL CAPITALIZABLE EN PESOS CON VENCIMIENTO 14 DE MARZO DE 2025",
+   "ticker": "S14M5",
+   "fecha_vencimiento": "2025-03-14",
+   "es_nuevo": false,
+   "tem_capitalizacion_pct": 3.9,
+   "tasa_cupon_pct": null,
+   "precio_corte": 1216.5,
+   "tirea_pct": 32.99
+  },
+  {
+   "nombre": "LETRA DEL TESORO NACIONAL CAPITALIZABLE EN PESOS CON VENCIMIENTO 28 DE ABRIL DE 2025",
+   "ticker": "S28A5",
+   "fecha_vencimiento": "2025-04-28",
+   "es_nuevo": false,
+   "tem_capitalizacion_pct": 3.95,
+   "tasa_cupon_pct": null,
+   "precio_corte": 1225.0,
+   "tirea_pct": 30.81
+  },
+  {
+   "nombre": "BONO DEL TESORO NACIONAL CAPITALIZABLE EN PESOS CON VENCIMIENTO 15 DE ENERO DE 2027",
+   "ticker": "T15E7",
+   "fecha_vencimiento": "2027-01-15",
+   "es_nuevo": true,
+   "tem_capitalizacion_pct": 2.05,
+   "tasa_cupon_pct": null,
+   "precio_corte": null,
+   "tirea_pct": 27.57
+  },
+  {
+   "nombre": "LETRA DEL TESORO NACIONAL CAPITALIZABLE EN PESOS CON VENCIMIENTO 10 DE NOVIEMBRE DE 2025",
+   "ticker": "S10N5",
+   "fecha_vencimiento": "2025-11-10",
+   "es_nuevo": true,
+   "tem_capitalizacion_pct": 2.2,
+   "tasa_cupon_pct": null,
+   "precio_corte": null,
+   "tirea_pct": 29.84
+  }
+ ]
+}

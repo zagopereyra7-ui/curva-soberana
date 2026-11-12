@@ -1,0 +1,26 @@
+{
+ "titulos": [
+  {
+   "articulo": "ARTÍCULO 1º",
+   "nombre": "Letra del Tesoro Nacional Intransferible en Dólares Estadounidenses vencimiento 7 de enero de 2030",
+   "tipo": "otro",
+   "moneda_denominacion": "USD",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2025-01-07",
+   "fecha_vencimiento": "2030-01-07",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "semestral",
+   "fechas_pago_intereses": [],
+   "base_calculo": "no especificada",
+   "amortizacion": [
+    {
+     "fecha": "2030-01-07",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Clasificado como 'otro': es una letra intransferible en dólares estadounidenses a 5 años. Se entrega directamente al BCRA, a la par, en el marco del art. 9° del decreto 1104/2024. El monto es de hasta VNO USD 37.960.128. Se emite para cancelar el 60% de los servicios de interés de las letras intransferibles en USD con vencimiento 7/1/2034, 7/1/2031 y 8/1/2034. La tasa es variable: equivale a la tasa que devenguen las reservas internacionales del BCRA en el mismo período, con un máximo de SOFR TERM a 1 año más el margen de ajuste de 0,71513% menos 1 punto porcentual, aplicada sobre el capital efectivamente suscripto. El agente de cálculo es la Oficina Nacional de Crédito Público. El texto indica intereses pagaderos semestralmente pero no especifica los días de pago (presumiblemente 7 de julio y 7 de enero, aunque no figura), por lo que la lista de fechas queda vacía. La base de cálculo no figura en el texto."
+  }
+ ]
+}

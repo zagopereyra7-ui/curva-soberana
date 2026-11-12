@@ -1,0 +1,120 @@
+{
+ "titulos": [
+  {
+   "articulo": "ARTÍCULO 1º",
+   "nombre": "Letra del Tesoro Nacional vinculada al dólar estadounidense cero cupón con vencimiento 31 de agosto de 2026",
+   "tipo": "letra_dolar_linked",
+   "moneda_denominacion": "USD",
+   "ajuste_capital": "tipo_cambio_A3500",
+   "fecha_emision": "2026-06-12",
+   "fecha_vencimiento": "2026-08-31",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "cero_cupon_descuento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "",
+   "amortizacion": [
+    {
+     "fecha": "2026-08-31",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Cero cupón a descuento; precio a determinar en licitación del 10/06/2026. Suscripción en pesos al tipo de cambio A3500 del día hábil previo a la licitación (T-1); pago en pesos al tipo de cambio A3500 del tercer día hábil previo al pago. Monto máximo VNO USD 3.500.000.000. Base de cálculo no especificada en el texto (no aplica por ser cero cupón)."
+  },
+  {
+   "articulo": "ARTÍCULO 2º",
+   "nombre": "Bono del Tesoro Nacional vinculado al dólar estadounidense cero cupón con vencimiento 15 de diciembre de 2028",
+   "tipo": "bono_dolar_linked",
+   "moneda_denominacion": "USD",
+   "ajuste_capital": "tipo_cambio_A3500",
+   "fecha_emision": "2026-06-12",
+   "fecha_vencimiento": "2028-12-15",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "cero_cupon_descuento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "",
+   "amortizacion": [
+    {
+     "fecha": "2028-12-15",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Cero cupón a descuento; precio a determinar en licitación del 10/06/2026. Suscripción en pesos al tipo de cambio A3500 T-1; pago en pesos al tipo de cambio A3500 del tercer día hábil previo al pago. Monto máximo VNO USD 4.100.000.000. Base de cálculo no especificada en el texto (no aplica por ser cero cupón)."
+  },
+  {
+   "articulo": "ARTÍCULO 3º",
+   "nombre": "Bono del Tesoro Nacional en pesos dual CER/TAMAR con vencimiento 15 de diciembre de 2028",
+   "tipo": "dual",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "otro",
+   "fecha_emision": "2026-06-12",
+   "fecha_vencimiento": "2028-12-15",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "capitalizable_al_vencimiento",
+   "fechas_pago_intereses": [
+    "2028-12-15"
+   ],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2028-12-15",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": 10,
+   "notas": "BONO CER/TAMAR 2028. Al vencimiento paga el máximo entre: (i) capital ajustado por CER (10 días hábiles antes de emisión y de vencimiento) o (ii) intereses a TAMAR TEM capitalizable mensualmente más margen del 3%, base 30/360. TAMAR: promedio aritmético simple de TAMAR bancos privados desde 10 días hábiles antes de la emisión hasta 10 días hábiles antes del vencimiento. Las fórmulas de VPV y TAMAR TEM no figuran en el texto. Sin tasa fija ni TEM fija. Suscripción en pesos o por conversión (TZX26 y TTJ26). Monto máximo VNO $10.000.000.000.000."
+  },
+  {
+   "articulo": "ARTÍCULO 4º",
+   "nombre": "Bono del Tesoro Nacional en pesos dual CER/TAMAR con vencimiento 14 de diciembre de 2029",
+   "tipo": "dual",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "otro",
+   "fecha_emision": "2026-06-12",
+   "fecha_vencimiento": "2029-12-14",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "capitalizable_al_vencimiento",
+   "fechas_pago_intereses": [
+    "2029-12-14"
+   ],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2029-12-14",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": 10,
+   "notas": "BONO CER/TAMAR 2029. Al vencimiento paga el máximo entre: (i) capital ajustado por CER (10 días hábiles de rezago) o (ii) intereses a TAMAR TEM capitalizable mensualmente más margen del 3%, base 30/360. TAMAR: promedio aritmético simple de TAMAR bancos privados con rezago de 10 días hábiles. Las fórmulas no figuran en el texto. Sin tasa fija ni TEM fija. Suscripción en pesos o por conversión (TZX26 y TTJ26). Monto máximo VNO $11.000.000.000.000."
+  },
+  {
+   "articulo": "ARTÍCULO 5º",
+   "nombre": "Bono del Tesoro Nacional en pesos dual CER/TAMAR con vencimiento 28 de junio de 2030",
+   "tipo": "dual",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "otro",
+   "fecha_emision": "2026-06-12",
+   "fecha_vencimiento": "2030-06-28",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "capitalizable_al_vencimiento",
+   "fechas_pago_intereses": [
+    "2030-06-28"
+   ],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2030-06-28",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": 10,
+   "notas": "BONO CER/TAMAR 2030. Al vencimiento paga el máximo entre: (i) capital ajustado por CER (10 días hábiles de rezago) o (ii) intereses a TAMAR TEM capitalizable mensualmente más margen del 3%, base 30/360. TAMAR: promedio aritmético simple de TAMAR bancos privados con rezago de 10 días hábiles. Las fórmulas no figuran en el texto. Sin tasa fija ni TEM fija. Suscripción en pesos o por conversión (sólo TZX26). Monto máximo VNO $11.500.000.000.000."
+  }
+ ]
+}

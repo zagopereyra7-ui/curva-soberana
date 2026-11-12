@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Curva soberana argentina</title>
+<style>
+:root{
+  --bg:#fcfcfb; --surface:#ffffff; --border:#e4e3df; --grid:#ecebe7;
+  --text:#0b0b0b; --text-2:#52514e; --muted:#7a7974;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --up:#0ca30c; --down:#d03b3b; --warn:#b07800;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#121211; --surface:#1a1a19; --border:#33332f; --grid:#2a2a27;
+    --text:#f0efec; --text-2:#c3c2b7; --muted:#9a998f;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --up:#3fc23f; --down:#e66767; --warn:#e0a800;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121211; --surface:#1a1a19; --border:#33332f; --grid:#2a2a27;
+  --text:#f0efec; --text-2:#c3c2b7; --muted:#9a998f;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --up:#3fc23f; --down:#e66767; --warn:#e0a800;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:1040px;margin:0 auto;padding:32px 16px 64px}
+h1{font-size:28px;margin:0 0 4px;letter-spacing:-.01em}
+h2{font-size:19px;margin:44px 0 6px}
+h3{font-size:15px;margin:18px 0 6px}
+p{margin:6px 0}
+.sub{color:var(--text-2);margin:0 0 20px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:8px 0 8px}
+.kpi .v{font-size:28px;font-weight:650;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.kpi .l{font-size:13px;color:var(--text-2)}
+.kpi .n{font-size:12px;color:var(--muted)}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 12px}
+.tabs button{font:inherit;font-size:14px;padding:6px 12px;border-radius:99px;border:1px solid var(--border);background:var(--surface);color:var(--text-2);cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--text);color:var(--bg);border-color:var(--text)}
+.legend{display:flex;gap:16px;font-size:13px;color:var(--text-2);margin-bottom:6px;flex-wrap:wrap}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+svg{width:100%;height:auto;display:block}
+svg text{fill:var(--text-2);font-size:11px}
+.tt{position:fixed;pointer-events:none;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-size:12px;box-shadow:0 4px 14px rgba(0,0,0,.12);display:none;z-index:5;color:var(--text);max-width:280px}
+.tablewrap{overflow-x:auto;margin-top:12px}
+table{border-collapse:collapse;width:100%;font-size:13px;font-variant-numeric:tabular-nums}
+th,td{padding:7px 8px;text-align:right;border-bottom:1px solid var(--grid);white-space:nowrap}
+th{color:var(--text-2);font-weight:600;font-size:12px}
+th:first-child,td:first-child,th:nth-child(2),td:nth-child(2){text-align:left}
+.up{color:var(--up)} .down{color:var(--down)}
+.flag{color:var(--warn);font-weight:600}
+ul,ol{padding-left:20px;color:var(--text-2)} li{margin:4px 0}
+.note{font-size:13px;color:var(--muted)}
+.pill{display:inline-block;font-size:12px;padding:2px 8px;border-radius:99px;border:1px solid var(--border);color:var(--text-2)}
+a{color:var(--s1)}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.steps .card b{display:block;margin-bottom:4px}
+</style>
+</head>
+<body>
+<main>
+  <h1>Curva soberana argentina</h1>
+  <p class="sub">Bonos del Tesoro en dólares, pesos a tasa fija, CER y dollar linked. Precios al cierre del 11/11/2026, liquidación 12/11/2026. <span class="pill">Actualizado 12/11/2026 14:56</span></p>
+
+  <div class="kpis" id="kpis"></div>
+
+  <h2>Curvas</h2>
+  <div class="tabs" role="tablist" id="tabs"></div>
+  <div class="card">
+    <div class="legend" id="legend"></div>
+    <svg id="chart" viewBox="0 0 900 400" role="img" aria-label="TIR contra duration de cada bono"></svg>
+    <p class="note" id="nota-curva"></p>
+    <div class="tablewrap"><table id="tabla"></table></div>
+  </div>
+
+  <h2>Qué espera el mercado</h2>
+  <p class="note">Comparando bonos del mismo plazo: la tasa fija en pesos contra el CER da la <b>inflación implícita</b> (breakeven) y contra el dollar linked da la <b>devaluación implícita</b>. Son las expectativas que hay en los precios, no un pronóstico.</p>
+  <div class="card">
+    <div class="legend">
+      <span><i class="dot" style="background:var(--s1)"></i>Inflación mensual implícita</span>
+      <span><i class="dot" style="background:var(--s2)"></i>Devaluación mensual implícita</span>
+    </div>
+    <svg id="chart-exp" viewBox="0 0 900 300" role="img" aria-label="Inflación y devaluación implícitas por plazo"></svg>
+    <div class="tablewrap"><table id="tabla-exp"></table></div>
+  </div>
+
+  <h2>Cómo se cargan los bonos (IA)</h2>
+  <p class="note">Las condiciones de cada bono (fechas, tasa, amortización, ajuste) no vienen con el precio: están en las resoluciones del Tesoro publicadas en el Boletín Oficial. Un modelo de IA las lee y arma la ficha de cada bono.</p>
+  <div class="steps" id="steps"></div>
+
+  <h2>Cómo se calcula</h2>
+  <ul>
+    <li><b>Precios:</b> data912 (precios de BYMA), último cierre. Bonos en dólares con la especie en dólares MEP; el resto en pesos. Por cada 100 de valor nominal original.</li>
+    <li><b>TIR:</b> efectiva anual con días corridos/365, liquidación T+1. En CER es TIR <i>real</i> (por encima de la inflación); en dollar linked, en dólares al tipo de cambio oficial A3500.</li>
+    <li><b>LECAP/BONCAP:</b> pagan al vencimiento 100 × (1 + TEM)<sup>días 30/360 / 30</sup>, con la TEM de su primera licitación.</li>
+    <li><b>CER:</b> capital ajustado por el CER de 10 días hábiles antes (BCRA). <b>Dollar linked:</b> capital en dólares pagado al A3500 (BCRA).</li>
+    <li><b>Expectativas:</b> curvas CER y dollar linked interpoladas linealmente al plazo de cada LECAP/BONCAP. Inflación implícita = (1 + TIR fija) / (1 + TIR real) − 1.</li>
+    <li><b>Días hábiles:</b> se saltean sábados, domingos y feriados nacionales (fuente: argentinadatos.com, se actualiza en cada corrida). Para años todavía sin feriados decretados, solo fines de semana.</li>
+    <li><b>Simplificaciones:</b> sin impuestos ni comisiones. Los bonos TAMAR y duales todavía no están incluidos.</li>
+  </ul>
+</main>
+<div class="tt" id="tt"></div>
+<script>
+const D = [{"ticker": "GD29", "curva": "dolares", "grupo": "GD (ley NY)", "precio": 53.16, "tir": 10.648790411642228, "md": 1.2028760363039548, "dias": 970, "vto": "2029-07-09", "var": -0.63, "fuente": "Decretos 676 y 701/2020 (carga manual)", "detalle": "Paridad 88.3%", "spread": 0.05641748942172288, "ops": 532, "motivo": null, "revisar": false}, {"ticker": "AL29", "curva": "dolares", "grupo": "AL/AE (ley arg.)", "precio": 52.18, "tir": 12.212514501023175, "md": 1.1770938419706827, "dias": 970, "vto": "2029-07-09", "var": 1.1, "fuente": "Decretos 676 y 701/2020 (carga manual)", "detalle": "Paridad 86.7%", "spread": 0.21103117505995092, "ops": 587, "motivo": null, "revisar": false}, {"ticker": "GD30", "curva": "dolares", "grupo": "GD (ley NY)", "precio": 53.55, "tir": 12.034675259323235, "md": 1.5669196710846198, "dias": 1335, "vto": "2030-07-09", "var": 0.56, "fuente": "Decretos 676 y 701/2020 (carga manual)", "detalle": "Paridad 83.5%", "spread": 0.09332711152590623, "ops": 1460, "motivo": null, "revisar": false}, {"ticker": "AL30", "curva": "dolares", "grupo": "AL/AE (ley arg.)", "precio": 51.98, "tir": 13.962030676915472, "md": 1.5212403595819606, "dias": 1335, "vto": "2030-07-09", "var": 0.89, "fuente": "Decretos 676 y 701/2020 (carga manual)", "detalle": "Paridad 81.0%", "spread": 0.019236318168712352, "ops": 38819, "motivo": null, "revisar": false}, {"ticker": "GD35", "curva": "dolares", "grupo": "GD (ley NY)", "precio": 70.96, "tir": 12.161369689745138, "md": 4.619683774939166, "dias": 3161, "vto": "2035-07-09", "var": 2.29, "fuente": "Decretos 676 y 701/2020 (carga manual)", "detalle": "Paridad 70.0%", "spread": 0.04228627810273723, "ops": 1769, "motivo": null, "revisar": false}, {"ticker": "AL35", "curva": "dolares", "grupo": "AL/AE (ley arg.)", "precio": 65.7, "tir": 13.853040055653809, "md": 4.48646170361607, "dias": 3161, "vto": "2035-07-09", "var": 2.01, "fuente": "Decretos 676 y 701/2020 (carga manual)", "detalle": "Paridad 64.8%", "spread": 0.060855012931699766, "ops": 2615, "motivo": null, "revisar": false}, {"ticker": "GD38", "curva": "dolares", "grupo": "GD (ley NY)", "precio": 75.37, "tir": 12.116989512149646, "md": 3.838850657685803, "dias": 4078, "vto": "2038-01-11", "var": 2.05, "fuente": "Decretos 676 y 701/2020 (carga manual)", "detalle": "Paridad 74.1%", "spread": 0.06631739505271855, "ops": 710, "motivo": null, "revisar": false}, {"ticker": "AE38", "curva": "dolares", "grupo": "AL/AE (ley arg.)", "precio": 69.01, "tir": 14.489132667082504, "md": 3.5972146577841655, "dias": 4078, "vto": "2038-01-11", "var": 1.9, "fuente": "Decretos 676 y 701/2020 (carga manual)", "detalle": "Paridad 67.9%", "spread": 0.07245851749872786, "ops": 2583, "motivo": null, "revisar": false}, {"ticker": "GD41", "curva": "dolares", "grupo": "GD (ley NY)", "precio": 66.8, "tir": 11.854802731948421, "md": 4.93625292443806, "dias": 5353, "vto": "2041-07-09", "var": 3.08, "fuente": "Decretos 676 y 701/2020 (carga manual)", "detalle": "Paridad 66.0%", "spread": 0.08986071589037334, "ops": 978, "motivo": null, "revisar": false}, {"ticker": "AL41", "curva": "dolares", "grupo": "AL/AE (ley arg.)", "precio": 61.6, "tir": 13.540249284736172, "md": 4.683180635644105, "dias": 5353, "vto": "2041-07-09", "var": 2.99, "fuente": "Decretos 676 y 701/2020 (carga manual)", "detalle": "Paridad 60.9%", "spread": 0.04871316067224346, "ops": 2395, "motivo": null, "revisar": false}, {"ticker": "GD46", "curva": "dolares", "grupo": "GD (ley NY)", "precio": 60.75, "tir": 11.769197049614599, "md": 5.18194539309663, "dias": 7179, "vto": "2046-07-09", "var": 1.19, "fuente": "Decretos 676 y 701/2020 (carga manual)", "detalle": "Paridad 65.9%", "spread": 0.5252790544977024, "ops": 108, "motivo": null, "revisar": false}, {"ticker": "AN29", "curva": "dolares", "grupo": "AO/AN (ley arg.)", "precio": 81.15, "tir": 16.371374052397847, "md": 2.3040812038085736, "dias": 1114, "vto": "2029-11-30", "var": 1.56, "detalle": "Cupón 6.5%", "fuente": "Res. Conj. leída por IA (62/2025)", "url": "https://www.boletinoficial.gob.ar/detalleAviso/primera/336080/20251212?busqueda=1", "spread": 0.07390983000737628, "ops": 1190, "motivo": null, "revisar": false}, {"ticker": "AO27", "curva": "dolares", "grupo": "AO/AN (ley arg.)", "precio": 102.3, "tir": 3.8710091673987645, "md": 0.9003293679359037, "dias": 351, "vto": "2027-10-29", "var": -0.09, "detalle": "Cupón 6%", "fuente": "Res. Conj. leída por IA (11/2026)", "url": "https://www.boletinoficial.gob.ar/detalleAviso/primera/338764/20260226?busqueda=1", "spread": 0.04886391399950859, "ops": 1967, "motivo": "Lejos de su curva: 8.3 puntos contra sus vecinos", "revisar": true}, {"ticker": "AO28", "curva": "dolares", "grupo": "AO/AN (ley arg.)", "precio": 85.55, "tir": 15.650826690283958, "md": 1.5966760736412613, "dias": 719, "vto": "2028-10-31", "var": 0.05, "detalle": "Cupón 6%", "fuente": "Res. Conj. leída por IA (16/2026)", "url": "https://www.boletinoficial.gob.ar/detalleAviso/primera/340193/20260331?busqueda=1", "spread": 0.023380874444699582, "ops": 3509, "motivo": null, "revisar": false}, {"ticker": "AO29", "curva": "dolares", "grupo": "AO/AN (ley arg.)", "precio": 77.64, "tir": 16.72718060217614, "md": 2.2928364135154276, "dias": 1084, "vto": "2029-10-31", "var": 0.11, "detalle": "Cupón 6%", "fuente": "Res. Conj. leída por IA (44/2026)", "url": "https://www.boletinoficial.gob.ar/detalleAviso/primera/344429/20260716?busqueda=1", "spread": 0.06436248954109179, "ops": 1863, "motivo": null, "revisar": false}, {"ticker": "D10Y7", "curva": "dolar_linked", "grupo": "Dollar linked", "precio": 160000.0, "tir": -6.525978862891829, "md": 0.524649472589579, "dias": 179, "vto": "2027-05-10", "var": 0.0, "detalle": "Precio US$ 103.36 (A3500 1547.91)", "fuente": "Res. Conj. leída por IA (44/2026)", "url": "https://www.boletinoficial.gob.ar/detalleAviso/primera/344429/20260716?busqueda=1", "spread": 6.444953388600368, "ops": 5, "motivo": "Poca liquidez: 5 operaciones en el día", "revisar": true}, {"ticker": "D15E7", "curva": "dolar_linked", "grupo": "Dollar linked", "precio": 153750.0, "tir": 3.924502188928225, "md": 0.1687210061729842, "dias": 64, "vto": "2027-01-15", "var": 0.29, "detalle": "Precio US$ 99.33 (A3500 1547.91)", "fuente": "Res. Conj. leída por IA (46/2026)", "url": "https://www.boletinoficial.gob.ar/detalleAviso/primera/345289/20260731?busqueda=1", "spread": 0.06506180871828238, "ops": 275, "motivo": null, "revisar": false}, {"ticker": "D30N6", "curva": "dolar_linked", "grupo": "Dollar linked", "precio": 154410.0, "tir": 5.128118090038003, "md": 0.04690949423342128, "dias": 18, "vto": "2026-11-30", "var": 0.12, "detalle": "Precio US$ 99.75 (A3500 1547.91)", "fuente": "Res. Conj. leída por IA (55/2026)", "url": "https://www.boletinoficial.gob.ar/detalleAviso/primera/347461/20260915?busqueda=1", "spread": 0.025901703036974682, "ops": 306, "motivo": null, "revisar": false}, {"ticker": "D31M7", "curva": "dolar_linked", "grupo": "Dollar linked", "precio": 153000.0, "tir": 3.103659529788827, "md": 0.36935829391990854, "dias": 139, "vto": "2027-03-31", "var": 0.45, "detalle": "Precio US$ 98.84 (A3500 1547.91)", "fuente": "Res. Conj. leída por IA (28/2026)", "url": "https://www.boletinoficial.gob.ar/detalleAviso/primera/342495/20260528?busqueda=1", "spread": 0.1958863858961802, "ops": 19, "motivo": null, "revisar": false}, {"ticker": "S26F7", "curva": "pesos_fija", "grupo": "LECAP/BONCAP/BONTE", "precio": 101.04, "tir": 27.26254067196351, "md": 0.2281983035783352, "dias": 106, "vto": "2027-02-26", "var": 0.09, "detalle": "TEM mercado 2.00%", "fuente": "Res. Conj. leída por IA (64/2026)", "url": "https://www.boletinoficial.gob.ar/detalleAviso/primera/349884/20261030?busqueda=1", "spread": 0.01979610016827698, "ops": 926, "motivo": null, "revisar": false}, {"ticker": "S29E7", "curva": "pesos_fija", "grupo": "LECAP/BONCAP/BONTE", "precio": 106.15, "tir": 26.85197102153448, "md": 0.16846299542378312, "dias": 78, "vto": "2027-01-29", "var": 0.04, "detalle": "TEM mercado 1.97%", "fuente": "Res. Conj. leída por IA (52/2026)", "url": "https://www.boletinoficial.gob.ar/detalleAviso/primera/346534/20260828?busqueda=1", "spread": 0.011305396442569013, "ops": 766, "motivo": null, "revisar": false}, {"ticker": "S30N6", "curva": "pesos_fija", "grupo": "LECAP/BONCAP/BONTE", "precio": 128.502, "tir": 24.30609666780129, "md": 0.03967228463857368, "dias": 18, "vto": "2026-11-30", "var": 0.1, "detalle": "TEM mercado 1.80%", "fuente": "Res. Conj. leída por IA (63/2025)", "url": "https://www.boletinoficial.gob.ar/detalleAviso/primera/336185/20251215?busqueda=1", "spread": 0.001556383897637509, "ops": 1096, "motivo": null, "revisar": false}, {"ticker": "T15E7", "curva": "pesos_fija", "grupo": "LECAP/BONCAP/BONTE", "precio": 154.649, "tir": 26.263986313867584, "md": 0.1388697370266432, "dias": 64, "vto": "2027-01-15", "var": 0.09, "detalle": "TEM mercado 1.94%", "fuente": "Res. Conj. leída por IA (6/2025)", "url": "https://www.boletinoficial.gob.ar/detalleAviso/primera/320419/20250131?busqueda=1", "spread": 0.006466004978817953, "ops": 2257, "motivo": null, "revisar": false}, {"ticker": "T30A7", "curva": "pesos_fija", "grupo": "LECAP/BONCAP/BONTE", "precio": 139.969, "tir": 28.747202273374917, "md": 0.35963010492996844, "dias": 169, "vto": "2027-04-30", "var": 0.12, "detalle": "TEM mercado 2.10%", "fuente": "Res. Conj. leída por IA (54/2025)", "url": "https://www.boletinoficial.gob.ar/detalleAviso/primera/333666/20251030?busqueda=1", "spread": 0.01929184633686194, "ops": 3892, "motivo": null, "revisar": false}, {"ticker": "T30J7", "curva": "pesos_fija", "grupo": "LECAP/BONCAP/BONTE", "precio": 132.316, "tir": 29.912678907266688, "md": 0.4850465648169487, "dias": 230, "vto": "2027-06-30", "var": -0.25, "detalle": "TEM mercado 2.17%", "fuente": "Res. Conj. leída por IA (3/2026)", "url": "https://www.boletinoficial.gob.ar/detalleAviso/primera/337474/20260115?busqueda=1", "spread": 0.018136751103319713, "ops": 574, "motivo": null, "revisar": false}, {"ticker": "T31Y7", "curva": "pesos_fija", "grupo": "LECAP/BONCAP/BONTE", "precio": 131.65, "tir": 29.311863431770025, "md": 0.42373931589700525, "dias": 200, "vto": "2027-05-31", "var": 0.12, "detalle": "TEM mercado 2.14%", "fuente": "Res. Conj. leída por IA (63/2025)", "url": "https://www.boletinoficial.gob.ar/detalleAviso/primera/336185/20251215?busqueda=1", "spread": 0.0060769032101315465, "ops": 542, "motivo": null, "revisar": false}, {"ticker": "TX28", "curva": "cer", "grupo": "CER", "precio": 1438.5, "tir": 7.470198809100969, "md": 1.1280667969299674, "dias": 728, "vto": "2028-11-09", "var": 0.13, "detalle": "Coef. CER 38.2022 · cupón 2.25%", "fuente": "Decreto 676/2020, Anexo IV (carga manual)", "url": "https://www.boletinoficial.gob.ar/detalleAviso/primera/233685/20200816", "spread": 0.10432968179447052, "ops": 933, "motivo": null, "revisar": false}, {"ticker": "TY30P", "curva": "pesos_fija", "grupo": "LECAP/BONCAP/BONTE", "precio": 114.1, "tir": 31.201695075171088, "md": 1.6396877001900563, "dias": 1295, "vto": "2030-05-30", "var": 0.08, "detalle": "Cupón 29.5%", "fuente": "Res. Conj. leída por IA (24/2025)", "url": "https://www.boletinoficial.gob.ar/detalleAviso/primera/326136/20250529?busqueda=1", "spread": 0.08768084173607568, "ops": 176, "motivo": null, "revisar": false}, {"ticker": "TZV27", "curva": "dolar_linked", "grupo": "Dollar linked", "precio": 151900.0, "tir": 3.0374587288969024, "md": 0.6115610711627999, "dias": 230, "vto": "2027-06-30", "var": 0.26, "detalle": "Precio US$ 98.13 (A3500 1547.91)", "fuente": "Res. Conj. leída por IA (38/2024)", "url": "https://www.boletinoficial.gob.ar/detalleAviso/primera/310336/20240711?busqueda=1", "spread": 0.5214349361407215, "ops": 63, "motivo": null, "revisar": false}, {"ticker": "TZV28", "curva": "dolar_linked", "grupo": "Dollar linked", "precio": 125100.0, "tir": 13.930988301789393, "md": 1.4332156129493712, "dias": 596, "vto": "2028-06-30", "var": 0.2, "detalle": "Precio US$ 80.82 (A3500 1547.91)", "fuente": "Res. Conj. leída por IA (11/2026)", "url": "https://www.boletinoficial.gob.ar/detalleAviso/primera/338764/20260226?busqueda=1", "spread": 0.20004000800160032, "ops": 27, "motivo": null, "revisar": false}, {"ticker": "TZVD8", "curva": "dolar_linked", "grupo": "Dollar linked", "precio": 117900.0, "tir": 13.889978557981342, "md": 1.8378708218527624, "dias": 764, "vto": "2028-12-15", "var": 0.34, "detalle": "Precio US$ 76.17 (A3500 1547.91)", "fuente": "Res. Conj. leída por IA (32/2026)", "url": "https://www.boletinoficial.gob.ar/detalleAviso/primera/343013/20260611?busqueda=1", "spread": 0.33984706881903143, "ops": 20, "motivo": null, "revisar": false}, {"ticker": "TZX27", "curva": "cer", "grupo": "CER", "precio": 422.1, "tir": 2.903171791352721, "md": 0.6123591482476756, "dias": 230, "vto": "2027-06-30", "var": 0.32, "detalle": "Coef. CER 4.2978", "fuente": "Res. Conj. leída por IA (8/2024)", "url": "https://www.boletinoficial.gob.ar/detalleAviso/primera/302229/20240131?busqueda=1", "spread": 0.011846235858558636, "ops": 252, "motivo": null, "revisar": false}, {"ticker": "TZX28", "curva": "cer", "grupo": "CER", "precio": 366.1, "tir": 10.319736898985454, "md": 1.480131079195661, "dias": 596, "vto": "2028-06-30", "var": 0.3, "detalle": "Coef. CER 4.2978", "fuente": "Res. Conj. leída por IA (8/2024)", "url": "https://www.boletinoficial.gob.ar/detalleAviso/primera/302229/20240131?busqueda=1", "spread": 0.04097520999794503, "ops": 968, "motivo": null, "revisar": false}, {"ticker": "TZXA7", "curva": "cer", "grupo": "CER", "precio": 131.0, "tir": 1.8408141063245842, "md": 0.4546445378438727, "dias": 169, "vto": "2027-04-30", "var": 0.3, "detalle": "Coef. CER 1.3211", "fuente": "Res. Conj. leída por IA (60/2025)", "url": "https://www.boletinoficial.gob.ar/detalleAviso/primera/335067/20251127?busqueda=1", "spread": 0.2292701566679491, "ops": 36, "motivo": null, "revisar": false}, {"ticker": "TZXD8", "curva": "cer", "grupo": "CER", "precio": 88.71, "tir": 10.24954831064665, "md": 1.898557152391865, "dias": 764, "vto": "2028-12-15", "var": -0.05, "detalle": "Coef. CER 1.0881", "fuente": "Res. Conj. leída por IA (36/2026)", "url": "https://www.boletinoficial.gob.ar/detalleAviso/primera/343851/20260701?busqueda=1", "spread": 0.8258385655297289, "ops": 14, "motivo": null, "revisar": false}, {"ticker": "TZXM7", "curva": "cer", "grupo": "CER", "precio": 237.15, "tir": 1.3431699328138813, "md": 0.3757746260164228, "dias": 139, "vto": "2027-03-31", "var": 0.33, "detalle": "Coef. CER 2.3836", "fuente": "Res. Conj. leída por IA (27/2024)", "url": "https://www.boletinoficial.gob.ar/detalleAviso/primera/307639/20240517?busqueda=1", "spread": 0.04218519299725556, "ops": 286, "motivo": null, "revisar": false}, {"ticker": "TZXM8", "curva": "cer", "grupo": "CER", "precio": 105.45, "tir": 8.96895408381787, "md": 1.2696842467363634, "dias": 505, "vto": "2028-03-31", "var": 0.09, "detalle": "Coef. CER 1.1876", "fuente": "Res. Conj. leída por IA (16/2026)", "url": "https://www.boletinoficial.gob.ar/detalleAviso/primera/340193/20260331?busqueda=1", "spread": 0.1898433792121527, "ops": 80, "motivo": null, "revisar": false}, {"ticker": "TZXM9", "curva": "cer", "grupo": "CER", "precio": 93.56, "tir": 10.560730686144682, "md": 2.1484504045984014, "dias": 867, "vto": "2029-03-28", "var": -0.09, "detalle": "Coef. CER 1.1876", "fuente": "Res. Conj. leída por IA (16/2026)", "url": "https://www.boletinoficial.gob.ar/detalleAviso/primera/340193/20260331?busqueda=1", "spread": 0.5223602153403282, "ops": 62, "motivo": null, "revisar": false}, {"ticker": "TZXO7", "curva": "cer", "grupo": "CER", "precio": 103.15, "tir": 5.7133770016954415, "md": 0.9096709072126372, "dias": 351, "vto": "2027-10-29", "var": 0.34, "detalle": "Coef. CER 1.0881", "fuente": "Res. Conj. leída por IA (36/2026)", "url": "https://www.boletinoficial.gob.ar/detalleAviso/primera/343851/20260701?busqueda=1", "spread": 0.09694619486185994, "ops": 63, "motivo": null, "revisar": false}, {"ticker": "TZXS7", "curva": "cer", "grupo": "CER", "precio": 114.05, "tir": 5.042837485093587, "md": 0.8398400137916191, "dias": 322, "vto": "2027-09-30", "var": 0.39, "detalle": "Coef. CER 1.1911", "fuente": "Res. Conj. leída por IA (16/2026)", "url": "https://www.boletinoficial.gob.ar/detalleAviso/primera/340193/20260331?busqueda=1", "spread": 0.13149243918475184, "ops": 327, "motivo": null, "revisar": false}, {"ticker": "TZXS8", "curva": "cer", "grupo": "CER", "precio": 99.2, "tir": 10.205267133802442, "md": 1.7078963916821788, "dias": 687, "vto": "2028-09-29", "var": 0.3, "detalle": "Coef. CER 1.1911", "fuente": "Res. Conj. leída por IA (16/2026)", "url": "https://www.boletinoficial.gob.ar/detalleAviso/primera/340193/20260331?busqueda=1", "spread": 0.030237363301921217, "ops": 309, "motivo": null, "revisar": false}, {"ticker": "TZXY7", "curva": "cer", "grupo": "CER", "precio": 129.25, "tir": 1.8472456491548939, "md": 0.538006896491853, "dias": 200, "vto": "2027-05-31", "var": 0.38, "detalle": "Coef. CER 1.3055", "fuente": "Res. Conj. leída por IA (63/2025)", "url": "https://www.boletinoficial.gob.ar/detalleAviso/primera/336185/20251215?busqueda=1", "spread": 0.11612154054577563, "ops": 63, "motivo": null, "revisar": false}, {"ticker": "X29E7", "curva": "cer", "grupo": "CER", "precio": 105.4, "tir": 0.9627298456259425, "md": 0.2116609074098292, "dias": 78, "vto": "2027-01-29", "var": 0.19, "detalle": "Coef. CER 1.0562", "fuente": "Res. Conj. leída por IA (48/2026)", "url": "https://www.boletinoficial.gob.ar/detalleAviso/primera/345901/20260813?busqueda=1", "spread": 0.045551169146676486, "ops": 124, "motivo": null, "revisar": false}, {"ticker": "X30N6", "curva": "cer", "grupo": "CER", "precio": 130.45, "tir": 1.6108124877375007, "md": 0.04853328822570144, "dias": 18, "vto": "2026-11-30", "var": 0.11, "detalle": "Coef. CER 1.3055", "fuente": "Res. Conj. leída por IA (63/2025)", "url": "https://www.boletinoficial.gob.ar/detalleAviso/primera/336185/20251215?busqueda=1", "spread": 0.024533480534202942, "ops": 443, "motivo": null, "revisar": false}];
+const E = [{"ticker": "T15E7", "vto": "2027-01-15", "dias": 64, "tir_fija": 26.263986313867584, "tir_cer": 1.113949128785306, "inflacion_anual": 24.872965008071766, "inflacion_mensual": 1.86829453432249, "tir_dl": 3.924502188928225, "devaluacion_anual": 21.495877925234197, "devaluacion_mensual": 1.6358199724811895}, {"ticker": "S29E7", "vto": "2027-01-29", "dias": 78, "tir_fija": 26.85197102153448, "tir_cer": 0.9627298456259424, "inflacion_anual": 25.642374384581036, "inflacion_mensual": 1.9204528382919195, "tir_dl": 3.771278225888871, "devaluacion_anual": 22.241889268631375, "devaluacion_mensual": 1.687679705877021}, {"ticker": "S26F7", "vto": "2027-02-26", "dias": 106, "tir_fija": 27.26254067196351, "tir_cer": 1.1373580823679472, "inflacion_anual": 25.83138721926943, "inflacion_mensual": 1.933221224065651, "tir_dl": 3.464830299810162, "devaluacion_anual": 23.00077263278226, "devaluacion_mensual": 1.740137434330613}, {"ticker": "T30A7", "vto": "2027-04-30", "dias": 169, "tir_fija": 28.747202273374917, "tir_cer": 1.8408141063245842, "inflacion_anual": 26.420044265317166, "inflacion_mensual": 1.9728744434790668, "tir_dl": 3.0818350899343465, "devaluacion_anual": 24.898050331611476, "devaluacion_mensual": 1.8699997098404975}, {"ticker": "T31Y7", "vto": "2027-05-31", "dias": 200, "tir_fija": 29.311863431770025, "tir_cer": 1.8472456491548939, "inflacion_anual": 26.96648064222149, "inflacion_mensual": 2.009532397494662, "tir_dl": 3.059283168751383, "devaluacion_anual": 25.473280480742467, "devaluacion_mensual": 1.9090151053332338}, {"ticker": "T30J7", "vto": "2027-06-30", "dias": 230, "tir_fija": 29.912678907266688, "tir_cer": 2.903171791352721, "inflacion_anual": 26.247497181796, "inflacion_mensual": 1.96126886126875, "tir_dl": 3.0374587288969024, "devaluacion_anual": 26.082961002640314, "devaluacion_mensual": 1.9501885445248668}];
+const C = {"ia_titulos": 84, "vto_ok": 44, "amort_ok": 44, "tasas_ok": 8, "tasas_total": 8, "revisar": ["AO27", "D10Y7"], "motivos": {"AO27": "Lejos de su curva: 8.3 puntos contra sus vecinos", "D10Y7": "Poca liquidez: 5 operaciones en el día"}, "costo_ia": 1.26, "resoluciones": 34, "a3500": 1547.9128, "cer": 869.10883943433};
+const fmt = (x, d=2) => x==null ? '—' : x.toLocaleString('es-AR',{minimumFractionDigits:d,maximumFractionDigits:d});
+const fdate = s => s.split('-').reverse().join('/');
+const tt = document.getElementById('tt');
+function showTip(e, html){ tt.innerHTML=html; tt.style.display='block';
+  const x=Math.min(e.clientX+14, window.innerWidth-300); tt.style.left=x+'px'; tt.style.top=(e.clientY+14)+'px'; }
+function hideTip(){ tt.style.display='none'; }
+
+const CURVAS = {
+  dolares:{nombre:'Dólares', eje:'TIR en dólares', nota:'Bonos en dólares: Globales (ley Nueva York), Bonares del canje 2020 y Bonares nuevos (AO/AN). La distancia entre GD y AL es lo que el mercado cobra por la ley argentina.',
+           grupos:['GD (ley NY)','AL/AE (ley arg.)','AO/AN (ley arg.)']},
+  pesos_fija:{nombre:'Pesos tasa fija', eje:'TIR anual en pesos', nota:'LECAP y BONCAP (capitalizan una tasa fija hasta el vencimiento) y BONTE 2030 (cupón semestral).', grupos:['LECAP/BONCAP/BONTE']},
+  cer:{nombre:'CER (inflación)', eje:'TIR real (sobre inflación)', nota:'Bonos y letras que ajustan el capital por inflación (CER). La TIR es lo que rinden por encima de la inflación.', grupos:['CER']},
+  dolar_linked:{nombre:'Dollar linked', eje:'TIR en dólares oficiales', nota:'Letras y bonos que pagan en pesos el valor del dólar oficial (A3500). La TIR es en dólares al tipo de cambio oficial.', grupos:['Dollar linked']},
+};
+const COL = ['var(--s1)','var(--s2)','var(--s3)'];
+
+// ---- KPIs
+(function(){
+  const near = (arr, campo, dias) => { const v = arr.filter(e=>e[campo]!=null); if(!v.length) return null;
+    return v.reduce((a,b)=>Math.abs(b.dias-dias)<Math.abs(a.dias-dias)?b:a); };
+  const i = near(E,'inflacion_mensual',180), d = near(E,'devaluacion_mensual',180);
+  const gd = D.filter(x=>x.ticker==='GD30')[0];
+  const k = [
+    ['Bonos valuados', D.length, 'de 4 curvas, '+(D.length-11)+' cargados por IA'],
+    ['Inflación implícita', i?fmt(i.inflacion_mensual)+'% mensual':'—', i?('a '+Math.round(i.dias/30)+' meses ('+i.ticker+')'):''],
+    ['Devaluación implícita', d?fmt(d.devaluacion_mensual)+'% mensual':'—', d?('a '+Math.round(d.dias/30)+' meses ('+d.ticker+')'):''],
+    ['TIR GD30', gd?fmt(gd.tir)+'%':'—', 'Global 2030, ley Nueva York'],
+  ];
+  document.getElementById('kpis').innerHTML = k.map(([l,v,n])=>`<div class="card kpi"><div class="l">${l}</div><div class="v">${v}</div><div class="n">${n}</div></div>`).join('');
+})();
+
+// ---- gráfico genérico
+function scatter(svg, pts, {xKey, yKey, grupos, xLabel, yLabel, W=900, H=400, lines=true}){
+  const m={l:52,r:24,t:16,b:40};
+  const xs=pts.map(p=>p[xKey]), ys=pts.map(p=>p[yKey]);
+  const x0=0, x1=Math.max(1,Math.ceil(Math.max(...xs)*1.05*2)/2);
+  let y0=Math.floor(Math.min(...ys)-1), y1=Math.ceil(Math.max(...ys)+1);
+  const stepY = (y1-y0)>20?5:(y1-y0)>8?2:1;
+  y0=Math.floor(y0/stepY)*stepY; y1=Math.ceil(y1/stepY)*stepY;
+  const X=v=>m.l+(v-x0)/(x1-x0)*(W-m.l-m.r), Y=v=>H-m.b-(v-y0)/(y1-y0)*(H-m.t-m.b);
+  let s='';
+  for(let v=y0; v<=y1+1e-9; v+=stepY){ s+=`<line x1="${m.l}" x2="${W-m.r}" y1="${Y(v)}" y2="${Y(v)}" stroke="var(--grid)"/><text x="${m.l-8}" y="${Y(v)+4}" text-anchor="end">${v}%</text>`; }
+  const stepX = x1>4?1:x1>1.5?0.5:0.25;
+  for(let v=x0; v<=x1+1e-9; v+=stepX){ s+=`<text x="${X(v)}" y="${H-m.b+18}" text-anchor="middle">${+v.toFixed(2)}</text>`; }
+  s+=`<text x="${(W+m.l)/2}" y="${H-4}" text-anchor="middle">${xLabel}</text>`;
+  grupos.forEach((g,gi)=>{
+    const ps=pts.filter(p=>p.grupo===g).sort((a,b)=>a[xKey]-b[xKey]);
+    const col=COL[gi];
+    if(lines && ps.length>1) s+=`<polyline fill="none" stroke="${col}" stroke-width="2" stroke-opacity=".55" points="${ps.filter(p=>!p.revisar).map(p=>X(p[xKey])+','+Y(p[yKey])).join(' ')}"/>`;
+    ps.forEach(p=>{
+      s+= p.revisar ? `<circle cx="${X(p[xKey])}" cy="${Y(p[yKey])}" r="5" fill="var(--surface)" stroke="var(--warn)" stroke-width="2"/>`
+                    : `<circle cx="${X(p[xKey])}" cy="${Y(p[yKey])}" r="5" fill="${col}" stroke="var(--surface)" stroke-width="2"/>`;
+      s+=`<text x="${X(p[xKey])}" y="${Y(p[yKey])-9}" text-anchor="middle" style="fill:var(--text);font-size:10px">${p.ticker}${p.revisar?' ?':''}</text>`;
+      s+=`<circle class="hit" data-t="${p.ticker}" cx="${X(p[xKey])}" cy="${Y(p[yKey])}" r="13" fill="transparent"/>`;
+    });
+  });
+  svg.innerHTML=s;
+}
+
+// ---- pestañas
+let actual='dolares';
+function render(){
+  const cfg=CURVAS[actual], pts=D.filter(d=>d.curva===actual);
+  document.querySelectorAll('#tabs button').forEach(b=>b.setAttribute('aria-selected', b.dataset.k===actual));
+  const gr=cfg.grupos.filter(g=>pts.some(p=>p.grupo===g));
+  document.getElementById('legend').innerHTML = gr.map((g,i)=>`<span><i class="dot" style="background:${COL[cfg.grupos.indexOf(g)]}"></i>${g}</span>`).join('') +
+    (pts.some(p=>p.revisar)?`<span><i class="dot" style="border:2px solid var(--warn);width:10px;height:10px"></i>Fuera de la curva (pasá el mouse para ver por qué)</span>`:'');
+  const svg=document.getElementById('chart');
+  scatter(svg, pts, {xKey:'md', yKey:'tir', grupos:cfg.grupos, xLabel:'Duration modificada (años)'});
+  svg.querySelectorAll('.hit').forEach(c=>{
+    c.addEventListener('mousemove',e=>{ const p=D.find(d=>d.ticker===c.dataset.t);
+      showTip(e, `<b>${p.ticker}</b> · ${p.grupo}<br>${cfg.eje}: ${fmt(p.tir)}% · Duration ${fmt(p.md)}<br>Vence ${fdate(p.vto)} · ${p.detalle}${p.revisar?`<br><span class="flag">${p.motivo}</span>`:''}${p.ops!=null?`<br>${p.ops} operaciones · ${p.spread==null?'sin puntas':fmt(p.spread)+'% entre puntas'}`:''}`); });
+    c.addEventListener('mouseleave',hideTip);
+  });
+  document.getElementById('nota-curva').textContent = cfg.nota;
+  let h=`<tr><th>Bono</th><th>Grupo</th><th>Precio</th><th>Var. día</th><th>${cfg.eje}</th><th>Duration</th><th>Vencimiento</th><th>Detalle</th><th>Condiciones</th></tr>`;
+  for(const p of pts.sort((a,b)=>a.md-b.md)){
+    const cls=p.var>0?'up':p.var<0?'down':'';
+    h+=`<tr><td><b>${p.ticker}</b>${p.revisar?` <span class="flag" title="${p.motivo}">⚠</span>`:''}</td><td>${p.grupo}</td><td>${fmt(p.precio)}</td>`+
+       `<td class="${cls}">${p.var>0?'+':''}${fmt(p.var)}%</td><td>${fmt(p.tir)}%</td><td>${fmt(p.md)}</td><td>${fdate(p.vto)}</td><td>${p.detalle}</td>`+
+       `<td>${p.url?`<a href="${p.url}" target="_blank" rel="noopener">${p.fuente}</a>`:p.fuente}</td></tr>`;
+  }
+  document.getElementById('tabla').innerHTML=h;
+}
+document.getElementById('tabs').innerHTML = Object.entries(CURVAS).map(([k,v])=>`<button role="tab" data-k="${k}">${v.nombre} (${D.filter(d=>d.curva===k).length})</button>`).join('');
+document.querySelectorAll('#tabs button').forEach(b=>b.addEventListener('click',()=>{actual=b.dataset.k; render();}));
+render();
+
+// ---- expectativas
+(function(){
+  const svg=document.getElementById('chart-exp'), W=900, H=300, m={l:52,r:24,t:16,b:40};
+  const pts=E.filter(e=>e.inflacion_mensual!=null||e.devaluacion_mensual!=null);
+  if(!pts.length){ svg.outerHTML='<p class="note">Sin datos suficientes hoy.</p>'; return; }
+  const vals=pts.flatMap(e=>[e.inflacion_mensual,e.devaluacion_mensual]).filter(v=>v!=null);
+  const y0=Math.min(0,Math.floor(Math.min(...vals)*2)/2), y1=Math.ceil(Math.max(...vals)*2)/2+0.5;
+  const x1=Math.ceil(Math.max(...pts.map(e=>e.dias))/30)+1;
+  const X=v=>m.l+v/30/x1*(W-m.l-m.r), Y=v=>H-m.b-(v-y0)/(y1-y0)*(H-m.t-m.b);
+  let s='';
+  for(let v=y0; v<=y1+1e-9; v+=0.5){ s+=`<line x1="${m.l}" x2="${W-m.r}" y1="${Y(v)}" y2="${Y(v)}" stroke="var(--grid)"/><text x="${m.l-8}" y="${Y(v)+4}" text-anchor="end">${fmt(v,1)}%</text>`; }
+  for(let v=0; v<=x1; v+=Math.max(1,Math.round(x1/8))){ s+=`<text x="${X(v*30)}" y="${H-m.b+18}" text-anchor="middle">${v}</text>`; }
+  s+=`<text x="${(W+m.l)/2}" y="${H-4}" text-anchor="middle">Plazo (meses)</text>`;
+  [['inflacion_mensual','var(--s1)'],['devaluacion_mensual','var(--s2)']].forEach(([k,col])=>{
+    const ps=pts.filter(e=>e[k]!=null);
+    if(ps.length>1) s+=`<polyline fill="none" stroke="${col}" stroke-width="2" points="${ps.map(e=>X(e.dias)+','+Y(e[k])).join(' ')}"/>`;
+    ps.forEach(e=>{ s+=`<circle cx="${X(e.dias)}" cy="${Y(e[k])}" r="4.5" fill="${col}" stroke="var(--surface)" stroke-width="2"/><circle class="hx" data-t="${e.ticker}" data-k="${k}" cx="${X(e.dias)}" cy="${Y(e[k])}" r="12" fill="transparent"/>`; });
+  });
+  svg.innerHTML=s;
+  svg.querySelectorAll('.hx').forEach(c=>{
+    c.addEventListener('mousemove',ev=>{ const e=E.find(x=>x.ticker===c.dataset.t); const inf=c.dataset.k==='inflacion_mensual';
+      showTip(ev, `<b>${e.ticker}</b> · vence ${fdate(e.vto)}<br>${inf?'Inflación':'Devaluación'} implícita: ${fmt(inf?e.inflacion_mensual:e.devaluacion_mensual)}% mensual (${fmt(inf?e.inflacion_anual:e.devaluacion_anual,1)}% anual)`); });
+    c.addEventListener('mouseleave',hideTip);
+  });
+  let h='<tr><th>LECAP/BONCAP</th><th>Vence</th><th>TIR fija</th><th>TIR real CER</th><th>Inflación implícita</th><th>TIR dollar linked</th><th>Devaluación implícita</th></tr>';
+  for(const e of E) h+=`<tr><td><b>${e.ticker}</b></td><td>${fdate(e.vto)}</td><td>${fmt(e.tir_fija)}%</td><td>${fmt(e.tir_cer)}${e.tir_cer==null?'':'%'}</td>`+
+     `<td>${e.inflacion_mensual==null?'—':fmt(e.inflacion_mensual)+'% mens. · '+fmt(e.inflacion_anual,1)+'% anual'}</td><td>${fmt(e.tir_dl)}${e.tir_dl==null?'':'%'}</td>`+
+     `<td>${e.devaluacion_mensual==null?'—':fmt(e.devaluacion_mensual)+'% mens. · '+fmt(e.devaluacion_anual,1)+'% anual'}</td></tr>`;
+  document.getElementById('tabla-exp').innerHTML=h;
+})();
+
+// ---- IA y controles
+(function(){
+  const pasos=[
+    ['1. Busca las normas', `Un programa recorre el Boletín Oficial y baja las resoluciones de emisión del Tesoro (${C.resoluciones} con bonos vigentes) y los comunicados de resultado de cada licitación.`],
+    ['2. La IA las lee', `Claude Opus extrae, con un formato fijo, las condiciones de cada título nuevo: emisión, vencimiento, tasa, fechas de pago, amortización y ajuste. Leyó ${C.ia_titulos} títulos por US$ ${fmt(C.costo_ia)} en total. Tiene prohibido completar datos que no estén en el texto.`],
+    ['3. Controles automáticos', `Vencimiento leído = vencimiento del ticker: ${C.vto_ok}/${C.vto_ok}. Amortizaciones que suman 100%: ${C.amort_ok}/${C.vto_ok}. Tasas de licitación coherentes (TEM vs TIREA): ${C.tasas_ok}/${C.tasas_total}.`],
+    ['4. Control contra el mercado', `Primero se descartan los precios poco confiables: menos de 10 operaciones en el día o más de 2% de diferencia entre comprador y vendedor. Después, un bono cuya TIR se aleja mucho de sus vecinos también queda afuera. Los bonos que quedan afuera se ven en el gráfico pero no se usan para dibujar la curva ni para las expectativas. ` + (C.revisar.length ? 'Hoy: ' + C.revisar.map(t=>`${t} (${C.motivos[t].toLowerCase()})`).join('; ') + '.' : 'Hoy no quedó ninguno afuera.')],
+  ];
+  document.getElementById('steps').innerHTML = pasos.map(([t,d])=>`<div class="card"><b>${t}</b><span class="note">${d}</span></div>`).join('');
+})();
+</script>
+</body>
+</html>

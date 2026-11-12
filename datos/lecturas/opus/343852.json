@@ -1,0 +1,28 @@
+{
+ "titulos": [
+  {
+   "articulo": "ARTÍCULO 1º",
+   "nombre": "Letra del Tesoro Nacional Capitalizable en pesos con vencimiento 13 de noviembre de 2026",
+   "tipo": "letra_capitalizable_pesos",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2026-06-30",
+   "fecha_vencimiento": "2026-11-13",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "capitalizable_al_vencimiento",
+   "fechas_pago_intereses": [
+    "2026-11-13"
+   ],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2026-11-13",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Esta resolución no emite un título nuevo por sí misma: sustituye el artículo 1° de la resolución conjunta 36 del 26/06/2026 (RESFC-2026-36-APN-SH#MEC), que había dispuesto la emisión de esta letra, para corregir la fórmula de cálculo de intereses. Se incluye porque el artículo sustituido contiene la disposición de emisión con las condiciones completas. La tasa efectiva mensual (Tm), capitalizable mensualmente hasta el vencimiento, se determina en la licitación del 26/06/2026, por lo que no figura en el texto (null). La fórmula de cálculo no aparece en el texto recibido; sólo figuran las definiciones de sus variables (DÍAS, VPV, VNO, Tm). Monto máximo: VNO $ 6.000.000.000.000. Precio de emisión original: a la par. Denominación mínima: VNO $ 1. Cotización en A3 Mercados SA. Ley argentina."
+  }
+ ]
+}

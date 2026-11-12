@@ -1,0 +1,18 @@
+{
+ "opus": {
+  "tokens_entrada": 271471,
+  "tokens_salida": 47141,
+  "costo_usd": 1.0144
+ },
+ "haiku": {
+  "tokens_entrada": 271471,
+  "tokens_salida": 51949,
+  "costo_usd": 0.0266
+ },
+ "resultados": {
+  "tokens_entrada": null,
+  "tokens_salida": null,
+  "costo_usd": 0.25,
+  "nota": "8 comunicados le\u00eddos el 10/11/2026; tokens no registrados"
+ }
+}

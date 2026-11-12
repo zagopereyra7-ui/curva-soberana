@@ -1,0 +1,74 @@
+{
+ "titulos": [
+  {
+   "nombre": "LETRA DEL TESORO NACIONAL CAPITALIZABLE EN PESOS CON VENCIMIENTO 30 DE JUNIO DE 2025",
+   "ticker": "S30J5",
+   "fecha_vencimiento": "2025-06-30",
+   "es_nuevo": false,
+   "tem_capitalizacion_pct": 3.9,
+   "tasa_cupon_pct": null,
+   "precio_corte": 1429.2,
+   "tirea_pct": 35.75
+  },
+  {
+   "nombre": "LETRA DEL TESORO NACIONAL CAPITALIZABLE EN PESOS CON VENCIMIENTO 31 DE JULIO DE 2025",
+   "ticker": "S31L5",
+   "fecha_vencimiento": "2025-07-31",
+   "es_nuevo": false,
+   "tem_capitalizacion_pct": 3.98,
+   "tasa_cupon_pct": null,
+   "precio_corte": 1404.2,
+   "tirea_pct": 35.65
+  },
+  {
+   "nombre": "LETRA DEL TESORO NACIONAL CAPITALIZABLE EN PESOS CON VENCIMIENTO 29 DE AGOSTO DE 2025",
+   "ticker": "S29G5",
+   "fecha_vencimiento": "2025-08-29",
+   "es_nuevo": false,
+   "tem_capitalizacion_pct": 3.88,
+   "tasa_cupon_pct": null,
+   "precio_corte": 1464.7,
+   "tirea_pct": 34.83
+  },
+  {
+   "nombre": "LETRA DEL TESORO NACIONAL CAPITALIZABLE EN PESOS CON VENCIMIENTO 28 DE NOVIEMBRE DE 2025",
+   "ticker": "S28N5",
+   "fecha_vencimiento": "2025-11-28",
+   "es_nuevo": false,
+   "tem_capitalizacion_pct": 2.26,
+   "tasa_cupon_pct": null,
+   "precio_corte": 1070.7,
+   "tirea_pct": 33.61
+  },
+  {
+   "nombre": "BONO DEL TESORO NACIONAL CAPITALIZABLE EN PESOS CON VENCIMIENTO 30 DE ENERO DE 2026",
+   "ticker": "T30E6",
+   "fecha_vencimiento": "2026-01-30",
+   "es_nuevo": false,
+   "tem_capitalizacion_pct": 2.65,
+   "tasa_cupon_pct": null,
+   "precio_corte": 1172.5,
+   "tirea_pct": 33.59
+  },
+  {
+   "nombre": "LETRA DEL TESORO NACIONAL CAPITALIZABLE EN PESOS CON VENCIMIENTO 29 DE MAYO DE 2026",
+   "ticker": "S29Y6",
+   "fecha_vencimiento": "2026-05-29",
+   "es_nuevo": true,
+   "tem_capitalizacion_pct": 2.35,
+   "tasa_cupon_pct": null,
+   "precio_corte": null,
+   "tirea_pct": 32.15
+  },
+  {
+   "nombre": "BONO DEL TESORO NACIONAL EN PESOS A TASA FIJA CON VENCIMIENTO 30 DE MAYO DE 2030",
+   "ticker": "TY30P",
+   "fecha_vencimiento": "2030-05-30",
+   "es_nuevo": true,
+   "tem_capitalizacion_pct": null,
+   "tasa_cupon_pct": 29.5,
+   "precio_corte": null,
+   "tirea_pct": 31.68
+  }
+ ]
+}

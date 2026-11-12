@@ -1,0 +1,123 @@
+{
+ "titulos": [
+  {
+   "articulo": "ARTÍCULO 1°",
+   "nombre": "Letra de Liquidez del Tesoro Nacional en pesos a descuento con vencimiento 16 de junio de 2022",
+   "tipo": "otro",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2022-05-23",
+   "fecha_vencimiento": "2022-06-16",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "cero_cupon_descuento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "null",
+   "amortizacion": [
+    {
+     "fecha": "2022-06-16",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "LELITE, monto hasta VNO $60.000.000.000. Plazo 24 días. Precio de suscripción determinado por la Secretaría de Finanzas y anunciado en la licitación. Denominación mínima VNO $1. Opción de cancelación anticipada para FCI por hasta 40% del valor nominal suscripto, con precio P=1/(1+TNA*plazo remanente/365), donde TNA es la tasa nominal anual de emisión; la TNA no figura en el texto. Colocación por licitación pública por adhesión solo para FCI registrados ante la CNV."
+  },
+  {
+   "articulo": "ARTÍCULO 2°",
+   "nombre": "Letra del Tesoro Nacional en pesos a descuento con vencimiento 31 de octubre de 2022",
+   "tipo": "letra_capitalizable_pesos",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2022-05-23",
+   "fecha_vencimiento": "2022-10-31",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "cero_cupon_descuento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "null",
+   "amortizacion": [
+    {
+     "fecha": "2022-10-31",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Monto hasta VNO $100.000.000.000. Plazo 161 días. Cupón cero a descuento. Denominación mínima VNO $1. Colocación en uno o varios tramos. Negociable, cotización en MAE y bolsas del país."
+  },
+  {
+   "articulo": "ARTÍCULO 3º",
+   "nombre": "Bono del Tesoro Nacional en pesos ajustado por CER 1,80% vencimiento 9 de noviembre de 2025",
+   "tipo": "bono_cer",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "CER",
+   "fecha_emision": "2022-05-23",
+   "fecha_vencimiento": "2025-11-09",
+   "tasa_nominal_anual_pct": 1.8,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "semestral",
+   "fechas_pago_intereses": [
+    "2022-11-09",
+    "2023-05-09",
+    "2023-11-09",
+    "2024-05-09",
+    "2024-11-09",
+    "2025-05-09",
+    "2025-11-09"
+   ],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2025-11-09",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": 10,
+   "notas": "Monto hasta VNO $150.000.000.000. Plazo tres años y cinco meses. CER con rezago de 10 días hábiles antes de emisión y de cada vencimiento. Agente de cálculo: Oficina Nacional de Crédito Público. Denominación mínima VNO $1. Si el vencimiento de cupón no es día hábil, se paga el día hábil siguiente sin ajuste de intereses. Fechas de pago de intereses incluyen las del texto y la regla de semestres hasta el vencimiento."
+  },
+  {
+   "articulo": "ARTÍCULO 4º",
+   "nombre": "Bono del Tesoro Nacional en pesos vencimiento 23 de mayo de 2027",
+   "tipo": "dual",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "CER",
+   "fecha_emision": "2022-05-23",
+   "fecha_vencimiento": "2027-05-23",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "semestral",
+   "fechas_pago_intereses": [
+    "2022-11-23",
+    "2023-05-23",
+    "2023-11-23",
+    "2024-05-23",
+    "2024-11-23",
+    "2025-05-23",
+    "2025-11-23",
+    "2026-05-23",
+    "2026-11-23",
+    "2027-05-23"
+   ],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2024-05-23",
+     "porcentaje": 25
+    },
+    {
+     "fecha": "2025-05-23",
+     "porcentaje": 25
+    },
+    {
+     "fecha": "2026-05-23",
+     "porcentaje": 25
+    },
+    {
+     "fecha": "2027-05-23",
+     "porcentaje": 25
+    }
+   ],
+   "dias_habiles_rezago_cer": 10,
+   "notas": "Monto hasta VNO $550.000.000.000. Plazo cinco años. Tasa de interés en cada período es la menor entre la tasa fija determinada en licitación y 1% anual más la tasa directa del CER (rezago de 10 días hábiles antes del inicio de cada cupón y del vencimiento del servicio). Denominación mínima VNO $1. Si el vencimiento de cupón no es día hábil, se paga el día hábil siguiente sin ajuste de intereses. Fechas de pago de intereses incluyen las del texto y la regla semestral hasta el vencimiento; la fecha de emisión de cupones 2022-11-23 es el primer pago según el texto."
+  }
+ ]
+}

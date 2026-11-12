@@ -1,0 +1,35 @@
+{
+ "titulos": [
+  {
+   "articulo": "ARTÍCULO 1º",
+   "nombre": "Bono del Tesoro Nacional en dólares estadounidenses 6,50% con vencimiento 30 de noviembre de 2029",
+   "tipo": "bono_dolares",
+   "moneda_denominacion": "USD",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2025-12-12",
+   "fecha_vencimiento": "2029-11-30",
+   "tasa_nominal_anual_pct": 6.5,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "semestral",
+   "fechas_pago_intereses": [
+    "2026-05-30",
+    "2026-11-30",
+    "2027-05-30",
+    "2027-11-30",
+    "2028-05-30",
+    "2028-11-30",
+    "2029-05-30",
+    "2029-11-30"
+   ],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2029-11-30",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Moneda de denominación, suscripción y pago: dólares estadounidenses. Primer período de intereses irregular pagadero el 30 de mayo de 2026. Si el vencimiento del cupón no fuere día hábil, se paga el día hábil inmediato posterior, devengándose intereses hasta la fecha de vencimiento original. Monto máximo VNO USD 4.000.000.000; licitación el 10 de diciembre de 2025. Denominación mínima VNO USD 1. Ley aplicable: ley de la República Argentina. Cotización en A3 Mercados SA y bolsas y mercados del país."
+  }
+ ]
+}

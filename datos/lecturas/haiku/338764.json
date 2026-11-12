@@ -1,0 +1,113 @@
+{
+ "titulos": [
+  {
+   "articulo": "ARTÍCULO 1º",
+   "nombre": "Letra del Tesoro Nacional en pesos ajustada por CER a descuento vencimiento 15 de mayo de 2026",
+   "tipo": "letra_cer",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "CER",
+   "fecha_emision": "2026-02-27",
+   "fecha_vencimiento": "2026-05-15",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "cero_cupon_descuento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "",
+   "amortizacion": [
+    {
+     "fecha": "2026-05-15",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": 10,
+   "notas": "Emisión por hasta VNO $5.000.000.000.000 o lo necesario para cubrir la demanda en la licitación del 25/02/2026. Intereses a descuento. Precio de emisión determinado en licitación. Denominación mínima VNO $1. Ajuste CER con rezago de 10 días hábiles antes de la emisión y del vencimiento; agente de cálculo: Oficina Nacional de Crédito Público. Base de cálculo no especificada en el texto."
+  },
+  {
+   "articulo": "ARTÍCULO 2º",
+   "nombre": "Bono del Tesoro Nacional vinculado al dólar estadounidense cero cupón con vencimiento 30 de junio de 2027",
+   "tipo": "bono_dolar_linked",
+   "moneda_denominacion": "USD",
+   "ajuste_capital": "tipo_cambio_A3500",
+   "fecha_emision": "2026-02-27",
+   "fecha_vencimiento": "2027-06-30",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "cero_cupon_descuento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "",
+   "amortizacion": [
+    {
+     "fecha": "2027-06-30",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Emisión por hasta VNO USD 3.700.000.000 o lo necesario para cubrir la demanda en la licitación del 25/02/2026. Suscripción en pesos al tipo de cambio A3500 del día hábil previo a la licitación (T-1); pago en pesos al tipo de cambio A3500 del tercer día hábil previo al pago de amortización. Amortización íntegra al vencimiento al tipo de cambio aplicable. Intereses cero cupón a descuento. Denominación mínima VNO USD 1."
+  },
+  {
+   "articulo": "ARTÍCULO 3º",
+   "nombre": "Bono del Tesoro Nacional vinculado al dólar estadounidense cero cupón con vencimiento 30 de junio de 2028",
+   "tipo": "bono_dolar_linked",
+   "moneda_denominacion": "USD",
+   "ajuste_capital": "tipo_cambio_A3500",
+   "fecha_emision": "2026-02-27",
+   "fecha_vencimiento": "2028-06-30",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "cero_cupon_descuento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "",
+   "amortizacion": [
+    {
+     "fecha": "2028-06-30",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Emisión por hasta VNO USD 3.700.000.000 o lo necesario para cubrir la demanda en la licitación del 25/02/2026. Suscripción en pesos al tipo de cambio A3500 del día hábil previo a la licitación (T-1); pago en pesos al tipo de cambio A3500 del tercer día hábil previo al pago de amortización. Amortización íntegra al vencimiento al tipo de cambio aplicable. Intereses cero cupón a descuento. Denominación mínima VNO USD 1."
+  },
+  {
+   "articulo": "ARTÍCULO 4º",
+   "nombre": "Bono del Tesoro Nacional en dólares estadounidenses 6% con vencimiento 29 de octubre de 2027",
+   "tipo": "bono_dolares",
+   "moneda_denominacion": "USD",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2026-02-27",
+   "fecha_vencimiento": "2027-10-29",
+   "tasa_nominal_anual_pct": 6.0,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "mensual",
+   "fechas_pago_intereses": [
+    "2026-03-31",
+    "2026-04-30",
+    "2026-05-29",
+    "2026-06-30",
+    "2026-07-31",
+    "2026-08-31",
+    "2026-09-30",
+    "2026-10-30",
+    "2026-11-30",
+    "2026-12-30",
+    "2027-01-29",
+    "2027-02-26",
+    "2027-03-31",
+    "2027-04-30",
+    "2027-05-31",
+    "2027-06-30",
+    "2027-07-30",
+    "2027-08-31",
+    "2027-09-30",
+    "2027-10-29"
+   ],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2027-10-29",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Emisión por hasta VNO USD 250.000.000 o lo necesario para cubrir la demanda en la primera y segunda vuelta de la licitación (25 y 26/02/2026). Denominación mínima VNO USD 1. Si el vencimiento del cupón no es día hábil, el pago será el día hábil siguiente devengando intereses hasta la fecha original. Pagos a través de la CRYL del BCRA."
+  }
+ ]
+}

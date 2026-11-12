@@ -1,0 +1,26 @@
+{
+ "titulos": [
+  {
+   "articulo": "ARTÍCULO 1º",
+   "nombre": "Letra del Tesoro Nacional Intransferible en Dólares Estadounidenses vencimiento 30 de junio de 2031",
+   "tipo": "otro",
+   "moneda_denominacion": "USD",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2026-06-30",
+   "fecha_vencimiento": "2031-06-30",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "semestral",
+   "fechas_pago_intereses": [],
+   "base_calculo": "",
+   "amortizacion": [
+    {
+     "fecha": "2031-06-30",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Letra intransferible en USD entregada al BCRA (art. 55 ley 27.798) por hasta VNO USD 3.878.320, colocación directa a la par, plazo 5 años; cancela el 60% del séptimo cupón de la Letra Intransferible USD vto. 30/12/2032 (Decreto 787/2022). Tasa variable, no fija: la que devenguen las reservas internacionales del BCRA en el mismo período, con un máximo de SOFR TERM a 1 año + margen de ajuste de 0,71513% − 1 punto porcentual, aplicada sobre el capital efectivamente suscripto; agente de cálculo: Oficina Nacional de Crédito Público, con información del BCRA sobre el rendimiento de las reservas en el semestre. El texto dice que los intereses se pagan semestralmente pero no indica fechas concretas de pago, por eso no se generó la lista. La base de cálculo no figura en el texto."
+  }
+ ]
+}

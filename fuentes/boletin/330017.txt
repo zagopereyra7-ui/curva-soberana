@@ -1,0 +1,42 @@
+table tr td {border: 1px solid grey; border-spacing: 0px; border-collapse: collapse; padding: 5px; font-size: 12px; text-align: center;} Ciudad de Buenos Aires, 14/08/2025
+ Visto el expediente EX-2025-89314771- -APN-DGDA#MEC, la ley 27.701 de Presupuesto General de la Administración Nacional para el ejercicio 2023, que rige para el ejercicio 2025 conforme el artículo 27 de la ley 24.156 y sus modificatorias, en los términos del decreto 1131 del 27 de diciembre de 2024, los decretos 1344 del 4 de octubre de 2007, 820 del 25 de octubre de 2020, 280 del 26 de marzo de 2024 (DNU-2024-280-APN-PTE), 459 del 24 de mayo de 2024 (DNU-2024-459-APN-PTE), 453 del 4 de julio de 2025 (DNU-2025-453-APN-PTE), y la resolución conjunta 9 del 24 de enero de 2019 de la Secretaría de Finanzas y de la Secretaría de Hacienda, ambas del ex Ministerio de Hacienda (RESFC-2019-9-APN-SECH#MHA), y
+ CONSIDERANDO:
+ Que en el artículo 38 de la ley 27.701 de Presupuesto General de la Administración Nacional para el ejercicio 2023, que rige para el ejercicio 2025 conforme el artículo 27 de la ley 24.156 y sus modificatorias, en los términos del decreto 1131 del 27 de diciembre de 2024, con las modificaciones dispuestas en los artículos 8º del decreto 280 del 26 de marzo de 2024 (DNU-2024-280-APN-PTE), 1º del decreto 459 del 24 de mayo de 2024 (DNU-2024-459-APN-PTE) y 3° del decreto 453 del 4 de julio de 2025 (DNU-2025-453-APN-PTE), se autoriza al Órgano Responsable de la coordinación de los sistemas de Administración Financiera a emitir Letras del Tesoro, para dar cumplimiento a las operaciones previstas en el programa financiero, las que deberán ser reembolsadas en el mismo ejercicio financiero en que se emitan.
+ Que en el apartado I del artículo 6° del anexo al decreto 1344 del 4 de octubre de 2007, modificado mediante el artículo 5° del decreto 820 del 25 de octubre de 2020, se establece que las funciones de Órgano Responsable de la coordinación de los sistemas que integran la Administración Financiera del Sector Público Nacional, serán ejercidas conjuntamente por la Secretaría de Finanzas y la Secretaría de Hacienda, ambas del actual Ministerio de Economía.
+ Que a través del artículo 2° de la resolución conjunta 9 del 24 de enero de 2019 de la Secretaría de Finanzas y de la Secretaría de Hacienda ambas del ex Ministerio de Hacienda (RESFC-2019-9-APN-SECH#MHA), se sustituyeron las normas de “Procedimiento para la Colocación de Instrumentos de Deuda Pública”, aprobadas mediante el artículo 1° de la resolución 162 del 7 de septiembre de 2017 del ex Ministerio de Finanzas (RESOL-2017-162-APN-MF).
+ Que en ese marco normativo se realizará una licitación por efectivo, para lo cual resulta necesario proceder a la emisión de la “Letra del Tesoro Nacional en pesos a tasa TAMAR con vencimiento 28 de noviembre de 2025”.
+ Que la operación que se impulsa se encuentra dentro del límite establecido en el artículo 38 de la ley 27.701, que rige para el ejercicio 2025 conforme el artículo 27 de la ley 24.156 y sus modificatorias, en los términos del decreto 1131/2024, con las modificaciones dispuestas en los artículos 8º del decreto 280/2024, 1º del decreto 459/2024 y 3º del decreto 453/2025.
+ Que el servicio jurídico permanente del Ministerio de Economía ha tomado la intervención que le compete.
+ Que esta medida se dicta en virtud de las facultades previstas en el artículo 38 de la ley 27.701 -con las modificaciones dispuestas en los artículos 8º del decreto 280/2024, 1º del decreto 459/2024 y 3º del decreto 453/2025-, que rige para el ejercicio 2025 conforme el artículo 27 de la ley 24.156 y sus modificatorias, en los términos del decreto 1131/2024, y en el apartado I del artículo 6° del anexo al decreto 1344/2007.
+ Por ello,
+ EL SECRETARIO DE FINANZAS
+ Y
+ EL SECRETARIO DE HACIENDA
+ RESUELVEN:
+ ARTÍCULO 1º.- Dispónese la emisión de la “Letra del Tesoro Nacional en pesos a tasa TAMAR con vencimiento 28 de noviembre de 2025”, por hasta la suma de valor nominal original necesaria para cubrir la demanda en el proceso de licitación que se realizará el día 18 de agosto del corriente año, que no podrá superar el monto de valor nominal original pesos cinco billones (VNO $ 5.000.000.000.000), con las siguientes condiciones financieras:
+ Fecha de emisión: 19 de agosto de 2025.
+ Fecha de vencimiento: 28 de noviembre de 2025.
+ Moneda de denominación, suscripción y pago: pesos.
+ Precio de emisión original: a la par.
+ Amortización: íntegra al vencimiento.
+ Intereses: devengará intereses a la tasa efectiva mensual “TAMAR TEM” capitalizable mensualmente hasta el vencimiento del instrumento. Los intereses serán calculados sobre la base de meses de treinta (30) días y años de trescientos sesenta (360) días (30/360). Para el cálculo se utilizará la siguiente fórmula:
+ Donde:
+ DÍAS: cantidad de días transcurridos entre la fecha de emisión y la fecha de vencimiento, calculados sobre la base de meses de treinta (30) días y años de trescientos sesenta (360) días (30/360).
+ VPV: Valor de Pago al Vencimiento.
+ VNO: Valor Nominal Original.
+ Siendo:
+ TAMAR: se determinará como el promedio aritmético simple de la tasa de interés para depósitos a plazo fijo de más de mil millones de pesos ($ 1.000.000.000) - TAMAR promedio bancos privados -, calculado considerando las tasas publicadas, durante el plazo del título, por el Banco Central de la República Argentina (BCRA) desde diez (10) días hábiles antes del inicio de la fecha de emisión hasta diez (10) días hábiles antes de la fecha vencimiento.
+ MARGEN: será determinado en la licitación. Una vez establecido éste se mantendrá hasta el vencimiento del instrumento.
+ Denominación mínima: será de valor nominal original pesos uno (VNO $ 1).
+ Colocación: se llevará a cabo conforme las normas de procedimiento aprobadas mediante el artículo 2° de la resolución conjunta 9 del 24 de enero de 2019 de la Secretaría de Finanzas y de la Secretaría de Hacienda, ambas del ex Ministerio de Hacienda (RESFC-2019-9-APN-SECH#MHA).
+ Negociación: serán negociables y se solicitará su cotización en A3 Mercados SA y en bolsas y mercados de valores del país.
+ Titularidad: se emitirán Certificados Globales a nombre de la Central de Registro y Liquidación de Pasivos Públicos y Fideicomisos Financieros (CRYL) del BCRA, en su carácter de Agente de Registro de la Letra.
+ Exenciones impositivas: gozarán de todas las exenciones impositivas dispuestas por las leyes y reglamentaciones vigentes en la materia.
+ Atención de los servicios financieros: los pagos se cursarán a través del BCRA mediante transferencias de fondos en las respectivas cuentas de efectivo que posean los titulares de cuentas de registro en esa institución.
+ Ley aplicable: la ley de la República Argentina.
+ ARTÍCULO 2º.- Autorízase a las/los titulares de la Oficina Nacional de Crédito Público, o de la Dirección de Administración de la Deuda Pública, o de la Dirección de Operaciones de Crédito Público, o de la Dirección de Programación e Información Financiera, o de la Dirección de Análisis del Financiamiento, o de la Coordinación de Títulos Públicos, o de la Coordinación de Emisión de Deuda Interna, a suscribir en forma indistinta la documentación necesaria para la implementación de la operación dispuesta en el artículo 1º de esta resolución.
+ ARTÍCULO 3º.- Esta medida entrará en vigencia a partir del día de su dictado.
+ ARTÍCULO 4º.- Comuníquese, publíquese, dese a la Dirección Nacional del Registro Oficial y archívese.
+ Pablo Quirno Magrane - Carlos Jorge Guberman
+ e. 19/08/2025 N° 58889/25 v. 19/08/2025
+ Fecha de publicación 19/08/2025

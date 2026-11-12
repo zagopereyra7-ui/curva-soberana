@@ -1,0 +1,46 @@
+table tr td {border: 1px solid grey; border-spacing: 0px; border-collapse: collapse; padding: 5px; font-size: 12px; text-align: center;} Ciudad de Buenos Aires, 17/07/2024
+ Visto el expediente EX-2024-73102778- -APN-DGDA#MEC y el expediente EX-2024-72375514- -APN-DGDA#MEC en tramitación conjunta, los decretos 1344 del 4 de octubre de 2007, 820 del 25 de octubre de 2020, 602 del 10 de julio de 2024 (DNU-2024-602-APN-PTE), y 611 del 11 de julio de 2024 (DECTO-2024-611-APN-PTE), y
+ CONSIDERANDO:
+ Que, mediante el artículo 1° del decreto 602 del 10 de julio de 2024 (DNU-2024-602-APN-PTE) se autoriza al Poder Ejecutivo Nacional, a través de las áreas que estime pertinente, a emitir la “Letra Fiscal de Liquidez (LeFi)”, a un (1) año de plazo, por un monto de hasta valor nominal pesos veinte billones (VNO $ 20.000.000.000.000), la que capitalizará la tasa de política monetaria que informa el Banco Central de la República Argentina (BCRA).
+ Que en el artículo 2° del mencionado decreto se autoriza al Poder Ejecutivo Nacional, a través de las áreas que estime pertinente, a realizar una operación de canje con la Letra Fiscal de Liquidez (LeFI) que se emita, por Instrumentos de Deuda Pública en cartera del BCRA (“Títulos Elegibles”).
+ Que, asimismo, en el artículo 3º del citado decreto se establece que dichas operaciones de canje no estarán alcanzadas por las disposiciones del artículo 65 de la ley 24.156 de Administración Financiera y de los Sistemas de Control del Sector Público Nacional y sus modificatorias y deberán ser realizadas a una relación de canje que considere los precios de mercado de los Títulos Elegibles y el valor técnico de la Letra de Liquidez (LeFi), ambos calculados a la fecha de liquidación de cada canje.
+ Que, tal como se menciona en el tercer y cuarto considerando del decreto 602/2024, las operaciones que se impulsan tienen como objetivo el saneamiento de la hoja de balance del BCRA, mediante la recuperación del nivel de reservas internacionales y una solución para la dinámica de sus pasivos remunerados.
+ Que en el decreto 611 del 11 de julio de 2024 (DECTO-2024-611-APN-PTE) se faculta al Órgano Responsable de la coordinación de los sistemas que integran la Administración Financiera del Sector Público Nacional a realizar las operaciones dispuestas en los artículos 1°, 2° y 3° del decreto 602/2024.
+ Que en función de lo expuesto corresponde proceder a la emisión de la Letra Fiscal de Liquidez (LeFi) y establecer los lineamientos para realizar la operación de canje con el BCRA.
+ Que en el apartado I del artículo 6° del anexo al decreto 1344 del 4 de octubre de 2007, modificado mediante el artículo 5° del decreto 820 del 25 de octubre de 2020, se establece que las funciones de Órgano Responsable de la coordinación de los sistemas que integran la Administración Financiera del Sector Público Nacional, serán ejercidas conjuntamente por la Secretaría de Finanzas y la Secretaría de Hacienda, ambas del actual Ministerio de Economía.
+ Que las operaciones que se impulsan se encuentran dentro de lo establecido en los artículos 1°, 2° y 3° del decreto 602/2024.
+ Que el servicio jurídico permanente del Ministerio de Economía ha tomado la intervención que le compete.
+ Que esta medida se dicta en virtud de las facultades previstas en el artículo 1° del decreto 611/2024, en el marco de lo establecido en los artículos 1°, 2° y 3° del decreto 602/2024 y en el apartado I del artículo 6º del anexo al decreto 1344/2007, modificado mediante el artículo 5° del decreto 820 del 25 de octubre de 2020.
+ Por ello,
+ EL SECRETARIO DE FINANZAS
+ Y
+ EL SECRETARIO DE HACIENDA
+ RESUELVEN:
+ ARTÍCULO 1º.- Dispónese la emisión de la “Letra Fiscal de Liquidez con vencimiento 17 de julio de 2025” (LeFi), por un monto de hasta valor nominal original pesos veinte billones (VNO $ 20.000.000.000.000), con las siguientes condiciones financieras:
+ Fecha de emisión: 17 de julio de 2024.
+ Fecha de vencimiento: 17 de julio de 2025.
+ Moneda de denominación, suscripción y pago: pesos.
+ Amortización: íntegra al vencimiento.
+ Intereses: pagará intereses a la tasa nominal anual de política monetaria informada por el Banco Central de la República Argentina (BCRA) con capitalización diaria hasta el vencimiento del instrumento y serán pagaderos al vencimiento de la LeFi. En cada cambio de la tasa nominal anual de política monetaria, se capitalizarán los intereses y se considerarán como nuevo capital. La capitalización del interés se calculará con la siguiente fórmula:
+ Donde:
+ IC: índice de capitalización.
+ CC: coeficiente de capitalización. En la fecha de emisión este será igual a uno (1). En cada cambio de la TNAPM este coeficiente tomará el valor del IC para continuar con el cálculo de capitalización.
+ TNAPM: es la tasa nominal anual de política monetaria informada por el BCRA del día hábil previo a la fecha de emisión de la LeFi hasta un día hábil anterior al vencimiento de la LeFi o al día de cálculo del IC.
+ Días: son los días efectivamente transcurridos desde la fecha de emisión a la fecha de cálculo de la capitalización. En cada cambio de la TNAPM se tomarán los días efectivamente transcurridos desde la fecha de reinicio de la tasa hasta el nuevo cambio de TNAPM, si lo hubiera.
+ Denominación mínima: será de valor nominal original pesos uno (VNO $ 1).
+ Colocación: mediante operaciones de canje con el BCRA de acuerdo con lo establecido en los decretos 602 del 10 de julio de 2024 (DNU-2024-602-APN-PTE), y 611 del 11 de julio de 2024 (DECTO-2024-611-APN-PTE), y el artículo 2° de la presente norma.
+ Agente de cálculo: el BCRA será el agente de cálculo de la capitalización, quien informará al inicio y en cada cambio de la tasa nominal anual de política monetaria la nueva tasa y la capitalización hasta esa fecha a la Dirección de Administración de la Deuda Pública dependiente de la Oficina Nacional de Crédito Pública de la Secretaría de Finanzas de este ministerio, para sus registros.
+ Negociación: será negociable solo entre el BCRA y las entidades financieras.
+ Titularidad: se emitirán Certificados Globales a nombre de la Central de Registro y Liquidación de Pasivos Públicos y Fideicomisos Financieros (CRYL) del BCRA, en su carácter de Agente de Registro de la Letra.
+ Exenciones impositivas: gozará de todas las exenciones impositivas dispuestas en las leyes y reglamentaciones vigentes en la materia.
+ Atención de los servicios financieros: los pagos se cursarán a través del BCRA mediante transferencias de fondos en las respectivas cuentas de efectivo que posean los titulares de cuentas de registro en dicha institución.
+ Ley aplicable: ley de la República Argentina.
+ ARTÍCULO 2º.- Dispónese, en el marco de lo establecido en los decretos 602/2024 y 611/2024, el canje de los Instrumentos de Deuda Pública en cartera del BCRA, conforme se detalla en el anexo que forma parte integrante de esta medida (IF-2024-74744574-APN-SF#MEC) (“Títulos Elegibles), por la LeFi vencimiento 17 julio 2025, emitida por el artículo 1° de la presente resolución conjunta.
+ ARTÍCULO 3º.- Autorízase a las/los titulares de la Oficina Nacional de Crédito Público, o de la Dirección de Administración de la Deuda Pública, o de la Dirección de Operaciones de Crédito Público, o de la Dirección de Programación e Información Financiera, o de la Dirección de Análisis del Financiamiento, o de la Coordinación de Títulos Públicos, o de la Coordinación de Emisión de Deuda Interna, a suscribir en forma indistinta la documentación necesaria para la implementación de las operaciones dispuestas en los artículos 1º y 2º de esta resolución.
+ ARTÍCULO 4º.- Esta medida entrará en vigencia a partir del día de su dictado.
+ ARTÍCULO 5º.- Comuníquese, publíquese, dese a la Dirección Nacional del Registro Oficial y archívese.
+ Pablo Quirno Magrane - Carlos Jorge Guberman
+ NOTA: El/los Anexo/s que integra/n este(a) Resolución Conjunta se publican en la edición web del BORA -www.boletinoficial.gob.ar-
+ e. 18/07/2024 N° 46654/24 v. 18/07/2024
+ Fecha de publicación 18/07/2024 
+ <div class="row"

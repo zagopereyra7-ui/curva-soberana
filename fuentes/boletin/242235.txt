@@ -1,0 +1,54 @@
+table tr td {border: 1px solid grey; border-spacing: 0px; border-collapse: collapse; padding: 5px; font-size: 12px; text-align: center;} Ciudad de Buenos Aires, 22/03/2021
+ Visto el expediente EX-2021-24342687- -APN-DGDA#MEC, las leyes 24.156 de Administración Financiera y de los Sistemas de Control del Sector Público Nacional, y 27.591 de Presupuesto General de la Administración Nacional para el Ejercicio 2021, los decretos 1344 del 4 de octubre de 2007 y 820 del 25 de octubre de 2020, y la resolución conjunta 9 del 24 de enero de 2019 de la Secretaría de Finanzas y de la Secretaría de Hacienda, ambas del ex Ministerio de Hacienda (RESFC-2019-9-APN-SECH#MHA), y
+ CONSIDERANDO:
+ Que en el Título III de la ley 24.156 de Administración Financiera y de los Sistemas de Control del Sector Público Nacional se regula el Sistema de Crédito Público, estableciéndose en el artículo 60 que las entidades de la Administración Nacional no podrán formalizar ninguna operación de crédito público que no esté contemplada en la ley de presupuesto general del año respectivo o en una ley específica.
+ Que mediante el artículo 42 de la ley 27.591 de Presupuesto General de la Administración Nacional para el Ejercicio 2021, se autoriza al Órgano Responsable de la coordinación de los sistemas de Administración Financiera a realizar operaciones de crédito público por los montos, especificaciones y destino del financiamiento indicados en la planilla anexa al mencionado artículo.
+ Que, adicionalmente, a través del artículo 43 de la ley citada en el considerando precedente, se autoriza al Órgano Responsable de la coordinación de los sistemas de Administración Financiera a emitir Letras del Tesoro, para dar cumplimiento a las operaciones previstas en el programa financiero, las que deberán ser reembolsadas en el mismo ejercicio financiero en que se emitan.
+ Que en el apartado I del artículo 6° del anexo al decreto 1344 del 4 de octubre de 2007, modificado mediante el artículo 5° del decreto 820 del 25 de octubre de 2020, se establece que las funciones de Órgano Responsable de la coordinación de los sistemas que integran la Administración Financiera del Sector Público Nacional, serán ejercidas conjuntamente por la Secretaría de Finanzas y la Secretaría de Hacienda, ambas del actual Ministerio de Economía.
+ Que a través del artículo 2° de la resolución conjunta 9 del 24 de enero de 2019 de la Secretaría de Finanzas y de la Secretaría de Hacienda, ambas del ex Ministerio de Hacienda (RESFC-2019-9-APN-SECH#MHA), se sustituyeron las normas de “Procedimiento para la Colocación de Instrumentos de Deuda Pública”, aprobadas mediante el artículo 1° de la resolución 162 del 7 de septiembre de 2017 del ex Ministerio de Finanzas (RESOL-2017-162-APN-MF).
+ Que en el marco de la programación financiera para el año 2021 se considera conveniente proceder a la ampliación de la emisión de la “Letra del Tesoro Nacional en pesos ajustada por CER a descuento con vencimiento 28 febrero de 2022”, emitida originalmente mediante el artículo 2º de la resolución conjunta 13 del 16 de marzo de 2021 de la Secretaría de Finanzas y de la Secretaría de Hacienda, ambas del Ministerio de Economía (RESFC-2021-13-APN-SH#MEC); y a la emisión de dos (2) nuevos instrumentos de deuda de corto plazo denominados “Letra del Tesoro Nacional en pesos a descuento con vencimiento 31 de agosto de 2021” y “Letra del Tesoro Nacional en pesos a tasa variable más 1,75% con vencimiento 31 de agosto de 2021”.
+ Que la Oficina Nacional de Crédito Público dependiente de la Subsecretaría de Financiamiento de la Secretaría de Finanzas del Ministerio de Economía informa que la ampliación de la emisión de la “Letra del Tesoro Nacional en pesos ajustada por CER a descuento con vencimiento 28 febrero de 2022” a trescientos cuarenta (340) días de plazo remanente se encuentra dentro de los límites establecidos en la planilla anexa al artículo 42 de la ley 27.591.
+ Que las emisiones de las letras a ciento cincuenta y nueve (159) días de plazo se encuentran dentro del límite establecido en el artículo 43 de la ley 27.591.
+ Que el servicio jurídico permanente del Ministerio de Economía ha tomado la intervención que le compete.
+ Que esta medida se dicta en uso de las atribuciones previstas en los artículos 42 y 43 de la ley 27.591, y en el apartado I del artículo 6° del anexo al decreto 1344/2007.
+ Por ello,
+ EL SECRETARIO DE FINANZAS
+ Y
+ EL SECRETARIO DE HACIENDA
+ RESUELVEN:
+ ARTÍCULO 1º.- Dispónese la ampliación de la emisión de la “Letra del Tesoro Nacional en pesos ajustada por CER a descuento con vencimiento 28 febrero de 2022”, emitida originalmente mediante el artículo 2º de la resolución conjunta 13 del 16 de marzo de 2021 de la Secretaría de Finanzas y de la Secretaría de Hacienda, ambas del Ministerio de Economía (RESFC-2021-13-APN-SH#MEC), por un monto de hasta valor nominal original pesos sesenta y tres mil novecientos trece millones ochocientos ochenta y un mil cuatrocientos treinta y cinco (VNO $ 63.913.881.435), la que se colocará conforme las normas de procedimiento aprobadas a través del artículo 2° de la resolución conjunta 9 del 24 de enero de 2019 de la Secretaría de Finanzas y de la Secretaría de Hacienda, ambas del ex Ministerio de Hacienda (RESFC-2019-9-APN-SECH#MHA).
+ ARTÍCULO 2º.- Dispónese la emisión de la “Letra del Tesoro Nacional en pesos a descuento con vencimiento 31 de agosto de 2021” por un monto de hasta valor nominal original pesos treinta mil millones (VNO $ 30.000.000.000), con las siguientes condiciones financieras:
+ Fecha de emisión: 25 de marzo de 2021.
+ Fecha de vencimiento: 31 de agosto de 2021.
+ Plazo: ciento cincuenta y nueve (159) días.
+ Moneda de denominación, suscripción y pago: pesos.
+ Amortización: íntegra al vencimiento.
+ Intereses: cupón cero (0) a descuento.
+ Denominación mínima: será de valor nominal original pesos uno (VNO $ 1).
+ Colocación: se llevará a cabo en uno (1) o varios tramos, según lo determine la Secretaría de Finanzas, conforme a las normas de procedimiento aprobadas mediante el artículo 2° de la resolución conjunta 9/2019 de la Secretaría de Finanzas y de la Secretaría de Hacienda.
+ Negociación: serán negociables y se solicitará su cotización en el Mercado Abierto Electrónico (MAE) y en bolsas y mercados de valores del país.
+ Titularidad: se emitirán Certificados Globales a nombre de la Central de Registro y Liquidación de Pasivos Públicos y Fideicomisos Financieros (CRYL) del Banco Central de la República Argentina (BCRA), en su carácter de Agente de Registro.
+ Exenciones impositivas: gozará de todas las exenciones impositivas dispuestas en las leyes y reglamentaciones vigentes en la materia.
+ Atención de los servicios financieros: los pagos se cursarán a través del BCRA mediante transferencias de fondos en las respectivas cuentas de efectivo que posean los titulares de cuentas de registro en esa institución.
+ Ley aplicable: ley de la República Argentina.
+ ARTÍCULO 3º.- Dispónese la emisión de la “Letra del Tesoro Nacional en pesos a tasa variable más 1,75% con vencimiento 31 de agosto de 2021” por un monto de hasta valor nominal original pesos treinta mil millones (VNO $ 30.000.000.000), con las siguientes condiciones financieras:
+ Fecha de emisión: 25 de marzo de 2021.
+ Fecha de vencimiento: 31 de agosto de 2021.
+ Plazo: ciento cincuenta y nueve (159) días.
+ Moneda de denominación, suscripción y pago: pesos.
+ Amortización: íntegra al vencimiento.
+ Intereses: devengará intereses a la tasa nominal anual equivalente a la Tasa Variable que se define seguidamente, más un margen de uno coma setenta y cinco por ciento (1,75%). Los intereses serán pagaderos al vencimiento, y se calcularán sobre la base de los días efectivamente trascurridos y la cantidad exacta de días que tiene cada año (actual/actual). Si el vencimiento no fuere un día hábil, la fecha de pago será el día hábil inmediato posterior a la fecha de vencimiento original, devengándose intereses hasta la fecha de efectivo pago.
+ Tasa Variable: se determinará como el promedio aritmético simple de la Tasa de Pases Pasivos (nominal anual) para siete (7) días de plazo calculado considerando las tasas publicadas durante el período por el BCRA en www.bcra.gov.ar o por Comunicación “C”, desde cinco (5) días hábiles anteriores a la fecha de emisión hasta cinco (5) días hábiles anteriores a la fecha de vencimiento. Si el BCRA discontinuara la publicación de esta tasa se considerará la tasa de plazo más cercano equivalente informada por éste.
+ Denominación mínima: será de valor nominal original pesos uno (VNO $ 1).
+ Colocación: se llevará a cabo en uno (1) o varios tramos, según lo determine la Secretaría de Finanzas, conforme a las normas de procedimiento aprobadas mediante el artículo 2° de la resolución conjunta 9/2019 de la Secretaría de Finanzas y de la Secretaría de Hacienda.
+ Negociación: serán negociables y se solicitará su cotización en el MAE y en bolsas y mercados de valores del país.
+ Titularidad: se emitirán Certificados Globales a nombre de la CRYL del BCRA, en su carácter de Agente de Registro.
+ Exenciones impositivas: gozarán de todas las exenciones impositivas dispuestas por las leyes y reglamentaciones vigentes en la materia.
+ Atención de los servicios financieros: los pagos se cursarán a través del BCRA mediante transferencias de fondos en las respectivas cuentas de efectivo que posean los titulares de cuentas de registro en esa institución.
+ Ley aplicable: ley de la República Argentina.
+ ARTÍCULO 4º.- Autorízase a las/los titulares de la Oficina Nacional de Crédito Público, o de la Dirección de Administración de la Deuda Pública, o de la Dirección de Operaciones de Crédito Público, o de la Dirección de Programación e Información Financiera, o de la Dirección de Análisis del Financiamiento, o de la Coordinación de Títulos Públicos, o de la Coordinación de Emisión de Deuda Interna, a suscribir en forma indistinta la documentación necesaria para la implementación de las operaciones dispuestas en los artículos 1º a 3 º de esta resolución.
+ ARTÍCULO 5º.- Esta medida entrará en vigencia a partir del día de su dictado.
+ ARTÍCULO 6º.- Comuníquese, publíquese, dese a la Dirección Nacional del Registro Oficial y archívese.
+ Mariano Jorge Sardi - Raul Enrique Rigo
+ e. 23/03/2021 N° 17364/21 v. 23/03/2021
+ Fecha de publicación 23/03/2021

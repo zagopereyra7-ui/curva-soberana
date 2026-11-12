@@ -1,0 +1,70 @@
+{
+ "titulos": [
+  {
+   "articulo": "ARTÍCULO 1º",
+   "nombre": "Bono del Tesoro Nacional en pesos cero cupón con ajuste por CER vencimiento 30 de junio de 2026",
+   "tipo": "bono_cer",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "CER",
+   "fecha_emision": "2024-02-01",
+   "fecha_vencimiento": "2026-06-30",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "cero_cupon_descuento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "",
+   "amortizacion": [
+    {
+     "fecha": "2026-06-30",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": 10,
+   "notas": "Monto hasta VNO $ 5.000.000.000.000. Plazo aproximado de 2 años y 5 meses. Denominación mínima VNO $ 1. CER del decreto 214/2002 con período entre 10 días hábiles antes de emisión y 10 días hábiles antes del vencimiento del servicio de amortización. Agente de Cálculo: Oficina Nacional de Crédito Público. Suscripción en uno o varios tramos. Negociable en MAE y bolsas del país. Certificados Globales a nombre de CRYL del BCRA. Pagos a través del BCRA. Ley argentina. Base de cálculo no especificada."
+  },
+  {
+   "articulo": "ARTÍCULO 2º",
+   "nombre": "Bono del Tesoro Nacional en pesos cero cupón con ajuste por CER vencimiento 30 de junio de 2027",
+   "tipo": "bono_cer",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "CER",
+   "fecha_emision": "2024-02-01",
+   "fecha_vencimiento": "2027-06-30",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "cero_cupon_descuento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "",
+   "amortizacion": [
+    {
+     "fecha": "2027-06-30",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": 10,
+   "notas": "Monto hasta VNO $ 5.000.000.000.000. Plazo aproximado de 3 años y 5 meses. Denominación mínima VNO $ 1. CER del decreto 214/2002 con período entre 10 días hábiles antes de emisión y 10 días hábiles antes del vencimiento del servicio de amortización. Agente de Cálculo: Oficina Nacional de Crédito Público. Suscripción en uno o varios tramos. Negociable en MAE y bolsas del país. Certificados Globales a nombre de CRYL del BCRA. Pagos a través del BCRA. Ley argentina. Base de cálculo no especificada."
+  },
+  {
+   "articulo": "ARTÍCULO 3º",
+   "nombre": "Bono del Tesoro Nacional en pesos cero cupón con ajuste por CER vencimiento 30 de junio de 2028",
+   "tipo": "bono_cer",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "CER",
+   "fecha_emision": "2024-02-01",
+   "fecha_vencimiento": "2028-06-30",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "cero_cupon_descuento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "",
+   "amortizacion": [
+    {
+     "fecha": "2028-06-30",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": 10,
+   "notas": "Monto hasta VNO $ 5.000.000.000.000. Plazo aproximado de 4 años y 5 meses. Denominación mínima VNO $ 1. CER del decreto 214/2002 con período entre 10 días hábiles antes de emisión y 10 días hábiles antes del vencimiento del servicio de amortización. Agente de Cálculo: Oficina Nacional de Crédito Público. Suscripción en uno o varios tramos. Negociable en MAE y bolsas del país. Certificados Globales a nombre de CRYL del BCRA. Pagos a través del BCRA. Ley argentina. Base de cálculo no especificada."
+  }
+ ]
+}

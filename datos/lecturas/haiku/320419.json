@@ -1,0 +1,48 @@
+{
+ "titulos": [
+  {
+   "articulo": "ARTÍCULO 1º",
+   "nombre": "Bono del Tesoro Nacional capitalizable en pesos con vencimiento 15 de enero de 2027",
+   "tipo": "bono_capitalizable_pesos",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2025-01-31",
+   "fecha_vencimiento": "2027-01-15",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "capitalizable_al_vencimiento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2027-01-15",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Monto hasta VNO $5.000.000.000.000. Precio de emisión a la par. Tasa efectiva mensual capitalizable mensualmente, a determinar en la licitación (no figura en el texto). Denominación mínima VNO $1. Colocación en uno o varios tramos según normas de la RESFC-2019-9-APN-SECH#MHA. Negociable en MAE y bolsas del país. Certificados Globales a nombre de CRYL del BCRA. Exenciones impositivas vigentes. Pagos a través del BCRA. Ley argentina. No se informan fechas de pago de intereses porque capitaliza hasta el vencimiento."
+  },
+  {
+   "articulo": "ARTÍCULO 4º",
+   "nombre": "Letra del Tesoro Nacional capitalizable en pesos con vencimiento 10 de noviembre de 2025",
+   "tipo": "letra_capitalizable_pesos",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2025-02-03",
+   "fecha_vencimiento": "2025-11-10",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "capitalizable_al_vencimiento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2025-11-10",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Monto hasta VNO $5.000.000.000.000. Precio de emisión a la par. Tasa efectiva mensual capitalizable mensualmente, a determinar en la licitación (no figura en el texto). Denominación mínima VNO $1. Colocación según RESFC 9/2019 y el artículo 5º. Se suscribe en especie mediante conversión a cambio del BONCER T2X5 (bono CER 4,25% vto. 14/02/2025, RESFC-2023-14-APN-SH#MEC), con licitación de recepción de ofertas el 29/01/2025 y liquidación el 03/02/2025 (T+3). Negociable en MAE y bolsas del país. Certificados Globales a nombre de CRYL del BCRA. Exenciones impositivas vigentes. Pagos a través del BCRA. Ley argentina."
+  }
+ ]
+}

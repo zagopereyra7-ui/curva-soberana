@@ -1,0 +1,70 @@
+{
+ "titulos": [
+  {
+   "articulo": "ARTÍCULO 1º",
+   "nombre": "Letra del Tesoro Nacional Capitalizable en pesos con vencimiento 31 de agosto de 2026",
+   "tipo": "letra_capitalizable_pesos",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2025-11-10",
+   "fecha_vencimiento": "2026-08-31",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "capitalizable_al_vencimiento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2026-08-31",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Monto máximo VNO $ 5.000.000.000.000; licitación el 5 de noviembre de 2025. Intereses a TEM capitalizable mensualmente, determinada en la licitación. Denominación mínima VNO $ 1. Precio de emisión a la par. Negociable en A3 Mercados SA. Certificados Globales a nombre de CRYL del BCRA como Agente de Registro. Colocación en uno o varios tramos según normas de la RESFC-2019-9-APN-SECH#MHA."
+  },
+  {
+   "articulo": "ARTÍCULO 2º",
+   "nombre": "Letra del Tesoro Nacional en pesos a tasa TAMAR con vencimiento 31 de agosto de 2026",
+   "tipo": "tamar",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "TAMAR",
+   "fecha_emision": "2025-11-10",
+   "fecha_vencimiento": "2026-08-31",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "capitalizable_al_vencimiento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2026-08-31",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Tasa TAMAR TEM más margen a determinar en la licitación del 5 de noviembre de 2025; TAMAR es el promedio aritmético simple de tasas de depósitos a plazo fijo de más de mil millones de pesos (bancos privados), desde 10 días hábiles antes de la emisión hasta 10 días hábiles antes del vencimiento. Monto máximo VNO $ 5.000.000.000.000. Denominación mínima VNO $ 1. Precio a la par. Negociable en A3 Mercados SA. Certificados Globales a nombre de CRYL del BCRA."
+  },
+  {
+   "articulo": "ARTÍCULO 3º",
+   "nombre": "Bono del Tesoro Nacional en pesos a tasa TAMAR con vencimiento 31 de mayo de 2027",
+   "tipo": "tamar",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "TAMAR",
+   "fecha_emision": "2025-11-10",
+   "fecha_vencimiento": "2027-05-31",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "capitalizable_al_vencimiento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2027-05-31",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Tasa TAMAR TEM capitalizable mensualmente más margen a determinar en la licitación del 5 de noviembre de 2025; TAMAR es el promedio aritmético simple de tasas de depósitos a plazo fijo de más de mil millones de pesos (bancos privados), desde 10 días hábiles antes de la emisión hasta 10 días hábiles antes del vencimiento. Monto máximo VNO $ 5.000.000.000.000. Denominación mínima VNO $ 1. Precio a la par. Negociable en A3 Mercados SA. Certificados Globales a nombre de CRYL del BCRA."
+  }
+ ]
+}

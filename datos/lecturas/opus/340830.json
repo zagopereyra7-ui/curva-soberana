@@ -1,0 +1,52 @@
+{
+ "titulos": [
+  {
+   "articulo": "ARTÍCULO 1º",
+   "nombre": "Letra del Tesoro Nacional Capitalizable en pesos con vencimiento 14 de agosto de 2026",
+   "tipo": "letra_capitalizable_pesos",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2026-04-17",
+   "fecha_vencimiento": "2026-08-14",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "capitalizable_al_vencimiento",
+   "fechas_pago_intereses": [
+    "2026-08-14"
+   ],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2026-08-14",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "La tasa efectiva mensual (capitalizable mensualmente) será determinada en la licitación del 15/04/2026, por eso figura null. Monto máximo VNO $ 6.000.000.000.000. Precio de emisión a la par. Denominación mínima VNO $ 1. El texto remite a una fórmula de cálculo que no está transcripta. La fecha de pago de intereses consignada corresponde al vencimiento, porque los intereses se capitalizan hasta esa fecha."
+  },
+  {
+   "articulo": "ARTÍCULO 10",
+   "nombre": "Bono del Tesoro Nacional en pesos a tasa TAMAR con vencimiento 25 de febrero de 2028",
+   "tipo": "tamar",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2026-04-20",
+   "fecha_vencimiento": "2028-02-25",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "capitalizable_al_vencimiento",
+   "fechas_pago_intereses": [
+    "2028-02-25"
+   ],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2028-02-25",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "BONO TAMAR FEB 2028. Devenga a la tasa efectiva mensual 'TAMAR TEM', capitalizable mensualmente hasta el vencimiento. La TAMAR es el promedio aritmético simple de la TAMAR promedio bancos privados (depósitos a plazo fijo de más de $ 1.000 millones), calculada desde 10 días hábiles antes de la fecha de emisión hasta 10 días hábiles antes del vencimiento. El margen sobre TAMAR se determina en la licitación del 15/04/2026 y se mantiene hasta el vencimiento; por eso la tasa figura null. La fórmula de TAMAR TEM no está transcripta. Monto máximo VNO $ 5.000.000.000.000. Precio a la par. Se suscribe en pesos o con Título Elegible (BONO DUAL TTS26, Opción 3 de la conversión del art. 11) a precio de mercado. Precio de corte en la conversión: $ 1.000 por cada VNO 1.000. Denominación mínima VNO $ 1. El ajuste de capital se consignó como 'ninguno' porque el título no ajusta capital: la TAMAR determina la tasa de interés capitalizable."
+  }
+ ]
+}

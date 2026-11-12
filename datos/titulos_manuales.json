@@ -1,0 +1,82 @@
+{
+ "_fuente": "Títulos creados por ley o decreto (no por resolución conjunta), cargados a mano con cita a la norma.",
+ "titulos": [
+  {
+   "articulo": "Anexo IV, apartado F",
+   "nombre": "BONOS DEL TESORO NACIONAL EN PESOS CON AJUSTE POR CER 2,25% VTO. 2028 (BONCER 2028 2,25%)",
+   "tipo": "bono_cer",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "CER",
+   "fecha_emision": "2020-09-04",
+   "fecha_vencimiento": "2028-11-09",
+   "tasa_nominal_anual_pct": 2.25,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "semestral",
+   "fechas_pago_intereses": [
+    "2021-05-09",
+    "2021-11-09",
+    "2022-05-09",
+    "2022-11-09",
+    "2023-05-09",
+    "2023-11-09",
+    "2024-05-09",
+    "2024-11-09",
+    "2025-05-09",
+    "2025-11-09",
+    "2026-05-09",
+    "2026-11-09",
+    "2027-05-09",
+    "2027-11-09",
+    "2028-05-09",
+    "2028-11-09"
+   ],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2024-05-09",
+     "porcentaje": 10
+    },
+    {
+     "fecha": "2024-11-09",
+     "porcentaje": 10
+    },
+    {
+     "fecha": "2025-05-09",
+     "porcentaje": 10
+    },
+    {
+     "fecha": "2025-11-09",
+     "porcentaje": 10
+    },
+    {
+     "fecha": "2026-05-09",
+     "porcentaje": 10
+    },
+    {
+     "fecha": "2026-11-09",
+     "porcentaje": 10
+    },
+    {
+     "fecha": "2027-05-09",
+     "porcentaje": 10
+    },
+    {
+     "fecha": "2027-11-09",
+     "porcentaje": 10
+    },
+    {
+     "fecha": "2028-05-09",
+     "porcentaje": 10
+    },
+    {
+     "fecha": "2028-11-09",
+     "porcentaje": 10
+    }
+   ],
+   "dias_habiles_rezago_cer": 10,
+   "ley_aplicable": "argentina",
+   "notas": "Cargado a mano del Decreto 676/2020 Anexo IV (fuentes/decreto_676_2020_anexo4.txt, líneas 140-171): 10 cuotas semestrales iguales 9/5 y 9/11 desde 9/5/2024; intereses 2,25% 30/360 desde 4/9/2020, pagos 9/5 y 9/11 desde 9/5/2021; CER con 10 días hábiles de rezago.",
+   "resolucion": "decreto-676-2020"
+  }
+ ]
+}

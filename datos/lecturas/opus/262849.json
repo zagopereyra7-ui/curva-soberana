@@ -1,0 +1,123 @@
+{
+ "titulos": [
+  {
+   "articulo": "ARTÍCULO 1°",
+   "nombre": "Letra de Liquidez del Tesoro Nacional en pesos a descuento con vencimiento 16 de junio de 2022",
+   "tipo": "otro",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2022-05-23",
+   "fecha_vencimiento": "2022-06-16",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "cero_cupon_descuento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "actual/365",
+   "amortizacion": [
+    {
+     "fecha": "2022-06-16",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "LELITE: letra a descuento (sin categoría específica en el enum). Plazo 24 días. Monto hasta VNO $60.000.000.000. Precio de suscripción determinado por la Secretaría de Finanzas en la licitación; la TNA no figura en el texto. La base actual/365 corresponde a la fórmula de precio de cancelación anticipada P=1/(1+TNA*plazo remanente/365). Sólo pueden participar FCI. Opción de cancelación anticipada de hasta 40% del VN suscripto por cada FCI. No negociable ni cotizable."
+  },
+  {
+   "articulo": "ARTÍCULO 2°",
+   "nombre": "Letra del Tesoro Nacional en pesos a descuento con vencimiento 31 de octubre de 2022",
+   "tipo": "otro",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2022-05-23",
+   "fecha_vencimiento": "2022-10-31",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "cero_cupon_descuento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "",
+   "amortizacion": [
+    {
+     "fecha": "2022-10-31",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Letra a descuento (sin categoría específica en el enum). Plazo 161 días. Monto hasta VNO $100.000.000.000. El texto no indica tasa ni base de cálculo."
+  },
+  {
+   "articulo": "ARTÍCULO 3º",
+   "nombre": "Bono del Tesoro Nacional en pesos ajustado por CER 1,80% vencimiento 9 de noviembre de 2025",
+   "tipo": "bono_cer",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "CER",
+   "fecha_emision": "2022-05-23",
+   "fecha_vencimiento": "2025-11-09",
+   "tasa_nominal_anual_pct": 1.8,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "semestral",
+   "fechas_pago_intereses": [
+    "2022-11-09",
+    "2023-05-09",
+    "2023-11-09",
+    "2024-05-09",
+    "2024-11-09",
+    "2025-05-09",
+    "2025-11-09"
+   ],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2025-11-09",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": 10,
+   "notas": "Monto hasta VNO $150.000.000.000. Plazo 3 años y 5 meses. Si el cupón no vence en día hábil, se paga el día hábil inmediato posterior, devengando intereses hasta la fecha de vencimiento original. Agente de cálculo: Oficina Nacional de Crédito Público."
+  },
+  {
+   "articulo": "ARTÍCULO 4º",
+   "nombre": "Bono del Tesoro Nacional en pesos vencimiento 23 de mayo de 2027",
+   "tipo": "otro",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2022-05-23",
+   "fecha_vencimiento": "2027-05-23",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "semestral",
+   "fechas_pago_intereses": [
+    "2022-11-23",
+    "2023-05-23",
+    "2023-11-23",
+    "2024-05-23",
+    "2024-11-23",
+    "2025-05-23",
+    "2025-11-23",
+    "2026-05-23",
+    "2026-11-23",
+    "2027-05-23"
+   ],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2024-05-23",
+     "porcentaje": 25
+    },
+    {
+     "fecha": "2025-05-23",
+     "porcentaje": 25
+    },
+    {
+     "fecha": "2026-05-23",
+     "porcentaje": 25
+    },
+    {
+     "fecha": "2027-05-23",
+     "porcentaje": 25
+    }
+   ],
+   "dias_habiles_rezago_cer": 10,
+   "notas": "Monto hasta VNO $550.000.000.000. Plazo 5 años. En cada período de intereses se paga la menor entre: i) la tasa fija determinada en la licitación (no figura en el texto), o ii) 1% anual más la tasa directa resultante del CER entre los 10 días hábiles anteriores al inicio de cada cupón y los 10 días hábiles anteriores al vencimiento del servicio. El capital no se ajusta por CER; el CER sólo interviene en el cálculo de intereses. Si el cupón no vence en día hábil, se paga el día hábil inmediato posterior, devengando intereses hasta la fecha de vencimiento original."
+  }
+ ]
+}

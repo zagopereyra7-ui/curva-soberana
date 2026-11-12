@@ -1,0 +1,14 @@
+{
+ "titulos": [
+  {
+   "nombre": "LETRA DEL TESORO NACIONAL CAPITALIZABLE EN PESOS CON VENCIMIENTO 13 DE NOVIEMBRE DE 2026",
+   "ticker": "",
+   "fecha_vencimiento": "2026-11-13",
+   "es_nuevo": true,
+   "tem_capitalizacion_pct": 2.1,
+   "tasa_cupon_pct": null,
+   "precio_corte": null,
+   "tirea_pct": 28.32
+  }
+ ]
+}

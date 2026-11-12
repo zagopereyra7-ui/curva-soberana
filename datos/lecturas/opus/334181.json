@@ -1,0 +1,76 @@
+{
+ "titulos": [
+  {
+   "articulo": "ARTÍCULO 1º",
+   "nombre": "Letra del Tesoro Nacional Capitalizable en pesos con vencimiento 31 de agosto de 2026",
+   "tipo": "letra_capitalizable_pesos",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2025-11-10",
+   "fecha_vencimiento": "2026-08-31",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "capitalizable_al_vencimiento",
+   "fechas_pago_intereses": [
+    "2026-08-31"
+   ],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2026-08-31",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "La tasa efectiva mensual capitalizable mensualmente será determinada en la licitación del 5 de noviembre de 2025; no figura en el texto. Monto máximo VNO $ 5.000.000.000.000. Precio de emisión a la par. Denominación mínima VNO $ 1. La fórmula de cálculo (VPV) no figura en el texto transcripto."
+  },
+  {
+   "articulo": "ARTÍCULO 2º",
+   "nombre": "Letra del Tesoro Nacional en pesos a tasa TAMAR con vencimiento 31 de agosto de 2026",
+   "tipo": "tamar",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2025-11-10",
+   "fecha_vencimiento": "2026-08-31",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "capitalizable_al_vencimiento",
+   "fechas_pago_intereses": [
+    "2026-08-31"
+   ],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2026-08-31",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Devenga intereses a la tasa efectiva mensual 'TAMAR TEM' capitalizable mensualmente hasta el vencimiento. TAMAR: promedio aritmético simple de la TAMAR promedio bancos privados (depósitos a plazo fijo de más de $ 1.000.000.000) publicada por el BCRA desde 10 días hábiles antes de la fecha de emisión hasta 10 días hábiles antes del vencimiento. El margen se determina en la licitación del 5 de noviembre de 2025 y se mantiene hasta el vencimiento; no figura en el texto. Las fórmulas de VPV y TAMAR TEM no figuran en el texto transcripto. Monto máximo VNO $ 5.000.000.000.000. Precio a la par. Denominación mínima VNO $ 1."
+  },
+  {
+   "articulo": "ARTÍCULO 3º",
+   "nombre": "Bono del Tesoro Nacional en pesos a tasa TAMAR con vencimiento 31 de mayo de 2027",
+   "tipo": "tamar",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2025-11-10",
+   "fecha_vencimiento": "2027-05-31",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "capitalizable_al_vencimiento",
+   "fechas_pago_intereses": [
+    "2027-05-31"
+   ],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2027-05-31",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Devenga intereses a la tasa efectiva mensual 'TAMAR TEM' capitalizable mensualmente hasta el vencimiento. TAMAR: promedio aritmético simple de la TAMAR promedio bancos privados (depósitos a plazo fijo de más de $ 1.000.000.000) publicada por el BCRA desde 10 días hábiles antes de la fecha de emisión hasta 10 días hábiles antes del vencimiento. El margen se determina en la licitación del 5 de noviembre de 2025 y se mantiene hasta el vencimiento; no figura en el texto. Las fórmulas de VPV y TAMAR TEM no figuran en el texto transcripto. Monto máximo VNO $ 5.000.000.000.000. Precio a la par. Denominación mínima VNO $ 1."
+  }
+ ]
+}

@@ -1,0 +1,26 @@
+{
+ "titulos": [
+  {
+   "articulo": "ARTÍCULO 1º",
+   "nombre": "Bono del Tesoro Nacional en pesos a tasa TAMAR con vencimiento 26 de febrero de 2027",
+   "tipo": "tamar",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "TAMAR",
+   "fecha_emision": "2026-02-13",
+   "fecha_vencimiento": "2027-02-26",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "capitalizable_al_vencimiento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2027-02-26",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Devenga intereses a la tasa efectiva mensual TAMAR TEM (TAMAR promedio bancos privados más MARGEN), capitalizable mensualmente hasta el vencimiento. El MARGEN será determinado en la licitación del 11 de febrero de 2026 y se mantendrá fijo hasta el vencimiento. TAMAR se calcula como promedio aritmético simple de las tasas publicadas por el BCRA desde 10 días hábiles antes de la emisión hasta 10 días hábiles antes del vencimiento. Monto: hasta VNO $5.000.000.000.000 necesario para cubrir la demanda en la licitación del 11/02/2026. Precio de emisión a la par. Denominación mínima VNO $1. Certificados globales a nombre de CRYL del BCRA. Sin tasa nominal ni efectiva informada explícitamente en el texto; el margen no figura."
+  }
+ ]
+}

@@ -1,0 +1,44 @@
+{
+ "titulos": [
+  {
+   "nombre": "LETRA DEL TESORO NACIONAL CAPITALIZABLE EN PESOS CON VENCIMIENTO 27 DE FEBRERO DE 2026",
+   "ticker": "S27F6",
+   "fecha_vencimiento": "2026-02-27",
+   "es_nuevo": false,
+   "tem_capitalizacion_pct": 3.95,
+   "tasa_cupon_pct": null,
+   "precio_corte": 1202.4,
+   "tirea_pct": 49.16
+  },
+  {
+   "nombre": "LETRA DEL TESORO NACIONAL CAPITALIZABLE EN PESOS CON VENCIMIENTO 29 DE MAYO DE 2026",
+   "ticker": "S29Y6",
+   "fecha_vencimiento": "2026-05-29",
+   "es_nuevo": false,
+   "tem_capitalizacion_pct": 2.35,
+   "tasa_cupon_pct": null,
+   "precio_corte": 1165.5,
+   "tirea_pct": 40.19
+  },
+  {
+   "nombre": "LETRA DEL TESORO NACIONAL CAPITALIZABLE EN PESOS CON VENCIMIENTO 30 DE NOVIEMBRE DE 2026",
+   "ticker": "S30N6",
+   "fecha_vencimiento": "2026-11-30",
+   "es_nuevo": false,
+   "tem_capitalizacion_pct": 2.3,
+   "tasa_cupon_pct": null,
+   "precio_corte": 1002.5,
+   "tirea_pct": 34.57
+  },
+  {
+   "nombre": "BONO DEL TESORO NACIONAL CAPITALIZABLE EN PESOS CON VENCIMIENTO 30 DE JUNIO DE 2027",
+   "ticker": "T30J7",
+   "fecha_vencimiento": "2027-06-30",
+   "es_nuevo": true,
+   "tem_capitalizacion_pct": 2.58,
+   "tasa_cupon_pct": null,
+   "precio_corte": null,
+   "tirea_pct": 35.75
+  }
+ ]
+}

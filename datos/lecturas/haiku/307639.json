@@ -1,0 +1,136 @@
+{
+ "titulos": [
+  {
+   "articulo": "ARTÍCULO 1º",
+   "nombre": "Letra del Tesoro Nacional capitalizable en pesos con vencimiento 14 de junio de 2024",
+   "tipo": "letra_capitalizable_pesos",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2024-05-20",
+   "fecha_vencimiento": "2024-06-14",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "capitalizable_al_vencimiento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2024-06-14",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Monto hasta VNO $3.500.000.000.000. Tasa efectiva mensual determinada en la licitación, no inferior a 4,20%. Denominación mínima VNO $1. Precio de emisión a la par. Intereses capitalizados al vencimiento según fórmula de la resolución; sin pagos periódicos de intereses."
+  },
+  {
+   "articulo": "ARTÍCULO 2º",
+   "nombre": "Letra del Tesoro Nacional capitalizable en pesos con vencimiento 1 de julio de 2024",
+   "tipo": "letra_capitalizable_pesos",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2024-05-20",
+   "fecha_vencimiento": "2024-07-01",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "capitalizable_al_vencimiento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2024-07-01",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Monto hasta VNO $2.500.000.000.000. Tasa efectiva mensual determinada en la licitación, no inferior a 4,10%. Denominación mínima VNO $1. Precio de emisión a la par. Intereses capitalizados al vencimiento según fórmula de la resolución; sin pagos periódicos de intereses."
+  },
+  {
+   "articulo": "ARTÍCULO 3º",
+   "nombre": "Letra del Tesoro Nacional capitalizable en pesos con vencimiento 26 de julio de 2024",
+   "tipo": "letra_capitalizable_pesos",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2024-05-20",
+   "fecha_vencimiento": "2024-07-26",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "capitalizable_al_vencimiento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2024-07-26",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Monto hasta VNO $2.000.000.000.000. Tasa efectiva mensual determinada en la licitación, no inferior a 4%. Denominación mínima VNO $1. Precio de emisión a la par. Intereses capitalizados al vencimiento según fórmula de la resolución; sin pagos periódicos de intereses."
+  },
+  {
+   "articulo": "ARTÍCULO 4º",
+   "nombre": "Letra del Tesoro Nacional capitalizable en pesos con vencimiento 30 de agosto de 2024",
+   "tipo": "letra_capitalizable_pesos",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2024-05-20",
+   "fecha_vencimiento": "2024-08-30",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "capitalizable_al_vencimiento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2024-08-30",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Monto hasta VNO $2.000.000.000.000. Tasa efectiva mensual determinada en la licitación, sin piso indicado en el texto. Denominación mínima VNO $1. Precio de emisión a la par. Intereses capitalizados al vencimiento según fórmula de la resolución; sin pagos periódicos de intereses."
+  },
+  {
+   "articulo": "ARTÍCULO 5º",
+   "nombre": "Bono del Tesoro Nacional en pesos cero cupón con ajuste por CER vencimiento 31 de marzo de 2025",
+   "tipo": "bono_cer",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "CER",
+   "fecha_emision": "2024-05-20",
+   "fecha_vencimiento": "2025-03-31",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "cero_cupon_descuento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "null",
+   "amortizacion": [
+    {
+     "fecha": "2025-03-31",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": 10,
+   "notas": "Monto hasta VNO $5.000.000.000.000. Plazo aproximadamente diez meses. Cero cupón. Capital ajustado por CER del período entre 10 días hábiles antes de emisión y 10 días hábiles antes del vencimiento. Agente de Cálculo: Oficina Nacional de Crédito Público. Denominación mínima VNO $1. Base de cálculo no especificada en el texto."
+  },
+  {
+   "articulo": "ARTÍCULO 6º",
+   "nombre": "Bono del Tesoro Nacional en pesos cero cupón con ajuste por CER vencimiento 31 de marzo de 2027",
+   "tipo": "bono_cer",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "CER",
+   "fecha_emision": "2024-05-20",
+   "fecha_vencimiento": "2027-03-31",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "cero_cupon_descuento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "null",
+   "amortizacion": [
+    {
+     "fecha": "2027-03-31",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": 10,
+   "notas": "Monto hasta VNO $5.000.000.000.000. Plazo aproximadamente dos años y diez meses. Cero cupón. Capital ajustado por CER del período entre 10 días hábiles antes de emisión y 10 días hábiles antes del vencimiento. Agente de Cálculo: Oficina Nacional de Crédito Público. Denominación mínima VNO $1. Base de cálculo no especificada en el texto."
+  }
+ ]
+}

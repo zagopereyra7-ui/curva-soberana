@@ -1,0 +1,14 @@
+{
+ "titulos": [
+  {
+   "nombre": "LETRA DEL TESORO NACIONAL CAPITALIZABLE EN PESOS CON VENCIMIENTO 26 DE FEBRERO DE 2027",
+   "ticker": "S26F7",
+   "fecha_vencimiento": "2027-02-26",
+   "es_nuevo": true,
+   "tem_capitalizacion_pct": 2.1,
+   "tasa_cupon_pct": null,
+   "precio_corte": null,
+   "tirea_pct": 28.32
+  }
+ ]
+}

@@ -1,0 +1,28 @@
+{
+ "titulos": [
+  {
+   "articulo": "ARTÍCULO 1º",
+   "nombre": "Letra del Tesoro Nacional capitalizable en pesos vencimiento 26 de febrero de 2027",
+   "tipo": "letra_capitalizable_pesos",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2026-10-30",
+   "fecha_vencimiento": "2027-02-26",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "capitalizable_al_vencimiento",
+   "fechas_pago_intereses": [
+    "2027-02-26"
+   ],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2027-02-26",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "La tasa efectiva mensual (Tm) será determinada en la licitación del 28 de octubre de 2026; por eso figura como null. Intereses capitalizables mensualmente y pagaderos al vencimiento junto con el capital (VPV). La fórmula de cálculo no figura en el texto recibido. Precio de emisión: a la par. Monto máximo: VNO $ 6.000.000.000.000. Denominación mínima: VNO $ 1. Moneda de suscripción y pago: pesos. Los artículos 2º a 5º son ampliaciones de títulos ya emitidos (D15E7, TMG27, TZXO7 y TXMD8) y no se incluyen."
+  }
+ ]
+}

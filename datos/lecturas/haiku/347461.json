@@ -1,0 +1,26 @@
+{
+ "titulos": [
+  {
+   "articulo": "ARTÍCULO 1º",
+   "nombre": "Letra del Tesoro Nacional vinculada al dólar estadounidense cero cupón con vencimiento 30 de noviembre de 2026",
+   "tipo": "letra_dolar_linked",
+   "moneda_denominacion": "USD",
+   "ajuste_capital": "tipo_cambio_A3500",
+   "fecha_emision": "2026-09-15",
+   "fecha_vencimiento": "2026-11-30",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "cero_cupon_descuento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "",
+   "amortizacion": [
+    {
+     "fecha": "2026-11-30",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Emisión por hasta VNO USD 4.090.000.000 en licitación del 11/09/2026. Denominación mínima VNO USD 1. Moneda de suscripción: pesos al tipo de cambio A3500 del día hábil previo a la licitación (T-1); moneda de pago: pesos al tipo de cambio aplicable (A3500 del tercer día hábil previo al pago de la amortización). Precio de colocación determinado en la licitación. Certificados Globales a nombre de CRYL del BCRA. Ley aplicable: ley argentina."
+  }
+ ]
+}

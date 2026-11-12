@@ -1,0 +1,37 @@
+{
+ "titulos": [
+  {
+   "articulo": "ARTÍCULO 1º",
+   "nombre": "Letra del Tesoro Nacional Intransferible en Dólares Estadounidenses vencimiento 17 de marzo de 2031",
+   "tipo": "bono_dolares",
+   "moneda_denominacion": "USD",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2026-03-16",
+   "fecha_vencimiento": "2031-03-17",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "semestral",
+   "fechas_pago_intereses": [
+    "2026-09-17",
+    "2027-03-17",
+    "2027-09-17",
+    "2028-03-17",
+    "2028-09-17",
+    "2029-03-17",
+    "2029-09-17",
+    "2030-03-17",
+    "2030-09-17",
+    "2031-03-17"
+   ],
+   "base_calculo": "",
+   "amortizacion": [
+    {
+     "fecha": "2031-03-17",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Es un titulo emitido en dolares, colocado directamente al BCRA a la par por hasta VNO USD 21.086.082, en el marco del articulo 55 de la ley 27.798 (reemplazo de servicios de amortizacion y del 60% de intereses de letras intransferibles del BCRA). Plazo cinco anios, amortizacion integra al vencimiento. Tasa variable, no fija: iguala la tasa que devengan las reservas internacionales del BCRA para el mismo periodo, con maximo igual a SOFR TERM a un anio mas margen de 0,71513% menos 1 punto porcentual, aplicada sobre el capital efectivamente suscripto; la Oficina Nacional de Crédito Público es el agente de cálculo. El texto no especifica la base de cálculo. Las fechas de pago de intereses no figuran explicitamente; se generaron a partir de la regla semestral tomando el dia 17 de marzo y 17 de septiembre hasta el vencimiento, por lo que el primer cupon podria diferir segun convencion."
+  }
+ ]
+}

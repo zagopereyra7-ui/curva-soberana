@@ -1,0 +1,70 @@
+{
+ "titulos": [
+  {
+   "articulo": "ARTÍCULO 1º",
+   "nombre": "Bono del Tesoro Nacional Capitalizable en pesos con vencimiento 30 de junio de 2027",
+   "tipo": "bono_capitalizable_pesos",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2026-01-16",
+   "fecha_vencimiento": "2027-06-30",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "capitalizable_al_vencimiento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2027-06-30",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Tasa efectiva mensual a determinar en la licitación del 14/01/2026; monto hasta VNO $5.000.000.000.000 o lo necesario para cubrir la demanda. Precio de emisión a la par. Denominación mínima VNO $1. Fórmula de cálculo del VPV no transcripta en el texto recibido (sólo se menciona). Negociable en A3 Mercados SA y bolsas del país; titularidad mediante Certificados Globales a nombre de CRYL del BCRA."
+  },
+  {
+   "articulo": "ARTÍCULO 2º",
+   "nombre": "Letra del Tesoro Nacional vinculada al dólar estadounidense cero cupón con vencimiento 27 de febrero de 2026",
+   "tipo": "letra_dolar_linked",
+   "moneda_denominacion": "USD",
+   "ajuste_capital": "tipo_cambio_A3500",
+   "fecha_emision": "2026-01-16",
+   "fecha_vencimiento": "2026-02-27",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "cero_cupon_descuento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "null",
+   "amortizacion": [
+    {
+     "fecha": "2026-02-27",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Suscripción en pesos al tipo de cambio A3500 del día hábil previo a la licitación (T-1); pago en pesos al tipo de cambio A3500 del tercer día hábil previo a la fecha de pago de la amortización. Monto hasta VNO USD 3.500.000.000 o lo necesario para cubrir la demanda. Denominación mínima VNO USD 1. Negociable en A3 Mercados SA y bolsas del país; Certificados Globales a nombre de CRYL del BCRA."
+  },
+  {
+   "articulo": "ARTÍCULO 3º",
+   "nombre": "Letra del Tesoro Nacional vinculada al dólar estadounidense cero cupón con vencimiento 31 de marzo de 2026",
+   "tipo": "letra_dolar_linked",
+   "moneda_denominacion": "USD",
+   "ajuste_capital": "tipo_cambio_A3500",
+   "fecha_emision": "2026-01-16",
+   "fecha_vencimiento": "2026-03-31",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "cero_cupon_descuento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "null",
+   "amortizacion": [
+    {
+     "fecha": "2026-03-31",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Suscripción en pesos al tipo de cambio A3500 del día hábil previo a la licitación (T-1); pago en pesos al tipo de cambio A3500 del tercer día hábil previo a la fecha de pago de la amortización. Monto hasta VNO USD 3.500.000.000 o lo necesario para cubrir la demanda. Denominación mínima VNO USD 1. Negociable en A3 Mercados SA y bolsas del país; Certificados Globales a nombre de CRYL del BCRA."
+  }
+ ]
+}

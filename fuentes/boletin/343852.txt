@@ -1,0 +1,38 @@
+table tr td {border: 1px solid grey; border-spacing: 0px; border-collapse: collapse; padding: 5px; font-size: 12px; text-align: center;} Ciudad de Buenos Aires, 29/06/2026
+ Visto el expediente EX-2026-62333607- -APN-DGDA#MEC, y la resolución conjunta 36 del 26 de junio de 2026 de la Secretaría de Finanzas y de la Secretaría de Hacienda, ambas del Ministerio de Economía (RESFC-2026-36-APN-SH#MEC), y
+ CONSIDERANDO:
+ Que mediante el artículo 1° de la resolución conjunta 36 del 26 de junio de 2026 de la Secretaría de Finanzas y de la Secretaría de Hacienda, ambas del Ministerio de Economía (RESFC-2026-36-APN-SH#MEC) se dispuso la emisión de la “Letra del Tesoro Nacional Capitalizable en pesos con vencimiento 13 de noviembre de 2026”.
+ Que por un error material involuntario se consignó la fórmula de cálculo de los intereses de manera incorrecta.
+ Que por lo expuesto se procede a la sustitución del mencionado artículo.
+ Que el servicio jurídico permanente del Ministerio de Economía ha tomado la intervención que le compete.
+ Que esta medida se dicta en virtud de las facultades previstas en el artículo 101 del Reglamento de Procedimientos Administrativos, Decreto 1759/72 (T.O. 2017).
+ Por ello,
+ EL SECRETARIO DE FINANZAS
+ Y
+ EL SECRETARIO DE HACIENDA
+ RESUELVEN:
+ ARTÍCULO 1º.- Sustitúyese el artículo 1° de la resolución conjunta 36 del 26 de junio de 2026 de la Secretaría de Finanzas y de la Secretaría de Hacienda, ambas del Ministerio de Economía (RESFC-2026-36-APN-SH#MEC), el que quedará redactado de la siguiente manera:
+ “ARTÍCULO 1º.- Dispónese la emisión de la “Letra del Tesoro Nacional Capitalizable en pesos con vencimiento 13 de noviembre de 2026”, por hasta la suma de valor nominal original necesaria para cubrir la demanda en el proceso de licitación que se realizará el día 26 de junio del corriente año, que no podrá superar el monto de valor nominal original pesos seis billones (VNO $ 6.000.000.000.000), con las siguientes condiciones financieras:
+ Fecha de emisión: 30 de junio de 2026.
+ Fecha de vencimiento: 13 de noviembre de 2026.
+ Moneda de denominación, suscripción y pago: pesos.
+ Precio de emisión original: a la par.
+ Amortización: íntegra al vencimiento.
+ Intereses: pagará intereses a una tasa efectiva mensual capitalizable mensualmente hasta el vencimiento del instrumento, la que será determinada en la licitación. Los intereses serán calculados sobre la base de meses de treinta (30) días y años de trescientos sesenta (360) días (30/360). Para el cálculo se utilizará la siguiente fórmula:
+ Donde:
+ DÍAS: cantidad de días transcurridos entre la fecha de emisión y la fecha de vencimiento, calculados sobre la base de meses de treinta (30) días y años de trescientos sesenta (360) días (30/360).
+ VPV: Valor de Pago al Vencimiento.
+ VNO: Valor Nominal Original.
+ Tm: tasa efectiva mensual que se determine en la licitación.
+ Denominación mínima: será de valor nominal original pesos uno (VNO $ 1).
+ Colocación: la suscripción se llevará a cabo, en uno (1) o varios tramos, según lo determine la Secretaría de Finanzas del Ministerio de Economía, conforme a las normas de procedimiento aprobadas mediante la resolución conjunta 9 del 24 de enero de 2019 de la Secretaría de Finanzas y de la Secretaría de Hacienda, ambas del ex Ministerio de Hacienda (RESFC-2019-9-APN-SECH#MHA).
+ Negociación: será negociable y se solicitará su cotización en A3 Mercados SA y en bolsas y mercados de valores del país.
+ Titularidad: se emitirán Certificados Globales a nombre de la Central de Registro y Liquidación de Pasivos Públicos y Fideicomisos Financieros (CRYL) del Banco Central de la República Argentina (BCRA), en su carácter de Agente de Registro.
+ Exenciones impositivas: gozará de todas las exenciones impositivas dispuestas en las leyes y reglamentaciones vigentes en la materia.
+ Atención de los servicios financieros: los pagos se cursarán a través del BCRA mediante transferencias de fondos en las respectivas cuentas de efectivo que posean los titulares de cuentas de registro en dicha institución.
+ Ley aplicable: ley de la República Argentina.
+ ARTÍCULO 2º.- Esta medida entrará en vigencia a partir del día de su dictado.
+ ARTÍCULO 3º.- Comuníquese, publíquese, dese a la Dirección Nacional del Registro Oficial y archívese.
+ Federico Matías Furiase - Carlos Jorge Guberman
+ e. 01/07/2026 N° 45517/26 v. 01/07/2026
+ Fecha de publicación 01/07/2026

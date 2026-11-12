@@ -1,0 +1,94 @@
+{
+ "titulos": [
+  {
+   "articulo": "ARTÍCULO 1º",
+   "nombre": "Letra del Tesoro Nacional en pesos con ajuste por CER a descuento vencimiento 29 de mayo de 2026",
+   "tipo": "letra_cer",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "CER",
+   "fecha_emision": "2025-11-28",
+   "fecha_vencimiento": "2026-05-29",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "cero_cupon_descuento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "",
+   "amortizacion": [
+    {
+     "fecha": "2026-05-29",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": 10,
+   "notas": "Intereses: a descuento (sin tasa de interés). Base de cálculo no especificada en el texto. Monto máximo VNO $ 5.000.000.000.000; licitación el 26/11/2025. CER según art. 4º del decreto 214/2002, período entre 10 días hábiles antes de la emisión y 10 días hábiles antes del vencimiento. Denominación mínima VNO $ 1."
+  },
+  {
+   "articulo": "ARTÍCULO 2º",
+   "nombre": "Bono del Tesoro Nacional en pesos cero cupón con ajuste por CER vencimiento 30 de abril de 2027",
+   "tipo": "bono_cer",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "CER",
+   "fecha_emision": "2025-11-28",
+   "fecha_vencimiento": "2027-04-30",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "cero_cupon_descuento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "",
+   "amortizacion": [
+    {
+     "fecha": "2027-04-30",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": 10,
+   "notas": "Intereses: cero cupón. Base de cálculo no especificada en el texto. Monto máximo VNO $ 4.000.000.000.000; licitación el 26/11/2025. La cláusula de ajuste menciona 'el saldo de capital de la Letra' aunque el título es un Bono. Denominación mínima VNO $ 1."
+  },
+  {
+   "articulo": "ARTÍCULO 3º",
+   "nombre": "Bono del Tesoro Nacional vinculado al dólar estadounidense cero cupón con vencimiento 30 de noviembre de 2026",
+   "tipo": "bono_dolar_linked",
+   "moneda_denominacion": "USD",
+   "ajuste_capital": "tipo_cambio_A3500",
+   "fecha_emision": "2025-11-28",
+   "fecha_vencimiento": "2026-11-30",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "cero_cupon_descuento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "",
+   "amortizacion": [
+    {
+     "fecha": "2026-11-30",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Intereses: cero cupón. Base de cálculo no especificada. Suscripción en pesos al tipo de cambio Com. 'A' 3500 del día hábil previo a la licitación (T-1); pago en pesos al tipo de cambio Com. 'A' 3500 del tercer día hábil previo a la fecha de pago. Monto máximo VNO USD 3.000.000.000; licitación el 26/11/2025. Denominación mínima VNO USD 1."
+  },
+  {
+   "articulo": "ARTÍCULO 4º",
+   "nombre": "Letra del Tesoro Nacional en pesos a tasa TAMAR con vencimiento 30 de abril de 2026",
+   "tipo": "tamar",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "TAMAR",
+   "fecha_emision": "2025-11-28",
+   "fecha_vencimiento": "2026-04-30",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "capitalizable_al_vencimiento",
+   "fechas_pago_intereses": [
+    "2026-04-30"
+   ],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2026-04-30",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "El capital no se ajusta por índice; devenga intereses a la tasa efectiva mensual 'TAMAR TEM' capitalizable mensualmente hasta el vencimiento (pago junto con el capital). TAMAR: promedio aritmético simple de la TAMAR promedio bancos privados (depósitos a plazo fijo de más de $ 1.000.000.000) desde 10 días hábiles antes de la emisión hasta 10 días hábiles antes del vencimiento, más un MARGEN a determinar en la licitación del 26/11/2025 (no figura en el texto). Las fórmulas no aparecen en el texto. Precio de emisión: a la par. Monto máximo VNO $ 5.000.000.000.000. Denominación mínima VNO $ 1."
+  }
+ ]
+}

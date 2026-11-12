@@ -1,0 +1,103 @@
+{
+ "titulos": [
+  {
+   "articulo": "ARTÍCULO 1°",
+   "nombre": "Letra de Liquidez del Tesoro Nacional en pesos a descuento con vencimiento 16 de diciembre de 2022",
+   "tipo": "otro",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2022-11-23",
+   "fecha_vencimiento": "2022-12-16",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "cero_cupon_descuento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "",
+   "amortizacion": [
+    {
+     "fecha": "2022-12-16",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Letra a descuento (cupón cero), plazo 23 días, VNO máximo $40.000.000.000, denominación mínima VNO $1. Precio de suscripción determinado por la Secretaría de Finanzas al licitar. Opción de cancelación anticipada para FCI por hasta 40% del valor nominal suscripto, con precio P=1/(1+TNA*plazo remanente/365); la TNA de emisión no figura en el texto. Colocación por licitación pública por adhesión, sólo FCI. Tasa nominal de emisión no informada en el texto."
+  },
+  {
+   "articulo": "ARTÍCULO 2°",
+   "nombre": "Letra del Tesoro Nacional en pesos a descuento con vencimiento 31 de marzo de 2023",
+   "tipo": "letra_capitalizable_pesos",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2022-11-23",
+   "fecha_vencimiento": "2023-03-31",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "cero_cupon_descuento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "",
+   "amortizacion": [
+    {
+     "fecha": "2023-03-31",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Letra a descuento (cupón cero), plazo 128 días, VNO máximo $120.000.000.000, denominación mínima VNO $1. Colocación en uno o varios tramos. Negociable, cotización en MAE y bolsas. Certificados Globales a nombre de CRYL del BCRA. Tipo asignado como otro por tratarse de letra a descuento sin capitalización; el valor 'letra_capitalizable_pesos' no corresponde."
+  },
+  {
+   "articulo": "ARTÍCULO 3º",
+   "nombre": "Bono del Tesoro Nacional en pesos a tasa Badlar privada por 0,70 con vencimiento 23 de noviembre de 2027",
+   "tipo": "bono_tasa_fija_pesos",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2022-11-23",
+   "fecha_vencimiento": "2027-11-23",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "trimestral",
+   "fechas_pago_intereses": [
+    "2023-02-23",
+    "2023-05-23",
+    "2023-08-23",
+    "2023-11-23",
+    "2024-02-23",
+    "2024-05-23",
+    "2024-08-23",
+    "2024-11-23",
+    "2025-02-23",
+    "2025-05-23",
+    "2025-08-23",
+    "2025-11-23",
+    "2026-02-23",
+    "2026-05-23",
+    "2026-08-23",
+    "2026-11-23",
+    "2027-02-23",
+    "2027-05-23",
+    "2027-08-23",
+    "2027-11-23"
+   ],
+   "base_calculo": "actual/actual",
+   "amortizacion": [
+    {
+     "fecha": "2024-11-23",
+     "porcentaje": 25
+    },
+    {
+     "fecha": "2025-11-23",
+     "porcentaje": 25
+    },
+    {
+     "fecha": "2026-11-23",
+     "porcentaje": 25
+    },
+    {
+     "fecha": "2027-11-23",
+     "porcentaje": 25
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Tasa variable: BADLAR privada (promedio aritmético de tasas de plazo fijo de más de $1.000.000, bancos privados) multiplicada por escalar 0,70; tasa nominal anual no es un valor fijo en el texto. Intereses pagaderos trimestralmente los días 23 de febrero, mayo, agosto y noviembre. Si el cupón cae en día no hábil, se paga el día hábil siguiente. VNO máximo $180.000.000.000, denominación mínima VNO $1. Colocación en uno o varios tramos. Negociable, cotización en MAE y bolsas. Tipo asignado como otro por ser bono de tasa variable BADLAR, no de tasa fija; se usa bono_tasa_fija_pesos sólo por ser la categoría más cercana disponible."
+  }
+ ]
+}

@@ -1,0 +1,212 @@
+{
+ "titulos": [
+  {
+   "articulo": "ARTÍCULO 1º",
+   "nombre": "Letra del Tesoro Nacional Capitalizable en pesos con vencimiento 17 de julio de 2026",
+   "tipo": "letra_capitalizable_pesos",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2026-03-31",
+   "fecha_vencimiento": "2026-07-17",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "capitalizable_al_vencimiento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2026-07-17",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Tasa efectiva mensual capitalizable mensualmente, determinada en la licitación del 27/03/2026. Precio de emisión a la par. Denominación mínima VNO $1. Monto máximo VNO $6.000.000.000.000."
+  },
+  {
+   "articulo": "ARTÍCULO 2º",
+   "nombre": "Bono del Tesoro Nacional en pesos cero cupón con ajuste por CER vencimiento 30 de septiembre de 2027",
+   "tipo": "bono_cer",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "CER",
+   "fecha_emision": "2026-03-31",
+   "fecha_vencimiento": "2027-09-30",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "cero_cupon_descuento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "no especificada",
+   "amortizacion": [
+    {
+     "fecha": "2027-09-30",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": 10,
+   "notas": "Precio de emisión determinado en la licitación. CER del período entre 10 días hábiles antes de la emisión y 10 días hábiles antes del vencimiento; Oficina Nacional de Crédito Público es Agente de Cálculo. Denominación mínima VNO $1. Monto máximo VNO $5.000.000.000.000."
+  },
+  {
+   "articulo": "ARTÍCULO 3º",
+   "nombre": "Bono del Tesoro Nacional en pesos cero cupón con ajuste por CER vencimiento 29 de septiembre de 2028",
+   "tipo": "bono_cer",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "CER",
+   "fecha_emision": "2026-03-31",
+   "fecha_vencimiento": "2028-09-29",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "cero_cupon_descuento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "no especificada",
+   "amortizacion": [
+    {
+     "fecha": "2028-09-29",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": 10,
+   "notas": "Precio de emisión determinado en la licitación. CER del período entre 10 días hábiles antes de la emisión y 10 días hábiles antes del vencimiento; la Oficina Nacional de Crédito Público es Agente de Cálculo. Denominación mínima VNO $1. Monto máximo VNO $5.000.000.000.000."
+  },
+  {
+   "articulo": "ARTÍCULO 4º",
+   "nombre": "Bono del Tesoro Nacional vinculado al dólar estadounidense cero cupón con vencimiento 30 de junio de 2028",
+   "tipo": "bono_dolar_linked",
+   "moneda_denominacion": "USD",
+   "ajuste_capital": "tipo_cambio_A3500",
+   "fecha_emision": "2026-03-31",
+   "fecha_vencimiento": "2028-06-30",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "cero_cupon_descuento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "no especificada",
+   "amortizacion": [
+    {
+     "fecha": "2028-06-30",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Moneda de denominación USD; suscripción y pago en pesos al tipo de cambio de referencia Com. A 3500 (suscripción: día hábil previo a la licitación; pago: tercer día hábil previo a la amortización). Amortización al tipo de cambio aplicable. Denominación mínima VNO USD 1. Monto máximo VNO USD 3.630.000.000."
+  },
+  {
+   "articulo": "ARTÍCULO 5º",
+   "nombre": "Bono del Tesoro Nacional en dólares estadounidenses 6% con vencimiento 31 de octubre de 2028",
+   "tipo": "bono_dolares",
+   "moneda_denominacion": "USD",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2026-03-31",
+   "fecha_vencimiento": "2028-10-31",
+   "tasa_nominal_anual_pct": 6,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "mensual",
+   "fechas_pago_intereses": [
+    "2026-04-30",
+    "2026-05-29",
+    "2026-06-30",
+    "2026-07-31",
+    "2026-08-31",
+    "2026-09-30",
+    "2026-10-30",
+    "2026-11-30",
+    "2026-12-30",
+    "2027-01-29",
+    "2027-02-26",
+    "2027-03-31",
+    "2027-04-30",
+    "2027-05-31",
+    "2027-06-30",
+    "2027-07-31",
+    "2027-08-31",
+    "2027-09-30",
+    "2027-10-29",
+    "2027-11-30",
+    "2027-12-30",
+    "2028-01-31",
+    "2028-02-29",
+    "2028-03-31",
+    "2028-04-28",
+    "2028-05-31",
+    "2028-06-30",
+    "2028-07-31",
+    "2028-08-31",
+    "2028-09-29",
+    "2028-10-31"
+   ],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2028-10-31",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Intereses pagaderos en USD por mes vencido. Si el vencimiento del cupón no es día hábil, el pago es el día hábil siguiente devengándose intereses hasta la fecha original. Denominación mínima VNO USD 1. Monto máximo VNO USD 250.000.000. Último cupón coincide con vencimiento 31/10/2028 según lista del texto."
+  },
+  {
+   "articulo": "ARTÍCULO 6º",
+   "nombre": "Bono del Tesoro Nacional en pesos a tasa TAMAR con vencimiento 31 de agosto de 2027",
+   "tipo": "tamar",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "TAMAR",
+   "fecha_emision": "2026-04-01",
+   "fecha_vencimiento": "2027-08-31",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "capitalizable_al_vencimiento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2027-08-31",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Tasa TAMAR TEM = TAMAR (promedio aritmético de tasas de depósitos a plazo fijo de más de $1.000.000.000 de bancos privados, desde 10 días hábiles antes de la emisión hasta 10 días hábiles antes del vencimiento) más un MARGEN determinado en la licitación del 27/03/2026, fijo hasta el vencimiento. Precio de emisión a la par. Denominación mínima VNO $1. Monto máximo VNO $5.000.000.000.000. Colocación también según art. 12 (canje por BONCER TZX26)."
+  },
+  {
+   "articulo": "ARTÍCULO 7º",
+   "nombre": "Bono del Tesoro Nacional en pesos cero cupón con ajuste por CER vencimiento 31 de marzo de 2028",
+   "tipo": "bono_cer",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "CER",
+   "fecha_emision": "2026-04-01",
+   "fecha_vencimiento": "2028-03-31",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "cero_cupon_descuento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "no especificada",
+   "amortizacion": [
+    {
+     "fecha": "2028-03-31",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": 10,
+   "notas": "Precio de emisión determinado en la licitación. CER entre 10 días hábiles antes de la emisión y 10 días hábiles antes del vencimiento; Oficina Nacional de Crédito Público es Agente de Cálculo. Denominación mínima VNO $1. Monto máximo VNO $5.000.000.000.000. Colocación también según art. 12 (canje por BONCER TZX26)."
+  },
+  {
+   "articulo": "ARTÍCULO 8º",
+   "nombre": "Bono del Tesoro Nacional en pesos cero cupón con ajuste por CER vencimiento 28 de marzo de 2029",
+   "tipo": "bono_cer",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "CER",
+   "fecha_emision": "2026-04-01",
+   "fecha_vencimiento": "2029-03-28",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "cero_cupon_descuento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "no especificada",
+   "amortizacion": [
+    {
+     "fecha": "2029-03-28",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": 10,
+   "notas": "Precio de emisión determinado en la licitación. CER entre 10 días hábiles antes de la emisión y 10 días hábiles antes del vencimiento; Oficina Nacional de Crédito Público es Agente de Cálculo. Denominación mínima VNO $1. Monto máximo VNO $5.000.000.000.000. Colocación también según art. 12 (canje por BONCER TZX26)."
+  }
+ ]
+}

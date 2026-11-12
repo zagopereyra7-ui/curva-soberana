@@ -1,0 +1,70 @@
+{
+ "titulos": [
+  {
+   "articulo": "ARTÍCULO 1º",
+   "nombre": "Bono del Tesoro Nacional en pesos cero cupón con ajuste por CER vencimiento 30 de junio de 2026",
+   "tipo": "bono_cer",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "CER",
+   "fecha_emision": "2024-02-01",
+   "fecha_vencimiento": "2026-06-30",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "cero_cupon_descuento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "",
+   "amortizacion": [
+    {
+     "fecha": "2026-06-30",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": 10,
+   "notas": "Monto hasta VNO $ 5.000.000.000.000. Cero cupón a descuento: sin tasa ni fechas de pago de intereses; el texto no especifica base de cálculo. Denominación mínima VNO $ 1. Agente de Cálculo: Oficina Nacional de Crédito Público."
+  },
+  {
+   "articulo": "ARTÍCULO 2º",
+   "nombre": "Bono del Tesoro Nacional en pesos cero cupón con ajuste por CER vencimiento 30 de junio de 2027",
+   "tipo": "bono_cer",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "CER",
+   "fecha_emision": "2024-02-01",
+   "fecha_vencimiento": "2027-06-30",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "cero_cupon_descuento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "",
+   "amortizacion": [
+    {
+     "fecha": "2027-06-30",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": 10,
+   "notas": "Monto hasta VNO $ 5.000.000.000.000. Cero cupón a descuento: sin tasa ni fechas de pago de intereses; el texto no especifica base de cálculo. Denominación mínima VNO $ 1. Agente de Cálculo: Oficina Nacional de Crédito Público."
+  },
+  {
+   "articulo": "ARTÍCULO 3º",
+   "nombre": "Bono del Tesoro Nacional en pesos cero cupón con ajuste por CER vencimiento 30 de junio de 2028",
+   "tipo": "bono_cer",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "CER",
+   "fecha_emision": "2024-02-01",
+   "fecha_vencimiento": "2028-06-30",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "cero_cupon_descuento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "",
+   "amortizacion": [
+    {
+     "fecha": "2028-06-30",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": 10,
+   "notas": "Monto hasta VNO $ 5.000.000.000.000. Cero cupón a descuento: sin tasa ni fechas de pago de intereses; el texto no especifica base de cálculo. Denominación mínima VNO $ 1. Agente de Cálculo: Oficina Nacional de Crédito Público."
+  }
+ ]
+}

@@ -1,0 +1,76 @@
+{
+ "titulos": [
+  {
+   "articulo": "ARTÍCULO 1º",
+   "nombre": "Letra del Tesoro Nacional Capitalizable en pesos con vencimiento 12 de junio de 2026",
+   "tipo": "letra_capitalizable_pesos",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2026-04-30",
+   "fecha_vencimiento": "2026-06-12",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "capitalizable_al_vencimiento",
+   "fechas_pago_intereses": [
+    "2026-06-12"
+   ],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2026-06-12",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "La tasa efectiva mensual se determina en la licitación del 28/04/2026, por lo que no figura en el texto. Precio de emisión a la par. Monto máximo VNO $ 6.000.000.000.000. La fórmula de cálculo no está transcripta en el texto."
+  },
+  {
+   "articulo": "ARTÍCULO 2º",
+   "nombre": "Bono del Tesoro Nacional en pesos a tasa TAMAR con vencimiento 31 de agosto de 2028",
+   "tipo": "tamar",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2026-04-30",
+   "fecha_vencimiento": "2028-08-31",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "capitalizable_al_vencimiento",
+   "fechas_pago_intereses": [
+    "2028-08-31"
+   ],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2028-08-31",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Devenga intereses a la tasa efectiva mensual TAMAR TEM capitalizable mensualmente hasta el vencimiento. La TAMAR es el promedio aritmético simple de la TAMAR bancos privados (depósitos a plazo fijo de más de $1.000 millones), publicada por el BCRA, desde 10 días hábiles antes de la emisión hasta 10 días hábiles antes del vencimiento. El margen se determina en la licitación del 28/04/2026. Precio de emisión a la par. Monto máximo VNO $ 5.000.000.000.000. La fórmula de cálculo no está transcripta en el texto."
+  },
+  {
+   "articulo": "ARTÍCULO 3º",
+   "nombre": "Bono del Tesoro Nacional en pesos dual CER/TAMAR con vencimiento 29 de junio de 2029",
+   "tipo": "dual",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "otro",
+   "fecha_emision": "2026-04-30",
+   "fecha_vencimiento": "2029-06-29",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "capitalizable_al_vencimiento",
+   "fechas_pago_intereses": [
+    "2029-06-29"
+   ],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2029-06-29",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": 10,
+   "notas": "Al vencimiento paga el máximo entre: (i) el capital ajustado por CER, con rezago de 10 días hábiles antes de la emisión y antes del vencimiento, y (ii) el devengado a la tasa TAMAR TEM capitalizable mensualmente más un margen del 3%, base 30/360. La TAMAR es el promedio de la TAMAR bancos privados con rezago de 10 días hábiles. El precio de emisión se determina en la licitación del 28/04/2026. Monto máximo VNO $ 5.800.000.000.000. El texto refiere al 'saldo de capital de la letra'."
+  }
+ ]
+}

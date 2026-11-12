@@ -1,0 +1,155 @@
+table tr td {border: 1px solid grey; border-spacing: 0px; border-collapse: collapse; padding: 5px; font-size: 12px; text-align: center;} Ciudad de Buenos Aires, 08/06/2023
+ Visto el expediente EX-2023-64049935- -APN-DGDA#MEC, las leyes 24.156 de Administración Financiera y de los Sistemas de Control del Sector Público Nacional, y 27.701 de Presupuesto General de la Administración Nacional para el ejercicio 2023, los decretos 1344 del 4 de octubre de 2007, 820 del 25 de octubre de 2020 y 331 del 16 de junio de 2022 (DECNU-2022-331-APN-PTE), la resolución conjunta 9 del 24 de enero de 2019 de la Secretaría de Finanzas y de la Secretaría de Hacienda, ambas del ex Ministerio de Hacienda (RESFC-2019-9- APN-SECH#MHA) y la resolución 758 del 7 de junio de 2023 del Ministerio de Economía (RESOL-2023-758- APN-MEC), y
+ CONSIDERANDO:
+ Que en el Título III de la ley 24.156 de Administración Financiera y de los Sistemas de Control del Sector Público Nacional se regula el Sistema de Crédito Público, estableciéndose en el artículo 60 que las entidades de la Administración Nacional no podrán formalizar ninguna operación de crédito público que no esté contemplada en la ley de presupuesto general del año respectivo o en una ley específica.
+ Que en el artículo 37 de la ley 27.701 de Presupuesto General de la Administración Nacional para el ejercicio 2023, con la adecuación dispuesta por el artículo 1º de la resolución 758 del 7 de junio de 2023 del Ministerio de Economía (RESOL-2023-758-APN-MEC), se autoriza al Órgano Responsable de la coordinación de los sistemas de Administración Financiera a realizar operaciones de crédito público por los montos, especificaciones y destino del financiamiento indicados en la planilla anexa al mencionado artículo.
+ Que en el artículo 11 del decreto 331 del 16 de junio de 2022 (DECNU-2022-331-APN-PTE), incorporado a la Ley 11.672, Complementaria Permanente de Presupuesto (t.o. 2014) mediante el artículo 26 de ese decreto, se dispone que las futuras suscripciones de títulos públicos cuya moneda de pago sea pesos se puedan realizar con instrumentos de deuda pública con igual moneda de pago, los que serán tomados al valor técnico calculado a la fecha de liquidación de cada una de las colocaciones que se realicen en el marco de las normas de procedimientos aprobadas mediante la resolución conjunta 9 del 24 de enero de 2019 de la Secretaría de Finanzas y de la Secretaría de Hacienda, ambas del ex Ministerio de Hacienda (RESFC-2019-9-APN-SECH#MHA), y sus modificatorias, y conforme lo determinen ambas secretarías, aclarando que tales operaciones, no estarán alcanzadas por las disposiciones del artículo 65 de la ley 24.156 y sus modificaciones.
+ Que en el apartado I del artículo 6° del anexo al decreto 1344 del 4 de octubre de 2007, modificado mediante el artículo 5° del decreto 820 del 25 de octubre de 2020, se establece que las funciones de Órgano Responsable de la coordinación de los sistemas que integran la Administración Financiera del Sector Público Nacional, serán ejercidas conjuntamente por la Secretaría de Finanzas y la Secretaría de Hacienda, ambas del actual Ministerio de Economía.
+ Que a través del artículo 2° de la resolución conjunta 9/2019 de la Secretaría de Finanzas y de la Secretaría de Hacienda, se sustituyeron las normas de “Procedimiento para la Colocación de Instrumentos de Deuda Pública”, aprobadas mediante el artículo 1° de la resolución 162 del 7 de septiembre de 2017 del ex Ministerio de Finanzas (RESOL-2017-162-APN-MF).
+ Que, en ese marco, se ha considerado conveniente ofrecer a los tenedores de la “Letra del Tesoro Nacional en Pesos Ajustada por CER a descuento con vencimiento 16 de junio de 2023”, emitida originalmente mediante el artículo 4º de la resolución conjunta 34 del 29 de agosto de 2022 de la Secretaría de Finanzas y de la Secretaría de Hacienda, ambas del Ministerio de Economía (RESFC-2022-34-APN-SH#MEC), del “Bono de la Nación Argentina en Moneda Dual vencimiento julio 2023”, emitido originalmente mediante el artículo 2º de la resolución conjunta 30 del 9 de agosto de 2022 de la Secretaría de Finanzas y de la Secretaría de Hacienda, ambas del Ministerio de Economía (RESFC-2022-30-APN-SH#MEC), de la “Letra del Tesoro Nacional en Pesos Ajustada por CER a descuento con vencimiento 18 de julio de 2023”, emitida originalmente mediante el artículo 4º de la resolución conjunta 16 del 22 de marzo de 2023 de la Secretaría de Finanzas y de la Secretaría de Hacienda, ambas del Ministerio de Economía (RESFC-2023-16-APN-SH#MEC), del “Bono del Tesoro Nacional Vinculado al Dólar Estadounidense vencimiento 31 de julio de 2023”, emitido originalmente mediante el artículo 4º de la resolución conjunta 25 del 13 de julio de 2022 de la Secretaría de Finanzas y de la Secretaría de Hacienda, ambas del Ministerio de Economía (RESFC-2022-25-APN-SH#MEC), de la “Letra del Tesoro Nacional en pesos a descuento con vencimiento 31 de julio 2023”, emitida originalmente mediante el artículo 5º de la resolución conjunta 16/2023 de la Secretaría de Finanzas y de la Secretaría de Hacienda, de los “Bonos del Tesoro Nacional en Pesos ajustado por CER 1,45% Vencimiento 13 de agosto de 2023”, emitidos originalmente mediante el artículo 4º de la resolución conjunta 49 del 11 de agosto de 2020 de la Secretaría de Finanzas y de la Secretaría de Hacienda, ambas del Ministerio de Economía (RESFC-2020-49-APN-SH#MEC) y del “Bono de la Nación Argentina en Moneda Dual vencimiento septiembre 2023”, emitido originalmente mediante el artículo 3º de la resolución conjunta 30/2022 de la Secretaría de Finanzas y de la Secretaría de Hacienda, a suscribir distintas opciones de títulos públicos.
+ Que, en tal sentido, se procederá a la emisión del “Bono de la Nación Argentina en Moneda Dual vencimiento 30 de agosto de 2024”, del “Bono de la Nación Argentina en Moneda Dual vencimiento 29 de noviembre de 2024”, del “Bono del Tesoro Nacional en Pesos ajustado por CER con vencimiento 13 de diciembre de 2024” y del “Bono de la Nación Argentina en Moneda Dual vencimiento 31 de enero de 2025”.
+ Que las operaciones que se impulsan se encuentran dentro de los límites establecidos en la planilla anexa al artículo 37 de la ley 27.701, con la adecuación dispuesta por el artículo 1º de la resolución 758/2023 del Ministerio de Economía.
+ Que el servicio jurídico permanente del Ministerio de Economía ha tomado la intervención que le compete.
+ Que esta medida se dicta en uso de las facultades previstas en el artículo 37 de la ley 27.701 y en el apartado I del artículo 6° del anexo al decreto 1344/2007.
+ Por ello,
+ EL SECRETARIO DE FINANZAS
+ Y
+ EL SECRETARIO DE HACIENDA
+ RESUELVEN:
+ ARTÍCULO 1º.- Dispónese la emisión de los instrumentos de endeudamiento público que se detallan a continuación por un monto en conjunto de hasta valor nominal original dólares estadounidenses veintitrés mil quinientos millones (VNO USD 23.500.000.000), los que se colocarán conforme las normas de procedimiento aprobadas a través del artículo 2° de la resolución conjunta 9 del 24 de enero de 2019 de la Secretaría de Finanzas y de la Secretaría de Hacienda, ambas del ex Ministerio de Hacienda (RESFC-2019-9-APN-SECH#MHA) y lo dispuesto en el artículo 3° de esta resolución.
+ I. “Bono de la Nación Argentina en Moneda Dual vencimiento 30 de agosto de 2024” Fecha de emisión: 13 de junio de 2023.
+ Fecha de vencimiento: 30 de agosto de 2024.
+ Plazo: un (1) año, dos (2) meses y diecisiete (17) días. Moneda de denominación: dólar estadounidense.
+ Suscripción: podrá ser suscripto con el Título Elegible a su valor técnico a la fecha de liquidación, según lo establecido en el artículo 11 del decreto 331 del 16 de junio de 2022 (DECNU-2022-331-APN-PTE) incorporado a la Ley Nº 11.672, Complementaria Permanente de Presupuesto (t.o. 2014) mediante el artículo 26 del mencionado decreto mencionado, o pesos al tipo de Cambio Inicial.
+ Moneda de pago: pesos.
+ Tipo de Cambio Inicial: es el tipo de cambio de referencia publicado por el Banco Central de la República Argentina (BCRA) en función de la Comunicación “A” 3500 correspondiente al día hábil previo a la licitación.
+ Tipo de Cambio Aplicable: es el tipo de cambio de referencia publicado por el BCRA en función de la Comunicación “A” 3500 correspondiente al tercer día hábil previo a la respectiva fecha de pago.
+ Amortización: íntegra al vencimiento.
+ Condición de pago al vencimiento: en la fecha de vencimiento se abonará en pesos el máximo entre: (a) el valor nominal emitido denominado en dólares estadounidenses convertido a pesos al Tipo de Cambio Inicial, ajustado conforme al Coeficiente de Estabilización de Referencia (CER) referido en el artículo 4º del decreto 214 del 3 de febrero de 2002, informado por el BCRA, correspondiente al período transcurrido entre los diez (10) días hábiles anteriores a la fecha de emisión y los diez (10) días hábiles anteriores a la fecha de vencimiento del servicio de amortización de capital más un cupón del tres coma veinticinco por ciento (3,25%) anual, sobre capital ajustado, pagadero al vencimiento y será calculado sobre la base de un año de trescientos sesenta (360) días integrado por doce (12) meses de treinta (30) días cada uno; y (b) el valor nominal emitido denominado en dólares estadounidenses convertido a pesos al Tipo de Cambio Aplicable.
+ Si el vencimiento del Bono Dual no fuere un día hábil, la fecha de pago será el día hábil inmediato posterior a la fecha de vencimiento original. Para el caso del punto a) se devengarán los intereses hasta la fecha de vencimiento original.
+ Denominación mínima: será de valor nominal original dólares estadounidenses uno (VNO USD 1).
+ Colocación: la suscripción se llevará a cabo, en uno (1) o varios tramos, según lo determine la Secretaría de Finanzas del Ministerio de Economía, conforme las normas de procedimiento aprobadas mediante la resolución conjunta 9/2019 de la Secretaría de Finanzas y de la Secretaría de Hacienda, y de acuerdo con lo dispuesto en el artículo 3° de esta resolución.
+ Negociación: serán negociables y se solicitará su cotización en el Mercado Abierto Electrónico (MAE) y en bolsas y mercados de valores del país.
+ Titularidad: se emitirán Certificados Globales a nombre de la Central de Registro y Liquidación de Pasivos Públicos y Fideicomisos Financieros (CRYL) del BCRA, en su carácter de Agente de Registro del Bono.
+ Exenciones impositivas: gozarán de todas las exenciones impositivas dispuestas en las leyes y reglamentaciones vigentes en la materia.
+ Atención de los servicios financieros: los pagos se cursarán a través del BCRA mediante transferencias de fondos en las respectivas cuentas de efectivo que posean los titulares de cuentas de registro en esa institución.
+ Ley aplicable: la ley de la República Argentina.
+ II. “Bono de la Nación Argentina en Moneda Dual vencimiento 29 de noviembre de 2024”
+ Fecha de emisión: 13 de junio de 2023.
+ Fecha de vencimiento: 29 de noviembre de 2024. Plazo: un (1) año, cinco (5) meses y dieciséis (16) días. Moneda de denominación: dólar estadounidense.
+ Suscripción: podrá ser suscripto con el Título Elegible a su valor técnico a la fecha de liquidación, según lo establecido en el artículo 11 del decreto 331/2022 incorporado a la Ley Nº 11.672, Complementaria Permanente de Presupuesto (t.o. 2014) mediante artículo 26 del mencionado decreto, o pesos al tipo de Cambio Inicial.
+ Moneda de pago: pesos.
+ Tipo de Cambio Inicial: es el tipo de cambio de referencia publicado por el BCRA en función de la
+ Comunicación “A” 3500 correspondiente al día hábil previo a la licitación.
+ Tipo de Cambio Aplicable: es el tipo de cambio de referencia publicado por el BCRA en función de la Comunicación “A” 3500 correspondiente al tercer día hábil previo a la respectiva fecha de pago.
+ Amortización: íntegra al vencimiento.
+ Condición de pago al vencimiento: en la fecha de vencimiento se abonará en pesos el máximo entre: (a) el valor nominal emitido denominado en dólares estadounidenses convertido a pesos al Tipo de Cambio Inicial, ajustado conforme al Coeficiente de Estabilización de Referencia (CER) referido en el artículo 4º del decreto 214/2002, informado por el BCRA, correspondiente al período transcurrido entre los diez (10) días hábiles anteriores a la fecha de emisión y los diez (10) días hábiles anteriores a la fecha de vencimiento del servicio de amortización de capital más un cupón del tres coma veinticinco por ciento (3,25%) anual, sobre capital ajustado, pagadero al vencimiento y será calculado sobre la base de un año de trescientos sesenta (360) días integrado por doce (12) meses de treinta (30) días cada uno; y (b) el valor nominal emitido denominado en dólares estadounidenses convertido a pesos al Tipo de Cambio Aplicable.
+ Si el vencimiento del Bono Dual no fuere un día hábil, la fecha de pago será el día hábil inmediato posterior a la fecha de vencimiento original. Para el caso del punto a) se devengarán los intereses hasta la fecha de vencimiento original.
+ Denominación mínima: será de valor nominal original dólares estadounidenses uno (VNO USD 1).
+ Colocación: la suscripción se llevará a cabo, en uno (1) o varios tramos, según lo determine la Secretaría de Finanzas del Ministerio de Economía, conforme las normas de procedimiento aprobadas mediante la resolución conjunta 9/2019 de la Secretaría de Finanzas y de la Secretaría de Hacienda, y de acuerdo con lo dispuesto en el artículo 3º de esta resolución.
+ Negociación: serán negociables y se solicitará su cotización en el MAE y en bolsas y mercados de valores del país.
+ Titularidad: se emitirán Certificados Globales a nombre de la CRYL del BCRA, en su carácter de Agente de Registro del Bono.
+ Exenciones impositivas: gozarán de todas las exenciones impositivas dispuestas en las leyes y reglamentaciones vigentes en la materia.
+ Atención de los servicios financieros: los pagos se cursarán a través del BCRA mediante transferencias de fondos en las respectivas cuentas de efectivo que posean los titulares de cuentas de registro en esa institución.
+ Ley aplicable: la ley de la República Argentina.
+ III. “Bono de la Nación Argentina en Moneda Dual vencimiento 31 de enero de 2025” Fecha de emisión: 13 de junio de 2023.
+ Fecha de vencimiento: 31 de enero de 2025.
+ Plazo: un (1) año, siete (7) meses y dieciocho (18) días.
+ Moneda de denominación: dólar estadounidense.
+ Suscripción: podrá ser suscripto con el Título Elegible a su valor técnico a la fecha de liquidación, según lo establecido en el artículo 11 del decreto 331/2022 incorporado a la Ley Nº 11.672, Complementaria Permanente de Presupuesto (t.o. 2014) mediante artículo 26 del mencionado decreto, o pesos al tipo de Cambio Inicial.
+ Moneda de pago: pesos.
+ Tipo de Cambio Inicial: es el tipo de cambio de referencia publicado por el BCRA en función de la Comunicación “A” 3500 correspondiente al día hábil previo a la licitación.
+ Tipo de Cambio Aplicable: es el tipo de cambio de referencia publicado por el BCRA en función de la Comunicación “A” 3500 correspondiente al tercer día hábil previo a la respectiva fecha de pago.
+ Amortización: íntegra al vencimiento.
+ Condición de pago al vencimiento: en la fecha de vencimiento se abonará en pesos el máximo entre: (a) el valor nominal emitido denominado en dólares estadounidenses convertido a pesos al Tipo de Cambio Inicial, ajustado conforme al CER referido en el artículo 4º del decreto 214/2002, informado por el BCRA, correspondiente al período transcurrido entre los diez (10) días hábiles anteriores a la fecha de emisión y los diez (10) días hábiles anteriores a la fecha de vencimiento del servicio de amortización de capital más un cupón del tres coma veinticinco por ciento (3,25%) anual, sobre capital ajustado, pagadero al vencimiento y será calculado sobre la base de un año de trescientos sesenta (360) días integrado por doce (12) meses de treinta (30) días cada uno; y (b) el valor nominal emitido denominado en dólares estadounidenses convertido a pesos al Tipo de Cambio Aplicable.
+ Si el vencimiento del Bono Dual no fuere un día hábil, la fecha de pago será el día hábil inmediato posterior a la fecha de vencimiento original. Para el caso del punto a) se devengarán los intereses hasta la fecha de vencimiento original.
+ Denominación mínima: será de valor nominal original dólares estadounidenses uno (VNO USD 1).
+ Colocación: la suscripción se llevará a cabo, en uno (1) o varios tramos, según lo determine la Secretaría de Finanzas del Ministerio de Economía, conforme las normas de procedimiento aprobadas mediante la resolución conjunta 9/2019 de la Secretaría de Finanzas y de la Secretaría de Hacienda, y de acuerdo con lo dispuesto en el artículo 3º de esta resolución.
+ Negociación: serán negociables y se solicitará su cotización en el MAE y en bolsas y mercados de valores del país.
+ Titularidad: se emitirán Certificados Globales a nombre de la CRYL del BCRA, en su carácter de Agente de Registro del Bono.
+ Exenciones impositivas: gozarán de todas las exenciones impositivas dispuestas en las leyes y reglamentaciones vigentes en la materia.
+ Atención de los servicios financieros: los pagos se cursarán a través del BCRA mediante transferencias de fondos en las respectivas cuentas de efectivo que posean los titulares de cuentas de registro en esa institución.
+ Ley aplicable: la ley de la República Argentina.
+ ARTÍCULO 2º.- Dispónese la emisión del “Bono del Tesoro Nacional en Pesos ajustado por CER con vencimiento 13 de diciembre de 2024” por un monto de hasta valor nominal original pesos cinco billones (VNO $ 5.000.000.000.000), con las siguientes condiciones financieras:
+ Fecha de emisión: 13 de junio de 2023.
+ Fecha de vencimiento: 13 de diciembre de 2024. Plazo: un (1) año y seis (6) meses.
+ Moneda de denominación y pago: pesos.
+ Suscripción: podrá ser suscripto con el Título Elegible a su valor técnico a la fecha de liquidación, según lo establecido en el artículo 11 del decreto 331/2022 incorporado a la Ley Nº 11.672, Complementaria Permanente de Presupuesto (t.o. 2014) mediante artículo 26 del mencionado decreto, o pesos al Tipo de Cambio Inicial.
+ Amortización: íntegra al vencimiento. El capital será ajustado conforme lo estipulado en la cláusula “Ajuste de Capital”.
+ Ajuste de Capital: el saldo de capital del bono será ajustado conforme al CER referido en el artículo 4º del decreto 214/2002, informado por el BCRA, correspondiente al período transcurrido entre los diez (10) días hábiles anteriores a la fecha de emisión y los diez (10) días hábiles anteriores a la fecha de vencimiento del servicio de interés o amortización de capital correspondiente. La Oficina Nacional de Crédito Público dependiente de la Subsecretaría de Financiamiento de la Secretaría de Finanzas del Ministerio de Economía, será el Agente de Cálculo. La determinación del monto del ajuste efectuado por el Agente de Cálculo será, salvo error manifiesto, final y válido para todas las partes.
+ Intereses: devengará intereses a partir de la fecha de emisión, a la tasa del cuatro coma veinticinco por ciento (4,25%) nominal anual, los que serán pagaderos el 13 de diciembre de 2023, 13 de junio de 2024 y 13 de diciembre de 2024 y serán calculados sobre la base de meses de treinta (30) días y años de trescientos sesenta (360) días (30/360). Si el vencimiento del cupón no fuere un día hábil, su fecha de pago será el día hábil inmediato posterior a la fecha de vencimiento original, devengándose intereses hasta la fecha de vencimiento original.
+ Denominación mínima: será de valor nominal original pesos uno (VNO $ 1).
+ Colocación: la suscripción se llevará a cabo en uno (1) o varios tramos, según lo determine la Secretaría de Finanzas del Ministerio de Economía, conforme a las normas de procedimiento aprobadas mediante el artículo 2° de la resolución conjunta 9/2019 de la Secretaría de Finanzas y de la Secretaría de Hacienda, y de acuerdo con lo dispuesto en el artículo 3º de esta resolución.
+ Negociación: serán negociables y se solicitará su cotización en el MAE y en bolsas y mercados de valores del país.
+ Titularidad: se emitirán Certificados Globales a nombre de la CRYL del BCRA, en su carácter de Agente de Registro del Bono.
+ Exenciones impositivas: gozará de todas las exenciones impositivas dispuestas en las leyes y reglamentaciones vigentes en la materia.
+ Atención de los servicios financieros: los pagos se cursarán a través del BCRA mediante transferencias de fondos en las respectivas cuentas de efectivo que posean los titulares de cuentas de registro en esa institución.
+ Ley aplicable: ley de la República Argentina.
+ ARTÍCULO 3º.- Los tenedores de la “Letra del Tesoro Nacional en Pesos Ajustada por CER a descuento con vencimiento 16 de junio de 2023”, en adelante TE1, podrán suscribir con sus títulos, conforme lo establecido en el artículo 11 del decreto 331/2022, el “Bono del Tesoro Nacional en Pesos Ajustado por CER con vencimiento 13 de diciembre de 2024”, en adelante TE1 OP1.
+ Las ofertas que se presenten deberán indicar el monto de VNO en pesos del TE1 que entregará en conversión y el precio en pesos por cada valor nominal original pesos mil (VNO $ 1.000), con dos decimales del TE1 OP1, que suscribirán.
+ Los tenedores del “Bono de la Nación Argentina en Moneda Dual vencimiento julio 2023”, en adelante TE2, podrán suscribir con sus títulos, conforme lo establecido en el artículo 11 del decreto 331/2022, una de las siguientes opciones de instrumentos:
+ 1. “Bono de la Nación Argentina en Moneda Dual vencimiento 30 de agosto de 2024”, en adelanteTE2 OP1;
+ 2. “Bono de la Nación Argentina en Moneda Dual vencimiento 29 de noviembre de 2024”, en adelante TE2 OP2;
+ 3. “Bono del Tesoro Nacional en Pesos ajustado por CER con vencimiento 13 de diciembre de 2024”, en adelante TE2 OP3.
+ Las ofertas que se presenten deberán indicar el monto de VNO en dólares estadounidenses del TE2 que entregará en conversión y, para el TE2 OP1 y el TE2 OP2, el precio en dólares estadounidenses por cada valor nominal original dólares estadounidenses mil (VNO USD 1.000) con dos decimales, del título que suscribirán, y para el TE2 OP3, el precio en pesos por cada valor nominal original pesos mil (VNO $ 1.000), con dos decimales, del título que suscribirán.
+ Los tenedores de la “Letra del Tesoro Nacional en Pesos Ajustada por CER a descuento con vencimiento 18 de julio de 2023”, en adelante TE3, podrán suscribir con sus títulos, conforme lo establecido en el artículo 11 del decreto 331/2022, el “Bono del Tesoro Nacional en Pesos Ajustado por CER con vencimiento 13 de diciembre de 2024”, en adelante TE3 OP1.
+ Las ofertas que se presenten deberán indicar el monto de VNO en pesos del TE3 que entregará en conversión y el precio en pesos por cada valor nominal original pesos mil (VNO $1.000), con dos decimales del TE3 OP1 que suscribirán.
+ Los tenedores del “Bono del Tesoro Nacional Vinculado al Dólar Estadounidense vencimiento 31 de julio de 2023”, en adelante TE4, podrán suscribir con sus títulos, conforme lo establecido en el artículo 11 del decreto 331/2022, una de las siguientes opciones de instrumentos:
+ 1. “Bono de la Nación Argentina en Moneda Dual vencimiento 30 de agosto de 2024”, en adelante TE4 OP1.
+ 2. “Bono del Tesoro Nacional en Pesos Ajustado por CER con vencimiento 13 de diciembre de 2024”, en adelante TE4 OP2.
+ Las ofertas que se presenten deberán indicar el monto de VNO en dólares estadounidenses del TE4 que entregará en conversión y, para TE4 OP1, el precio en dólares estadounidenses por cada valor nominal original dólares estadounidenses mil (VNO USD 1.000), con dos decimales, del título que suscribirán, y para el TE4 OP2, el precio en pesos por cada valor nominal original pesos mil (VNO $ 1.000), con dos decimales, del título que suscribirán.
+ Los tenedores de la “Letra del Tesoro Nacional en Pesos a descuento con vencimiento 31 de julio 2023”, en adelante TE5, podrán suscribir con sus títulos, conforme lo establecido en el artículo 11 del decreto 331/2022, el “Bono del Tesoro Nacional en Pesos Ajustado por CER con vencimiento 13 de diciembre de 2024”, en adelante TE5 OP1.
+ Las ofertas que se presenten deberán indicar el monto de VNO en pesos del TE5 que entregará en conversión y el precio en pesos por cada valor nominal original pesos mil (VNO $ 1.000), con dos decimales del TE5 OP1 que suscribirán.
+ Los tenedores del “Bono del Tesoro Nacional en Pesos Ajustado por CER con vencimiento 13 de agosto de 2023”, en adelante TE6, podrán suscribir con sus títulos, conforme lo establecido en el artículo 11 del decreto 331/2022, el “Bono del Tesoro Nacional en Pesos Ajustado por CER con vencimiento 13 de diciembre de 2024”, en adelante TE6 OP1.
+ Las ofertas que se presenten deberán indicar el monto de VNO en pesos del TE6 que entregará en conversión y el precio en pesos por cada valor nominal original pesos mil (VNO $ 1.000), con dos decimales del TE6 OP1 que suscribirán.
+ Los tenedores del “Bono de la Nación Argentina en Moneda Dual vencimiento septiembre de 2023”, en adelante TE7, podrán suscribir con sus títulos, conforme lo establecido en el artículo 11 del decreto 331/2022, una de las siguientes opciones de instrumentos:
+ 1. “Bono de la Nación Argentina en Moneda Dual vencimiento 30 de agosto de 2024”, en adelante TE7 OP1, o
+ 2. “Bono de la Nación Argentina en Moneda Dual vencimiento 31 de enero de 2025”, en adelante TE7 OP2, o
+ 3. “Bono del Tesoro Nacional en Pesos Ajustado por CER con vencimiento 13 de diciembre de 2024”, en adelante TE7 OP3.
+ Las ofertas que se presenten deberán indicar el monto de VNO en dólares estadounidenses del TE7 que entregará en conversión y, para el TE7 OP1 y el TE7 OP2, el precio en dólares estadounidenses por cada valor nominal original dólares estadounidenses mil (VNO USD 1.000), con dos decimales, del título que suscribirán, y para el TE7 OP3, el precio en pesos por cada valor nominal original pesos mil (VNO $ 1.000), con dos decimales, del TE7 OP3 que suscribirán.
+ La recepción de las ofertas comenzará a las 10:00 horas y finalizará a las 15:00 horas del día jueves 8 de junio de 2023 (T) y la liquidación de las ofertas recibidas y adjudicadas se efectuará el día martes 13 de junio de 2023 (T+3).
+ Para determinar la cantidad de VNO a entregar de los Nuevos Instrumentos a cada participante, se utilizará el siguiente criterio:
+ • Determinación de la cantidad de VNO Opción TE1 OP1:
+ VNO TE1 OP1 = VNO TE1 * VALOR TÉCNICO TE1 / PRECIO COLOCACIÓN TE1 OP1
+ • Determinación de la cantidad de VNO Opción TE2 OP1
+ VNO TE2 OP1 = (VNO TE2 * VALOR TÉCNICO TE2) / (PRECIO COLOCACIÓN TE2 OP1 * TCR)
+ • Determinación de la cantidad de VNO Opción TE2 OP2
+ VNO TE2 OP2 = (VNO TE2 * VALOR TÉCNICO TE2) / (PRECIO COLOCACIÓN TE2 OP2 * TCR)
+ • Determinación de la cantidad de VNO Opción TE2 OP3
+ VNO TE2 OP3 = VNO TE2 * VALOR TÉCNICO TE2 / PRECIO COLOCACIÓN TE2 OP3
+ • Determinación de la cantidad de VNO Opción TE3 OP1:
+ VNO TE3 OP1 = VNO TE3 * VALOR TÉCNICO TE3 / PRECIO COLOCACIÓN TE3 OP1
+ • Determinación de la cantidad de VNO Opción TE4 OP1
+ VNO TE4 OP1 = VNO BONO TE4 * VALOR TÉCNICO TE4 / PRECIO COLOCACIÓN TE4 OP1
+ • Determinación de la cantidad de VNO Opción TE4 OP2
+ VNO TE4 OP2 = (VNO TE4 * VALOR TÉCNICO TE4 * TCR) / PRECIO COLOCACIÓN TE4 OP2
+ • Determinación de la cantidad de VNO Opción TE5 OP1
+ VNO TE5 OP1 = VNO TE5 * VALOR TÉCNICO TE5 / PRECIO COLOCACIÓN TE5 OP1
+ • Determinación de la cantidad de VNO Opción TE6 OP1
+ VNO TE6 OP1 = VNO TE6 * VALOR TÉCNICO TE6 / PRECIO COLOCACIÓN TE6 OP1
+ • Determinación de la cantidad de VNO Opción TE7 OP1
+ VNO TE7 OP1 = (VNO TE7 * VALOR TÉCNICO TE7) / (PRECIO COLOCACIÓN TE7 OP1 * TCR)
+ • Determinación de la cantidad de VNO Opción TE7 OP2
+ VNO TE7 OP2 = (VNO TE7 * VALOR TÉCNICO TE7) / (PRECIO COLOCACIÓN TE7 OP2 * TCR)
+ • Determinación de la cantidad de VNO Opción TE7 OP3
+ VNO TE7 OP3 = VNO TE7 * VALOR TÉCNICO TE7 / PRECIO COLOCACIÓN TE7 OP3
+ Donde:
+ TCR es el tipo de cambio de referencia de la Comunicación “A” 3500 publicado por el BCRA del día hábil anterior a la fecha de la licitación.
+ A cada VNO de los Nuevos Instrumentos obtenidos por cada una de las fórmulas anteriores, se los redondeará al entero más cercano de la denominación mínima de cada Nuevo Instrumento.
+ Antes de las 18:00 horas del día lunes 12 de junio (T+2), los participantes que presenten ofertas deberán transferir el total de su Título Elegible aceptado desde su cuenta en la CRYL del BCRA, a la cuenta de la Secretaría de Finanzas 99990-01 en esa entidad. Si algún participante tuviera su Título Elegible depositado en Caja de Valores SA deberá tomar los recaudos necesarios para que antes del tiempo límite de recepción, los Títulos Elegibles sean transferidos primero a su cuenta en la CRYL y luego a la cuenta de la Secretaría de Finanzas.
+ En caso de incumplimiento en la entrega del Título Elegible, la liquidación se realizará el martes 13 de junio de 2023 (T+3) mediante el débito del valor efectivo correspondiente al Título Elegible, de la cuenta corriente en pesos de la entidad financiera participante en el BCRA, siendo aplicable la fórmula:
+ Para todos los Títulos Elegibles con excepción del TE4:
+ MONTO PESOS = VNO TE * VALOR TÉCNICO TE / 1.000
+ Para el TE4:
+ MONTO PESOS = VNO TE4 * VALOR TÉCNICO TE4 / 1.000 * TCR
+ Donde:
+ TCR: tipo de cambio de referencia de la Comunicación “A” 3500 publicado por el BCRA del día hábil anterior a la fecha de la licitación.
+ La participación en la presente oferta implica la aceptación de esta condición.
+ El martes 13 de junio de 2023 (T+3), la CRYL acreditará los Nuevos Instrumentos que conforman las canastas en las cuentas de cada participante en esa entidad, y debitará el valor efectivo en los casos de incumplimiento.
+ La licitación por conversión se efectuará de acuerdo con los procedimientos aprobados por la resolución conjunta 9/2019 de la Secretaría de Finanzas y de la Secretaría de Hacienda, y a lo dispuesto en este artículo.
+ ARTÍCULO 4º.- Autorízase a las/los titulares de la Oficina Nacional de Crédito Público, o de la Dirección de Administración de la Deuda Pública, o de la Dirección de Operaciones de Crédito Público, o de la Dirección de Programación e Información Financiera, o de la Dirección de Análisis del Financiamiento, o de la Coordinación de Títulos Públicos, o de la Coordinación de Emisión de Deuda Interna, a suscribir en forma indistinta la documentación necesaria para la implementación de las operaciones dispuestas en los artículos 1º a 3º de esta resolución.
+ ARTÍCULO 5º.- Esta medida entrará en vigencia a partir del día de su dictado.
+ ARTÍCULO 6º.- Comuníquese, publíquese, dese a la Dirección Nacional del Registro Oficial y archívese.
+ Eduardo Pablo Setti - Raul Enrique Rigo
+ e. 09/06/2023 N° 43232/23 v. 09/06/2023
+ Fecha de publicación 09/06/2023

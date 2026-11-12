@@ -1,0 +1,41 @@
+table tr td {border: 1px solid grey; border-spacing: 0px; border-collapse: collapse; padding: 5px; font-size: 12px; text-align: center;} Ciudad de Buenos Aires, 29/10/2021
+ Visto el expediente EX-2021-102143250- -APN-DGDA#MEC, las leyes 24.156 de Administración Financiera y de los Sistemas de Control del Sector Público Nacional, y 27.591 de Presupuesto General de la Administración Nacional para el Ejercicio 2021, los decretos 1344 del 4 de octubre de 2007 y 820 del 25 de octubre de 2020, y la resolución conjunta 46 del 27 de octubre de 2021 de la Secretaría de Finanzas y de la Secretaría de Hacienda, ambas del Ministerio de Economía (RESFC-2021-46-APN-SECH#MEC), y
+ CONSIDERANDO:
+ Que mediante el artículo 6° de la resolución conjunta 46 del 27 de octubre de 2021 de la Secretaría de Finanzas y de la Secretaría de Hacienda, ambas del Ministerio de Economía (RESFC-2021-46-APN-SECH#MEC) se emitió la “Letra de Liquidez del Tesoro en pesos a descuento con vencimiento 23 de noviembre de 2021”, en adelante referida como LELITE, por un monto de hasta valor nominal original pesos treinta y cinco mil millones (VNO $ 35.000.000.000).
+ Que se ha detectado un error material en la definición del punto “Opción de cancelación anticipada”, por lo que corresponde realizar la enmienda de este punto mencionado.
+ Que el servicio jurídico permanente del Ministerio de Economía ha tomado la intervención que le compete.
+ Que esta medida se dicta en uso de las atribuciones previstas en el artículo 101 del Reglamento de Procedimientos Administrativos. Decreto 1759/72 - T.O. 2017.
+ Por ello,
+ EL SECRETARIO DE FINANZAS
+ Y
+ EL SECRETARIO DE HACIENDA
+ RESUELVEN:
+ ARTÍCULO 1º.- Sustitúyase el artículo 6° de la resolución conjunta 46 del 27 de octubre de 2021 de la Secretaría de Finanzas y de la Secretaría de Hacienda, ambas del Ministerio de Economía (RESFC-2021-46-APN-SH#MEC) el que quedará redactado de la siguiente forma:
+ “ARTÍCULO 6º.- Dispónese la emisión de la “Letra de Liquidez del Tesoro en pesos a descuento con vencimiento 23 de noviembre de 2021”, en adelante referida como LELITE, por un monto de hasta valor nominal original pesos treinta y cinco mil millones (VNO $ 35.000.000.000), con las siguientes condiciones financieras:
+ Fecha de emisión: 29 de octubre de 2021.
+ Fecha de vencimiento: 23 de noviembre de 2021.
+ Plazo: veinticinco (25) días.
+ Moneda de emisión, suscripción y pago: pesos.
+ Precio de suscripción: será determinado por la Secretaría de Finanzas y anunciado en oportunidad del llamado a licitación del instrumento.
+ Intereses: cupón cero (0) -a descuento-.
+ Amortización: íntegra al vencimiento.
+ Denominación mínima: será de valor nominal original pesos uno (VNO $ 1).
+ Opción de cancelación anticipada: desde el primer día posterior a la liquidación de la licitación y hasta dos (2) días hábiles previos al vencimiento de la LELITE, los Fondos Comunes de Inversión (FCI) pueden solicitar la cancelación anticipada de la LELITE, por un monto de hasta el cuarenta por ciento (40%) del valor nominal suscripto por el FCI respectivo. En oportunidad de la publicación de los resultados de la licitación, la Secretaría de Finanzas informará las fechas habilitadas para ejercer la opción de precancelación y el precio aplicable (P), el cual será calculado conforme la siguiente fórmula:
+ P= 1/(1+TNA * plazo remanente/365)
+ En donde “plazo remanente” es el plazo contado desde la fecha de liquidación de la solicitud de cancelación anticipada hasta la fecha de vencimiento y “TNA” corresponde a la tasa nominal anual de emisión.
+ Para el ejercicio de esta opción los FCI deberán remitir una nota a la Dirección de Administración de la Deuda Pública dependiente de la Oficina Nacional de Crédito Público de la Subsecretaría de Financiamiento de la Secretaría de Finanzas del Ministerio de Economía, vía correo electrónico a infodadp@mecon.gob.ar, desde las 10:00 horas y hasta las 15:00 horas de cada día habilitado para la precancelación, siendo la liquidación de dicha cancelación anticipada el día hábil siguiente a la recepción de la mencionada nota. No se tendrán en cuenta las notas presentadas con posterioridad a las 15:00 horas, debiendo en esos casos enviar la nota nuevamente al día siguiente. El modelo de la citada nota obra como anexo (IF-2021-97510626-APN-SF#MEC) al artículo 2º de la resolución conjunta 45 del 14 de octubre de 2021 de la Secretaría de Finanzas y de la Secretaría de Hacienda, ambas del Ministerio de Economía (RESFC-2021-45-APN-SH#MEC).
+ Agente de cálculo: la Dirección de Administración de la Deuda Pública, determinará el precio asociado a la opción de cancelación anticipada, de corresponder.
+ Forma de Colocación: será por licitación pública por adhesión, conforme a las normas de procedimiento aprobadas mediante el artículo 2° de la resolución conjunta 9 del 24 de enero de 2019 de la Secretaría de Finanzas y de la Secretaría de Hacienda, ambas del ex Ministerio de Hacienda (RESFC-2019-9-APN-SECH#MHA), con las siguientes salvedades:
+ a. Participantes: solo podrán participar FCI registrados ante la Comisión Nacional de Valores.
+ b. Forma de presentación de ofertas: los FCI deberán cursar sus ofertas a través de sus Sociedades Depositarias, no pudiendo utilizar otra entidad intermediaria.
+ c. Cartera propia: no se permitirá ofertas por cartera propia o de terceros de Sociedades Depositarias o personas humanas o jurídicas distintas a FCI.
+ Negociación: la LELITE será acreditada en la Central de Registro y Liquidación de Pasivos Públicos y Fideicomisos Financieros (CRYL) del Banco Central de la República Argentina (BCRA) en las cuentas de custodia de las Entidades que hicieron la suscripción por cuenta y orden de los FCI participantes, pudiendo las entidades solicitar en el día de la liquidación su transferencia a la Caja de Valores SA para ser depositadas en las cuentas de los FCI participantes.
+ A partir de ese momento, la Caja de Valores SA bloqueará la LELITE en las citadas cuentas y no se podrán negociar ni transferir hasta su precancelación o vencimiento. Para proceder a la precancelación, la LELITE deberá ser transferida a la cuenta de la Secretaría de Finanzas en la CRYL el mismo día de realizada la solicitud, a efectos de proceder a su pago al día hábil siguiente. La LELITE no tendrá cotización en los mercados de valores locales e internacionales.
+ Titularidad: se emitirá un certificado que será depositado en la CRYL del BCRA.
+ Atención de los servicios financieros: los pagos se cursarán a través del BCRA mediante transferencias de fondos en la cuenta de efectivo que posea el titular de la cuenta de registro en esa institución.
+ Exenciones impositivas: gozará de todas las exenciones impositivas dispuestas por las leyes y reglamentaciones vigentes en la materia.”
+ ARTÍCULO 2º.- Esta medida entrará en vigencia a partir del día de su dictado.
+ ARTÍCULO 3°.- Comuníquese, publíquese, dese a la Dirección Nacional del Registro Oficial y archívese.
+ Rafael Ignacio Brigo - Raul Enrique Rigo
+ e. 02/11/2021 N° 82969/21 v. 02/11/2021
+ Fecha de publicación 02/11/2021

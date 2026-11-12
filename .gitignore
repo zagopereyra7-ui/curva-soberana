@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+control/*.xlsx
+~$*
+fuentes/bapro_informe.pdf

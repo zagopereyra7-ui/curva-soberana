@@ -1,0 +1,59 @@
+{
+ "titulos": [
+  {
+   "articulo": "ARTÍCULO 1º",
+   "nombre": "Letra del Tesoro Nacional Capitalizable en pesos con vencimiento 29 de mayo de 2026",
+   "tipo": "letra_capitalizable_pesos",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2025-05-30",
+   "fecha_vencimiento": "2026-05-29",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "capitalizable_al_vencimiento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2026-05-29",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Monto maximo VNO $ 5.000.000.000.000 o la suma necesaria para cubrir la demanda en la licitacion del 28 de mayo de 2025. Tasa efectiva mensual capitalizable mensualmente, a determinar en la licitacion (no figura en el texto). Precio de emision a la par. Denominacion minima VNO $ 1. Colocacion en uno o varios tramos segun RESFC-2019-9-APN-SECH#MHA. Negociable en A3 Mercados SA y bolsas del pais. Certificados Globales a nombre de CRYL del BCRA como Agente de Registro. Exenciones impositivas vigentes. Ley argentina."
+  },
+  {
+   "articulo": "ARTÍCULO 2º",
+   "nombre": "Bono del Tesoro Nacional en pesos a tasa fija con vencimiento 30 de mayo de 2030",
+   "tipo": "bono_tasa_fija_pesos",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2025-06-04",
+   "fecha_vencimiento": "2030-05-30",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "semestral",
+   "fechas_pago_intereses": [
+    "2025-11-30",
+    "2026-05-30",
+    "2026-11-30",
+    "2027-05-30",
+    "2027-11-30",
+    "2028-05-30",
+    "2028-11-30",
+    "2029-05-30",
+    "2029-11-30",
+    "2030-05-30"
+   ],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2030-05-30",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Denominado en pesos, suscripcion en dolares estadounidenses al tipo de cambio de la Comunicacion A 3500 del BCRA del dia habil previo a la licitacion (el ajuste no afecta el capital, por eso ajuste_capital es ninguno). Destinado a inversores internacionales. Monto maximo VNO $ 5.000.000.000.000 o la suma necesaria para cubrir la demanda en la licitacion del 28 de mayo de 2025. Tasa nominal anual a determinar en la licitacion (no figura en el texto). Plazo aproximado 5 anos. Precio a la par. Si un vencimiento de cupon no es dia habil, el pago es el dia habil siguiente devengando intereses hasta la fecha original. Opcion de rescate anticipado por unica vez, total o parcial del capital: fecha de ejercicio 2027-05-27, fecha de transferencia 2027-05-28, pago el mismo dia que el cuarto servicio de cupon. Denominacion minima VNO $ 1. Negociable en A3 Mercados SA y bolsas del pais. Certificados Globales a nombre de CRYL del BCRA. Ley argentina."
+  }
+ ]
+}

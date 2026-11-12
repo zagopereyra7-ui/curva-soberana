@@ -1,0 +1,52 @@
+{
+ "titulos": [
+  {
+   "articulo": "ARTÍCULO 1º",
+   "nombre": "Bono del Tesoro Nacional capitalizable en pesos con vencimiento 15 de enero de 2027",
+   "tipo": "bono_capitalizable_pesos",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2025-01-31",
+   "fecha_vencimiento": "2027-01-15",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "capitalizable_al_vencimiento",
+   "fechas_pago_intereses": [
+    "2027-01-15"
+   ],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2027-01-15",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "La tasa efectiva mensual, capitalizable mensualmente hasta el vencimiento, será determinada en la licitación, por lo que no figura en el texto. El texto menciona una fórmula de cálculo que no aparece transcripta. Monto: hasta VNO $ 5.000.000.000.000. Precio de emisión: a la par. Denominación mínima: VNO $ 1."
+  },
+  {
+   "articulo": "ARTÍCULO 4º",
+   "nombre": "Letra del Tesoro Nacional capitalizable en pesos con vencimiento 10 de noviembre de 2025",
+   "tipo": "letra_capitalizable_pesos",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2025-02-03",
+   "fecha_vencimiento": "2025-11-10",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "capitalizable_al_vencimiento",
+   "fechas_pago_intereses": [
+    "2025-11-10"
+   ],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2025-11-10",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "La tasa efectiva mensual, capitalizable mensualmente, será determinada en la licitación, por lo que no figura en el texto. El texto menciona una fórmula de cálculo que no aparece transcripta. Monto: hasta VNO 5.000.000.000.000. Precio de emisión: a la par. Denominación mínima: VNO $ 1. Se coloca mediante una licitación de conversión a cambio del BONCER T2X5 (art. 5º): las ofertas se reciben el 29/01/2025 y la liquidación es el 03/02/2025."
+  }
+ ]
+}

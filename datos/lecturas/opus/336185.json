@@ -1,0 +1,120 @@
+{
+ "titulos": [
+  {
+   "articulo": "ARTÍCULO 1º",
+   "nombre": "Letra del Tesoro Nacional Capitalizable en pesos con vencimiento 17 de abril de 2026",
+   "tipo": "letra_capitalizable_pesos",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2025-12-15",
+   "fecha_vencimiento": "2026-04-17",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "capitalizable_al_vencimiento",
+   "fechas_pago_intereses": [
+    "2026-04-17"
+   ],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2026-04-17",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "La tasa efectiva mensual (capitalizable mensualmente) será determinada en la licitación del 11/12/2025, por eso figura null. Precio de emisión a la par. Monto máximo VNO $ 8.000.000.000.000. La fórmula de cálculo no figura en el texto."
+  },
+  {
+   "articulo": "ARTÍCULO 2º",
+   "nombre": "Letra del Tesoro Nacional Capitalizable en pesos con vencimiento 30 de noviembre de 2026",
+   "tipo": "letra_capitalizable_pesos",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2025-12-15",
+   "fecha_vencimiento": "2026-11-30",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "capitalizable_al_vencimiento",
+   "fechas_pago_intereses": [
+    "2026-11-30"
+   ],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2026-11-30",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "La tasa efectiva mensual (capitalizable mensualmente) será determinada en la licitación del 11/12/2025, por eso figura null. Precio de emisión a la par. Monto máximo VNO $ 5.000.000.000.000. La fórmula de cálculo no figura en el texto."
+  },
+  {
+   "articulo": "ARTÍCULO 3º",
+   "nombre": "Bono del Tesoro Nacional Capitalizable en pesos con vencimiento 31 de mayo de 2027",
+   "tipo": "bono_capitalizable_pesos",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2025-12-15",
+   "fecha_vencimiento": "2027-05-31",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "capitalizable_al_vencimiento",
+   "fechas_pago_intereses": [
+    "2027-05-31"
+   ],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2027-05-31",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "La tasa efectiva mensual (capitalizable mensualmente) será determinada en la licitación del 11/12/2025, por eso figura null. Precio de emisión a la par. Monto máximo VNO $ 5.000.000.000.000. La fórmula de cálculo no figura en el texto."
+  },
+  {
+   "articulo": "ARTÍCULO 4º",
+   "nombre": "Letra del Tesoro Nacional en pesos con ajuste por CER a descuento vencimiento 30 de noviembre de 2026",
+   "tipo": "letra_cer",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "CER",
+   "fecha_emision": "2025-12-15",
+   "fecha_vencimiento": "2026-11-30",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "cero_cupon_descuento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "",
+   "amortizacion": [
+    {
+     "fecha": "2026-11-30",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": 10,
+   "notas": "A descuento; no paga intereses ni se indica base de cálculo. Precio de emisión determinado en la licitación del 11/12/2025. Capital ajustado por CER entre 10 días hábiles antes de la emisión y 10 días hábiles antes del vencimiento. Agente de Cálculo: Oficina Nacional de Crédito Público. Monto máximo VNO $ 5.000.000.000.000."
+  },
+  {
+   "articulo": "ARTÍCULO 5º",
+   "nombre": "Bono del Tesoro Nacional en pesos cero cupón con ajuste por CER vencimiento 31 de mayo de 2027",
+   "tipo": "bono_cer",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "CER",
+   "fecha_emision": "2025-12-15",
+   "fecha_vencimiento": "2027-05-31",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "cero_cupon_descuento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "",
+   "amortizacion": [
+    {
+     "fecha": "2027-05-31",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": 10,
+   "notas": "Cero cupón; no paga intereses ni se indica base de cálculo. Precio de emisión determinado en la licitación del 11/12/2025. Capital ajustado por CER entre 10 días hábiles antes de la emisión y 10 días hábiles antes del vencimiento. Agente de Cálculo: Oficina Nacional de Crédito Público. Monto máximo VNO $ 5.000.000.000.000."
+  }
+ ]
+}

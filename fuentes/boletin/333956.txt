@@ -1,0 +1,56 @@
+table tr td {border: 1px solid grey; border-spacing: 0px; border-collapse: collapse; padding: 5px; font-size: 12px; text-align: center;} Ciudad de Buenos Aires, 03/11/2025
+ Visto el expediente EX-2025-118997251- -APN-DGDA#MEC, y el expediente EX-2025-118997180- -APN-DGDA#MEC en tramitación conjunta, y la resolución conjunta 54 del 29 de octubre de 2025 de la Secretaría de Finanzas y de la Secretaría de Hacienda, ambas del Ministerio de Economía (RESFC-2025-54-APN-SH#MEC), y
+ CONSIDERANDO:
+ Que en los artículos 1° y 2° de la resolución conjunta 54 del 29 de octubre de 2025 de la Secretaría de Finanzas y de la Secretaría de Hacienda, ambas del Ministerio de Economía (RESFC-2025-54-APN-SH#MEC) se dispuso la emisión de la “Letra del Tesoro Nacional Capitalizable en pesos con vencimiento 30 de octubre de 2026” y del “Bono del Tesoro Nacional Capitalizable en pesos con vencimiento 30 de abril de 2027”, respectivamente.
+ Que en los términos y condiciones de los instrumentos mencionados en el considerando anterior se consignó erróneamente la fórmula que se utilizará para el cálculo de la tasa efectiva mensual capitalizable mensualmente hasta el vencimiento del instrumento, por lo que corresponde realizar su rectificación.
+ Que el servicio jurídico permanente del Ministerio de Economía ha tomado la intervención que le compete.
+ Que esta medida se dicta en uso de las facultades previstas en el artículo 101 del Reglamento de Procedimientos Administrativos. Decreto 1759/72 T.O. 2017.
+ Por ello,
+ EL SECRETARIO DE FINANZAS
+ Y
+ EL SECRETARIO DE HACIENDA
+ RESUELVEN:
+ ARTÍCULO 1º.- Sustitúyese el artículo 1° de la resolución conjunta 54 del 29 de octubre de 2025 de la Secretaría de Finanzas y de la Secretaría de Hacienda, ambas del Ministerio de Economía (RESFC-2025-54-APN-SH#MEC), el que quedará redactado de la siguiente manera:
+ “ARTÍCULO 1º.- Dispónese la emisión de la “Letra del Tesoro Nacional Capitalizable en pesos con vencimiento 30 de octubre de 2026”, por hasta la suma de valor nominal original necesaria para cubrir la demanda en el proceso de licitación que se realizará el día 29 de octubre del corriente año, que no podrá superar el monto de valor nominal original pesos cinco billones (VNO $ 5.000.000.000.000), con las siguientes condiciones financieras:
+ Fecha de emisión: 31 de octubre de 2025.
+ Fecha de vencimiento: 30 de octubre de 2026.
+ Moneda de denominación, suscripción y pago: pesos.
+ Precio de emisión original: a la par.
+ Amortización: íntegra al vencimiento.
+ Intereses: pagará intereses a una tasa efectiva mensual capitalizable mensualmente hasta el vencimiento del instrumento, la que será determinada en la licitación. Los intereses serán calculados sobre la base de meses de treinta (30) días y años de trescientos sesenta (360) días (30/360). Para el cálculo se utilizará la siguiente fórmula:
+ Donde:
+ DÍAS: cantidad de días transcurridos entre la fecha de emisión y la fecha de vencimiento, calculados sobre la base de meses de treinta (30) días y años de trescientos sesenta (360) días (30/360).
+ VPV: Valor de Pago al Vencimiento.
+ VNO: Valor Nominal Original.
+ Tm: tasa efectiva mensual que se determine en la licitación.
+ Denominación mínima: será de valor nominal original pesos uno (VNO $ 1).
+ Colocación: la suscripción se llevará a cabo, en uno (1) o varios tramos, según lo determine la Secretaría de Finanzas del Ministerio de Economía, conforme a las normas de procedimiento aprobadas mediante la resolución conjunta 9 del 24 de enero de 2019 de la Secretaría de Finanzas y de la Secretaría de Hacienda, ambas del ex Ministerio de Hacienda (RESFC-2019-9-APN-SECH#MHA).
+ Negociación: será negociable y se solicitará su cotización en A3 Mercados SA y en bolsas y mercados de valores del país.
+ Titularidad: se emitirán Certificados Globales a nombre de la Central de Registro y Liquidación de Pasivos Públicos y Fideicomisos Financieros (CRYL) del Banco Central de la República Argentina (BCRA), en su carácter de Agente de Registro de la Letra.
+ Exenciones impositivas: gozará de todas las exenciones impositivas dispuestas en las leyes y reglamentaciones vigentes en la materia.
+ Atención de los servicios financieros: los pagos se cursarán a través del BCRA mediante transferencias de fondos en las respectivas cuentas de efectivo que posean los titulares de cuentas de registro en dicha institución.
+ Ley aplicable: ley de la República Argentina.”.
+ ARTÍCULO 2º.- Sustitúyese el artículo 2° de la resolución conjunta 54/2025 de la Secretaría de Finanzas y de la Secretaría de Hacienda, el que quedará redactado de la siguiente manera:
+ “ARTÍCULO 2º.- Dispónese la emisión del “Bono del Tesoro Nacional Capitalizable en pesos con vencimiento 30 de abril de 2027”, por hasta la suma de valor nominal original necesaria para cubrir la demanda en el proceso de licitación que se realizará el día 29 de octubre del corriente año, que no podrá superar el monto de valor nominal original pesos cinco billones (VNO $ 5.000.000.000.000), con las siguientes condiciones financieras:
+ Fecha de emisión: 31 de octubre de 2025.
+ Fecha de vencimiento: 30 de abril de 2027.
+ Moneda de denominación, suscripción y pago: pesos.
+ Precio de emisión original: a la par.
+ Amortización: íntegra al vencimiento.
+ Intereses: pagará intereses a una tasa efectiva mensual capitalizable mensualmente hasta el vencimiento del instrumento, la que será determinada en la licitación. Los intereses serán calculados sobre la base de meses de treinta (30) días y años de trescientos sesenta (360) días (30/360). Para el cálculo se utilizará la siguiente fórmula:
+ Donde:
+ DÍAS: cantidad de días transcurridos entre la fecha de emisión y la fecha de vencimiento, calculados sobre la base de meses de treinta (30) días y años de trescientos sesenta (360) días (30/360).
+ VPV: Valor de Pago al Vencimiento.
+ VNO: Valor Nominal Original.
+ Tm: tasa efectiva mensual que se determine en la licitación.
+ Denominación mínima: será de valor nominal original pesos uno (VNO $ 1).
+ Colocación: la suscripción se llevará a cabo, en uno (1) o varios tramos, según lo determine la Secretaría de Finanzas, conforme a las normas de procedimiento aprobadas mediante la resolución conjunta 9/2019 de la Secretaría de Finanzas y de la Secretaría de Hacienda.
+ Negociación: será negociable y se solicitará su cotización en A3 Mercados SA y en bolsas y mercados de valores del país.
+ Titularidad: se emitirán Certificados Globales a nombre de la CRYL del BCRA, en su carácter de Agente de Registro del Bono.
+ Exenciones impositivas: gozará de todas las exenciones impositivas dispuestas en las leyes y reglamentaciones vigentes en la materia.
+ Atención de los servicios financieros: los pagos se cursarán a través del BCRA mediante transferencias de fondos en las respectivas cuentas de efectivo que posean los titulares de cuentas de registro en dicha institución.
+ Ley aplicable: ley de la República Argentina.”.
+ ARTÍCULO 3º.- Comuníquese, publíquese, dese a la Dirección Nacional del Registro Oficial y archívese.
+ Jose Garcia Hamilton, a cargo de la firma del Despacho - Carlos Jorge Guberman
+ e. 04/11/2025 N° 83416/25 v. 04/11/2025
+ Fecha de publicación 04/11/2025

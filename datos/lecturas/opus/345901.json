@@ -1,0 +1,48 @@
+{
+ "titulos": [
+  {
+   "articulo": "ARTÍCULO 1º",
+   "nombre": "Letra del Tesoro Nacional vinculada al dólar estadounidense cero cupón con vencimiento 30 de octubre de 2026",
+   "tipo": "letra_dolar_linked",
+   "moneda_denominacion": "USD",
+   "ajuste_capital": "tipo_cambio_A3500",
+   "fecha_emision": "2026-08-14",
+   "fecha_vencimiento": "2026-10-30",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "cero_cupon_descuento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "",
+   "amortizacion": [
+    {
+     "fecha": "2026-10-30",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Suscripción en pesos al tipo de cambio de referencia Com. A 3500 del día hábil previo a la licitación (T-1). Pago en pesos al tipo de cambio A 3500 del tercer día hábil previo a la fecha de pago. Cero cupón a descuento, sin tasa ni base de cálculo en el texto. Monto máximo VNO USD 4.050.000.000; licitación 12/08/2026. Denominación mínima VNO USD 1."
+  },
+  {
+   "articulo": "ARTÍCULO 2º",
+   "nombre": "Letra del Tesoro Nacional en pesos ajustada por CER a descuento vencimiento 29 de enero de 2027",
+   "tipo": "letra_cer",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "CER",
+   "fecha_emision": "2026-08-14",
+   "fecha_vencimiento": "2027-01-29",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "cero_cupon_descuento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "",
+   "amortizacion": [
+    {
+     "fecha": "2027-01-29",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": 10,
+   "notas": "A descuento, sin tasa ni base de cálculo en el texto. Capital ajustado por CER entre los 10 días hábiles anteriores a la emisión y los 10 días hábiles anteriores al vencimiento. Agente de Cálculo: Oficina Nacional de Crédito Público. Monto máximo VNO $ 6.000.000.000.000; licitación 12/08/2026. Denominación mínima VNO $ 1."
+  }
+ ]
+}

@@ -1,0 +1,92 @@
+{
+ "titulos": [
+  {
+   "articulo": "ARTÍCULO 1º",
+   "nombre": "Letra del Tesoro Nacional Capitalizable en pesos con vencimiento 13 de noviembre de 2026",
+   "tipo": "letra_capitalizable_pesos",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2026-06-30",
+   "fecha_vencimiento": "2026-11-13",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "capitalizable_al_vencimiento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2026-11-13",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Monto máximo VNO $6.000.000.000.000. Tasa efectiva mensual capitalizable mensualmente, a determinar en la licitación del 26/06/2026. Precio a la par. Denominación mínima VNO $1."
+  },
+  {
+   "articulo": "ARTÍCULO 2º",
+   "nombre": "Bono del Tesoro Nacional en pesos cero cupón con ajuste por CER vencimiento 29 de octubre de 2027",
+   "tipo": "bono_cer",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "CER",
+   "fecha_emision": "2026-06-30",
+   "fecha_vencimiento": "2027-10-29",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "cero_cupon_descuento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "no especificada",
+   "amortizacion": [
+    {
+     "fecha": "2027-10-29",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": 10,
+   "notas": "Monto máximo VNO $5.500.000.000.000. Precio de emisión a determinar en la licitación. CER del BCRA con período entre 10 días hábiles antes de emisión y 10 días hábiles antes del vencimiento. Agente de cálculo: Oficina Nacional de Crédito Público. Denominación mínima VNO $1."
+  },
+  {
+   "articulo": "ARTÍCULO 3º",
+   "nombre": "Bono del Tesoro Nacional en pesos cero cupón con ajuste por CER vencimiento 15 de diciembre de 2028",
+   "tipo": "bono_cer",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "CER",
+   "fecha_emision": "2026-06-30",
+   "fecha_vencimiento": "2028-12-15",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "cero_cupon_descuento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "no especificada",
+   "amortizacion": [
+    {
+     "fecha": "2028-12-15",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": 10,
+   "notas": "Monto máximo VNO $6.100.000.000.000. Precio de emisión a determinar en la licitación. CER del BCRA con período entre 10 días hábiles antes de emisión y 10 días hábiles antes del vencimiento. Agente de cálculo: Oficina Nacional de Crédito Público. Denominación mínima VNO $1."
+  },
+  {
+   "articulo": "ARTÍCULO 4º",
+   "nombre": "Bono del Tesoro Nacional en pesos a tasa TAMAR con vencimiento 30 de julio de 2027",
+   "tipo": "tamar",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "TAMAR",
+   "fecha_emision": "2026-06-30",
+   "fecha_vencimiento": "2027-07-30",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "capitalizable_al_vencimiento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2027-07-30",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Monto máximo VNO $5.000.000.000.000. Tasa TAMAR TEM = TAMAR promedio bancos privados más MARGEN a determinar en la licitación del 26/06/2026, capitalizable mensualmente. Precio a la par. Denominación mínima VNO $1. Moneda de suscripción: pesos."
+  }
+ ]
+}

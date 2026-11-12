@@ -1,0 +1,28 @@
+{
+ "titulos": [
+  {
+   "articulo": "ARTÍCULO 1º",
+   "nombre": "Letra del Tesoro Nacional capitalizable en pesos vencimiento 29 de enero de 2027",
+   "tipo": "letra_capitalizable_pesos",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2026-08-31",
+   "fecha_vencimiento": "2027-01-29",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "capitalizable_al_vencimiento",
+   "fechas_pago_intereses": [
+    "2027-01-29"
+   ],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2027-01-29",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "La tasa efectiva mensual (capitalizable mensualmente hasta el vencimiento) será determinada en la licitación del 27/08/2026; no figura en el texto. La fórmula de cálculo del VPV no aparece en el texto (sólo sus variables: DÍAS, VPV, VNO, Tm). Monto máximo VNO $ 6.000.000.000.000. Precio de emisión a la par. Denominación mínima VNO $ 1. Se cotizará en A3 Mercados SA y en bolsas y mercados de valores del país. Ley argentina. Los intereses se capitalizan y se pagan junto con el capital al vencimiento. Los artículos 2º a 5º son ampliaciones de títulos ya emitidos y no se incluyen."
+  }
+ ]
+}

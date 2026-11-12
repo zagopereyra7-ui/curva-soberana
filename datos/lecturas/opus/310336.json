@@ -1,0 +1,50 @@
+{
+ "titulos": [
+  {
+   "articulo": "ARTÍCULO 1º",
+   "nombre": "Letra del Tesoro Nacional capitalizable en pesos con vencimiento 17 de enero de 2025",
+   "tipo": "letra_capitalizable_pesos",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2024-07-12",
+   "fecha_vencimiento": "2025-01-17",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "capitalizable_al_vencimiento",
+   "fechas_pago_intereses": [
+    "2025-01-17"
+   ],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2025-01-17",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Monto hasta VNO $ 5.400.000.000.000. Precio de emisión original a la par. Tasa efectiva mensual capitalizable mensualmente a determinar en la licitación (no figura en el texto, por eso null). La fórmula de cálculo de intereses no aparece en el texto. Denominación mínima VNO $ 1."
+  },
+  {
+   "articulo": "ARTÍCULO 2º",
+   "nombre": "Bono del Tesoro Nacional vinculado al dólar estadounidense cero cupón con vencimiento 30 de junio de 2027",
+   "tipo": "bono_dolar_linked",
+   "moneda_denominacion": "USD",
+   "ajuste_capital": "tipo_cambio_A3500",
+   "fecha_emision": "2024-07-12",
+   "fecha_vencimiento": "2027-06-30",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "cero_cupon_descuento",
+   "fechas_pago_intereses": [],
+   "base_calculo": "",
+   "amortizacion": [
+    {
+     "fecha": "2027-06-30",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Monto hasta VNO USD 6.100.000.000. Cero cupón a descuento, sin tasa ni base de cálculo indicadas. Suscripción en pesos al tipo de cambio de referencia Com. A 3500 del día hábil previo a la licitación (T-1). Pago en pesos al tipo de cambio Com. A 3500 del tercer día hábil previo a la fecha de pago. Plazo aproximado 2 años y 11 meses. Denominación mínima VNO USD 1."
+  }
+ ]
+}

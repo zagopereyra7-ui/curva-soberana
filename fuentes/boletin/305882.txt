@@ -1,0 +1,47 @@
+table tr td {border: 1px solid grey; border-spacing: 0px; border-collapse: collapse; padding: 5px; font-size: 12px; text-align: center;} Ciudad de Buenos Aires, 12/04/2024
+ Visto el expediente EX-2024-35632198-APN-DGDA#MEC, y la resolución conjunta 21 del 11 de abril de 2024 de la Secretaría de Finanzas y de la Secretaría de Hacienda, ambas del Ministerio de Economía (RESFC-2024-21-APN-SH#MEC), y
+ CONSIDERANDO:
+ Que en los artículos 1° y 2° de la resolución conjunta 21 del 11 de abril de 2024 de la Secretaría de Finanzas y de la Secretaría de Hacienda, ambas del Ministerio de Economía (RESFC-2024-21-APN-SH#MEC) se dispuso la emisión de la “Letra del Tesoro Nacional capitalizable en pesos con vencimiento 14 de octubre de 2024” y de la “Letra del Tesoro Nacional capitalizable en pesos con vencimiento 28 de febrero de 2025”, respectivamente.
+ Que en los términos y condiciones de los instrumentos mencionados en el considerando anterior se establece que pagarán intereses a una tasa efectiva mensual capitalizable mensualmente hasta el vencimiento del instrumento, la que será determinada en la licitación, y que estos intereses serán calculados sobre la base de meses de treinta (30) días y años de trescientos sesenta (360) días (30/360), no contemplándose dicha base de cálculo en la formula correspondiente.
+ Que por lo expuesto, procede la sustitución de los mencionados artículos.
+ Que el servicio jurídico permanente del Ministerio de Economía ha tomado la intervención que le compete.
+ Que esta medida se dicta en virtud de las facultades previstas en el apartado I del artículo 6º del anexo al decreto 1344 del 4 de octubre de 2007.
+ Por ello,
+ EL SECRETARIO DE FINANZAS
+ Y
+ EL SECRETARIO DE HACIENDA
+ RESUELVEN:
+ ARTÍCULO 1º.- Sustitúyese el artículo 1° de la resolución conjunta 21 del 11 de abril de 2024 de la Secretaría de Finanzas y de la Secretaría de Hacienda, ambas del Ministerio de Economía (RESFC-2024-21-APN-SH#MEC), el que quedará redactado de la siguiente manera:
+ “ARTÍCULO 1º.- Dispónese la emisión de la “Letra del Tesoro Nacional capitalizable en pesos con vencimiento 14 de octubre de 2024”, por un monto de hasta valor nominal original pesos cinco billones (VNO $ 5.000.000.000.000), con las siguientes condiciones financieras:
+ Fecha de emisión: 15 de abril de 2024.
+ Fecha de vencimiento: 14 de octubre de 2024.
+ Moneda de denominación, suscripción y pago: pesos.
+ Precio de emisión original: a la par.
+ Amortización: integra al vencimiento.
+ Intereses: pagará intereses a una tasa efectiva mensual capitalizable mensualmente hasta el vencimiento del instrumento, la que será determinada en la licitación. Los intereses serán calculados sobre la base de meses de treinta (30) días y años de trescientos sesenta (360) días (30/360). Para el cálculo se utilizará la siguiente fórmula:
+ Colocación: la suscripción se llevará a cabo, en uno (1) o varios tramos, según lo determine la Secretaría de Finanzas del Ministerio de Economía, conforme a las normas de procedimiento aprobadas mediante la resolución conjunta 9 del 24 de enero de 2019 de la Secretaría de Finanzas y de la Secretaría de Hacienda, ambas del ex Ministerio de Hacienda (RESFC-2019-9-APN-SECH#MHA).
+ Negociación: será negociable y se solicitará su cotización en el Mercado Abierto Electrónico (MAE) y en bolsas y mercados de valores del país.
+ Titularidad: se emitirán Certificados Globales a nombre de la Central de Registro y Liquidación de Pasivos Públicos y Fideicomisos Financieros (CRYL) del Banco Central de la República Argentina (BCRA), en su carácter de Agente de Registro de las Letras.
+ Exenciones impositivas: gozará de todas las exenciones impositivas dispuestas en las leyes y reglamentaciones vigentes en la materia.
+ Atención de los servicios financieros: los pagos se cursarán a través del BCRA mediante transferencias de fondos en las respectivas cuentas de efectivo que posean los titulares de cuentas de registro en dicha Institución.
+ Ley aplicable: ley de la República Argentina.”
+ ARTÍCULO 2º.- Sustitúyese el artículo 2° de la resolución conjunta 21/2024 de la Secretaría de Finanzas y de la Secretaría de Hacienda, el que quedará redactado de la siguiente manera:
+ “ARTÍCULO 2º.- Dispónese la emisión de la “Letra del Tesoro Nacional capitalizable en pesos con vencimiento 28 de febrero de 2025”, por un monto de hasta valor nominal original pesos cinco billones (VNO $ 5.000.000.000.000), con las siguientes condiciones financieras:
+ Fecha de emisión: 15 de abril de 2024.
+ Fecha de vencimiento: 28 de febrero de 2025.
+ Moneda de denominación, suscripción y pago: pesos.
+ Precio de emisión original: a la par.
+ Amortización: integra al vencimiento.
+ Intereses: pagará intereses a una tasa efectiva mensual capitalizable mensualmente hasta el vencimiento del instrumento, la que será determinada en la licitación. Los intereses serán calculados sobre la base de meses de treinta (30) días y años de trescientos sesenta (360) días (30/360). Para el cálculo se utilizará la siguiente fórmula:
+ Colocación: la suscripción se llevará a cabo, en uno (1) o varios tramos, según lo determine la Secretaría de Finanzas, conforme a las normas de procedimiento aprobadas mediante la resolución conjunta 9/2019 de la Secretaría de Finanzas y de la Secretaría de Hacienda.
+ Negociación: será negociable y se solicitará su cotización en el MAE y en bolsas y mercados de valores del país.
+ Titularidad: se emitirán Certificados Globales a nombre de la CRYL del BCRA, en su carácter de Agente de Registro de la Letra.
+ Exenciones impositivas: gozará de todas las exenciones impositivas dispuestas en las leyes y reglamentaciones
+ vigentes en la materia.
+ Atención de los servicios financieros: los pagos se cursarán a través del BCRA mediante transferencias de fondos en las respectivas cuentas de efectivo que posean los titulares de cuentas de registro en dicha Institución.
+ Ley aplicable: ley de la República Argentina.”
+ ARTÍCULO 3º.- Esta medida entrará en vigencia a partir del día de su dictado.
+ ARTÍCULO 4º.- Comuníquese, publíquese, dese a la Dirección Nacional del Registro Oficial y archívese.
+ Pablo Quirno Magrane - Carlos Jorge Guberman
+ e. 16/04/2024 N° 20870/24 v. 16/04/2024
+ Fecha de publicación 16/04/2024

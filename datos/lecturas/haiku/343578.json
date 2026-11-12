@@ -1,0 +1,26 @@
+{
+ "titulos": [
+  {
+   "articulo": "ARTÍCULO 1º",
+   "nombre": "Letra del Tesoro Nacional Intransferible en Dólares Estadounidenses vencimiento 30 de junio de 2031",
+   "tipo": "otro",
+   "moneda_denominacion": "USD",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2026-06-30",
+   "fecha_vencimiento": "2031-06-30",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "semestral",
+   "fechas_pago_intereses": [],
+   "base_calculo": "",
+   "amortizacion": [
+    {
+     "fecha": "2031-06-30",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Monto hasta VNO USD 3.878.320, colocación directa al BCRA a la par en el marco del artículo 55 de la ley 27.798, plazo cinco años. Intereses semestrales a una tasa igual a la que devenguen las reservas internacionales del BCRA para el mismo período, con máximo igual a la tasa SOFR TERM a un año más el margen de 0,71513% menos 1 punto porcentual, aplicada sobre el capital efectivamente suscripto. La tasa no está fijada en el texto; la Oficina Nacional de Crédito Público es el agente de cálculo. Las fechas de pago semestral de intereses no figuran en el texto. Base de cálculo no especificada."
+  }
+ ]
+}

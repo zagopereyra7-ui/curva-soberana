@@ -1,0 +1,26 @@
+{
+ "titulos": [
+  {
+   "articulo": "ARTÍCULO 1º",
+   "nombre": "Letra del Tesoro Nacional Intransferible en Dólares Estadounidenses vencimiento 17 de marzo de 2031",
+   "tipo": "otro",
+   "moneda_denominacion": "USD",
+   "ajuste_capital": "ninguno",
+   "fecha_emision": "2026-03-16",
+   "fecha_vencimiento": "2031-03-17",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "semestral",
+   "fechas_pago_intereses": [],
+   "base_calculo": "no especificada",
+   "amortizacion": [
+    {
+     "fecha": "2031-03-17",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": null,
+   "notas": "Se clasifica como 'otro' porque es una letra intransferible en dólares y el esquema no tiene una categoría de letra en dólares. Monto: hasta VNO USD 21.086.082, con colocación directa al BCRA a la par, en el marco del art. 55 de la ley 27.798. Plazo: 5 años. Se emite para cancelar el 60% de dos cupones de interés: el de la Letra Intransferible USD vto. 15/09/2033 (USD 6.945.920) y el de las Letras del Tesoro en USD Art. 3° Decreto 622/2021 (USD 14.140.162). Tasa variable: igual al rendimiento de las reservas internacionales del BCRA para el mismo período, con un tope de SOFR TERM a 1 año + 0,71513% - 1 punto porcentual, aplicada sobre el capital efectivamente suscripto; por eso no hay tasa fija. Los intereses se pagan semestralmente, pero el texto no indica las fechas de pago. Tampoco indica la base de cálculo. El agente de cálculo es la Oficina Nacional de Crédito Público, con información del BCRA."
+  }
+ ]
+}

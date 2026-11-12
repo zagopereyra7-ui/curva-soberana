@@ -1,0 +1,28 @@
+{
+ "titulos": [
+  {
+   "articulo": "ARTÍCULO 1º",
+   "nombre": "Bono del Tesoro Nacional en pesos dual CER/TAMAR con vencimiento 30 de junio de 2028",
+   "tipo": "dual",
+   "moneda_denominacion": "ARS",
+   "ajuste_capital": "otro",
+   "fecha_emision": "2026-05-15",
+   "fecha_vencimiento": "2028-06-30",
+   "tasa_nominal_anual_pct": null,
+   "tasa_efectiva_mensual_pct": null,
+   "intereses": "capitalizable_al_vencimiento",
+   "fechas_pago_intereses": [
+    "2028-06-30"
+   ],
+   "base_calculo": "30/360",
+   "amortizacion": [
+    {
+     "fecha": "2028-06-30",
+     "porcentaje": 100
+    }
+   ],
+   "dias_habiles_rezago_cer": 10,
+   "notas": "Título dual: al vencimiento paga el máximo entre (i) el capital ajustado por CER (rezago de 10 días hábiles respecto de la emisión y del vencimiento) y (ii) el devengado a la tasa TAMAR TEM capitalizable mensualmente más un margen del 3%, base 30/360. La TAMAR es el promedio aritmético simple de la TAMAR promedio bancos privados, con rezago de 10 días hábiles. No hay una tasa fija nominal ni una TEM fija, por lo que esos campos quedan en null; la fórmula de cálculo no figura en el texto. El precio de emisión se determina en la licitación del 13/05/2026. Monto máximo: VNO $ 7.100.000.000.000. Denominación mínima: VNO $ 1. Se negocia en A3 Mercados SA."
+  }
+ ]
+}

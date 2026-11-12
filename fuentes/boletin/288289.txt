@@ -1,0 +1,38 @@
+table tr td {border: 1px solid grey; border-spacing: 0px; border-collapse: collapse; padding: 5px; font-size: 12px; text-align: center;} Ciudad de Buenos Aires, 12/06/2023
+ Visto el expediente EX-2023-64049670-APN-DGDA#MEC, la ley 27.701 de Presupuesto General de la Administración Nacional para el ejercicio 2023, los decretos 1344 del 4 de octubre de 2007, 668 del 27 de septiembre de 2019 (DNU-2019-668-APN-PTE), 820 del 25 de octubre de 2020, y 712 del 25 de octubre de 2022 (DECNU-2022-712-APN-PTE), y la resolución conjunta 51 del 15 de diciembre de 2022 de la Secretaría de Finanzas y de la Secretaría de Hacienda, ambas del ex Ministerio de Hacienda (RESFC-2022-51-APN-SH#MEC), y
+ CONSIDERANDO:
+ Que en el artículo 38 de la ley 27.701 de Presupuesto General de la Administración Nacional para el ejercicio 2023, se autoriza al Órgano Responsable de la coordinación de los sistemas de Administración Financiera a emitir Letras del Tesoro, para dar cumplimiento a las operaciones previstas en el programa financiero, las que deberán ser reembolsadas en el mismo ejercicio financiero en que se emitan.
+ Que en el apartado I del artículo 6° del anexo al decreto 1344 del 4 de octubre de 2007, modificado mediante el artículo 5° del decreto 820 del 25 de octubre de 2020, se establece que las funciones de Órgano Responsable de la coordinación de los sistemas que integran la Administración Financiera del Sector Público Nacional, serán ejercidas conjuntamente por la Secretaría de Finanzas y la Secretaría de Hacienda, ambas del actual Ministerio de Economía.
+ Que en el artículo 1° del decreto 668 del 27 de septiembre de 2019 (DNU-2019-668-APN-PTE), con la modificación introducida mediante el decreto 712 del 25 de octubre de 2022 (DECNU-2022-712-APN-PTE), se dispuso que hasta el 31 de diciembre de 2023 el Sector Público Nacional definido en el artículo 8° de la ley 24.156 de Administración Financiera y de los Sistemas de Control del Sector Público Nacional y sus modificaciones, y los fondos y/o patrimonios de afectación específica administrados por cualquiera de los organismos contemplados precedentemente, deberán invertir sus excedentes transitorios de liquidez en Títulos Públicos y/o Letras del Tesoro en las condiciones financieras que establezca el Órgano Coordinador de los Sistemas de Administración Financiera del Sector Público Nacional.
+ Que mediante el artículo 2° de la resolución conjunta 51 del 15 de diciembre de 2022 de la Secretaría de Finanzas y de la Secretaría de Hacienda, ambas del Ministerio de Economía (RESFC-2022-51-APN-SH#MEC), se aprueba el “Procedimiento para la suscripción de Títulos Públicos y/o Letras del Tesoro prevista en el artículo 1º del decreto 668 del 27 de setiembre de 2019, y sus modificatorias”.
+ Que, en ese marco, se considera conveniente proceder a la emisión de una Letra del Tesoro Nacional en pesos a descuento a ciento ochenta (180) días de plazo.
+ Que la emisión que se impulsa se encuentra dentro del límite establecido en el artículo 38 de la ley 27.701.
+ Que el servicio jurídico permanente del Ministerio de Economía ha tomado la intervención que le compete.
+ Que esta medida se dicta en uso de las facultades previstas en el artículo 38 de la ley 27.701, y en el apartado I del artículo 6° del anexo al decreto 1344/2007.
+ Por ello,
+ EL SECRETARIO DE FINANZAS
+ Y
+ EL SECRETARIO DE HACIENDA
+ RESUELVEN:
+ ARTÍCULO 1º.- Dispónese la emisión de la “Letra del Tesoro Nacional en Pesos Decreto 668/2019 con vencimiento 13 de diciembre de 2023”, por un monto de hasta valor nominal original pesos ciento treinta y dos mil millones (VNO $ 132.000.000.000), con las siguientes condiciones financieras:
+ Fecha de emisión: 16 de junio de 2023.
+ Fecha de vencimiento: 13 de diciembre de 2023.
+ Plazo: ciento ochenta (180) días.
+ Moneda de emisión, suscripción y pago: pesos.
+ Precio de suscripción: se suscribirá a la par y devengará los intereses a partir de la fecha efectiva de cada colocación.
+ Amortización: íntegra al vencimiento.
+ Interés: devengará intereses a la tasa BADLAR para bancos públicos. La tasa se determinará como el promedio aritmético simple de la tasa de interés para depósitos a plazo fijo de treinta (30) a treinta y cinco (35) días de más de un millón de pesos ($ 1.000.000) -BADLAR promedio bancos públicos-, calculado considerando las tasas publicadas por el Banco Central de la República Argentina (BCRA) desde diez (10) días hábiles antes del inicio del período de interés hasta diez (10) días hábiles antes del vencimiento o de su cancelación anticipada, de corresponder. Los intereses serán calculados sobre la base de los días efectivamente transcurridos y la cantidad exacta de días que tiene cada año (actual/actual) y serán pagaderos los días 22 de septiembre y 13 de diciembre de 2023. Cuando el vencimiento de un cupón no fuere un día hábil, la fecha de pago será el día hábil inmediato posterior a la fecha de vencimiento original, devengándose intereses hasta la fecha de efectivo pago.
+ Denominación mínima: será de valor nominal original pesos uno (VNO $ 1).
+ Opción de cancelación anticipada: el suscriptor podrá solicitar la cancelación anticipada de la Letra del Tesoro en forma total o parcial. Para el ejercicio de esta opción, el suscriptor deberá dar aviso en forma fehaciente a la Dirección de Administración de la Deuda Pública dependiente de la Oficina Nacional de Crédito Público de la Subsecretaría de Financiamiento de la Secretaría de Finanzas del Ministerio de Economía con una anticipación no menor a quince (15) días corridos.
+ Forma de Colocación: suscripción directa del Sector Público Nacional definido en el artículo 8° de la ley 24.156 de Administración Financiera y de los Sistemas de Control del Sector Público Nacional y sus modificaciones, y los fondos y/o patrimonios de afectación específica administrados por cualquiera de los organismos contemplados precedentemente, conforme el procedimiento aprobado mediante el artículo 2° de la resolución conjunta 51 del 15 de diciembre de 2022 de la Secretaría de Finanzas y de la Secretaría de Hacienda, ambas del Ministerio de Economía (RESFC-2022-51-APN-SH#MEC).
+ Fecha de Colocación: dos (2) días hábiles posteriores a la recepción de la nota del organismo suscriptor.
+ Negociación: la Letra del Tesoro será intransferible y no tendrá cotización en los mercados de valores locales e internacionales.
+ Titularidad: se emitirá un certificado que será depositado en la Central de Registro y Liquidación de Pasivos Públicos y Fideicomisos Financieros (CRYL) del BCRA.
+ Atención de los servicios financieros: los pagos se cursarán a través del BCRA mediante transferencias de fondos en la cuenta de efectivo que posea el titular de la cuenta de registro en esa institución.
+ Exenciones impositivas: gozará de todas las exenciones impositivas dispuestas por las leyes y reglamentaciones vigentes en la materia.
+ ARTÍCULO 2º.- Autorízase a las/los titulares de la Oficina Nacional de Crédito Público, o de la Dirección de Administración de la Deuda Pública, o de la Dirección de Operaciones de Crédito Público, o de la Dirección de Programación e Información Financiera, o de la Dirección de Análisis del Financiamiento, o de la Coordinación de Títulos Públicos, o de la Coordinación de Emisión de Deuda Interna, a suscribir en forma indistinta la documentación necesaria para la implementación de la operación dispuesta en el artículo 1º de esta resolución.
+ ARTÍCULO 3º.- Esta medida entrará en vigencia a partir del día de su dictado.
+ ARTÍCULO 4º.- Comuníquese, publíquese, dese a la Dirección Nacional del Registro Oficial y archívese.
+ Eduardo Pablo Setti - Raul Enrique Rigo
+ e. 14/06/2023 N° 44312/23 v. 14/06/2023
+ Fecha de publicación 14/06/2023
