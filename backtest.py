@@ -137,10 +137,11 @@ def main() -> None:
         cer = cer_conocido(cer_full, d)
         filas = []
         for tk, (t, h) in hist.items():
-            dias_con_precio = [x for x in h if x <= d and (d - x).days <= 4 and h[x][1] > 0]
-            if not dias_con_precio:
+            # precio del MISMO día de la encuesta y con operaciones (antes se aceptaba hasta 4 días antes y se
+            # mezclaban precios de días distintos; agente 2)
+            if d not in h or h[d][1] <= 0:
                 continue
-            precio = h[max(dias_con_precio)][0]
+            precio = h[d][0]
             tem = tasas.get(tk, {}).get("tem_capitalizacion_pct") or t.get("tasa_efectiva_mensual_pct")
             if t["tipo"].endswith("capitalizable_pesos") and not tem:
                 continue
@@ -195,11 +196,17 @@ def resumir(filas: list[dict]) -> dict:
     for k in sorted({f["bloque"] for f in ok}):
         fs = [f for f in ok if f["bloque"] == k]
         out["por_bloque"][str(k)] = stats(fs)
+    # Se puntúa solo el PRIMER bloque de cada encuesta y solo si es corto (≤ 2 meses de IPC): un "primer bloque"
+    # de 4 a 10 meses no es un pronóstico del próximo mes. Y se cuentan las ventanas distintas (bloques que
+    # terminan en otra fecha): si todas terminan el mismo día, es el mismo par de bonos medido varias veces.
+    cortos = [f for f in ok if f["bloque"] == 0 and int(f["dias"]) <= 62]
     if ok:
         out["total"] = stats(ok)
-        # solo el primer bloque de cada edición: casos independientes (no se pisan entre ediciones consecutivas
-        # en la mayoría de los meses)
-        out["primer_bloque"] = stats([f for f in ok if f["bloque"] == 0])
+        out["total"]["ventanas_distintas"] = len({f["hasta"] for f in ok})
+        out["total"]["bonos_que_cierran"] = sorted({f["hasta"] for f in ok})
+    if cortos:
+        out["primer_bloque_corto"] = stats(cortos)
+        out["primer_bloque_corto"]["ventanas_distintas"] = len({f["hasta"] for f in cortos})
     return out
 
 

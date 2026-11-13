@@ -129,13 +129,40 @@ class TestNelsonSiegel(unittest.TestCase):
         pts = [{"ticker": f"B{i}", "cer_hasta": f, "suba_futura": suba(f), "spread": 0.1, "tasa_fija_de": "x"}
                for i, f in enumerate([date(2027, 1, 15), date(2027, 3, 15), date(2027, 5, 15)])]
         cer = {pub: 1.0, pub - timedelta(days=40): 0.98}
-        meses = N.meses_interpolados(pts, cer, N.bloques(pts, cer))
+        bl = N.bloques(pts, cer)
+        meses = N.meses_interpolados(pts, cer, bl)
         self.assertEqual([m["mes"] for m in meses][:4], ["2026-11", "2026-12", "2027-01", "2027-02"])
         for m in meses:
             self.assertAlmostEqual(m["mensual"], 2.0, delta=0.02)
             self.assertAlmostEqual(m["anual"], (1.02 ** 12 - 1) * 100, delta=0.3)
+            self.assertTrue(m["mensual_min"] <= m["mensual"] <= m["mensual_max"])   # nunca fuera de sus puntas
         self.assertTrue(meses[0]["vencimiento_propio"])     # noviembre: lo cierra el bono del 15/1
         self.assertFalse(meses[1]["vencimiento_propio"])    # diciembre: ningún bono vence el 15/2
+
+    def test_mes_interpolado_es_el_promedio_del_bloque(self):
+        # dic 2,4% y ene 1,6% sin bono en el medio: los dos meses tienen que dar el promedio del bloque, no inventar
+        # una pendiente (crítica del agente 2, 3ra vuelta)
+        import math
+        from datetime import timedelta
+        import nelson_siegel as N
+        pub = date(2026, 12, 15)
+        verdad = {"2026-11": 1.8, "2026-12": 2.4, "2027-01": 1.6, "2027-02": 1.9}
+        def suba(hasta):
+            g = 1.0
+            for mes, pi in verdad.items():
+                d0, d1 = N.ventana_mes(mes)
+                dentro = (min(d1, hasta) - max(d0, pub)).days
+                if dentro > 0:
+                    g *= (1 + pi / 100) ** (dentro / (d1 - d0).days)
+            return g
+        pts = [{"ticker": f"B{i}", "cer_hasta": f, "suba_futura": suba(f), "spread": 0.1, "tasa_fija_de": "x"}
+               for i, f in enumerate([date(2027, 1, 15), date(2027, 3, 15), date(2027, 4, 15)])]
+        cer = {pub: 1.0, pub - timedelta(days=40): 0.98}
+        meses = {m["mes"]: m for m in N.meses_interpolados(pts, cer, N.bloques(pts, cer))}
+        prom = (math.sqrt(1.024 * 1.016) - 1) * 100
+        self.assertAlmostEqual(meses["2026-12"]["mensual"], prom, places=6)
+        self.assertAlmostEqual(meses["2027-01"]["mensual"], prom, places=6)
+        self.assertAlmostEqual(meses["2026-11"]["mensual"], 1.8, places=6)
 
     def test_tasa_fija_interpolada_sin_extrapolar(self):
         import math

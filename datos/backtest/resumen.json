@@ -34,23 +34,28 @@
    "sesgo": 0.074,
    "error_abs": 0.119
   },
-  "mercado_mas_cerca_que_rem": 0
+  "mercado_mas_cerca_que_rem": 0,
+  "ventanas_distintas": 1,
+  "bonos_que_cierran": [
+   "2026-11-13"
+  ]
  },
- "primer_bloque": {
-  "casos": 6,
-  "ediciones": 6,
+ "primer_bloque_corto": {
+  "casos": 1,
+  "ediciones": 1,
   "mercado": {
-   "sesgo": -0.185,
-   "error_abs": 0.185
+   "sesgo": -0.188,
+   "error_abs": 0.188
   },
   "rem": {
-   "sesgo": -0.0,
-   "error_abs": 0.047
+   "sesgo": -0.039,
+   "error_abs": 0.039
   },
   "top10": {
-   "sesgo": 0.074,
-   "error_abs": 0.119
+   "sesgo": -0.025,
+   "error_abs": 0.025
   },
-  "mercado_mas_cerca_que_rem": 0
+  "mercado_mas_cerca_que_rem": 0,
+  "ventanas_distintas": 1
  }
 }

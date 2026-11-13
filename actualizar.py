@@ -201,12 +201,10 @@ def main() -> None:
         dl = I.interpolar(curva_dl, f["dias"])
         vec = lambda curva: [{"ticker": x["ticker"], "dias": x["dias"], "tir": x["tir"]} for x in vecinos(filas, curva, f["dias"])
                              if sin_cupon(x) and (curva != "cer" or cer_util(x))]
-        # inflación SOLO sobre el CER que todavía no se publicó (antes, en ventanas cortas, 3/4 era dato ya conocido)
-        inf_mens = None
+        # La inflación implícita tiene UN solo método (bootstrapping, nelson_siegel.calcular). Acá ya no se calcula
+        # por pares: dos métodos daban dos números distintos para lo mismo. Este bloque queda solo para el dólar.
+        inf_mens, real = None, None
         b = I.restar_habiles(date.fromisoformat(f["vto"]), 10)
-        if real is not None and (b - pub).days >= 30:      # con menos días, cualquier centavo de precio se amplifica
-            total = ((1 + f["tir"] / 100) / (1 + real / 100)) ** (f["dias"] / 365)
-            inf_mens = ((total / conocido) ** ((365 / 12) / (b - pub).days) - 1) * 100
         dev = ((1 + f["tir"] / 100) / (1 + dl / 100) - 1) * 100 if dl is not None else None
         if inf_mens is None and dev is None:
             continue
@@ -287,7 +285,14 @@ def main() -> None:
            .replace("{{LIQ_ISO}}", liq.isoformat())
            .replace("{{GENERADO}}", datetime.now().strftime("%d/%m/%Y %H:%M")))
     (BASE / "docs").mkdir(exist_ok=True)
-    (BASE / "docs" / "index.html").write_text(out, encoding="utf-8")
+    # La página publicada (index.html) solo se arma con precios de cierre. Con la rueda abierta los precios son
+    # parciales (bonos que entran y salen por liquidez) y los números saltaban en cada corrida: se guarda aparte.
+    destino = "index.html" if guardar else "preliminar.html"
+    if not guardar:
+        out = out.replace("<body>", '<body><div style="background:#b45309;color:#fff;padding:8px 16px;font-weight:600">'
+                          'VISTA PRELIMINAR con precios de una rueda abierta: no es la versión publicada.</div>', 1)
+    (BASE / "docs" / destino).write_text(out, encoding="utf-8")
+    print("página:", destino)
     print(f"ok: {len(filas)} bonos, {len(expect)} puntos de expectativas, a revisar: {controles['revisar']}, precios al {cierre}")
 
 

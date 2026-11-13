@@ -40,6 +40,9 @@ import expectativas as X
 import instrumentos as I
 
 BASE = Path(__file__).parent
+# Versión del método. NO cambiar los parámetros sin decidirlo y anotarlo en METODOLOGIA.md (registro de cambios):
+# el usuario quiere que los números cambien por el mercado, no porque cambió la cuenta.
+VERSION_METODO = "1.0"
 ARCHIVO = BASE / "datos" / "inflacion_bloques_historial.csv"
 CAMPOS = ["fecha_precio", "rem_edicion", "desde", "hasta", "meses", "mercado", "banda_min", "banda_max", "rem", "top10"]
 TAUS = np.exp(np.linspace(math.log(0.05), math.log(3), 200))
@@ -238,43 +241,44 @@ def meses_interpolados(pts: list[dict], cer: dict, bl: list[dict]) -> list[dict]
     se usa la del primero). La suba acumulada hasta una fecha es e^(u·h); la inflación del mes M es la suba
     entre el 15 de M+1 y el 15 de M+2. Exacto en cada bono. En los meses sin vencimiento propio, el valor sale de
     la interpolación (se marca): los bonos dicen el total del tramo, no cómo se reparte."""
-    pub = max(cer)
-    # El plazo se mide en MESES DE IPC, no en días: cada mes entra al CER en una ventana de 28 a 31 días, y con
-    # inflación pareja por mes la tasa diaria no es pareja (en días corridos daba 2,07% en vez de 2,00%).
-    tau = lambda d: sum(f for _, f in meses_en(pub, d)) if d > pub else 0.0
-    nodos = sorted({tau(p["cer_hasta"]): math.log(p["suba_futura"]) / tau(p["cer_hasta"]) for p in pts}.items())
-    if not nodos:
+    # Interpolación LINEAL DE LA CURVA ACUMULADA (ln de la suba del CER) en meses de IPC entre vencimientos: dentro
+    # de un tramo sin vencimientos la inflación queda pareja = promedio del bloque. Antes se interpolaba la TASA
+    # (ln L / τ) y eso inventaba una pendiente dentro del tramo (dic 1,945 / ene 2,046 cuando los bonos solo dicen
+    # 1,995 para los dos) que además se salía de las puntas (agente 2, 3ra vuelta). Los nodos son los vencimientos
+    # que arman bloques (mínimo 20 días entre sí), así dos bonos casi pegados no generan picos.
+    # Cada mes = promedio de los bloques que lo cubren, ponderado por la fracción del mes en cada uno.
+    if not bl:
         return []
-    def U(h):                                            # ln de la suba acumulada del CER hasta h meses de IPC
-        if h <= 0:
-            return 0.0
-        if h <= nodos[0][0]:
-            return nodos[0][1] * h
-        for (h0, u0), (h1, u1) in zip(nodos, nodos[1:]):
-            if h0 <= h <= h1:
-                return (u0 + (u1 - u0) * (h - h0) / (h1 - h0)) * h
-        return None
-    fechas_nodo = {p["cer_hasta"] for p in pts} | {pub}
+    ln = lambda v: math.log1p(v / 100)
+    fin = date.fromisoformat(bl[-1]["hasta"])
+    pub = date.fromisoformat(bl[0]["desde"])
     out, mes = [], _mas_meses(f"{pub.year}-{pub.month:02d}", -2)
     while True:
         d0, d1 = ventana_mes(mes)
         mes_sig = _mas_meses(mes, 1)
         if d1 <= pub:
             mes = mes_sig; continue
-        h0, h1 = tau(max(d0, pub)), tau(d1)
-        u0, u1 = U(h0), U(h1)
-        if u1 is None or h1 - h0 <= 0:
+        if d1 > fin + timedelta(days=3):
             break
-        m = (math.exp((u1 - u0) / (h1 - h0)) - 1) * 100  # por mes de IPC completo
-        propio = any(abs((d0 - f).days) <= 3 for f in fechas_nodo) and any(abs((d1 - f).days) <= 3 for f in fechas_nodo)
-        solape = lambda x: (min(d1, date.fromisoformat(x["hasta"])) - max(d0, date.fromisoformat(x["desde"]))).days
-        b = max(bl, key=solape) if bl and max(solape(x) for x in bl) > 0 else None
-        out.append({"mes": mes, "cer_desde": d0.isoformat(), "cer_hasta": d1.isoformat(), "mensual": m,
-                    "anual": ((1 + m / 100) ** 12 - 1) * 100, "vencimiento_propio": propio,
-                    "bloque": b["nombre"] if b else None,
-                    # puntas: las del bloque que contiene al mes, llevadas a anual
-                    "anual_min": ((1 + b["banda_min"] / 100) ** 12 - 1) * 100 if b else None,
-                    "anual_max": ((1 + b["banda_max"] / 100) ** 12 - 1) * 100 if b else None})
+        partes = []                                      # (bloque, fracción del mes de IPC dentro del bloque)
+        for b in bl:
+            a, z = date.fromisoformat(b["desde"]), date.fromisoformat(b["hasta"])
+            dentro = (min(d1, z) - max(d0, a, pub)).days
+            if dentro > 0:
+                partes.append((b, dentro / (d1 - d0).days))
+        peso = sum(f for _, f in partes)
+        if peso <= 0:
+            break
+        prom = lambda k: (math.exp(sum(ln(b[k]) * f for b, f in partes) / peso) - 1) * 100
+        m, lo, hi = prom("mercado"), prom("banda_min"), prom("banda_max")
+        principal = max(partes, key=lambda x: x[1])[0]
+        enteros = [x for x, f in principal["meses"] if f > 0.5]
+        propio = len(partes) == 1 and enteros == [mes] or (len(partes) > 1 and all(f < 0.1 for _, f in partes[1:]) and enteros == [mes])
+        anual = lambda v: ((1 + v / 100) ** 12 - 1) * 100
+        out.append({"mes": mes, "cer_desde": d0.isoformat(), "cer_hasta": d1.isoformat(), "mensual": m, "anual": anual(m),
+                    "mensual_min": lo, "mensual_max": hi, "anual_min": anual(lo), "anual_max": anual(hi),
+                    "vencimiento_propio": bool(propio), "bloque": principal["nombre"],
+                    "zigzag": any(b.get("zigzag") for b, _ in partes)})
         mes = mes_sig
     return out
 
@@ -307,15 +311,26 @@ def calcular(filas: list[dict], liq: date, cer: dict, rem: dict | None) -> dict 
     bl = bloques(pts, cer)
     if not bl:
         return None
-    # Zigzag: dos bloques seguidos que se contradicen más allá de sus puntas (p. ej. 2,6% y 1,5%) no son una
-    # expectativa: es un bono del medio que está caro o barato contra sus vecinos. Se avisa y se da el promedio
-    # de los dos, que no depende de ese bono.
-    for x, y in zip(bl, bl[1:]):
-        if (x["banda_min"] > y["banda_max"] or y["banda_min"] > x["banda_max"]) and abs(x["mercado"] - y["mercado"]) > 0.5:
-            nx, ny = sum(f for _, f in x["meses"]), sum(f for _, f in y["meses"])
-            prom = (math.exp((math.log1p(x["mercado"] / 100) * nx + math.log1p(y["mercado"] / 100) * ny) / (nx + ny)) - 1) * 100
-            for b in (x, y):
-                b["zigzag"] = {"bono": x["bono"], "promedio_dos": prom, "con": (y if b is x else x)["nombre"]}
+    # Zigzag: bloques seguidos que se contradicen más allá de sus puntas (p. ej. 2,6% y 1,5%) no son expectativa:
+    # hay un bono caro o barato contra sus vecinos. Para saber CUÁL, se prueba sacar cada bono que separa un par
+    # contradictorio y se elige el que deja menos contradicciones (antes se culpaba al primero de la lista y la
+    # página nombraba al TZXA7 cuando el raro era el TZXY7; agente 2). Se informa el bloque fusionado sin él.
+    def contradicciones(bs):
+        return [i for i, (x, y) in enumerate(zip(bs, bs[1:]))
+                if (x["banda_min"] > y["banda_max"] or y["banda_min"] > x["banda_max"]) and abs(x["mercado"] - y["mercado"]) > 0.5]
+    malos = contradicciones(bl)
+    if malos:
+        candidatos = {bl[i]["bono"] for i in malos}
+        prueba = {tk: bloques([p for p in pts if p["ticker"] != tk], cer) for tk in candidatos}
+        culpable = min(candidatos, key=lambda tk: (len(contradicciones(prueba[tk])), tk))
+        fusion = next((b for b in prueba[culpable] if b["bono_anterior"] != culpable and
+                       any(x["bono"] == culpable for x in bl) and
+                       b["desde"] <= next(x["hasta"] for x in bl if x["bono"] == culpable) <= b["hasta"]), None)
+        for b in bl:
+            if b["bono"] == culpable or b.get("bono_anterior") == culpable:
+                b["zigzag"] = {"bono": culpable, "promedio_sin_el": fusion["mercado"] if fusion else None,
+                               "bloque_sin_el": fusion["nombre"] if fusion else None,
+                               "quedan": len(contradicciones(prueba[culpable]))}
     fija["bonos"] = [{"ticker": p["ticker"], "plazo": round(p["plazo"], 4), "tir": round(p["tir"], 3),
                       "spread": round(p["spread"], 3), "origen": p["origen"], "error_pb": e,
                       **({"tir_real": round(p["tir_real"], 3)} if "tir_real" in p else {})}
@@ -340,7 +355,8 @@ def calcular(filas: list[dict], liq: date, cer: dict, rem: dict | None) -> dict 
     return {"fija": fija, "cer_bonos": cer_bonos, "cer_afuera": afuera, "bloques": bl, "meses": meses, "desde_cer": a.isoformat(),
             "largo": tramo_largo(filas, fija, liq, cer),
             "cer_conocido_pct": (I.valor_en(cer, publicado) / I.valor_en(cer, a) - 1) * 100,
-            "cer_publicado_hasta": publicado.isoformat(), "rem_edicion": rem["edicion"] if rem else None}
+            "cer_publicado_hasta": publicado.isoformat(), "rem_edicion": rem["edicion"] if rem else None,
+            "version_metodo": VERSION_METODO}
 
 
 # ---------------------------------------------------------------- tramo largo (indicativo)
