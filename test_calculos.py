@@ -71,5 +71,35 @@ class TestBoncer(unittest.TestCase):
         self.assertAlmostEqual(sum(a["porcentaje"] for a in t["amortizacion"]), 100)
         self.assertEqual(max(fl), date(2028, 11, 9))
 
+
+class TestNelsonSiegel(unittest.TestCase):
+    def test_recupera_una_curva_conocida(self):
+        # se inventa una curva NS, se leen 8 "bonos" sobre ella y el ajuste tiene que volver a pasar por ellos
+        import nelson_siegel as N
+        real = {"b0": 0.20, "b1": 0.06, "b2": -0.04, "tau": 0.8}
+        pts = [(t, N.tir_en(real, t)) for t in (0.05, 0.15, 0.3, 0.5, 0.8, 1.1, 1.5, 2.0)]
+        c = N.ajustar(pts)
+        self.assertLess(c["error_medio_pb"], 1.0)
+        for t, y in pts:
+            self.assertAlmostEqual(N.tir_en(c, t), y, places=2)
+
+    def test_curvas_planas_dan_la_inflacion_exacta(self):
+        # tasa fija 30% y CER 5% en todos los plazos -> inflación (1,30/1,05)^(1/12)-1 en cada mes
+        import nelson_siegel as N
+        plano = lambda y: {"b0": __import__("math").log1p(y), "b1": 0.0, "b2": 0.0, "tau": 1.0, "plazo_max": 2.0}
+        meses = N.inflacion_mensual(plano(0.30), plano(0.05), date(2026, 11, 13), date(2026, 12, 15), meses=6)
+        self.assertEqual(meses[0]["mes"], "2026-11")          # octubre ya está en el CER publicado
+        for m in meses:
+            dias = (date.fromisoformat(m["cer_hasta"]) - date.fromisoformat(m["cer_desde"])).days
+            esperado = ((1.30 / 1.05) ** (dias / 365) - 1) * 100
+            self.assertAlmostEqual(m["mercado"], esperado, places=9)
+
+    def test_no_extrapola_mas_alla_del_ultimo_bono(self):
+        import nelson_siegel as N
+        plano = {"b0": 0.2, "b1": 0.0, "b2": 0.0, "tau": 1.0, "plazo_max": 0.5}
+        meses = N.inflacion_mensual(plano, dict(plano, b0=0.02), date(2026, 11, 13), date(2026, 12, 15))
+        self.assertTrue(meses and all(m["t1"] <= 0.5 for m in meses))
+
+
 if __name__ == "__main__":
     unittest.main()

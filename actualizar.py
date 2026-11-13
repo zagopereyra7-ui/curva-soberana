@@ -7,7 +7,7 @@ from __future__ import annotations
 import csv
 import json
 import urllib.request
-from datetime import date, datetime, timedelta
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 import calculos as c
@@ -16,6 +16,7 @@ import feriados as F
 import quien_acierta as Q
 import rem as R
 import instrumentos as I
+import nelson_siegel as N
 import tickers as T
 
 BASE = Path(__file__).parent
@@ -89,8 +90,19 @@ def fuente_titulo(t: dict, idx_bo: dict) -> dict:
             "url": "https://www.boletinoficial.gob.ar/detalleAviso/primera/233685/20200816"}
 
 
+def rueda_cerrada() -> bool:
+    """True si ya cerró la rueda de hoy (o no hubo rueda). Antes de las 17:30 de un día hábil, los precios
+    'en vivo' son parciales (pocas operaciones): sirven para mirar la página pero no se guardan en los historiales,
+    porque pisarían la foto buena del cierre anterior. Argentina no tiene horario de verano: UTC-3 fijo."""
+    ahora = datetime.now(timezone.utc) - timedelta(hours=3)
+    return not F.es_habil(ahora.date()) or (ahora.hour, ahora.minute) >= (17, 30)
+
+
 def main() -> None:
     F.actualizar()
+    guardar = rueda_cerrada()
+    if not guardar:
+        print("Rueda abierta o sin abrir: se genera la página pero NO se guardan los historiales.")
     precios = {}
     for ep in ("arg_bonds", "arg_notes"):
         for r in bajar(f"https://data912.com/live/{ep}"):
@@ -185,24 +197,33 @@ def main() -> None:
         for e in expect:
             e.update(X.comparar(e, liq, cer, a3500, rem["total"], "rem"))
             e.update(X.comparar(e, liq, cer, a3500, rem["top10"], "top10"))
-        Q.guardar(cierre, rem["edicion"], expect)
+        if guardar:
+            Q.guardar(cierre, rem["edicion"], expect)
     aciertos = Q.tablero(cer, a3500)
+
+    # 5) Nelson-Siegel: una curva suave por todos los bonos fijos y otra por todos los CER → inflación mes a mes
+    ns = N.calcular(filas, liq, cer, rem)
+    if ns:
+        if guardar:
+            N.guardar(cierre, rem["edicion"] if rem else None, ns)
+        ns["aciertos"] = N.tablero(cer)
 
     (BASE / "datos").mkdir(exist_ok=True)
     # historial: una foto por fecha de precios (si se corre dos veces el mismo día, se reemplaza)
     hist = BASE / "datos" / "historial.csv"
-    previas = []
-    if hist.exists():
-        with hist.open(encoding="utf-8") as fh:
-            previas = [r for r in csv.reader(fh)][1:]
-        vistas = set()
-        previas = [r for r in previas if r[0] != cierre and not ((r[0], r[2]) in vistas or vistas.add((r[0], r[2])))]
-    with hist.open("w", newline="", encoding="utf-8") as fh:
-        w = csv.writer(fh)
-        w.writerow(["fecha_precio", "liquidacion", "ticker", "curva", "precio", "tir", "md"])
-        w.writerows(previas)
-        for x in filas:
-            w.writerow([cierre, liq.isoformat(), x["ticker"], x["curva"], x["precio"], round(x["tir"], 4), round(x["md"], 4)])
+    if guardar:
+        previas = []
+        if hist.exists():
+            with hist.open(encoding="utf-8") as fh:
+                previas = [r for r in csv.reader(fh)][1:]
+            vistas = set()
+            previas = [r for r in previas if r[0] != cierre and not ((r[0], r[2]) in vistas or vistas.add((r[0], r[2])))]
+        with hist.open("w", newline="", encoding="utf-8") as fh:
+            w = csv.writer(fh)
+            w.writerow(["fecha_precio", "liquidacion", "ticker", "curva", "precio", "tir", "md"])
+            w.writerows(previas)
+            for x in filas:
+                w.writerow([cierre, liq.isoformat(), x["ticker"], x["curva"], x["precio"], round(x["tir"], 4), round(x["md"], 4)])
 
     uso = json.loads((BASE / "datos" / "lecturas" / "uso.json").read_text(encoding="utf-8"))
     for f in filas:
@@ -219,6 +240,7 @@ def main() -> None:
     out = (plantilla
            .replace("{{DATOS}}", json.dumps(filas, ensure_ascii=False))
            .replace("{{EXPECT}}", json.dumps(expect, ensure_ascii=False))
+           .replace("{{NS}}", json.dumps(ns, ensure_ascii=False))
            .replace("{{CONTROLES}}", json.dumps(controles, ensure_ascii=False))
            .replace("{{CIERRE}}", date.fromisoformat(cierre).strftime("%d/%m/%Y"))
            .replace("{{LIQ}}", liq.strftime("%d/%m/%Y"))

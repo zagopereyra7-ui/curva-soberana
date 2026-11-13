@@ -107,6 +107,19 @@ dialog .cerrar{font:inherit;border:1px solid var(--border);background:var(--surf
   <p class="note">Lo que esperan los precios de los bonos contra la mediana del <b>REM</b> (encuesta mensual del BCRA a unos 40 economistas) y de su <b>Top 10</b> (los que mejor pronosticaron antes). Inflación: promedio mensual en la misma ventana del CER. Dólar: A3500 esperado al vencimiento. Tocá una fila para ver la cuenta.</p>
   <div class="card"><div class="tablewrap"><table id="tabla-rem"></table></div><p class="note" id="nota-rem"></p></div>
 
+  <h2>Inflación mes a mes</h2>
+  <p class="note">Se dibuja <b>una curva suave</b> (Nelson-Siegel) por todas las LECAP/BONCAP y otra por todos los bonos CER. De la distancia entre las dos sale la inflación que espera el mercado para <b>cada mes</b>, no solo el promedio hasta un vencimiento. Así lo hacen bancos y bancos centrales: un bono con precio raro no mueve el resultado. Solo meses cuyo CER todavía no se publicó.</p>
+  <div class="card">
+    <div class="legend">
+      <span><i class="dot" style="background:var(--s1)"></i>Mercado (curvas)</span>
+      <span><i class="dot" style="background:var(--s2)"></i>REM (mediana)</span>
+      <span><i class="dot" style="background:var(--s3)"></i>Top 10 REM</span>
+    </div>
+    <svg id="chart-ns" viewBox="0 0 900 300" role="img" aria-label="Inflación mensual esperada por el mercado y por el REM"></svg>
+    <div class="tablewrap"><table id="tabla-ns"></table></div>
+    <p class="note" id="nota-ns"></p>
+  </div>
+
   <h2>¿Quién le pega más?</h2>
   <p class="note">Todos los días se guarda qué espera cada uno. Cuando se cumple la fecha, se compara con el CER y el dólar que realmente hubo. Gana el que quedó más cerca.</p>
   <div id="aciertos"></div>
@@ -122,6 +135,7 @@ dialog .cerrar{font:inherit;border:1px solid var(--border);background:var(--surf
     <li><b>LECAP/BONCAP:</b> pagan al vencimiento 100 × (1 + TEM)<sup>días 30/360 / 30</sup>, con la TEM de su primera licitación.</li>
     <li><b>CER:</b> capital ajustado por el CER de 10 días hábiles antes (BCRA). <b>Dollar linked:</b> capital en dólares pagado al A3500 (BCRA).</li>
     <li><b>Expectativas:</b> curvas CER y dollar linked interpoladas linealmente al plazo de cada LECAP/BONCAP. Inflación implícita = (1 + TIR fija) / (1 + TIR real) − 1.</li>
+    <li><b>Inflación mes a mes:</b> curvas Nelson-Siegel ajustadas por mínimos cuadrados a todos los bonos fijos y a todos los CER que pasan los controles (tasas continuas, plazo = duration de Macaulay). Suba esperada del CER hasta t = e<sup>(r fija − r real)·t</sup>; la inflación del mes M es la suba entre el 16 del mes M+1 y el 16 del M+2, medida desde la liquidación menos 10 días hábiles. Incluye una prima por cobertura de inflación, así que tiende a quedar algo por encima de lo que realmente se espera.</li>
     <li><b>Días hábiles:</b> se saltean sábados, domingos y feriados nacionales (fuente: argentinadatos.com, se actualiza en cada corrida). Para años todavía sin feriados decretados, solo fines de semana.</li>
     <li><b>Simplificaciones:</b> sin impuestos ni comisiones. Los bonos TAMAR y duales todavía no están incluidos.</li>
   </ul>
@@ -132,6 +146,7 @@ dialog .cerrar{font:inherit;border:1px solid var(--border);background:var(--surf
 const D = {{DATOS}};
 const E = {{EXPECT}};
 const C = {{CONTROLES}};
+const NS = {{NS}};
 const LIQ = '{{LIQ_ISO}}';
 const fmt = (x, d=2) => x==null ? '—' : x.toLocaleString('es-AR',{minimumFractionDigits:d,maximumFractionDigits:d});
 const fdate = s => s.split('-').reverse().join('/');
@@ -449,6 +464,55 @@ document.querySelectorAll('#kpis .kpi').forEach(k=>{
   else if(m && E.find(e=>e.ticker===m[1])){ k.style.cursor='pointer'; k.title='Ver cálculo'; k.addEventListener('click',()=>explicarExpect(m[1])); }
 });
 document.querySelectorAll('#tabla-exp tr').forEach((tr,i)=>{ const b=tr.querySelector('b'); if(i && b){ tr.classList.add('click'); tr.addEventListener('click',()=>explicarExpect(b.textContent)); } });
+
+// ---- inflación mes a mes (Nelson-Siegel)
+function explicarNS(){
+  const curva = (c, nombre, unidad) => `<h4>${nombre}</h4>
+    <div class="formula">r(t) = ${fmt(c.b0*100,2)}% + ${fmt(c.b1*100,2)}% · f1(t) + ${fmt(c.b2*100,2)}% · f2(t)     τ = ${fmt(c.tau,2)} años
+error promedio: ${fmt(c.error_medio_pb,1)} puntos básicos (${c.bonos.length} bonos)</div>
+    <div class="tablewrap"><table><tr><th>Bono</th><th>Plazo (años)</th><th>TIR ${unidad}</th><th>Curva</th><th>Distancia</th></tr>`+
+    c.bonos.slice().sort((a,b)=>a.plazo-b.plazo).map(b=>`<tr><td>${b.ticker}</td><td>${fmt(b.plazo,2)}</td><td>${pct(b.tir)}</td><td>${pct(b.tir-b.error_pb/100)}</td><td>${b.error_pb>0?'+':''}${fmt(b.error_pb,0)} pb</td></tr>`).join('')+`</table></div>`;
+  const m = NS.meses[0];
+  let h = `<p>Paso 1: una curva para cada tipo de bono. Cada curva tiene 4 números: nivel (b0), pendiente (b1), joroba (b2) y dónde está la joroba (τ). Se eligen los que dejan la curva lo más cerca posible de todos los bonos a la vez. "Distancia" es cuánto se aleja cada bono de la curva: los que quedan lejos se salen de su precio "justo", pero no arrastran el resultado.</p>
+    <p class="note">Los 4 números por separado pueden verse raros (por ejemplo, un "nivel" negativo): con bonos que llegan a 1 o 2 años, la curva solo está anclada en ese tramo y nada dice cuál sería la tasa a 30 años. Lo que importa es la curva <b>dentro</b> del plazo de los bonos, y por eso nunca se usa más allá del último.</p>`+
+    curva(NS.fija,'Curva de tasa fija (LECAP/BONCAP/BONTE)','nominal')+curva(NS.real,'Curva CER (tasa real)','real');
+  if(m) h += `<h4>Paso 2: de las dos curvas a la inflación de un mes (ejemplo: ${nomMes(m.mes)})</h4>
+    <p>La inflación de ${nomMes(m.mes)} entra al CER entre el ${fdate(m.cer_desde)} y el ${fdate(m.cer_hasta)} (regla del BCRA). Los bonos usan el CER de 10 días hábiles antes, así que los plazos se cuentan desde el ${fdate(NS.desde_cer)}.</p>
+    <div class="formula">Suba del CER hasta t = e^((tasa fija(t) − tasa real(t)) × t)
+t0 = ${fmt(m.t0,3)} años   t1 = ${fmt(m.t1,3)} años
+Inflación de ${nomMes(m.mes)} = suba(t1) / suba(t0) − 1 = ${pct(m.mercado)}</div>
+    <p>REM para ese mes: ${pct(m.rem)} · Top 10: ${pct(m.top10)}. Ojo: la cifra del mercado incluye lo que se paga por cubrirse de la inflación, por eso suele quedar algo arriba.</p>`;
+  abrir('Inflación mes a mes: cómo se calcula', 'Curvas Nelson-Siegel con los precios del '+fdate(LIQ), h);
+}
+(function(){
+  const svg=document.getElementById('chart-ns'), t=document.getElementById('tabla-ns'), nota=document.getElementById('nota-ns');
+  if(!NS || !NS.meses.length){ svg.style.display='none'; t.outerHTML='<p class="note">No hay suficientes bonos para ajustar las curvas.</p>'; return; }
+  const M=NS.meses, W=900, H=300, m={l:52,r:24,t:16,b:44};
+  const series=[['mercado','var(--s1)'],['rem','var(--s2)'],['top10','var(--s3)']];
+  const vals=M.flatMap(x=>series.map(([k])=>x[k]).filter(v=>v!=null));
+  let y0=Math.floor(Math.min(...vals)*4)/4-0.25, y1=Math.ceil(Math.max(...vals)*4)/4+0.25;
+  const X=i=>m.l+(i+0.5)/M.length*(W-m.l-m.r), Y=v=>H-m.b-(v-y0)/(y1-y0)*(H-m.t-m.b);
+  let s='';
+  for(let v=Math.ceil(y0*4)/4; v<=y1+1e-9; v+=0.25){ s+=`<line x1="${m.l}" x2="${W-m.r}" y1="${Y(v)}" y2="${Y(v)}" stroke="var(--grid)"/><text x="${m.l-8}" y="${Y(v)+4}" text-anchor="end">${fmt(v,2)}%</text>`; }
+  M.forEach((x,i)=>{ if(i%2===0) s+=`<text x="${X(i)}" y="${H-m.b+18}" text-anchor="middle">${nomMes(x.mes).replace(/ 20/,' ')}</text>`; });
+  series.forEach(([k,col])=>{
+    const ps=M.map((x,i)=>[i,x[k]]).filter(p=>p[1]!=null);
+    if(ps.length>1) s+=`<polyline fill="none" stroke="${col}" stroke-width="2" points="${ps.map(([i,v])=>X(i)+','+Y(v)).join(' ')}"/>`;
+    ps.forEach(([i,v])=>{ s+=`<circle cx="${X(i)}" cy="${Y(v)}" r="4" fill="${col}" data-i="${i}"/>`; });
+  });
+  svg.innerHTML=s;
+  svg.querySelectorAll('circle').forEach(c=>{ const x=M[+c.dataset.i];
+    c.addEventListener('mousemove',e=>showTip(e,`<b>${nomMes(x.mes)}</b><br>Mercado ${pct(x.mercado)}<br>REM ${pct(x.rem)}<br>Top 10 ${pct(x.top10)}`));
+    c.addEventListener('mouseleave',hideTip); c.style.cursor='pointer'; c.addEventListener('click',explicarNS); });
+  t.innerHTML=`<tr><th>Mes</th><th>Mercado</th><th>REM</th><th>Top 10</th><th>Diferencia con REM</th><th>Entra al CER</th></tr>`+
+    M.map(x=>`<tr class="click"><td>${nomMes(x.mes)}</td><td><b>${pct(x.mercado)}</b></td><td>${pct(x.rem)}</td><td>${pct(x.top10)}</td>`+
+      `<td>${x.rem==null?'—':(x.mercado>=x.rem?'+':'')+fmt(x.mercado-x.rem,2)+' pp'}</td><td>${fdate(x.cer_desde)} al ${fdate(x.cer_hasta)}</td></tr>`).join('');
+  t.querySelectorAll('tr.click').forEach(tr=>tr.addEventListener('click',explicarNS));
+  let n=`Ajuste: curva fija a ${fmt(NS.fija.error_medio_pb,0)} pb promedio de sus ${NS.fija.bonos.length} bonos; curva CER a ${fmt(NS.real.error_medio_pb,0)} pb de sus ${NS.real.bonos.length} bonos. No se extrapola más allá del último bono. Tocá una fila para ver la cuenta.`;
+  if(NS.aciertos && NS.aciertos.length) n+=' Meses ya conocidos (error promedio de cada uno): '+NS.aciertos.map(a=>`${nomMes(a.mes)} real ${pct(a.real)}: mercado ${a.mercado==null?'—':fmt(a.mercado,2)+' pp'}, REM ${a.rem==null?'—':fmt(a.rem,2)+' pp'}, Top 10 ${a.top10==null?'—':fmt(a.top10,2)+' pp'}`).join(' · ')+'.';
+  else n+=' El registro mes a mes empezó el 13/11/2026: la primera comparación con la inflación real será la de noviembre, cuando el CER la incorpore (mediados de enero de 2027).';
+  nota.innerHTML=n;
+})();
 </script>
 </body>
 </html>
