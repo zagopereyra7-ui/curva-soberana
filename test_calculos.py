@@ -144,6 +144,11 @@ class TestNelsonSiegel(unittest.TestCase):
         self.assertAlmostEqual(N.tasa_fija_interpolada(pf, 0.4), (math.log(1.25) + math.log(1.29)) / 2, places=12)
         self.assertIsNone(N.tasa_fija_interpolada(pf, 0.7))
 
+    def test_tamar_tem_ida_y_vuelta(self):
+        import tamar as TM
+        for x in (10.0, 24.4375 + 2.5, 35.0):
+            self.assertAlmostEqual(TM.tasa_desde_tem(TM.tem(x)), x, places=9)
+
     def test_ventana_del_mes_regla_bcra(self):
         # la inflación de noviembre sube el CER del 16/12 al 15/1 (ventana 15/12 exclusive → 15/1 inclusive)
         import nelson_siegel as N

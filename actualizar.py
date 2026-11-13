@@ -17,6 +17,7 @@ import quien_acierta as Q
 import rem as R
 import instrumentos as I
 import nelson_siegel as N
+import tamar as TM
 import tickers as T
 
 BASE = Path(__file__).parent
@@ -234,6 +235,17 @@ def main() -> None:
             N.guardar(cierre, rem["edicion"] if rem else None, ns)
         ns["aciertos"] = N.tablero(cer)
 
+    # 6) TAMAR que espera el mercado (bonos TAMAR contra la LECAP del mismo plazo)
+    tit_tamar = {}
+    for r in csv.DictReader(open(BASE / "datos" / "tickers.csv", encoding="utf-8-sig"), delimiter=";"):
+        if r["tipo"] == "tamar" and r["estado"] == "ok" and (r["tipo"], r["vencimiento"]) in tit and r["vencimiento"] > liq.isoformat():
+            tit_tamar[r["ticker"]] = tit[(r["tipo"], r["vencimiento"])]
+    try:
+        tm = TM.calcular(filas, tit_tamar, precios, liq, cer, ns)
+    except Exception as e:  # noqa: BLE001  (la TAMAR no debe tirar abajo la página)
+        print("TAMAR: no se pudo calcular:", e)
+        tm = None
+
     (BASE / "datos").mkdir(exist_ok=True)
     # historial: una foto por fecha de precios (si se corre dos veces el mismo día, se reemplaza)
     hist = BASE / "datos" / "historial.csv"
@@ -268,6 +280,7 @@ def main() -> None:
            .replace("{{EXPECT}}", json.dumps(expect, ensure_ascii=False))
            .replace("{{NS}}", json.dumps(ns, ensure_ascii=False))
            .replace("{{BACKTEST}}", json.dumps(cargar_backtest(), ensure_ascii=False))
+           .replace("{{TAMAR}}", json.dumps(tm, ensure_ascii=False))
            .replace("{{CONTROLES}}", json.dumps(controles, ensure_ascii=False))
            .replace("{{CIERRE}}", date.fromisoformat(cierre).strftime("%d/%m/%Y"))
            .replace("{{LIQ}}", liq.strftime("%d/%m/%Y"))

@@ -120,6 +120,10 @@ dialog .cerrar{font:inherit;border:1px solid var(--border);background:var(--surf
     <p class="note" id="nota-mes"></p>
   </div>
 
+  <h2>TAMAR que espera el mercado</h2>
+  <p class="note">Los bonos TAMAR pagan al vencimiento el capital capitalizado a la TAMAR promedio (bancos privados) más un margen fijo. Comparando cada uno con la LECAP del mismo plazo se obtiene la TAMAR que el mercado espera para lo que falta hasta su vencimiento: mismo método que la inflación implícita, sin modelo.</p>
+  <div class="card"><div class="tablewrap"><table id="tabla-tamar"></table></div><p class="note" id="nota-tamar"></p></div>
+
   <h2>Inflación que espera el mercado, por bloques</h2>
   <p class="note">A cada bono CER se le saca la parte del CER que ya se publicó y se lo compara con la tasa fija al mismo plazo: lo que queda es inflación que todavía no ocurrió. Entre dos vencimientos CER seguidos queda un <b>bloque</b>: el mercado dice cuánta inflación espera en ese bloque, pero no cómo se reparte entre sus meses. Por eso no se muestra "mes por mes" donde los bonos no lo permiten. La banda son las <b>puntas</b> (comprador/vendedor) de los bonos que delimitan cada bloque.</p>
   <div class="card">
@@ -167,6 +171,7 @@ const E = {{EXPECT}};
 const C = {{CONTROLES}};
 const NS = {{NS}};
 const BT = {{BACKTEST}};
+const TMR = {{TAMAR}};
 const LIQ = '{{LIQ_ISO}}';
 const fmt = (x, d=2) => x==null ? '—' : x.toLocaleString('es-AR',{minimumFractionDigits:d,maximumFractionDigits:d});
 const fdate = s => s.split('-').reverse().join('/');
@@ -505,6 +510,16 @@ document.querySelectorAll('#tabla-exp tr').forEach((tr,i)=>{ const b=tr.querySel
      BT.casos.slice().reverse().map(c=>`<tr><td>${fdate(c.encuesta)}</td><td>${c.nombre}</td><td><b>${p2(+c.real)}</b></td><td>${p2(+c.mercado)}</td><td>${p2(+c.rem)}</td><td>${p2(+c.top10)}</td></tr>`).join('')+`</table></div>`;
   h+=`<p class="note"><b>Cuidado al leerlo:</b> son pocos casos (hay estimación desde dic-2025: antes faltan las condiciones de varias LECAP). Sin spreads históricos (no hay banda de puntas) y sin filtro de operaciones. Con ${T.ediciones} encuestas no se puede afirmar quién es mejor; sirve para ver si el mercado tiende a esperar más o menos inflación de la que hubo. Actualizado el ${BT.generado}.</p>`;
   box.innerHTML=`<div class="card">${h}</div>`;
+})();
+
+// ---- TAMAR implícita
+(function(){
+  const t=document.getElementById('tabla-tamar'), nota=document.getElementById('nota-tamar');
+  if(!TMR || !TMR.bonos.length){ t.outerHTML='<p class="note">Sin datos de bonos TAMAR hoy.</p>'; return; }
+  const a1=x=>x==null?'—':fmt(x,1)+'%';
+  t.innerHTML=`<tr><th>Bono</th><th>Vence</th><th>Margen</th><th>Tasa fija de</th><th>TAMAR ya conocida (promedio)</th><th>TAMAR que espera el mercado</th><th>Días hábiles que faltan</th></tr>`+
+    TMR.bonos.map(b=>`<tr${b.indicativo?' style="opacity:.6"':''}><td>${b.ticker}</td><td>${fdate(b.vto)}</td><td>${fmt(b.margen,2)}%</td><td>${b.tasa_fija_de}</td><td>${a1(b.tamar_conocida_promedio)} (${b.dias_conocidos} días)</td><td><b>${a1(b.tamar_futura)}</b>${b.indicativo?' <span class="note">(indicativo)</span>':''}</td><td>${b.dias_futuros}</td></tr>`).join('');
+  nota.innerHTML=`TAMAR de hoy (${fdate(TMR.tamar_fecha)}): <b>${a1(TMR.tamar_hoy)}</b> · promedio últimos 30 días: ${a1(TMR.tamar_30d)}. Tasas nominales anuales (como publica el BCRA). Cálculo: VPV que paga el mercado = precio × (1 + tasa fija)<sup>plazo</sup> → TAMAR TEM → TAMAR promedio de toda la ventana (de 10 hábiles antes de la emisión a 10 hábiles antes del vencimiento) − margen; se le saca la parte ya publicada y queda la TAMAR promedio esperada para los días que faltan. Supuesto: TAMAR TEM = [(1 + (TAMAR + margen) × 32/365)<sup>365/32</sup>]<sup>1/12</sup> − 1 (la fórmula del Boletín Oficial es una imagen; se usa la convención de estos bonos). Márgenes de la licitación de emisión (Secretaría de Finanzas). En gris: vencen después de la última LECAP; la tasa fija sale del tramo largo (TY30P), así que son indicativos. Los <b>duales CER/TAMAR</b> (TXMJ8, TXMD8, TXMJ9, TXMD9, TXMJ0) y el dual TAMAR/dólar linked (TMVE8) pagan el mayor de dos ajustes: valuarlos exige un modelo de opciones (volatilidad de inflación y tasas), que esta página no usa.`;
 })();
 
 // ---- inflación implícita mes a mes (interpolación exacta), anualizada

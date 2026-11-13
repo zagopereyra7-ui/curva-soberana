@@ -24,6 +24,7 @@ REGLAS = [
     (r"^TZV([EFMAYJLGSOND])(\d)$", "bono_dolar_linked", "mes"),
     (r"^TZV(\d{2})$", "bono_dolar_linked", "junio"),
     (r"^TM([EFMAYJLGSOND])(\d{2})$", "tamar", "mes2"),
+    (r"^M(\d{2})([EFMAYJLGSOND])(\d)$", "tamar", "dia"),          # letras TAMAR (M30A7 = 30/4/2027)
     (r"^TXM([EFMAYJLGSOND])(\d)$", "dual", "mes"),
     (r"^TMV([EFMAYJLGSOND])(\d)$", "dual", "mes"),
     (r"^A([EFMAYJLGSOND])(\d{2})$", "bono_dolares", "mes2"),
