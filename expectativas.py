@@ -94,19 +94,26 @@ def comparar(e: dict, liq: date, cer: dict, a3500: dict, rem: dict, etiqueta: st
     vto = date.fromisoformat(e["vto"])
     dias = e["dias"]
     out = {}
-    if e.get("tir_cer") is not None:
-        a, b = I.restar_habiles(liq, 10), I.restar_habiles(vto, 10)
-        suba_mercado = ((1 + e["tir_fija"] / 100) / (1 + e["tir_cer"] / 100)) ** (dias / 365)
+    if e.get("tir_cer") is not None and e.get("inflacion_mensual") is not None:
+        # Solo el CER que todavía no se publicó: del último publicado (pub) al que usa el bono (b). Si se
+        # incluyera la parte ya conocida, el REM la "recibe" como dato exacto y la diferencia queda diluida
+        # distinto en cada fila (crítica del agente 2).
+        a, b, pub = I.restar_habiles(liq, 10), I.restar_habiles(vto, 10), max(cer)
+        suba_mercado = ((1 + e["tir_fija"] / 100) / (1 + e["tir_cer"] / 100)) ** (dias / 365) / (I.valor_en(cer, pub) / I.valor_en(cer, a))
         proy = cer_proyectado(cer, rem, b)
-        suba_rem = proy / I.valor_en(cer, a) if proy else None
-        mens = lambda g: (g ** (1 / ((b - a).days / (365 / 12))) - 1) * 100   # promedio mensual en la ventana
-        out.update({"ventana_cer": [a.isoformat(), b.isoformat()],
+        suba_rem = proy / I.valor_en(cer, pub) if proy else None
+        mens = lambda g: (g ** (1 / ((b - pub).days / (365 / 12))) - 1) * 100   # promedio mensual en la ventana
+        out.update({"ventana_cer": [pub.isoformat(), b.isoformat()],
                     "cer_suba_mercado": (suba_mercado - 1) * 100, "inf_mens_mercado": mens(suba_mercado),
                     f"cer_suba_{etiqueta}": (suba_rem - 1) * 100 if suba_rem else None,
                     f"inf_mens_{etiqueta}": mens(suba_rem) if suba_rem else None})
     if e.get("tir_dl") is not None:
+        # El dollar linked paga el A3500 del 3er día hábil anterior al pago (resoluciones del Tesoro), así que lo
+        # que "espera" el mercado es el A3500 de esa fecha, y contra eso se compara el REM.
         hoy = I.valor_en(a3500, liq)
+        fecha_tc = I.restar_habiles(vto, 3)
         tc_mercado = hoy * ((1 + e["tir_fija"] / 100) / (1 + e["tir_dl"] / 100)) ** (dias / 365)
-        out.update({"a3500_hoy": hoy, "tc_mercado": tc_mercado, f"tc_{etiqueta}": tc_rem(rem, vto)})
+        out.update({"a3500_hoy": hoy, "tc_mercado": tc_mercado, "fecha_tc": fecha_tc.isoformat(),
+                    f"tc_{etiqueta}": tc_rem(rem, fecha_tc)})
     return out
 

@@ -19,6 +19,7 @@ ARCHIVO = BASE / "datos" / "expectativas_historial.csv"
 CAMPOS = ["fecha_precio", "rem_edicion", "ticker", "vto", "ventana_ini", "ventana_fin",
           "cer_suba_mercado", "cer_suba_rem", "cer_suba_top10", "a3500_hoy", "tc_mercado", "tc_rem", "tc_top10"]
 QUIENES = ("mercado", "rem", "top10")
+MIN_CASOS = 12   # con menos observaciones independientes no se declara ganador
 
 
 def guardar(fecha_precio: str, rem_edicion: str, expect: list[dict]) -> None:
@@ -52,7 +53,14 @@ def tablero(cer: dict[date, float], a3500: dict[date, float]) -> dict:
         return {"inflacion": [], "dolar": [], "resumen": {}}
     cer_hasta, tc_hasta = max(cer), max(a3500)
     infl, dol = [], []
+    # Una observación por (edición del REM, bono): la foto más temprana de esa edición, la más cercana a la
+    # encuesta. Contar cada día como un caso inflaba los "casos" con ventanas casi iguales (agente 2).
+    elegidas: dict[tuple, dict] = {}
     for r in csv.DictReader(ARCHIVO.open(encoding="utf-8")):
+        k = (r["rem_edicion"], r["ticker"])
+        if k not in elegidas or r["fecha_precio"] < elegidas[k]["fecha_precio"]:
+            elegidas[k] = r
+    for r in elegidas.values():
         if r["ventana_fin"] and date.fromisoformat(r["ventana_fin"]) <= cer_hasta:
             a, b = date.fromisoformat(r["ventana_ini"]), date.fromisoformat(r["ventana_fin"])
             meses = (b - a).days / (365 / 12)
@@ -63,20 +71,23 @@ def tablero(cer: dict[date, float], a3500: dict[date, float]) -> dict:
                 s = _f(r[f"cer_suba_{q}"])
                 fila[q] = mens(s) if s is not None else None
             infl.append(fila)
-        vto = date.fromisoformat(r["vto"])
-        if r["tc_mercado"] and vto <= tc_hasta:
-            fila = {"fecha": r["fecha_precio"], "ticker": r["ticker"], "real": I.valor_en(a3500, vto)}
+        fecha_tc = I.restar_habiles(date.fromisoformat(r["vto"]), 3)   # A3500 que paga el dollar linked
+        if r["tc_mercado"] and fecha_tc <= tc_hasta:
+            fila = {"fecha": r["fecha_precio"], "ticker": r["ticker"], "real": I.valor_en(a3500, fecha_tc)}
             for q in QUIENES:
                 fila[q] = _f(r[f"tc_{q}"])
             dol.append(fila)
     resumen = {}
-    for nombre, filas, err in (("inflacion", infl, lambda p, x: abs(p - x)),
-                               ("dolar", dol, lambda p, x: abs(p / x - 1) * 100)):
+    for nombre, filas, err in (("inflacion", infl, lambda p, x: p - x),
+                               ("dolar", dol, lambda p, x: (p / x - 1) * 100)):
         res = {}
         for q in QUIENES:
             e = [err(f[q], f["real"]) for f in filas if f[q] is not None]
-            res[q] = {"error_medio": sum(e) / len(e) if e else None, "casos": len(e),
+            res[q] = {"error_medio": sum(abs(x) for x in e) / len(e) if e else None,
+                      "sesgo": sum(e) / len(e) if e else None,          # con signo: + = esperaba de más
+                      "casos": len(e),
                       "gana": sum(1 for f in filas if f[q] is not None and
-                                  all(f[o] is None or err(f[q], f["real"]) <= err(f[o], f["real"]) for o in QUIENES))}
+                                  all(f[o] is None or abs(err(f[q], f["real"])) <= abs(err(f[o], f["real"])) for o in QUIENES))}
+        res["hay_ganador"] = min((res[q]["casos"] for q in QUIENES), default=0) >= MIN_CASOS
         resumen[nombre] = res
-    return {"inflacion": infl[-60:], "dolar": dol[-60:], "resumen": resumen}
+    return {"inflacion": infl[-60:], "dolar": dol[-60:], "resumen": resumen, "min_casos": MIN_CASOS}

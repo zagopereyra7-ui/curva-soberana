@@ -83,22 +83,69 @@ class TestNelsonSiegel(unittest.TestCase):
         for t, y in pts:
             self.assertAlmostEqual(N.tir_en(c, t), y, places=2)
 
-    def test_curvas_planas_dan_la_inflacion_exacta(self):
-        # tasa fija 30% y CER 5% en todos los plazos -> inflación (1,30/1,05)^(1/12)-1 en cada mes
+    def test_por_tramo_recupera_inflaciones_conocidas(self):
+        # se inventa una inflación mes a mes, se arman 6 bonos CER "perfectos" con distintas ventanas y el método
+        # tiene que devolver esa misma inflación (con suavidad casi nula, para no achatar los saltos)
+        import math
+        from datetime import timedelta
         import nelson_siegel as N
-        plano = lambda y: {"b0": __import__("math").log1p(y), "b1": 0.0, "b2": 0.0, "tau": 1.0, "plazo_max": 2.0}
-        meses = N.inflacion_mensual(plano(0.30), plano(0.05), date(2026, 11, 13), date(2026, 12, 15), meses=6)
-        self.assertEqual(meses[0]["mes"], "2026-11")          # octubre ya está en el CER publicado
+        pub = date(2026, 12, 15)
+        verdad = {"2026-11": 1.8, "2026-12": 2.2, "2027-01": 2.0, "2027-02": 1.9, "2027-03": 1.7, "2027-04": 1.6}
+        def suba(hasta):
+            g = 1.0
+            for mes, pi in verdad.items():
+                d0, d1 = N.ventana_mes(mes)
+                dentro = (min(d1, hasta) - max(d0, pub)).days
+                if dentro > 0:
+                    g *= (1 + pi / 100) ** (dentro / (d1 - d0).days)
+            return g
+        fines = [date(2027, 1, 15), date(2027, 2, 15), date(2027, 3, 15), date(2027, 4, 15), date(2027, 5, 15), date(2027, 6, 15)]
+        pts = [{"ticker": f"B{i}", "cer_hasta": f, "suba_futura": suba(f), "spread": 0.1} for i, f in enumerate(fines)]
+        meses, err = N.meses_por_tramo(pts, {pub: 1.0, pub - timedelta(days=40): 0.98}, suavidad=1.0)
+        self.assertEqual([m["mes"] for m in meses], list(verdad))
         for m in meses:
-            dias = (date.fromisoformat(m["cer_hasta"]) - date.fromisoformat(m["cer_desde"])).days
-            esperado = ((1.30 / 1.05) ** (dias / 365) - 1) * 100
-            self.assertAlmostEqual(m["mercado"], esperado, places=9)
+            self.assertAlmostEqual(m["mercado"], verdad[m["mes"]], places=4)
+        self.assertLess(max(abs(e) for e in err), 1e-3)
 
-    def test_no_extrapola_mas_alla_del_ultimo_bono(self):
+    def test_ventana_del_mes_regla_bcra(self):
+        # la inflación de noviembre sube el CER del 16/12 al 15/1 (ventana 15/12 exclusive → 15/1 inclusive)
         import nelson_siegel as N
-        plano = {"b0": 0.2, "b1": 0.0, "b2": 0.0, "tau": 1.0, "plazo_max": 0.5}
-        meses = N.inflacion_mensual(plano, dict(plano, b0=0.02), date(2026, 11, 13), date(2026, 12, 15))
-        self.assertTrue(meses and all(m["t1"] <= 0.5 for m in meses))
+        self.assertEqual(N.ventana_mes("2026-11"), (date(2026, 12, 15), date(2027, 1, 15)))
+        self.assertEqual(N.ventana_mes("2026-12"), (date(2027, 1, 15), date(2027, 2, 15)))
+
+    def test_inflacion_futura_saca_lo_ya_publicado(self):
+        # tasa fija plana 30%, un CER cero cupón a 1 año que paga real 5%, CER ya publicado +3%:
+        # suba total = 1,30/1,05; la futura tiene que ser eso dividido 1,03
+        import math
+        from datetime import timedelta
+        import nelson_siegel as N
+        import instrumentos as I
+        liq = date(2026, 11, 13)
+        a = I.restar_habiles(liq, 10)
+        pub = a + timedelta(days=46)
+        cer = {a: 100.0, pub: 103.0}
+        fija = {"b0": math.log(1.30), "b1": 0.0, "b2": 0.0, "tau": 1.0, "plazo_max": 2.0}
+        b = I.restar_habiles(liq + timedelta(days=365), 10)
+        pts = N.inflacion_futura(fija, [{"ticker": "X", "plazo": 1.0, "tir": 5.0, "spread": 0.1, "cer_hasta": b}], liq, cer)
+        self.assertAlmostEqual(pts[0]["suba_futura"], 1.30 / 1.05 / 1.03, places=12)
+        self.assertEqual(pts[0]["dias_futuros"], (b - pub).days)
+
+    def test_ponderar_por_duration_ignora_el_ruido_corto(self):
+        # una letra de 2 semanas con 3 puntos de error de tasa casi no debe mover una curva de 7 bonos
+        import nelson_siegel as N
+        verdad = {"b0": 0.25, "b1": 0.02, "b2": 0.0, "tau": 1.0}
+        pts = [(t, N.tir_en(verdad, t), t) for t in (0.3, 0.5, 0.8, 1.1, 1.5, 2.0)]
+        pts.append((0.04, N.tir_en(verdad, 0.04) + 3.0, 0.04))
+        c = N.ajustar(pts)
+        self.assertAlmostEqual(N.tir_en(c, 1.0), N.tir_en(verdad, 1.0), delta=0.05)
+
+    def test_no_usa_cer_mas_largos_que_la_curva_fija(self):
+        # sin tasa fija a ese plazo no hay contra qué comparar: el bono CER queda fuera (no se extrapola)
+        import nelson_siegel as N
+        fija = {"b0": 0.2, "b1": 0.0, "b2": 0.0, "tau": 1.0, "plazo_max": 0.5}
+        cer = {date(2026, 10, 29): 100.0, date(2026, 12, 15): 103.0}
+        p = {"ticker": "LARGO", "plazo": 1.5, "tir": 5.0, "spread": 0.1, "cer_hasta": date(2028, 4, 1)}
+        self.assertEqual(N.inflacion_futura(fija, [p], date(2026, 11, 13), cer), [])
 
 
 if __name__ == "__main__":

@@ -173,21 +173,34 @@ def main() -> None:
     marcar_fuera_de_curva(filas)
 
     # 3) expectativas implícitas: tasa fija vs CER (inflación) y vs dollar linked (devaluación)
-    curva_cer = [(f["dias"], f["tir"]) for f in filas if f["curva"] == "cer" and not f["revisar"]]
+    # Bonos con cupón (TX28, TX31, TY30P) fuera de los pares: comparar TIR de bonos con cupón y durations
+    # distintas con Fisher no es un breakeven (crítica del agente 2).
+    sin_cupon = lambda f: not (f.get("calc") or {}).get("cupon")
+    curva_cer = [(f["dias"], f["tir"]) for f in filas if f["curva"] == "cer" and not f["revisar"] and sin_cupon(f)]
     curva_dl = [(f["dias"], f["tir"]) for f in filas if f["curva"] == "dolar_linked" and not f["revisar"]]
+    a_cer, pub = I.restar_habiles(liq, 10), max(cer)
+    conocido = I.valor_en(cer, pub) / I.valor_en(cer, a_cer)
     expect = []
-    for f in sorted([f for f in filas if f["curva"] == "pesos_fija" and not f["revisar"] and f["dias"] > 30], key=lambda f: f["dias"]):
+    for f in sorted([f for f in filas if f["curva"] == "pesos_fija" and not f["revisar"] and f["dias"] > 30 and sin_cupon(f)],
+                    key=lambda f: f["dias"]):
         real = I.interpolar(curva_cer, f["dias"])
         dl = I.interpolar(curva_dl, f["dias"])
-        vec = lambda curva: [{"ticker": x["ticker"], "dias": x["dias"], "tir": x["tir"]} for x in vecinos(filas, curva, f["dias"])]
-        inf = ((1 + f["tir"] / 100) / (1 + real / 100) - 1) * 100 if real is not None else None
+        vec = lambda curva: [{"ticker": x["ticker"], "dias": x["dias"], "tir": x["tir"]} for x in vecinos(filas, curva, f["dias"])
+                             if sin_cupon(x)]
+        # inflación SOLO sobre el CER que todavía no se publicó (antes, en ventanas cortas, 3/4 era dato ya conocido)
+        inf_mens = None
+        b = I.restar_habiles(date.fromisoformat(f["vto"]), 10)
+        if real is not None and (b - pub).days >= 15:
+            total = ((1 + f["tir"] / 100) / (1 + real / 100)) ** (f["dias"] / 365)
+            inf_mens = ((total / conocido) ** ((365 / 12) / (b - pub).days) - 1) * 100
         dev = ((1 + f["tir"] / 100) / (1 + dl / 100) - 1) * 100 if dl is not None else None
-        if inf is None and dev is None:
+        if inf_mens is None and dev is None:
             continue
         expect.append({"ticker": f["ticker"], "vto": f["vto"], "dias": f["dias"], "tir_fija": f["tir"],
                        "vecinos_cer": vec("cer"), "vecinos_dl": vec("dolar_linked"),
-                       "tir_cer": real, "inflacion_anual": inf,
-                       "inflacion_mensual": ((1 + inf / 100) ** (1 / 12) - 1) * 100 if inf is not None else None,
+                       "tir_cer": real, "inflacion_mensual": inf_mens,
+                       "inflacion_anual": ((1 + inf_mens / 100) ** 12 - 1) * 100 if inf_mens is not None else None,
+                       "cer_conocido_pct": (conocido - 1) * 100, "cer_futuro_dias": (b - pub).days,
                        "tir_dl": dl, "devaluacion_anual": dev,
                        "devaluacion_mensual": ((1 + dev / 100) ** (1 / 12) - 1) * 100 if dev is not None else None})
 
