@@ -37,17 +37,36 @@ def inflacion_rem(rem: dict, mes: str) -> float | None:
     meses = sorted(k for k in ipc if re.match(r"^\d{4}-\d{2}$", k))
     if mes < meses[0]:
         return ipc[meses[0]]
-    anual = None
+    return _residual(ipc, meses, mes)
+
+
+def _bloque(ipc: dict, meses_bloque: list[str], total: float, ya: dict[str, float]) -> dict[str, float]:
+    """Reparte un total (12 meses o año) entre sus meses: los que ya tienen valor quedan fijos y el resto se
+    lleva lo que falta, parejo. Antes se repartía todo el total parejo y, como los meses explícitos ya se
+    'comían' parte, el resto quedaba sobreestimado (~0,05 pp/mes, crítica del agente 2)."""
+    conocidos = {m: ya[m] for m in meses_bloque if m in ya}
+    resto = [m for m in meses_bloque if m not in ya]
+    if not resto:
+        return {}
+    acum = math.prod(1 + v / 100 for v in conocidos.values())
+    r = (((1 + total / 100) / acum) ** (1 / len(resto)) - 1) * 100
+    return {m: r for m in resto}
+
+
+def _residual(ipc: dict, meses: list[str], mes: str) -> float | None:
+    ya = {m: ipc[m] for m in meses}
     if "12m" in ipc:
-        h = ipc["12m"]["hasta"]                      # p. ej. 'oct-27'
+        h = ipc["12m"]["hasta"]                      # p. ej. 'oct-27': los 12 meses que terminan ahí
         fin12 = f"20{h[-2:]}-{MESES[h[:3]]:02d}"
-        if mes <= fin12:
-            anual = ipc["12m"]["valor"]
-    if anual is None:
-        anual = ipc.get(mes[:4])
+        y, mm = int(fin12[:4]), int(fin12[5:])
+        bloque = [f"{y + (mm - 1 - k) // 12}-{(mm - 1 - k) % 12 + 1:02d}" for k in range(11, -1, -1)]
+        ya.update(_bloque(ipc, bloque, ipc["12m"]["valor"], ya))
+    if mes in ya:
+        return ya[mes]
+    anual = ipc.get(mes[:4])
     if anual is None:
         return None
-    return ((1 + anual / 100) ** (1 / 12) - 1) * 100
+    return _bloque(ipc, [f"{mes[:4]}-{k:02d}" for k in range(1, 13)], anual, ya).get(mes)
 
 
 def cer_proyectado(cer: dict[date, float], rem: dict, d: date) -> float | None:

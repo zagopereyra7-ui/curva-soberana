@@ -1,0 +1,56 @@
+{
+ "por_bloque": {
+  "0": {
+   "casos": 6,
+   "ediciones": 6,
+   "mercado": {
+    "sesgo": -0.185,
+    "error_abs": 0.185
+   },
+   "rem": {
+    "sesgo": -0.0,
+    "error_abs": 0.047
+   },
+   "top10": {
+    "sesgo": 0.074,
+    "error_abs": 0.119
+   },
+   "mercado_mas_cerca_que_rem": 0
+  }
+ },
+ "desde": "2025-01-01",
+ "total": {
+  "casos": 6,
+  "ediciones": 6,
+  "mercado": {
+   "sesgo": -0.185,
+   "error_abs": 0.185
+  },
+  "rem": {
+   "sesgo": -0.0,
+   "error_abs": 0.047
+  },
+  "top10": {
+   "sesgo": 0.074,
+   "error_abs": 0.119
+  },
+  "mercado_mas_cerca_que_rem": 0
+ },
+ "primer_bloque": {
+  "casos": 6,
+  "ediciones": 6,
+  "mercado": {
+   "sesgo": -0.185,
+   "error_abs": 0.185
+  },
+  "rem": {
+   "sesgo": -0.0,
+   "error_abs": 0.047
+  },
+  "top10": {
+   "sesgo": 0.074,
+   "error_abs": 0.119
+  },
+  "mercado_mas_cerca_que_rem": 0
+ }
+}

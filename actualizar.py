@@ -90,6 +90,16 @@ def fuente_titulo(t: dict, idx_bo: dict) -> dict:
             "url": "https://www.boletinoficial.gob.ar/detalleAviso/primera/233685/20200816"}
 
 
+def cargar_backtest() -> dict | None:
+    """Resultados de backtest.py (se corre aparte: python backtest.py)."""
+    res, csv_f = BASE / "datos" / "backtest" / "resumen.json", BASE / "datos" / "backtest" / "resultados.csv"
+    if not res.exists() or not csv_f.exists():
+        return None
+    filas = [r for r in csv.DictReader(csv_f.open(encoding="utf-8")) if r["real"] and r["rem"] and r["rem_completo"] == "True"]
+    return {"resumen": json.loads(res.read_text(encoding="utf-8")), "casos": filas,
+            "generado": datetime.fromtimestamp(res.stat().st_mtime).strftime("%d/%m/%Y")}
+
+
 def rueda_cerrada() -> bool:
     """True si ya cerró la rueda de hoy (o no hubo rueda). Antes de las 17:30 de un día hábil, los precios
     'en vivo' son parciales (pocas operaciones): sirven para mirar la página pero no se guardan en los historiales,
@@ -176,9 +186,12 @@ def main() -> None:
     # Bonos con cupón (TX28, TX31, TY30P) fuera de los pares: comparar TIR de bonos con cupón y durations
     # distintas con Fisher no es un breakeven (crítica del agente 2).
     sin_cupon = lambda f: not (f.get("calc") or {}).get("cupon")
-    curva_cer = [(f["dias"], f["tir"]) for f in filas if f["curva"] == "cer" and not f["revisar"] and sin_cupon(f)]
-    curva_dl = [(f["dias"], f["tir"]) for f in filas if f["curva"] == "dolar_linked" and not f["revisar"]]
     a_cer, pub = I.restar_habiles(liq, 10), max(cer)
+    # Un CER con todo el ajuste ya publicado (TZXD6) no tiene "TIR real": interpolar a través de él daba
+    # noviembre 1,39% en el T15E7 contra 1,81% en el S29E7 (agente 2). Se usan solo CER con ajuste por conocer.
+    cer_util = lambda f: I.restar_habiles(date.fromisoformat(f["vto"]), 10) > pub
+    curva_cer = [(f["dias"], f["tir"]) for f in filas if f["curva"] == "cer" and not f["revisar"] and sin_cupon(f) and cer_util(f)]
+    curva_dl = [(f["dias"], f["tir"]) for f in filas if f["curva"] == "dolar_linked" and not f["revisar"]]
     conocido = I.valor_en(cer, pub) / I.valor_en(cer, a_cer)
     expect = []
     for f in sorted([f for f in filas if f["curva"] == "pesos_fija" and not f["revisar"] and f["dias"] > 30 and sin_cupon(f)],
@@ -186,11 +199,11 @@ def main() -> None:
         real = I.interpolar(curva_cer, f["dias"])
         dl = I.interpolar(curva_dl, f["dias"])
         vec = lambda curva: [{"ticker": x["ticker"], "dias": x["dias"], "tir": x["tir"]} for x in vecinos(filas, curva, f["dias"])
-                             if sin_cupon(x)]
+                             if sin_cupon(x) and (curva != "cer" or cer_util(x))]
         # inflación SOLO sobre el CER que todavía no se publicó (antes, en ventanas cortas, 3/4 era dato ya conocido)
         inf_mens = None
         b = I.restar_habiles(date.fromisoformat(f["vto"]), 10)
-        if real is not None and (b - pub).days >= 15:
+        if real is not None and (b - pub).days >= 30:      # con menos días, cualquier centavo de precio se amplifica
             total = ((1 + f["tir"] / 100) / (1 + real / 100)) ** (f["dias"] / 365)
             inf_mens = ((total / conocido) ** ((365 / 12) / (b - pub).days) - 1) * 100
         dev = ((1 + f["tir"] / 100) / (1 + dl / 100) - 1) * 100 if dl is not None else None
@@ -254,6 +267,7 @@ def main() -> None:
            .replace("{{DATOS}}", json.dumps(filas, ensure_ascii=False))
            .replace("{{EXPECT}}", json.dumps(expect, ensure_ascii=False))
            .replace("{{NS}}", json.dumps(ns, ensure_ascii=False))
+           .replace("{{BACKTEST}}", json.dumps(cargar_backtest(), ensure_ascii=False))
            .replace("{{CONTROLES}}", json.dumps(controles, ensure_ascii=False))
            .replace("{{CIERRE}}", date.fromisoformat(cierre).strftime("%d/%m/%Y"))
            .replace("{{LIQ}}", liq.strftime("%d/%m/%Y"))
