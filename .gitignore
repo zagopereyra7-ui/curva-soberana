@@ -3,3 +3,6 @@ __pycache__/
 control/*.xlsx
 ~$*
 fuentes/bapro_informe.pdf
+datos/backtest/precios/
+datos/backtest/rem/
+datos/backtest/rem_historico.xlsx
