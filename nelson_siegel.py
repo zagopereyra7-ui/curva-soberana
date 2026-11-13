@@ -156,6 +156,20 @@ def puntos(filas: list[dict], liq: date, cer: dict) -> tuple[list[dict], list[di
     return fija, real
 
 
+def tasa_fija_interpolada(pf: list[dict], t: float) -> float | None:
+    """Método de interpolación exacta: tasa continua ln(1+TIR) interpolada linealmente por plazo entre las dos
+    LECAP/BONCAP vecinas. Exacta en cada bono, sin modelo y sin extrapolar (None fuera del rango)."""
+    pts = sorted((p["plazo"], math.log1p(p["tir"] / 100)) for p in pf)
+    if not pts or t < pts[0][0] - 15 / 365 or t > pts[-1][0] + 1e-9:
+        return None
+    if t <= pts[0][0]:
+        return pts[0][1]
+    for (t0, r0), (t1, r1) in zip(pts, pts[1:]):
+        if t0 <= t <= t1:
+            return r0 + (r1 - r0) * (t - t0) / (t1 - t0) if t1 > t0 else r0
+    return pts[-1][1]
+
+
 def inflacion_futura(fija: dict, pr: list[dict], liq: date, cer: dict, pf: list[dict] | None = None) -> list[dict]:
     """Para cada bono CER: suba del CER que paga DESPUÉS de lo ya publicado (paso 2).
     Tasa fija: la de su LECAP/BONCAP gemela si existe; si no, la curva. Solo dentro del plazo de la curva fija."""
@@ -166,17 +180,24 @@ def inflacion_futura(fija: dict, pr: list[dict], liq: date, cer: dict, pf: list[
     for p in pr:
         t = p["plazo"]                                   # inversión: de la liquidación al vencimiento
         gem = gemelas.get(p.get("vto"))
-        # no extrapolar la tasa fija ni hacia adelante ni hacia atrás (en el backtest de feb-26 faltaban las LECAP
-        # cortas y se comparaban CER de mayo contra una curva que arrancaba en enero del año siguiente)
-        if not gem and not (fija.get("plazo_min", 0) - 15 / 365 <= t <= fija["plazo_max"] + 1e-9):
-            continue
-        r_fija = math.log1p(gem["tir"] / 100) if gem else tasa_continua(fija, t)
+        # Tasa fija al mismo plazo: la gemela (mismo vencimiento) o la interpolación exacta entre las LECAP
+        # vecinas. Sin modelo y sin extrapolar ni hacia adelante ni hacia atrás.
+        if gem:
+            r_fija = math.log1p(gem["tir"] / 100)
+        elif pf:
+            r_fija = tasa_fija_interpolada(pf, t)
+            if r_fija is None:
+                continue
+        else:                                            # sin la lista de bonos (pruebas): la curva, dentro de su rango
+            if not (fija.get("plazo_min", 0) - 15 / 365 <= t <= fija["plazo_max"] + 1e-9):
+                continue
+            r_fija = tasa_continua(fija, t)
         total = math.exp(r_fija * t) / (1 + p["tir"] / 100) ** t
         dias = (p["cer_hasta"] - pub).days               # CER no publicado que cubre
         if dias < 7:
             continue
         out.append({**p, "dias_futuros": dias, "suba_futura": total / conocido,
-                    "tasa_fija_de": gem["ticker"] if gem else "curva"})
+                    "tasa_fija_de": gem["ticker"] if gem else ("interpolación" if pf else "curva")})
     return out
 
 
@@ -207,6 +228,54 @@ def bloques(pts: list[dict], cer: dict) -> list[dict]:
                     "meses": [[m, round(f, 3)] for m, f in ms], "nombre": nombre_bloque(ms),
                     "mercado": mens(l), "banda_min": mens(l - d), "banda_max": mens(l + d)})
         prev, s_prev, l_prev = p["cer_hasta"], p["spread"], math.log(p["suba_futura"])
+    return out
+
+
+def meses_interpolados(pts: list[dict], cer: dict, bl: list[dict]) -> list[dict]:
+    """Inflación implícita de CADA mes por interpolación exacta de la curva de inflación implícita.
+    Nodos: cada bono CER da la tasa de inflación futura u_i = ln(suba futura) / años, desde el último CER
+    publicado hasta el CER que usa el bono. Entre nodos, u se interpola linealmente por plazo (antes del primero,
+    se usa la del primero). La suba acumulada hasta una fecha es e^(u·h); la inflación del mes M es la suba
+    entre el 15 de M+1 y el 15 de M+2. Exacto en cada bono. En los meses sin vencimiento propio, el valor sale de
+    la interpolación (se marca): los bonos dicen el total del tramo, no cómo se reparte."""
+    pub = max(cer)
+    # El plazo se mide en MESES DE IPC, no en días: cada mes entra al CER en una ventana de 28 a 31 días, y con
+    # inflación pareja por mes la tasa diaria no es pareja (en días corridos daba 2,07% en vez de 2,00%).
+    tau = lambda d: sum(f for _, f in meses_en(pub, d)) if d > pub else 0.0
+    nodos = sorted({tau(p["cer_hasta"]): math.log(p["suba_futura"]) / tau(p["cer_hasta"]) for p in pts}.items())
+    if not nodos:
+        return []
+    def U(h):                                            # ln de la suba acumulada del CER hasta h meses de IPC
+        if h <= 0:
+            return 0.0
+        if h <= nodos[0][0]:
+            return nodos[0][1] * h
+        for (h0, u0), (h1, u1) in zip(nodos, nodos[1:]):
+            if h0 <= h <= h1:
+                return (u0 + (u1 - u0) * (h - h0) / (h1 - h0)) * h
+        return None
+    fechas_nodo = {p["cer_hasta"] for p in pts} | {pub}
+    out, mes = [], _mas_meses(f"{pub.year}-{pub.month:02d}", -2)
+    while True:
+        d0, d1 = ventana_mes(mes)
+        mes_sig = _mas_meses(mes, 1)
+        if d1 <= pub:
+            mes = mes_sig; continue
+        h0, h1 = tau(max(d0, pub)), tau(d1)
+        u0, u1 = U(h0), U(h1)
+        if u1 is None or h1 - h0 <= 0:
+            break
+        m = (math.exp((u1 - u0) / (h1 - h0)) - 1) * 100  # por mes de IPC completo
+        propio = any(abs((d0 - f).days) <= 3 for f in fechas_nodo) and any(abs((d1 - f).days) <= 3 for f in fechas_nodo)
+        solape = lambda x: (min(d1, date.fromisoformat(x["hasta"])) - max(d0, date.fromisoformat(x["desde"]))).days
+        b = max(bl, key=solape) if bl and max(solape(x) for x in bl) > 0 else None
+        out.append({"mes": mes, "cer_desde": d0.isoformat(), "cer_hasta": d1.isoformat(), "mensual": m,
+                    "anual": ((1 + m / 100) ** 12 - 1) * 100, "vencimiento_propio": propio,
+                    "bloque": b["nombre"] if b else None,
+                    # puntas: las del bloque que contiene al mes, llevadas a anual
+                    "anual_min": ((1 + b["banda_min"] / 100) ** 12 - 1) * 100 if b else None,
+                    "anual_max": ((1 + b["banda_max"] / 100) ** 12 - 1) * 100 if b else None})
+        mes = mes_sig
     return out
 
 
@@ -261,8 +330,14 @@ def calcular(filas: list[dict], liq: date, cer: dict, rem: dict | None) -> dict 
         for b in bl:
             b["rem"], b["rem_completo"] = rem_bloque(rem["total"]["ipc"], b["meses"])
             b["top10"], _ = rem_bloque(rem["top10"]["ipc"], b["meses"])
+    meses = meses_interpolados(pts, cer, bl)
+    anual = lambda v: None if v is None else ((1 + v / 100) ** 12 - 1) * 100
+    for m in meses:
+        r = rem["total"]["ipc"].get(m["mes"]) if rem else None       # solo meses que la encuesta pregunta
+        t10 = rem["top10"]["ipc"].get(m["mes"]) if rem else None
+        m.update({"rem_mensual": r, "rem_anual": anual(r), "top10_mensual": t10, "top10_anual": anual(t10)})
     a = I.restar_habiles(liq, 10)
-    return {"fija": fija, "cer_bonos": cer_bonos, "cer_afuera": afuera, "bloques": bl, "desde_cer": a.isoformat(),
+    return {"fija": fija, "cer_bonos": cer_bonos, "cer_afuera": afuera, "bloques": bl, "meses": meses, "desde_cer": a.isoformat(),
             "largo": tramo_largo(filas, fija, liq, cer),
             "cer_conocido_pct": (I.valor_en(cer, publicado) / I.valor_en(cer, a) - 1) * 100,
             "cer_publicado_hasta": publicado.isoformat(), "rem_edicion": rem["edicion"] if rem else None}

@@ -111,6 +111,39 @@ class TestNelsonSiegel(unittest.TestCase):
         # banda = media punta de cada bono que delimita el bloque
         self.assertTrue(bl[1]["banda_min"] < bl[1]["mercado"] < bl[1]["banda_max"])
 
+    def test_interpolacion_exacta_en_los_vencimientos(self):
+        # con inflación pareja de 2% mensual, la interpolación tiene que dar 2% en todos los meses (anual 26,8%)
+        import math
+        from datetime import timedelta
+        import nelson_siegel as N
+        pub = date(2026, 12, 15)
+        def suba(hasta):
+            g = 1.0
+            for k in range(12):
+                mes = N._mas_meses("2026-11", k)
+                d0, d1 = N.ventana_mes(mes)
+                dentro = (min(d1, hasta) - max(d0, pub)).days
+                if dentro > 0:
+                    g *= 1.02 ** (dentro / (d1 - d0).days)
+            return g
+        pts = [{"ticker": f"B{i}", "cer_hasta": f, "suba_futura": suba(f), "spread": 0.1, "tasa_fija_de": "x"}
+               for i, f in enumerate([date(2027, 1, 15), date(2027, 3, 15), date(2027, 5, 15)])]
+        cer = {pub: 1.0, pub - timedelta(days=40): 0.98}
+        meses = N.meses_interpolados(pts, cer, N.bloques(pts, cer))
+        self.assertEqual([m["mes"] for m in meses][:4], ["2026-11", "2026-12", "2027-01", "2027-02"])
+        for m in meses:
+            self.assertAlmostEqual(m["mensual"], 2.0, delta=0.02)
+            self.assertAlmostEqual(m["anual"], (1.02 ** 12 - 1) * 100, delta=0.3)
+        self.assertTrue(meses[0]["vencimiento_propio"])     # noviembre: lo cierra el bono del 15/1
+        self.assertFalse(meses[1]["vencimiento_propio"])    # diciembre: ningún bono vence el 15/2
+
+    def test_tasa_fija_interpolada_sin_extrapolar(self):
+        import math
+        import nelson_siegel as N
+        pf = [{"plazo": 0.2, "tir": 25.0}, {"plazo": 0.6, "tir": 29.0}]
+        self.assertAlmostEqual(N.tasa_fija_interpolada(pf, 0.4), (math.log(1.25) + math.log(1.29)) / 2, places=12)
+        self.assertIsNone(N.tasa_fija_interpolada(pf, 0.7))
+
     def test_ventana_del_mes_regla_bcra(self):
         # la inflación de noviembre sube el CER del 16/12 al 15/1 (ventana 15/12 exclusive → 15/1 inclusive)
         import nelson_siegel as N

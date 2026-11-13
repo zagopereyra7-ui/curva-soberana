@@ -107,6 +107,19 @@ dialog .cerrar{font:inherit;border:1px solid var(--border);background:var(--surf
   <p class="note">Lo que esperan los precios de los bonos contra la mediana del <b>REM</b> (encuesta mensual del BCRA a unos 40 economistas) y de su <b>Top 10</b> (los que mejor pronosticaron antes). Inflación: promedio mensual en la misma ventana del CER. Dólar: A3500 esperado al vencimiento. Tocá una fila para ver la cuenta.</p>
   <div class="card"><div class="tablewrap"><table id="tabla-rem"></table></div><p class="note" id="nota-rem"></p></div>
 
+  <h2>Inflación implícita mes a mes</h2>
+  <p class="note">Método de <b>interpolación exacta</b>: para cada bono CER se toma la tasa fija al mismo plazo (la LECAP/BONCAP que vence el mismo día, o la interpolación entre las dos vecinas), se calcula cuánta inflación futura paga (sacando el CER ya publicado) y se interpola esa curva de inflación implícita en el borde de cada mes. El cuadro muestra la inflación de cada mes <b>anualizada</b>: (1 + inflación del mes)<sup>12</sup> − 1.</p>
+  <div class="card">
+    <div class="legend">
+      <span><i class="dot" style="background:var(--s1)"></i>Mercado (anualizada)</span>
+      <span><i class="dot" style="background:var(--s2)"></i>REM (anualizado)</span>
+      <span><i class="dot" style="background:var(--s3)"></i>Top 10 REM</span>
+    </div>
+    <svg id="chart-mes" viewBox="0 0 900 300" role="img" aria-label="Inflación implícita de cada mes, anualizada"></svg>
+    <div class="tablewrap"><table id="tabla-mes"></table></div>
+    <p class="note" id="nota-mes"></p>
+  </div>
+
   <h2>Inflación que espera el mercado, por bloques</h2>
   <p class="note">A cada bono CER se le saca la parte del CER que ya se publicó y se lo compara con la tasa fija al mismo plazo: lo que queda es inflación que todavía no ocurrió. Entre dos vencimientos CER seguidos queda un <b>bloque</b>: el mercado dice cuánta inflación espera en ese bloque, pero no cómo se reparte entre sus meses. Por eso no se muestra "mes por mes" donde los bonos no lo permiten. La banda son las <b>puntas</b> (comprador/vendedor) de los bonos que delimitan cada bloque.</p>
   <div class="card">
@@ -492,6 +505,36 @@ document.querySelectorAll('#tabla-exp tr').forEach((tr,i)=>{ const b=tr.querySel
      BT.casos.slice().reverse().map(c=>`<tr><td>${fdate(c.encuesta)}</td><td>${c.nombre}</td><td><b>${p2(+c.real)}</b></td><td>${p2(+c.mercado)}</td><td>${p2(+c.rem)}</td><td>${p2(+c.top10)}</td></tr>`).join('')+`</table></div>`;
   h+=`<p class="note"><b>Cuidado al leerlo:</b> son pocos casos (hay estimación desde dic-2025: antes faltan las condiciones de varias LECAP). Sin spreads históricos (no hay banda de puntas) y sin filtro de operaciones. Con ${T.ediciones} encuestas no se puede afirmar quién es mejor; sirve para ver si el mercado tiende a esperar más o menos inflación de la que hubo. Actualizado el ${BT.generado}.</p>`;
   box.innerHTML=`<div class="card">${h}</div>`;
+})();
+
+// ---- inflación implícita mes a mes (interpolación exacta), anualizada
+(function(){
+  const svg=document.getElementById('chart-mes'), t=document.getElementById('tabla-mes'), nota=document.getElementById('nota-mes');
+  const M=(NS&&NS.meses)||[];
+  if(!M.length){ svg.style.display='none'; t.outerHTML='<p class="note">No hay suficientes bonos para la inflación mes a mes.</p>'; return; }
+  const a1=x=>x==null?'—':fmt(x,1)+'%', W=900, H=300, m={l:52,r:24,t:16,b:44};
+  const series=[['anual','var(--s1)'],['rem_anual','var(--s2)'],['top10_anual','var(--s3)']];
+  const vals=M.flatMap(x=>[x.anual,x.anual_min,x.anual_max,x.rem_anual,x.top10_anual].filter(v=>v!=null));
+  let y0=Math.floor(Math.min(...vals)/5)*5, y1=Math.ceil(Math.max(...vals)/5)*5;
+  const X=i=>m.l+(i+0.5)/M.length*(W-m.l-m.r), Y=v=>H-m.b-(v-y0)/(y1-y0)*(H-m.t-m.b);
+  let s='';
+  for(let v=y0; v<=y1+1e-9; v+=5){ s+=`<line x1="${m.l}" x2="${W-m.r}" y1="${Y(v)}" y2="${Y(v)}" stroke="var(--grid)"/><text x="${m.l-8}" y="${Y(v)+4}" text-anchor="end">${v}%</text>`; }
+  M.forEach((x,i)=>{ s+=`<text x="${X(i)}" y="${H-m.b+18}" text-anchor="middle">${nomMes(x.mes).replace(/ 20/,' ')}</text>`;
+    if(x.anual_min!=null) s+=`<line x1="${X(i)}" x2="${X(i)}" y1="${Y(x.anual_min)}" y2="${Y(x.anual_max)}" stroke="var(--s1)" stroke-opacity="0.35" stroke-width="10"/>`; });
+  series.forEach(([k,col])=>{
+    const ps=M.map((x,i)=>[i,x[k],x]).filter(p=>p[1]!=null);
+    if(ps.length>1) s+=`<polyline fill="none" stroke="${col}" stroke-width="2" points="${ps.map(([i,v])=>X(i)+','+Y(v)).join(' ')}"/>`;
+    ps.forEach(([i,v,x])=>{ const hueco=k==='anual'&&!x.vencimiento_propio;
+      s+=`<circle cx="${X(i)}" cy="${Y(v)}" r="4.5" fill="${hueco?'var(--surface)':col}" stroke="${col}" stroke-width="2" data-i="${i}"/>`; });
+  });
+  svg.innerHTML=s;
+  svg.querySelectorAll('circle').forEach(c=>{ const x=M[+c.dataset.i];
+    c.addEventListener('mousemove',e=>showTip(e,`<b>${nomMes(x.mes)}</b><br>Mercado ${a1(x.anual)} anual (${fmt(x.mensual,2)}% mensual)${x.vencimiento_propio?'':'<br><i>interpolado entre vencimientos</i>'}<br>REM ${a1(x.rem_anual)} · Top 10 ${a1(x.top10_anual)}`));
+    c.addEventListener('mouseleave',hideTip); });
+  t.innerHTML=`<tr><th>Mes</th><th>Inflación implícita anual</th><th>Mensual</th><th>Puntas (anual)</th><th>REM anual</th><th>Top 10 anual</th><th>Mercado − REM</th><th>¿Lo separa un vencimiento?</th></tr>`+
+    M.map(x=>`<tr><td>${nomMes(x.mes)}</td><td><b>${a1(x.anual)}</b></td><td>${fmt(x.mensual,2)}%</td><td>${x.anual_min==null?'—':a1(x.anual_min)+' a '+a1(x.anual_max)}</td><td>${a1(x.rem_anual)}</td><td>${a1(x.top10_anual)}</td>`+
+      `<td>${x.rem_anual==null?'—':(x.anual>=x.rem_anual?'+':'')+fmt(x.anual-x.rem_anual,1)+' pp'}</td><td>${x.vencimiento_propio?'Sí':'No: interpolado'}</td></tr>`).join('');
+  nota.innerHTML=`Anualizada = (1 + inflación del mes)<sup>12</sup> − 1: lo que daría un año entero a ese ritmo. La inflación del mes M es la que entra al CER entre el 16 de M+1 y el 15 de M+2 (regla del BCRA). Círculo vacío / "No: interpolado" = ningún bono CER vence en el borde de ese mes, así que su valor sale de interpolar entre los vencimientos vecinos: los bonos dicen el total del tramo, no cómo se reparte (ver los bloques más abajo). Puntas = las del bloque que contiene al mes. REM solo en los meses que la encuesta pregunta. La diferencia con el REM puede ser expectativa o prima por cobertura (ver backtest).`;
 })();
 
 // ---- inflación por bloques (curva fija + bonos CER)
