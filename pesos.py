@@ -283,8 +283,9 @@ el mismo valor: es el promedio del tramo, no una predicción de que la inflació
 
 
 def main() -> None:
-    ahora = datetime.now()
-    preliminar = F.es_habil(ahora.date()) and (11, 0) <= (ahora.hour, ahora.minute) < (17, 30)
+    # Igual que actualizar.py: la página publicada solo con la rueda cerrada (después de las 17:30 o día no hábil).
+    # Antes de las 11 data912 ya muestra la rueda del día con pocas operaciones: tampoco sirve.
+    preliminar = not A.rueda_cerrada()
     d = A.cargar()
     rem = R.cargar()
     ns = N.calcular(d["filas"], d["liq"], d["cer"], rem)
