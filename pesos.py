@@ -41,7 +41,7 @@ def acumular(vals: list[float]) -> float:
 
 
 def periodos(meses: list[dict]) -> list[dict]:
-    """Inflación implícita acumulada en períodos: próximos 3 y 6 meses, resto del año, trimestres y todo el tramo."""
+    """Inflación implícita acumulada en períodos: próximos 3 y 6 meses, trimestres y todo el tramo."""
     if not meses:
         return []
     idx = {m["mes"]: m for m in meses}
@@ -50,10 +50,6 @@ def periodos(meses: list[dict]) -> list[dict]:
     for n in (3, 6):
         if len(claves) >= n:
             cand.append((f"Próximos {n} meses", claves[:n]))
-    anio0 = claves[0][:4]
-    resto = [k for k in claves if k[:4] == anio0]
-    if 1 < len(resto) and resto[-1].endswith("-12"):
-        cand.append((f"Lo que queda de {anio0}", resto))
     for y in sorted({k[:4] for k in claves}):
         for q, ms in enumerate((("01", "02", "03"), ("04", "05", "06"), ("07", "08", "09"), ("10", "11", "12")), 1):
             ks = [f"{y}-{m}" for m in ms]
@@ -248,7 +244,7 @@ ol li{{margin:4px 0}}
 <h2>Inflación que espera el mercado</h2>
 <p>Comparando lo que rinde un bono a tasa fija con lo que rinde un bono que ajusta por inflación (CER) al mismo plazo, sale la inflación
 que el mercado tiene "en el precio". Llega hasta <b>{hasta}</b>: más allá no hay LECAP/BONCAP para comparar.</p>
-<div class="kpis">{kpi("Próximos 3 meses")}{kpi("Próximos 6 meses")}{kpi(next((p["nombre"] for p in pers if p["nombre"].startswith("Lo que queda")), ""))}</div>
+<div class="kpis">{kpi("Próximos 3 meses")}{kpi("Próximos 6 meses")}</div>
 
 <h3>Por período</h3>
 <div class="tabla"><table><tr><th>Período</th><th class="n">Mercado acumulada</th><th class="n">Mercado por mes</th><th class="n">REM acumulada</th><th class="n">REM por mes</th></tr>{t_per}</table></div>
