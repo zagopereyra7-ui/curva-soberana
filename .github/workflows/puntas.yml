@@ -29,6 +29,7 @@ jobs:
         run: |
           git config user.name "curva-soberana[bot]"
           git config user.email "actions@users.noreply.github.com"
+          [ -d datos/puntas ] || { echo "Sin fotos nuevas."; exit 0; }
           git add datos/puntas
           git diff --cached --quiet || git commit -m "Puntas $(date -u +%F_%H%M)"
           git pull --rebase && git push
