@@ -1,0 +1,34 @@
+# Guarda las puntas (compra/venta) de los bonos durante la rueda: 16:00, 16:20 y 16:40 de Argentina
+# (19:00, 19:20 y 19:40 UTC). GitHub puede atrasar el arranque; puntas.py descarta fotos después de las 17:00.
+name: Puntas durante la rueda
+
+on:
+  schedule:
+    - cron: "0,20,40 19 * * 1-5"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: guardar-datos          # no pisarse con otra corrida que también hace push
+  cancel-in-progress: false
+
+jobs:
+  foto:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: pip install -r requirements.txt
+      - run: python puntas.py
+      - name: Guardar la foto
+        run: |
+          git config user.name "curva-soberana[bot]"
+          git config user.email "actions@users.noreply.github.com"
+          git add datos/puntas
+          git diff --cached --quiet || git commit -m "Puntas $(date -u +%F_%H%M)"
+          git pull --rebase && git push

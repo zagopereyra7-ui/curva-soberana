@@ -10,6 +10,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: guardar-datos
+  cancel-in-progress: false
+
 jobs:
   actualizar:
     runs-on: ubuntu-latest
@@ -31,4 +35,4 @@ jobs:
           git config user.email "actions@users.noreply.github.com"
           git add datos fuentes docs
           git diff --cached --quiet || git commit -m "Actualización $(date -u +%F)"
-          git push
+          git pull --rebase && git push

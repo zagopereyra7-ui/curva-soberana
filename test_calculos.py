@@ -238,5 +238,30 @@ class TestNelsonSiegel(unittest.TestCase):
         self.assertEqual(N.inflacion_futura(fija, [p], date(2026, 11, 13), cer), [])
 
 
+
+class TestPuntas(unittest.TestCase):
+    def test_mediana_ignora_una_foto_rara(self):
+        import json, tempfile
+        from pathlib import Path
+        import puntas as P
+        viejo = P.CARPETA
+        P.CARPETA = Path(tempfile.mkdtemp())
+        try:
+            for h, (b, a) in zip(("1600", "1620", "1640"), ((100, 100.2), (100, 100.4), (100, 110))):
+                (P.CARPETA / f"2026-11-17_{h}.json").write_text(json.dumps({"bonos": {"T30A7": {"px_bid": b, "px_ask": a}}}))
+            r = P.del_dia(date(2026, 11, 17))["T30A7"]
+            self.assertAlmostEqual(r["spread"], 0.3992, places=3)
+            self.assertEqual((r["fotos"], r["de"]), (3, 3))
+            self.assertEqual(P.del_dia(date(2026, 11, 18)), {})
+        finally:
+            P.CARPETA = viejo
+
+    def test_sin_fotos_no_excluye_por_puntas_del_cierre(self):
+        import actualizar as A
+        p = {"symbol": "T30A7", "px_bid": 137.55, "px_ask": 150.0, "q_op": 1113}
+        self.assertIsNone(A.liquidez(p, {})[2])
+        self.assertEqual(A.liquidez(p, {})[3], "cierre")
+        self.assertIsNotNone(A.liquidez(p, {"T30A7": {"spread": 3.0, "fotos": 3, "de": 3}})[2])
+
 if __name__ == "__main__":
     unittest.main()

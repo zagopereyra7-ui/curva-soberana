@@ -17,6 +17,7 @@ import quien_acierta as Q
 import rem as R
 import instrumentos as I
 import nelson_siegel as N
+import puntas as P
 import tamar as TM
 import tickers as T
 
@@ -27,15 +28,21 @@ MAX_SPREAD_PCT = 2.0   # diferencia comprador-vendedor por encima de la cual el 
 MIN_OPERACIONES = 10   # operaciones mínimas en el día
 
 
-def liquidez(p: dict) -> tuple[float | None, int, str | None]:
-    """Spread % entre puntas, cantidad de operaciones y motivo si el precio no sirve para la curva."""
-    bid, ask, ops = p.get("px_bid") or 0, p.get("px_ask") or 0, int(p.get("q_op") or 0)
-    spread = (ask - bid) / ((ask + bid) / 2) * 100 if bid > 0 and ask > 0 else None
+def liquidez(p: dict, rueda: dict | None = None) -> tuple[float | None, int, str | None, str]:
+    """Spread % entre puntas, operaciones, motivo si el precio no sirve para la curva y de dónde salen las puntas.
+    Puntas: mediana de las fotos tomadas DURANTE la rueda (puntas.py). Si no hay fotos de ese día, las del cierre,
+    que no miden liquidez (después de las 17 el libro queda casi vacío): en ese caso no se excluye por spread."""
+    ops = int(p.get("q_op") or 0)
+    r = (rueda or {}).get(p.get("symbol"))
+    if r:
+        spread, origen = r["spread"], f"rueda ({r['fotos']} de {r['de']} fotos)"
+    else:
+        spread, origen = P.spread(p), "cierre"
     if ops < MIN_OPERACIONES:
-        return spread, ops, f"Poca liquidez: {ops} operaciones en el día"
-    if spread is not None and spread > MAX_SPREAD_PCT:
-        return spread, ops, f"Poca liquidez: {spread:.1f}% entre comprador y vendedor"
-    return spread, ops, None
+        return spread, ops, f"Poca liquidez: {ops} operaciones en el día", origen
+    if r and spread is not None and spread > MAX_SPREAD_PCT:
+        return spread, ops, f"Poca liquidez: {spread:.1f}% entre comprador y vendedor durante la rueda", origen
+    return spread, ops, None, origen
 
 
 def bajar(url: str):
@@ -109,11 +116,12 @@ def rueda_cerrada() -> bool:
     return not F.es_habil(ahora.date()) or (ahora.hour, ahora.minute) >= (17, 30)
 
 
-def main() -> None:
+CLAVES_CARGA = ("precios", "cierre", "liq", "cer", "a3500", "filas", "tit", "controles")
+
+
+def cargar() -> dict:
+    """Baja precios, CER y A3500 y valúa todos los bonos (sin expectativas). La usan esta página y pesos.py."""
     F.actualizar()
-    guardar = rueda_cerrada()
-    if not guardar:
-        print("Rueda abierta o sin abrir: se genera la página pero NO se guardan los historiales.")
     precios = {}
     for ep in ("arg_bonds", "arg_notes"):
         for r in bajar(f"https://data912.com/live/{ep}"):
@@ -122,6 +130,7 @@ def main() -> None:
     liq = c.liquidacion_t1(date.fromisoformat(cierre))
     cer = I.serie_bcra(30, "2020-08-01", (liq + timedelta(days=60)).isoformat())
     a3500 = I.serie_bcra(5, "2026-10-01", liq.isoformat())  # desde el inicio del registro de expectativas
+    rueda = P.del_dia(date.fromisoformat(cierre))   # puntas tomadas durante la rueda (vacío si no hay fotos)
     filas: list[dict] = []
 
     # 1) canje 2020 (flujos cargados a mano desde los decretos)
@@ -137,7 +146,7 @@ def main() -> None:
                           "dias": (r.vencimiento - liq).days, "vto": r.vencimiento.isoformat(),
                           "var": p.get("pct_change") or 0.0, "fuente": "Decretos 676 y 701/2020 (carga manual)",
                           "detalle": f"Paridad {r.paridad * 100:.1f}%"})
-            filas[-1]["spread"], filas[-1]["ops"], filas[-1]["motivo_liquidez"] = liquidez(p)
+            filas[-1]["spread"], filas[-1]["ops"], filas[-1]["motivo_liquidez"], filas[-1]["puntas"] = liquidez(p, rueda)
             filas[-1]["calc"] = {"tipo": "canje", "precio_calc": p["c"], "ley": ley,
                                  "residual": r.residual, "corridos": r.intereses_corridos, "paridad": r.paridad,
                                  "flujos": [[fl.fecha_pago.isoformat(), round(fl.interes + fl.amortizacion, 6)]
@@ -176,12 +185,21 @@ def main() -> None:
                       "tir": v.tir * 100, "md": v.duration, "dias": v.dias, "vto": v.vencimiento.isoformat(),
                       "var": p.get("pct_change") or 0.0, "detalle": det,
                       **fuente_titulo(t, idx_bo)})
-        filas[-1]["spread"], filas[-1]["ops"], filas[-1]["motivo_liquidez"] = liquidez(p)
+        filas[-1]["spread"], filas[-1]["ops"], filas[-1]["motivo_liquidez"], filas[-1]["puntas"] = liquidez(p, rueda)
         filas[-1]["calc"] = {"tipo": t["tipo"], "nombre": t["nombre"], **v.extra}
         if r["ticker"] in tasas:
             filas[-1]["calc"]["licitacion"] = {k: tasas[r["ticker"]].get(k) for k in ("tem_capitalizacion_pct", "tirea_pct", "tasa_cupon_pct")}
 
     marcar_fuera_de_curva(filas)
+    return dict(zip(CLAVES_CARGA, (precios, cierre, liq, cer, a3500, filas, tit, controles)))
+
+
+def main() -> None:
+    guardar = rueda_cerrada()
+    if not guardar:
+        print("Rueda abierta o sin abrir: se genera la página pero NO se guardan los historiales.")
+    d = cargar()
+    precios, cierre, liq, cer, a3500, filas, tit, controles = (d[k] for k in CLAVES_CARGA)
 
     # 3) expectativas implícitas: tasa fija vs CER (inflación) y vs dollar linked (devaluación)
     # Bonos con cupón (TX28, TX31, TY30P) fuera de los pares: comparar TIR de bonos con cupón y durations

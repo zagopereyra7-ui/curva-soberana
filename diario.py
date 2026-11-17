@@ -34,6 +34,7 @@ def paso(nombre: str, fn, registro: list[str]) -> None:
 
 def main() -> None:
     import actualizar
+    import pesos
     import descargar_resoluciones
     import leer_con_ia
     import rem
@@ -55,6 +56,7 @@ def main() -> None:
     if hay_clave:
         paso("Tasas de licitación", tasas.main, reg)
     paso("Valuación y página", actualizar.main, reg)
+    paso("Página de bonos en pesos", pesos.main, reg)
     LOG.parent.mkdir(exist_ok=True)
     with LOG.open("a", encoding="utf-8") as fh:
         fh.write(f"--- {datetime.now():%Y-%m-%d %H:%M}\n" + "\n".join(reg) + "\n")
