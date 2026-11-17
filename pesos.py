@@ -107,39 +107,6 @@ def svg_curva(series: list[dict], titulo_y: str) -> str:
     return "".join(g)
 
 
-def svg_barras(meses: list[dict]) -> str:
-    W, H, ml, mr, mt, mb = 640, 260, 44, 10, 14, 34
-    n = len(meses)
-    if not n:
-        return ""
-    vals = [m["mensual_max"] for m in meses] + [m.get("rem_mensual") or 0 for m in meses]
-    ymax = max(vals) * 1.1
-    ymin = min(0, min(m["mensual_min"] for m in meses))
-    Y = lambda v: mt + (ymax - v) / (ymax - ymin) * (H - mt - mb)
-    bw = (W - ml - mr) / n
-    g = [f'<svg viewBox="0 0 {W} {H}" class="graf" role="img" aria-label="Inflación implícita mensual vs REM">']
-    v = 0.0
-    while v <= ymax:
-        g.append(f'<line x1="{ml}" x2="{W - mr}" y1="{Y(v):.1f}" y2="{Y(v):.1f}" class="grid"/>'
-                 f'<text x="{ml - 6}" y="{Y(v) + 4:.1f}" class="eje" text-anchor="end">{v:.1f}%</text>')
-        v += 0.5
-    for i, m in enumerate(meses):
-        x0 = ml + i * bw
-        cx = x0 + bw * 0.38
-        g.append(f'<rect x="{x0 + bw * 0.14:.1f}" y="{Y(m["mensual"]):.1f}" width="{bw * 0.48:.1f}" '
-                 f'height="{Y(0) - Y(m["mensual"]):.1f}" class="barra{"" if m["vencimiento_propio"] else " prom"}">'
-                 f'<title>{nom_mes(m["mes"])}: mercado {m["mensual"]:.2f}% (puntas {m["mensual_min"]:.2f}–{m["mensual_max"]:.2f})</title></rect>'
-                 f'<line x1="{cx:.1f}" x2="{cx:.1f}" y1="{Y(m["mensual_min"]):.1f}" y2="{Y(m["mensual_max"]):.1f}" class="banda"/>'
-                 f'<text x="{cx:.1f}" y="{Y(m["mensual"]) - 5:.1f}" class="lbl" text-anchor="middle">{m["mensual"]:.2f}</text>')
-        if m.get("rem_mensual") is not None:
-            ry = Y(m["rem_mensual"])
-            g.append(f'<line x1="{x0 + bw * 0.08:.1f}" x2="{x0 + bw * 0.92:.1f}" y1="{ry:.1f}" y2="{ry:.1f}" class="rem">'
-                     f'<title>REM {m["rem_mensual"]:.2f}%</title></line>')
-        g.append(f'<text x="{x0 + bw / 2:.1f}" y="{H - mb + 18}" class="eje" text-anchor="middle">{nom_mes(m["mes"])}</text>')
-    g.append("</svg>")
-    return "".join(g)
-
-
 # ---------- página ----------
 def fila_bono(f: dict, extra: str) -> str:
     motivo = html.escape(f.get("motivo") or "") if f["revisar"] else ""
@@ -172,20 +139,10 @@ def armar(d: dict, ns: dict | None, rem: dict | None, preliminar: bool) -> str:
         return "No: su ajuste CER ya está publicado"
     t_cer = "".join(fila_bono(f, f'<td>{uso_cer(f)}</td>') for f in cer)
 
-    t_meses = "".join(
-        f'<tr><td><b>{nom_mes(m["mes"])}</b>{"" if m["vencimiento_propio"] else " <span class=tag>promedio de su bloque</span>"}</td>'
-        f'<td class="n">{pct(m["mensual"])}</td><td class="n mut">{pct(m["mensual_min"])} a {pct(m["mensual_max"])}</td>'
-        f'<td class="n">{pct(m["anual"], 1)}</td><td class="n">{pct(m.get("rem_mensual"))}</td>'
-        f'<td class="n">{"–" if m.get("rem_mensual") is None else f"{m["mensual"] - m["rem_mensual"]:+.2f}".replace(".", ",")}</td></tr>'
-        for m in meses)
     t_per = "".join(
         f'<tr><td><b>{p["nombre"]}</b><div class="mut">{p["meses"]}</div></td><td class="n">{pct(p["acumulada"])}</td>'
         f'<td class="n">{pct(p["mensual"])}</td><td class="n">{pct(p["rem"])}</td><td class="n">{pct(p["rem_mensual"])}</td></tr>'
         for p in pers)
-    t_bl = "".join(
-        f'<tr><td><b>{b["nombre"]}</b></td><td>{b["bono"]}</td><td>{b["tasa_fija_de"]}</td><td class="n">{pct(b["mercado"])}</td>'
-        f'<td class="n mut">{pct(b["banda_min"])} a {pct(b["banda_max"])}</td><td class="n">{pct(b.get("rem"))}</td></tr>'
-        for b in (ns or {}).get("bloques", []))
 
     kp = {p["nombre"]: p for p in pers}
     def kpi(nombre):
@@ -249,18 +206,6 @@ que el mercado tiene "en el precio". Llega hasta <b>{hasta}</b>: más allá no h
 <h3>Por período</h3>
 <div class="tabla"><table><tr><th>Período</th><th class="n">Mercado acumulada</th><th class="n">Mercado por mes</th><th class="n">REM acumulada</th><th class="n">REM por mes</th></tr>{t_per}</table></div>
 
-<h3>Mes a mes</h3>
-{svg_barras(meses)}
-<div class="mut">Barra = mercado (más clara si el mes no tiene vencimiento propio y toma el promedio de su bloque) · línea vertical = rango por puntas · línea punteada = REM.</div>
-<div class="nota"><b>Meses con el mismo número.</b> Cuando entre dos bonos CER hay más de un mes sin otro bono que venza en el medio,
-los precios solo dicen cuánta inflación habrá en esos meses <i>juntos</i>, no cómo se reparte entre ellos. Por eso esos meses muestran
-el mismo valor: es el promedio del tramo, no una predicción de que la inflación vaya a ser igual en cada uno. Se marcan con
-"promedio de su bloque" y se ven en la tabla de bloques.</div>
-<div class="tabla"><table><tr><th>Mes de IPC</th><th class="n">Mercado</th><th class="n">Rango por puntas</th><th class="n">Anualizada</th><th class="n">REM</th><th class="n">Dif. (pp)</th></tr>{t_meses}</table></div>
-
-<h3>Por bloque (lo que los bonos dicen exactamente)</h3>
-<div class="tabla"><table><tr><th>Meses</th><th>Bono CER</th><th>Tasa fija de</th><th class="n">Promedio por mes</th><th class="n">Rango por puntas</th><th class="n">REM</th></tr>{t_bl}</table></div>
-
 <h2>Curva a tasa fija (LECAP y BONCAP)</h2>
 {g_fija}
 <div class="tabla"><table><tr><th>Bono</th><th>Vence</th><th class="n">Días</th><th class="n">Precio</th><th class="n">TIR (TEA)</th><th class="n">TEM</th><th class="n">Operaciones</th><th class="n">Entre puntas</th><th>Estado</th></tr>{t_fija}</table></div>
@@ -274,7 +219,7 @@ el mismo valor: es el promedio del tramo, no una predicción de que la inflació
 <li><b>Tasa fija al plazo de cada bono CER</b>: la LECAP/BONCAP que vence el mismo día; si no hay, interpolación lineal entre las dos vecinas. No se extrapola.</li>
 <li><b>Inflación que paga cada bono CER</b>: (1 + tasa fija)<sup>t</sup> ÷ (1 + TIR real)<sup>t</sup>, menos la parte del CER que ya está publicada.</li>
 <li><b>Bloques</b>: entre dos vencimientos CER seguidos, la inflación promedio por mes de ese tramo. Es lo único que los bonos dicen exactamente.</li>
-<li><b>Mes a mes</b>: cada mes toma el valor del bloque que lo cubre. Si un bloque abarca varios meses, todos quedan con el mismo promedio (marcado).</li>
+<li><b>Períodos</b>: la inflación de cada período (3 meses, 6 meses, trimestre) se arma encadenando los bloques que lo cubren. Si un bloque abarca varios meses, los bonos solo dicen el total de esos meses juntos, no cómo se reparte.</li>
 <li><b>Regla del CER</b>: la inflación del mes M mueve el CER del 16 de M+1 al 15 de M+2 (BCRA); el bono usa el CER de 10 días hábiles antes de vencer.</li>
 <li><b>Rango por puntas</b>: el resultado moviendo cada precio media punta (comprador/vendedor).</li>
 </ol>
