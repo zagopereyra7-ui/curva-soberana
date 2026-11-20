@@ -1,0 +1,52 @@
+{
+ "fecha": "2026-11-20",
+ "total": 549,
+ "ok": 549,
+ "fallas": [],
+ "por_regla": {
+  "Vencimiento del nombre = vencimiento leído": {
+   "total": 97,
+   "ok": 97
+  },
+  "Emisión anterior al vencimiento": {
+   "total": 97,
+   "ok": 97
+  },
+  "Amortización suma 100%": {
+   "total": 97,
+   "ok": 97
+  },
+  "Ninguna cuota después del vencimiento": {
+   "total": 97,
+   "ok": 97
+  },
+  "Pagos de interés entre emisión y vencimiento": {
+   "total": 54,
+   "ok": 54
+  },
+  "La TNA leída figura en el texto": {
+   "total": 6,
+   "ok": 6
+  },
+  "La TEM leída figura en el texto": {
+   "total": 4,
+   "ok": 4
+  },
+  "El ticker corresponde al vencimiento": {
+   "total": 26,
+   "ok": 26
+  },
+  "La TEM leída figura en el comunicado": {
+   "total": 26,
+   "ok": 26
+  },
+  "El precio de corte leído figura en el comunicado": {
+   "total": 16,
+   "ok": 16
+  },
+  "El TIREA leído figura en el comunicado": {
+   "total": 29,
+   "ok": 29
+  }
+ }
+}

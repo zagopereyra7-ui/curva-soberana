@@ -263,5 +263,36 @@ class TestPuntas(unittest.TestCase):
         self.assertEqual(A.liquidez(p, {})[3], "cierre")
         self.assertIsNotNone(A.liquidez(p, {"T30A7": {"spread": 3.0, "fotos": 3, "de": 3}})[2])
 
+class TestControlesIA(unittest.TestCase):
+    """Los controles tienen que FALLAR cuando la IA lee mal: se prueban con lecturas adulteradas."""
+    TEXTO = "LETRA ... CON VENCIMIENTO 29 DE ENERO DE 2027 ... tasa efectiva mensual del 2,25% ..."
+
+    def lectura(self, **cambios):
+        t = {"nombre": "Letra capitalizable con vencimiento 29 de enero de 2027", "fecha_emision": "2026-09-01",
+             "fecha_vencimiento": "2027-01-29", "amortizacion": [{"fecha": "2027-01-29", "porcentaje": 100}],
+             "fechas_pago_intereses": ["2027-01-29"], "tasa_nominal_anual_pct": None, "tasa_efectiva_mensual_pct": 2.25}
+        t.update(cambios)
+        return {"titulos": [t]}
+
+    def fallas(self, lectura):
+        import controles_ia as C
+        return [c["regla"] for c in C.control_resolucion("1", lectura, self.TEXTO) if not c["ok"]]
+
+    def test_lectura_correcta_pasa(self):
+        self.assertEqual(self.fallas(self.lectura()), [])
+
+    def test_detecta_errores(self):
+        self.assertIn("Vencimiento del nombre = vencimiento leído", self.fallas(self.lectura(fecha_vencimiento="2027-02-26")))
+        self.assertIn("La TEM leída figura en el texto", self.fallas(self.lectura(tasa_efectiva_mensual_pct=2.5)))
+        self.assertIn("Amortización suma 100%", self.fallas(self.lectura(amortizacion=[{"fecha": "2027-01-29", "porcentaje": 50}])))
+        self.assertIn("Emisión anterior al vencimiento", self.fallas(self.lectura(fecha_emision="2027-03-01")))
+
+    def test_ticker_licitacion(self):
+        import controles_ia as C
+        lect = {"titulos": [{"nombre": "x", "ticker": "S29E7", "fecha_vencimiento": "2027-02-26", "tem_capitalizacion_pct": 2.25}]}
+        malas = [c["regla"] for c in C.control_licitacion("a", lect, self.TEXTO) if not c["ok"]]
+        self.assertEqual(malas, ["El ticker corresponde al vencimiento"])
+
+
 if __name__ == "__main__":
     unittest.main()

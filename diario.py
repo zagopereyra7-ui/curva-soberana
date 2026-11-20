@@ -32,6 +32,13 @@ def paso(nombre: str, fn, registro: list[str]) -> None:
         traceback.print_exc()
 
 
+def guardar_normas_hoy(ids) -> None:
+    """Qué resoluciones leyó la IA hoy (lo usa el párrafo diario de pesos.py)."""
+    import json
+    (BASE / "datos" / "normas_hoy.json").write_text(
+        json.dumps({"fecha": datetime.now().date().isoformat(), "ids": list(ids or [])}), encoding="utf-8")
+
+
 def main() -> None:
     import actualizar
     import pesos
@@ -46,7 +53,7 @@ def main() -> None:
     reg: list[str] = []
     paso("Boletín Oficial", lambda: descargar_resoluciones.main(datetime.now().year), reg)
     if hay_clave:
-        paso("IA lee resoluciones nuevas", lambda: leer_con_ia.auto(leer_con_ia.pendientes()), reg)
+        paso("IA lee resoluciones nuevas", lambda: guardar_normas_hoy(leer_con_ia.auto(leer_con_ia.pendientes())), reg)
     elif leer_con_ia.pendientes():
         reg.append(f"AVISO sin ANTHROPIC_API_KEY: quedan sin leer {', '.join(leer_con_ia.pendientes())}")
     paso("Comunicados de licitación", lambda: (resultados_licitacion.listar(paginas=2, hasta_anio=datetime.now().year),

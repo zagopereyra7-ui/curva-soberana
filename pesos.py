@@ -107,6 +107,87 @@ def svg_curva(series: list[dict], titulo_y: str) -> str:
     return "".join(g)
 
 
+# ---------- lo que hizo la IA ----------
+def datos_ia() -> dict:
+    """Resumen de todo lo que leyó la IA, sus controles automáticos y su costo (para la sección de la página)."""
+    import leer_con_ia as L
+    idx = json.loads((L.FUENTES / "indice.json").read_text(encoding="utf-8"))
+    lect = {f.stem: json.loads(f.read_text(encoding="utf-8")) for f in (L.SALIDA / "opus").glob("*.json")}
+    ultimas = sorted(lect, key=lambda i: idx.get(i, {}).get("fecha", ""), reverse=True)[:5]
+    uso_f = L.SALIDA / "uso.json"
+    uso = json.loads(uso_f.read_text(encoding="utf-8")) if uso_f.exists() else {}
+    ctrl_f = BASE / "datos" / "controles_ia.json"
+    return {
+        "resoluciones": len(lect), "titulos": sum(len(v.get("titulos", [])) for v in lect.values()),
+        "licitaciones": len(list((L.SALIDA / "resultados").glob("*.json"))),
+        "ultimas": [{"fecha": idx.get(i, {}).get("fecha", ""), "titulo": idx.get(i, {}).get("titulo", i),
+                     "url": idx.get(i, {}).get("url", ""),
+                     "emite": [t["nombre"] for t in lect[i].get("titulos", [])]} for i in ultimas],
+        "costo": {k: v.get("costo_usd") or 0 for k, v in uso.items() if k != "haiku"},
+        "control": json.loads(ctrl_f.read_text(encoding="utf-8")) if ctrl_f.exists() else None,
+    }
+
+
+def bloque_parrafo(res: dict | None) -> str:
+    if not res:
+        return ""
+    if res.get("parrafo"):
+        ctrl = "cada número controlado contra los datos"
+        if res["control"]["intentos"] > 1:
+            ctrl += " (corregido en el 2º intento)"
+        return (f'<div class="ia"><div class="mut">Qué pasó hoy · escrito por IA ({res.get("modelo", "Claude")}) · {ctrl} · '
+                f'costo US$ {res.get("costo_usd", 0):.3f}</div><p>{html.escape(res["parrafo"])}</p></div>')
+    if res.get("control", {}).get("intentos"):
+        return ('<div class="ia"><div class="mut">Qué pasó hoy</div><p>Hoy no hay párrafo: el texto de la IA citó números que no '
+                'estaban en los datos y no pasó el control automático.</p></div>')
+    return ""
+
+
+def seccion_ia(ia: dict, res: dict | None) -> str:
+    c = ia["control"] or {}
+    costo_total = sum(ia["costo"].values())
+    reglas = "".join(f'<tr><td>{html.escape(r)}</td><td class="n">{g["ok"]} de {g["total"]}</td></tr>'
+                     for r, g in c.get("por_regla", {}).items())
+    fallas = c.get("fallas", [])
+    if fallas:
+        items = "".join(f'<li>{html.escape(f["fuente"])} · {html.escape(f["titulo"])}: {html.escape(f["regla"])} '
+                        f'({html.escape(f["detalle"])})</li>' for f in fallas[:10])
+        t_fallas = f"<p><b>Fallas:</b></p><ul>{items}</ul>"
+    else:
+        t_fallas = '<p class="mut">Sin fallas.</p>'
+    ultimas = "".join(
+        f'<tr><td class="n">{u["fecha"][6:8]}/{u["fecha"][4:6]}/{u["fecha"][:4]}</td>'
+        f'<td><a href="{html.escape(u["url"])}">{html.escape(u["titulo"])}</a>'
+        f'<div class="mut">{html.escape("; ".join(u["emite"]) or "no emite títulos nuevos")}</div></td></tr>'
+        for u in ia["ultimas"])
+    hoy = f' · el párrafo de hoy, US$ {res["costo_usd"]:.3f}' if res and res.get("costo_usd") else ""
+    return f"""<h2>Qué hizo la IA</h2>
+<p>La IA hace el trabajo de lectura que hoy un analista hace a mano, y escribe el resumen del día. <b>No calcula ningún número de
+esta página</b>: las tasas, la inflación implícita y los rangos salen de fórmulas fijas (ver "Cómo se calcula").</p>
+<div class="tabla"><table><tr><th>Tarea</th><th>Qué lee</th><th>Qué devuelve</th><th class="n">Hasta hoy</th></tr>
+<tr><td><b>Condiciones de cada bono</b></td><td>Resoluciones de emisión del Boletín Oficial</td><td>Vencimiento, tipo de ajuste, cupones, amortización y rezago del CER, en una tabla fija</td><td class="n">{ia["resoluciones"]} resoluciones · {ia["titulos"]} títulos</td></tr>
+<tr><td><b>Tasa de cada LECAP/BONCAP</b></td><td>Comunicados de resultado de licitación de Economía</td><td>TEM, precio de corte y TIREA de cada título</td><td class="n">{ia["licitaciones"]} comunicados</td></tr>
+<tr><td><b>Párrafo "Qué pasó hoy"</b></td><td>Los números del día que arma el programa</td><td>3 a 5 oraciones, solo con esos números</td><td class="n">1 por rueda</td></tr>
+</table></div>
+<h3>Cómo se controla</h3>
+<ol>
+<li><b>Contra el texto oficial, sin IA.</b> Cada dato leído se revisa con reglas fijas: el vencimiento del nombre del título es el leído,
+las cuotas suman 100%, los pagos caen entre emisión y vencimiento, el ticker corresponde a la fecha, y cada tasa y precio aparece escrito
+en el documento. Resultado: <b>{c.get("ok", 0)} de {c.get("total", 0)} controles OK</b>.</li>
+<li><b>Los controles se prueban</b> con lecturas adulteradas a propósito (vencimiento cambiado, tasa inventada, cuotas que no suman):
+si un control no las detecta, las pruebas fallan.</li>
+<li><b>El párrafo diario</b> se revisa número por número contra los datos del día. Si cita uno que no está, se le pide corregir una vez;
+si vuelve a fallar, ese día no se publica.</li>
+<li><b>Nunca se paga dos veces</b> la misma lectura: cada documento leído queda guardado.</li>
+</ol>
+<details><summary>Detalle por control</summary><div class="tabla"><table><tr><th>Control</th><th class="n">OK</th></tr>{reglas}</table></div>
+{t_fallas}</details>
+<p class="mut">Costo acumulado de la IA (Claude Opus): US$ {costo_total:.2f}{hoy}.</p>
+<h3>Últimas resoluciones leídas</h3>
+<div class="tabla"><table><tr><th class="n">Fecha</th><th>Resolución y lo que emite</th></tr>{ultimas}</table></div>
+"""
+
+
 # ---------- página ----------
 def fila_bono(f: dict, extra: str) -> str:
     motivo = html.escape(f.get("motivo") or "") if f["revisar"] else ""
@@ -115,7 +196,7 @@ def fila_bono(f: dict, extra: str) -> str:
             f'<td class="n">{f.get("ops") or 0}</td><td class="n">{pct(f.get("spread"))}</td><td>{"Fuera: " + motivo if motivo else "En la curva"}</td></tr>')
 
 
-def armar(d: dict, ns: dict | None, rem: dict | None, preliminar: bool) -> str:
+def armar(d: dict, ns: dict | None, rem: dict | None, preliminar: bool, ia: dict | None = None, res: dict | None = None) -> str:
     filas = d["filas"]
     fija = sorted([f for f in filas if f["curva"] == "pesos_fija" and not (f.get("calc") or {}).get("cupon")], key=lambda f: f["dias"])
     cer = sorted([f for f in filas if f["curva"] == "cer"], key=lambda f: f["dias"])
@@ -192,12 +273,15 @@ td.n,th.n{{text-align:right;white-space:nowrap}} tr.gris td{{color:var(--mut)}}
 .pt.c1{{fill:var(--c1)}} .pt.c2{{fill:var(--c2)}} .pt.fuera{{fill:var(--bg);stroke:var(--mut);stroke-width:1.5}}
 .barra{{fill:var(--c1)}} .barra.prom{{fill:var(--prom)}} .banda{{stroke:var(--fg);stroke-width:1.2;opacity:.6}} .rem{{stroke:var(--rem);stroke-width:2.5;stroke-dasharray:5 3}}
 .aviso{{background:var(--warn);color:#fff;padding:8px 16px;font-weight:600}}
+.ia{{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--c2);border-radius:8px;padding:10px 14px;margin:16px 0}} .ia p{{margin:6px 0 0}}
+details{{margin:8px 0}} summary{{cursor:pointer;color:var(--c1)}} a{{color:var(--c1)}}
 .nota{{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--c1);border-radius:8px;padding:10px 14px;margin:12px 0}}
 ol li{{margin:4px 0}}
 </style></head><body>{aviso}<main>
 <h1>Curva de bonos soberanos en pesos</h1>
 <div class="mut">Precios de cierre del {cierre} (data912) · CER publicado hasta {fecha(d["cer"] and max(d["cer"]).isoformat())} (BCRA) · {rem_txt} · generado {datetime.now().strftime("%d/%m/%Y %H:%M")}</div>
 
+{bloque_parrafo(res)}
 <h2>Inflación que espera el mercado</h2>
 <p>Comparando lo que rinde un bono a tasa fija con lo que rinde un bono que ajusta por inflación (CER) al mismo plazo, sale la inflación
 que el mercado tiene "en el precio". Llega hasta <b>{hasta}</b>: más allá no hay LECAP/BONCAP para comparar.</p>
@@ -224,7 +308,23 @@ que el mercado tiene "en el precio". Llega hasta <b>{hasta}</b>: más allá no h
 <li><b>Rango por puntas</b>: el resultado moviendo cada precio media punta (comprador/vendedor).</li>
 </ol>
 {nota_puntas}
+{seccion_ia(ia, res) if ia else ''}
 </main></body></html>"""
+
+
+def resumen_ia_del_dia(resumen_ia, d: dict, ns: dict | None, rem: dict | None) -> dict | None:
+    idx = json.loads((BASE / "fuentes" / "boletin" / "indice.json").read_text(encoding="utf-8"))
+    nh = BASE / "datos" / "normas_hoy.json"
+    hoy = json.loads(nh.read_text(encoding="utf-8")) if nh.exists() else {}
+    ids = hoy.get("ids", []) if hoy.get("fecha") == date.today().isoformat() else []
+    normas = [idx.get(i, {}).get("titulo", i) for i in ids]
+    hechos = resumen_ia.armar_hechos(d["cierre"], periodos((ns or {}).get("meses", [])), d["filas"],
+                                     rem and rem.get("edicion"), normas)
+    try:
+        return resumen_ia.generar(hechos)
+    except Exception as e:  # noqa: BLE001 - sin párrafo la página sale igual
+        print("párrafo de IA: falló", e)
+        return None
 
 
 def main() -> None:
@@ -234,8 +334,15 @@ def main() -> None:
     d = A.cargar()
     rem = R.cargar()
     ns = N.calcular(d["filas"], d["liq"], d["cer"], rem)
+    import controles_ia
+    controles_ia.correr()
+    ia = datos_ia()
+    res = None
+    if not preliminar:                      # el párrafo de la IA solo con precios de cierre
+        import resumen_ia
+        res = resumen_ia_del_dia(resumen_ia, d, ns, rem)
     destino = BASE / "docs" / ("pesos_preliminar.html" if preliminar else "pesos.html")
-    destino.write_text(armar(d, ns, rem, preliminar), encoding="utf-8")
+    destino.write_text(armar(d, ns, rem, preliminar, ia, res), encoding="utf-8")
     print("página:", destino.name, "| meses:", len((ns or {}).get("meses", [])))
 
 
