@@ -1,10 +1,11 @@
-# Guarda las puntas (compra/venta) de los bonos durante la rueda: 16:00, 16:20 y 16:40 de Argentina
-# (19:00, 19:20 y 19:40 UTC). GitHub puede atrasar el arranque; puntas.py descarta fotos después de las 17:00.
+# Guarda las puntas (compra/venta) de los bonos durante la rueda: 16:00, 16:20 y 16:40 de Argentina.
+# Un solo arranque a las 15:30 (18:30 UTC) que espera adentro hasta cada horario: GitHub atrasa los cron
+# ~50 minutos y con un cron por foto solo entraba la última. puntas.py descarta fotos fuera de 15:45-17:00.
 name: Puntas durante la rueda
 
 on:
   schedule:
-    - cron: "0,20,40 19 * * 1-5"
+    - cron: "30,50 18 * * 1-5"   # dos arranques: GitHub a veces saltea corridas
   workflow_dispatch: {}
 
 permissions:
@@ -17,14 +18,14 @@ concurrency:
 jobs:
   foto:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 100
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.13"
       - run: pip install -r requirements.txt
-      - run: python puntas.py
+      - run: python puntas.py --rueda
       - name: Guardar la foto
         run: |
           git config user.name "curva-soberana[bot]"

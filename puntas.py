@@ -5,6 +5,8 @@ operaciones y quedó con 8,6% entre comprador y vendedor). Se toman 3 fotos (16:
 Argentina) y se usa la MEDIANA del spread de cada bono: una foto rara no mueve el resultado.
 
 Correr: python puntas.py            (guarda una foto si la rueda está abierta)
+        python puntas.py --rueda    (espera y saca las 3 fotos: 16:00, 16:20 y 16:40; la usa GitHub, que
+                                     arranca los cron con hasta ~1 hora de atraso)
 Datos:  datos/puntas/AAAA-MM-DD_HHMM.json
 """
 from __future__ import annotations
@@ -55,6 +57,11 @@ def spread(p: dict) -> float | None:
 def del_dia(d: date) -> dict[str, dict]:
     """Por bono: mediana del spread de las fotos del día y cuántas fotos lo tuvieron. Vacío si no hay fotos."""
     fotos = sorted(CARPETA.glob(f"{d.isoformat()}_*.json")) if CARPETA.exists() else []
+    por_horario: dict[int, Path] = {}             # una foto por horario de 20 min (hay 2 arranques de respaldo)
+    for f in fotos:
+        hhmm = f.stem.split("_")[1]
+        por_horario.setdefault((int(hhmm[:2]) * 60 + int(hhmm[2:])) // 20, f)
+    fotos = list(por_horario.values())
     por_bono: dict[str, list[float]] = {}
     for f in fotos:
         for sym, p in json.loads(f.read_text(encoding="utf-8"))["bonos"].items():
@@ -66,5 +73,29 @@ def del_dia(d: date) -> dict[str, dict]:
     return {sym: {"spread": statistics.median(v), "fotos": len(v), "de": len(fotos)} for sym, v in por_bono.items()}
 
 
+HORARIOS = [(16, 0), (16, 20), (16, 40)]
+
+
+def rueda() -> None:
+    """Saca una foto en cada horario que todavía no pasó. Si arranca tarde, saca una enseguida (si está en la
+    ventana) y sigue con los horarios que quedan. No hace nada en días no hábiles."""
+    import time
+    t = ahora_art()
+    if not F.es_habil(t.date()):
+        print(f"{t:%d/%m}: no es día hábil.")
+        return
+    pendientes = [t.replace(hour=h, minute=m, second=0, microsecond=0) for h, m in HORARIOS]
+    pendientes = [p for p in pendientes if p > t]
+    if DESDE <= (t.hour, t.minute) < HASTA and len(pendientes) < len(HORARIOS):
+        foto()                                    # llegó tarde: la foto del horario que se perdió, ahora
+    for p in pendientes:
+        espera = (p - ahora_art()).total_seconds()
+        if espera > 0:
+            print(f"esperando hasta {p:%H:%M} ({espera/60:.0f} min)", flush=True)
+            time.sleep(espera)
+        foto()
+
+
 if __name__ == "__main__":
-    foto()
+    import sys
+    rueda() if "--rueda" in sys.argv else foto()
