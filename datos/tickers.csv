@@ -33,6 +33,7 @@ TXMD9;dual;2029-12;ok;2029-12-14;343013;Bono del Tesoro Nacional en pesos dual C
 TXMJ0;dual;2030-06;ok;2030-06-28;343013;Bono del Tesoro Nacional en pesos dual CER/TAMAR con vencimiento 28 de junio de 2030
 TXMJ8;dual;2028-06;ok;2028-06-30;342001;Bono del Tesoro Nacional en pesos dual CER/TAMAR con vencimiento 30 de junio de 2028
 TXMJ9;dual;2029-06;ok;2029-06-29;341303;Bono del Tesoro Nacional en pesos dual CER/TAMAR con vencimiento 29 de junio de 2029
+TY27P;bono_tasa_fija_pesos;2027;sin_titulo;;;
 TY30P;bono_tasa_fija_pesos;2030;ok;2030-05-30;326136;Bono del Tesoro Nacional en pesos a tasa fija con vencimiento 30 de mayo de 2030
 TZV27;bono_dolar_linked;2027-06;ok;2027-06-30;310336;Bono del Tesoro Nacional vinculado al dólar estadounidense cero cupón con vencimiento 30 de junio de 2027
 TZV28;bono_dolar_linked;2028-06;ok;2028-06-30;338764;Bono del Tesoro Nacional vinculado al dólar estadounidense cero cupón con vencimiento 30 de junio de 2028

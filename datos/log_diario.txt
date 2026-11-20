@@ -28,3 +28,13 @@ ok    REM del BCRA (0 s)
 ok    Tasas de licitación (0 s)
 ok    Valuación y página (2 s)
 ok    Página de bonos en pesos (2 s)
+--- 2026-11-20 23:12
+ok    Boletín Oficial (8 s)
+FALLA IA lee resoluciones nuevas: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011ChF2WsDkxrDym3L7kwfW1'}
+ok    Comunicados de licitación (5 s)
+ok    Tickers (1 s)
+ok    REM del BCRA (0 s)
+ok    Tasas de licitación (0 s)
+ok    Valuación y página (4 s)
+ok    Página de bonos en pesos (2 s)
+ok    Página de bonos en dólares (2 s)
