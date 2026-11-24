@@ -1,4 +1,4 @@
-"""Baja precios (data912) y series (BCRA), valúa todos los bonos y genera docs/index.html.
+"""Baja precios (data912) y series (BCRA), valúa todos los bonos y genera la página técnica completa (docs/tecnico.html; la principal es pagina.py -> index.html).
 
 Uso: python actualizar.py
 """
@@ -305,7 +305,7 @@ def main() -> None:
     (BASE / "docs").mkdir(exist_ok=True)
     # La página publicada (index.html) solo se arma con precios de cierre. Con la rueda abierta los precios son
     # parciales (bonos que entran y salen por liquidez) y los números saltaban en cada corrida: se guarda aparte.
-    destino = "index.html" if guardar else "preliminar.html"
+    destino = "tecnico.html" if guardar else "tecnico_preliminar.html"
     if not guardar:
         out = out.replace("<body>", '<body><div style="background:#b45309;color:#fff;padding:8px 16px;font-weight:600">'
                           'VISTA PRELIMINAR con precios de una rueda abierta: no es la versión publicada.</div>', 1)
