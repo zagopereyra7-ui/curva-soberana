@@ -28,6 +28,11 @@ def paso(nombre: str, fn, registro: list[str]) -> None:
         fn()
         registro.append(f"ok    {nombre} ({time.time() - t0:.0f} s)")
     except Exception as e:  # noqa: BLE001
+        if "credit balance is too low" in str(e):
+            # Sin saldo en la API no es una falla del proceso: el resto corre igual. Se anota como aviso
+            # para que la corrida quede en verde y el rojo (con mail de GitHub) quede solo para fallas reales.
+            registro.append(f"AVISO {nombre}: sin crédito en la API de Anthropic, se saltea la IA")
+            return
         registro.append(f"FALLA {nombre}: {e}")
         traceback.print_exc()
 
