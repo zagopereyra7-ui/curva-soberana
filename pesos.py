@@ -226,7 +226,7 @@ def svg_dolar(dd: dict) -> str:
     return "".join(g)
 
 
-def seccion_dolar(d: dict, rem: dict | None) -> str:
+def seccion_dolar(d: dict, rem: dict | None, g_dev: str = "", t_dl: str = "") -> str:
     try:
         dd = dolar_esperado(d, rem)
     except Exception as e:  # noqa: BLE001  (sin esta sección la página sale igual)
@@ -279,15 +279,22 @@ plazo, sale el dólar oficial (A3500) que el mercado tiene "en el precio". Si un
 diferencia es la suba del dólar que hace que dé lo mismo tener cualquiera de los dos. Hoy el A3500 está en <b>{plata(dd["hoy"])}</b>.</p>
 <div class="kpis">{kpis}</div>
 {lectura}
-<div><span class="ley"><span class="lin"></span>mercado</span><span class="ley"><span class="lin rem"></span>REM (economistas, BCRA)</span><span class="ley"><span class="lin techo"></span>techo de la banda</span></div>
+<div><span class="ley"><span class="lin"></span>LECAP/BONCAP (tasa fija)</span><span class="ley"><span class="lin c3"></span>dollar linked (rinde sobre el dólar oficial)</span></div>
+{g_dev}
+<p class="mut">La distancia entre las dos curvas es, a grandes rasgos, la devaluación anual que el mercado tiene en el precio. Pasada a pesos, da este dólar:</p>
+<div><span class="ley"><span class="lin"></span>dólar implícito del mercado</span><span class="ley"><span class="lin rem"></span>REM (economistas, BCRA)</span><span class="ley"><span class="lin techo"></span>techo de la banda</span></div>
 {svg_dolar(dd)}
 <p class="mut">Círculo vacío = tramo indicativo: los dollar linked de ese plazo operan poco. El techo de la banda es el publicado por el BCRA
 hasta {fecha(max(TECHO_PUBLICADO).isoformat())}; después se proyecta con la inflación del REM (sube por la inflación de dos meses antes).</p>
-<details class="detalle"><summary>Ver el detalle bono por bono</summary>
+<details class="detalle"><summary>Ver el detalle: dólar por plazo y dollar linked</summary>
+<h3>Dólar implícito por plazo</h3>
 <div class="tabla"><table><tr><th>LECAP/BONCAP</th><th>Dólar del día</th><th class="n">TIR fija</th><th class="n">TIR dollar linked</th><th>Dollar linked usados</th>
 <th class="n">Dólar implícito</th><th class="n">Suba desde hoy</th><th class="n">Por mes en el tramo</th><th class="n">REM</th><th class="n">Techo banda</th><th></th></tr>{filas}</table></div>
 <p class="mut">"Dólar del día": el dollar linked paga el A3500 de 3 días hábiles antes del vencimiento. "Por mes en el tramo": devaluación mensual
 implícita entre ese vencimiento y el anterior.</p>
+<h3>Bonos dollar linked</h3>
+<div class="tabla"><table><tr><th>Bono</th><th>Vence</th><th class="n">Días</th><th class="n">Precio</th><th class="n">TIR (sobre el dólar)</th><th class="n">Operaciones</th><th class="n">Entre puntas</th><th>Estado</th></tr>{t_dl}</table></div>
+<p class="mut">Los dollar linked a menos de 30 días no se usan: el dólar con el que pagan ya está casi fijado y su TIR no dice nada.</p>
 </details>"""
 
 # ---------- lo que hizo la IA ----------
@@ -417,9 +424,18 @@ def armar(d: dict, ns: dict | None, rem: dict | None, preliminar: bool, ia: dict
         return (f'<div class="kpi"><div class="mut">{nombre} <span class="mut">({p["meses"]})</span></div>'
                 f'<div class="big">{pct(p["mensual"])} <small>por mes</small></div><div>{pct(p["acumulada"])} acumulada</div>{dif}</div>')
 
-    g_fija = svg_curva([{"clase": "c1", "puntos": [(f["dias"], f["tir"], f["ticker"], f["revisar"]) for f in fija]}], "TIR tasa fija")
-    g_cer = svg_curva([{"clase": "c2", "puntos": [(f["dias"], f["tir"], f["ticker"], f["revisar"])
-                                                 for f in cer if not (f.get("calc") or {}).get("cupon") and f["dias"] < 1000]}], "TIR real CER")
+    # Un solo gráfico por expectativa: la curva fija y la otra (CER o dollar linked) en el mismo eje. La distancia
+    # vertical entre las dos es, a grandes rasgos, la inflación (o devaluación) anual que el mercado tiene en el precio.
+    tope = max((f["dias"] for f in fija), default=365) * 1.35
+    pts_fija = [(f["dias"], f["tir"], f["ticker"], f["revisar"]) for f in fija]
+    g_inf = svg_curva([{"clase": "c1", "puntos": pts_fija},
+                       {"clase": "c2", "puntos": [(f["dias"], f["tir"], f["ticker"], f["revisar"]) for f in cer
+                                                  if not (f.get("calc") or {}).get("cupon") and f["dias"] <= tope]}], "TIR fija y TIR real CER")
+    dl = sorted([f for f in filas if f["curva"] == "dolar_linked"], key=lambda f: f["dias"])
+    g_dev = svg_curva([{"clase": "c1", "puntos": pts_fija},
+                       {"clase": "c3", "puntos": [(f["dias"], f["tir"], f["ticker"], f["revisar"] or f["dias"] < 30) for f in dl
+                                                  if f["dias"] <= tope and f["tir"] > -15]}], "TIR fija y TIR dollar linked")
+    t_dl = "".join(fila_bono(f, "") for f in dl)
     origenes = {f.get("puntas") for f in fija + cer if not f["revisar"]}
     if origenes and all(str(o).startswith("rueda") for o in origenes):
         nota_puntas = ('<div class="nota"><b>Puntas tomadas durante la rueda</b> (mediana de las fotos de las 16:00, 16:20 y 16:40). '
@@ -438,9 +454,9 @@ def armar(d: dict, ns: dict | None, rem: dict | None, preliminar: bool, ia: dict
     return f"""<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Curva soberana en pesos</title>
 <style>
-:root{{--bg:#fbfaf7;--fg:#1d1d1b;--mut:#6b6a66;--line:#e4e1da;--card:#fff;--c1:#1f5fa8;--c2:#b4541a;--rem:#111;--prom:#9cb7d8;--warn:#b45309}}
-@media (prefers-color-scheme:dark){{:root:not([data-theme="light"]){{--bg:#151514;--fg:#ecebe7;--mut:#9d9b95;--line:#2f2e2b;--card:#1d1c1a;--c1:#6ea6e6;--c2:#e48a52;--rem:#f2f2f2;--prom:#3d5f86}}}}
-:root[data-theme="dark"]{{--bg:#151514;--fg:#ecebe7;--mut:#9d9b95;--line:#2f2e2b;--card:#1d1c1a;--c1:#6ea6e6;--c2:#e48a52;--rem:#f2f2f2;--prom:#3d5f86}}
+:root{{--bg:#fbfaf7;--fg:#1d1d1b;--mut:#6b6a66;--line:#e4e1da;--card:#fff;--c1:#1f5fa8;--c2:#b4541a;--rem:#111;--c3:#2f8a4e;--prom:#9cb7d8;--warn:#b45309}}
+@media (prefers-color-scheme:dark){{:root:not([data-theme="light"]){{--bg:#151514;--fg:#ecebe7;--mut:#9d9b95;--line:#2f2e2b;--card:#1d1c1a;--c1:#6ea6e6;--c2:#e48a52;--rem:#f2f2f2;--c3:#5cc282;--prom:#3d5f86}}}}
+:root[data-theme="dark"]{{--bg:#151514;--fg:#ecebe7;--mut:#9d9b95;--line:#2f2e2b;--card:#1d1c1a;--c1:#6ea6e6;--c2:#e48a52;--rem:#f2f2f2;--c3:#5cc282;--prom:#3d5f86}}
 body{{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}}
 main{{max-width:960px;margin:0 auto;padding:24px 16px 60px}}
 h1{{font-size:26px;margin:0 0 4px}} h2{{font-size:19px;margin:36px 0 6px;padding-top:8px;border-top:1px solid var(--line)}}
@@ -453,14 +469,14 @@ td.n,th.n{{text-align:right;white-space:nowrap}} tr.gris td{{color:var(--mut)}}
 .graf{{width:100%;height:auto;background:var(--card);border:1px solid var(--line);border-radius:10px;margin:8px 0}}
 .grid{{stroke:var(--line)}} .eje{{fill:var(--mut);font-size:11px}} .lbl{{fill:var(--fg);font-size:10px}}
 .linea{{fill:none;stroke-width:2}} .linea.c1{{stroke:var(--c1)}} .linea.c2{{stroke:var(--c2)}}
-.pt.c1{{fill:var(--c1)}} .pt.c2{{fill:var(--c2)}} .pt.fuera{{fill:var(--bg);stroke:var(--mut);stroke-width:1.5}}
+.pt.c1{{fill:var(--c1)}} .pt.c2{{fill:var(--c2)}} .pt.c3{{fill:var(--c3)}} .linea.c3{{stroke:var(--c3)}} .pt.fuera{{fill:var(--bg);stroke:var(--mut);stroke-width:1.5}}
 .barra{{fill:var(--c1)}} .barra.prom{{fill:var(--prom)}} .banda{{stroke:var(--fg);stroke-width:1.2;opacity:.6}} .rem{{stroke:var(--rem);stroke-width:2.5;stroke-dasharray:5 3}}
 .aviso{{background:var(--warn);color:#fff;padding:8px 16px;font-weight:600}}
 .ia{{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--c2);border-radius:8px;padding:10px 14px;margin:16px 0}} .ia p{{margin:6px 0 0}}
 details{{margin:8px 0}} summary{{cursor:pointer;color:var(--c1)}} a{{color:var(--c1)}}
 .pt.hoy{{fill:var(--fg)}} .techo{{fill:none;stroke:var(--warn);stroke-width:1.8;stroke-dasharray:2 3}} polyline.rem{{fill:none}}
 .ley{{margin-right:16px;font-size:13px;white-space:nowrap}} .lin{{display:inline-block;width:22px;height:0;border-top:2.5px solid var(--c1);margin-right:6px;vertical-align:middle}}
-.lin.rem{{border-top:2.5px dashed var(--rem)}} .lin.techo{{border-top:2px dotted var(--warn)}}
+.lin.c2{{border-top-color:var(--c2)}} .lin.c3{{border-top-color:var(--c3)}} .lin.rem{{border-top:2.5px dashed var(--rem)}} .lin.techo{{border-top:2px dotted var(--warn)}}
 .detalle summary{{display:inline-block;list-style:none;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:9px 16px;font-weight:600;color:var(--fg)}}
 .detalle summary::-webkit-details-marker{{display:none}} .detalle summary::before{{content:"▸ ";color:var(--mut)}} .detalle[open] summary::before{{content:"▾ "}}
 .nota{{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--c1);border-radius:8px;padding:10px 14px;margin:12px 0}}
@@ -474,21 +490,17 @@ ol li{{margin:4px 0}}
 <p>Comparando lo que rinde un bono a tasa fija con lo que rinde un bono que ajusta por inflación (CER) al mismo plazo, sale la inflación
 que el mercado tiene "en el precio". Llega hasta <b>{hasta}</b>: más allá no hay LECAP/BONCAP para comparar.</p>
 <div class="kpis">{kpi("Próximos 3 meses")}{kpi("Próximos 6 meses")}</div>
-
-<h3>Por período</h3>
+<div><span class="ley"><span class="lin"></span>LECAP/BONCAP (tasa fija, nominal)</span><span class="ley"><span class="lin c2"></span>CER (tasa real, sobre inflación)</span></div>
+{g_inf}
+<p class="mut">La distancia entre las dos curvas es, a grandes rasgos, la inflación anual que el mercado tiene en el precio. Círculo vacío = bono fuera de la curva (poca liquidez).</p>
+<details class="detalle"><summary>Ver el detalle: períodos, LECAP/BONCAP y CER</summary>
+<h3>Inflación por período</h3>
 <div class="tabla"><table><tr><th>Período</th><th class="n">Mercado acumulada</th><th class="n">Mercado por mes</th><th class="n">REM acumulada</th><th class="n">REM por mes</th></tr>{t_per}</table></div>
-
-{seccion_dolar(d, rem)}
-
-<h2>Curva a tasa fija (LECAP y BONCAP)</h2>
-{g_fija}
+<h3>LECAP y BONCAP (tasa fija)</h3>
 <div class="tabla"><table><tr><th>Bono</th><th>Vence</th><th class="n">Días</th><th class="n">Precio</th><th class="n">TIR (TEA)</th><th class="n">TEM</th><th class="n">Operaciones</th><th class="n">Entre puntas</th><th>Estado</th></tr>{t_fija}</table></div>
-
-<h2>Curva CER (tasa real)</h2>
-{g_cer}
+<h3>Bonos CER (tasa real)</h3>
 <div class="tabla"><table><tr><th>Bono</th><th>Vence</th><th class="n">Días</th><th class="n">Precio</th><th class="n">TIR real</th><th>¿Se usa para la inflación?</th><th class="n">Operaciones</th><th class="n">Entre puntas</th><th>Estado</th></tr>{t_cer}</table></div>
-
-<h2>Cómo se calcula</h2>
+<h3>Cómo se calcula la inflación</h3>
 <ol>
 <li><b>Tasa fija al plazo de cada bono CER</b>: la LECAP/BONCAP que vence el mismo día; si no hay, interpolación lineal entre las dos vecinas. No se extrapola.</li>
 <li><b>Inflación que paga cada bono CER</b>: (1 + tasa fija)<sup>t</sup> ÷ (1 + TIR real)<sup>t</sup>, menos la parte del CER que ya está publicada.</li>
@@ -498,6 +510,9 @@ que el mercado tiene "en el precio". Llega hasta <b>{hasta}</b>: más allá no h
 <li><b>Rango por puntas</b>: el resultado moviendo cada precio media punta (comprador/vendedor).</li>
 </ol>
 {nota_puntas}
+</details>
+
+{seccion_dolar(d, rem, g_dev, t_dl)}
 {seccion_ia(ia, res) if ia else ''}
 </main></body></html>"""
 

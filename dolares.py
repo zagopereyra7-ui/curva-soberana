@@ -112,7 +112,7 @@ def ajuste(puntos: list[tuple[float, float]]):
             "rmse": float(np.sqrt(np.mean((np.polyval(coef, x) - y) ** 2)))}
 
 
-def svg(series: list[dict]) -> str:
+def svg(series: list[dict], eje_x: str = "duration modificada (años)") -> str:
     W, H, ml, mr, mt, mb = 700, 380, 52, 18, 16, 44
     pts = [(f["md"], f["tir"]) for s in series for f in s["bonos"] if not f.get("solo_tabla")]
     if not pts:
@@ -131,7 +131,7 @@ def svg(series: list[dict]) -> str:
         v += paso
     for d in range(0, xmax + 1):
         g.append(f'<text x="{X(d):.1f}" y="{H - mb + 16}" class="eje" text-anchor="middle">{d}</text>')
-    g.append(f'<text x="{(ml + W - mr) / 2}" y="{H - 8}" class="eje" text-anchor="middle">duration modificada (años)</text>')
+    g.append(f'<text x="{(ml + W - mr) / 2}" y="{H - 8}" class="eje" text-anchor="middle">{eje_x}</text>')
     for s in series:
         a = s.get("ajuste")
         if a:
@@ -180,6 +180,12 @@ def armar(d: dict, preliminar: bool) -> str:
         a = ajuste([(f["md"], f["tir"]) for f in bonos if not f["revisar"]]) if ajusta else None
         series.append({"grupo": grupo, "nombre": nombre, "clase": clase, "bonos": bonos, "ajuste": a})
     tir = {f["ticker"]: f for f in filas}
+    # Misma curva con duration de Macaulay en el eje x (MD × (1 + TIR)): es el plazo promedio de cobro, sin la TIR adentro.
+    series_mac = []
+    for s0 in series:
+        bonos = [{**f, "md": f["md"] * (1 + f["tir"] / 100)} for f in s0["bonos"]]
+        a = ajuste([(f["md"], f["tir"]) for f in bonos if not f["revisar"]]) if s0["ajuste"] else None
+        series_mac.append({**s0, "bonos": bonos, "ajuste": a})
 
     def fila(f, s):
         estado = ("No se grafica: " + html.escape(f["motivo"])) if f.get("solo_tabla") else "Fuera del ajuste: " + html.escape(f.get("motivo") or "") if f["revisar"] else ("Cobra todo antes del cambio de gobierno (10/12/2027)" if f["antes_elecciones"] else "")
@@ -205,7 +211,7 @@ def armar(d: dict, preliminar: bool) -> str:
             dif = (tir[ar]["tir"] - tir[ny]["tir"]) * 100
             pares += f'<tr><td>{ny} / {ar}</td><td class="n">{pct(tir[ny]["tir"])}</td><td class="n">{pct(tir[ar]["tir"])}</td><td class="n">{dif:+.0f} pb</td></tr>'
 
-    antes = [f for f in filas if f["antes_elecciones"]]
+    antes = [f for f in filas if f["antes_elecciones"] and not f.get("solo_tabla")]
     nota_elec = ""
     if antes:
         lista = ", ".join(f'{f["ticker"]} ({pct(f["tir"])})' for f in sorted(antes, key=lambda f: f["md"]))
@@ -242,6 +248,7 @@ td.n,th.n{{text-align:right;white-space:nowrap}} tr.gris td{{color:var(--mut)}}
 .detalle summary{{display:inline-block;cursor:pointer;list-style:none;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:9px 16px;font-weight:600}}
 .detalle summary::-webkit-details-marker{{display:none}} .detalle summary::before{{content:"▸ ";color:var(--mut)}}
 .detalle[open] summary::before{{content:"▾ "}} .detalle summary:hover{{border-color:var(--mut)}}
+.toggle{{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;margin:10px 0 0}} .toggle button{{font:inherit;font-size:13px;padding:6px 12px;border:0;background:var(--card);color:var(--fg);cursor:pointer}} .toggle button.on{{background:var(--fg);color:var(--bg)}}
 .nota{{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--warn);border-radius:8px;padding:10px 14px;margin:12px 0}}
 </style></head><body>{aviso}<main>
 <h1>Curva de bonos soberanos en dólares</h1>
@@ -249,7 +256,10 @@ td.n,th.n{{text-align:right;white-space:nowrap}} tr.gris td{{color:var(--mut)}}
 
 <h2>Rendimiento contra duration</h2>
 <div>{leyenda}<span class="ley"><span class="anillo"></span>cobra todo antes del cambio de gobierno (dic-2027)</span></div>
-{svg(series)}
+<div class="toggle" role="group" aria-label="Eje horizontal"><button type="button" data-g="g-md" class="on">Duration modificada</button><button type="button" data-g="g-mac">Duration de Macaulay</button></div>
+<div id="g-md">{svg(series)}</div><div id="g-mac" hidden>{svg(series_mac, "duration de Macaulay (años)")}</div>
+<p class="mut"><b>Duration modificada</b>: cuánto cae el precio (en %) si la TIR sube 1 punto; mide riesgo. <b>Macaulay</b>: en cuántos años cobrás la plata en promedio; mide plazo. La modificada es la de Macaulay dividida por (1 + TIR): con TIR de 15-20% queda entre 13 y 20% más corta, y un bono que rinde más se corre a la izquierda solo por rendir más (mirá GD30 y AL30: mismos pagos).</p>
+<script>document.querySelectorAll('.toggle button').forEach(b=>b.onclick=()=>{{document.querySelectorAll('.toggle button').forEach(x=>{{x.classList.toggle('on',x===b);document.getElementById(x.dataset.g).hidden=x!==b}})}})</script>
 <p class="mut">Cada curva es una parábola ajustada a los bonos líquidos de esa ley (como la línea de tendencia de Excel): sirve para ver
 qué bono rinde más o menos que sus vecinos, no para extrapolar. Círculo vacío = bono fuera del ajuste por poca liquidez.</p>
 {nota_elec}
