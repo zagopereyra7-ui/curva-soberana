@@ -238,6 +238,10 @@ td.n,th.n{{text-align:right;white-space:nowrap}} tr.gris td{{color:var(--mut)}}
 .dot{{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:middle}}
 .ley{{margin-right:16px;font-size:13px;white-space:nowrap}} .ley .anillo{{display:inline-block;width:12px;height:12px;border-radius:50%;border:1.5px dashed var(--warn);margin-right:6px;vertical-align:middle}}
 .aviso{{background:var(--warn);color:#fff;padding:8px 16px;font-weight:600}}
+.detalle{{margin:36px 0 0;border-top:1px solid var(--line);padding-top:16px}}
+.detalle summary{{display:inline-block;cursor:pointer;list-style:none;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:9px 16px;font-weight:600}}
+.detalle summary::-webkit-details-marker{{display:none}} .detalle summary::before{{content:"▸ ";color:var(--mut)}}
+.detalle[open] summary::before{{content:"▾ "}} .detalle summary:hover{{border-color:var(--mut)}}
 .nota{{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--warn);border-radius:8px;padding:10px 14px;margin:12px 0}}
 </style></head><body>{aviso}<main>
 <h1>Curva de bonos soberanos en dólares</h1>
@@ -255,8 +259,10 @@ qué bono rinde más o menos que sus vecinos, no para extrapolar. Círculo vací
 se usa para operar dólar MEP. La diferencia de TIR entre pares es la prima por legislación.</p>
 <div class="tabla"><table><tr><th>Par</th><th class="n">TIR ley NY</th><th class="n">TIR ley arg.</th><th class="n">Prima ley arg.</th></tr>{pares}</table></div>
 
-<h2>Bonos</h2>
+<details class="detalle"><summary>Ver el detalle bono por bono</summary>
+<p class="mut">Precio, TIR, duration, distancia a su curva y liquidez de cada bono, agrupados por ley.</p>
 {tablas}
+</details>
 </main></body></html>"""
 
 
