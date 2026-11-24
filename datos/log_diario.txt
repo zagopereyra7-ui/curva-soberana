@@ -48,3 +48,12 @@ ok    Tasas de licitación (0 s)
 ok    Valuación y página (3 s)
 ok    Página de bonos en pesos (2 s)
 ok    Página de bonos en dólares (2 s)
+--- 2026-11-24 23:19
+ok    Boletín Oficial (9 s)
+AVISO IA lee resoluciones nuevas: sin crédito en la API de Anthropic, se saltea la IA
+ok    Comunicados de licitación (5 s)
+ok    Tickers (0 s)
+ok    REM del BCRA (0 s)
+ok    Tasas de licitación (0 s)
+ok    Valuación y página (2 s)
+ok    Página única (dólares, pesos y quién le ganó a la inflación) (11 s)
