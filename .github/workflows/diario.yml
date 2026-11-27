@@ -9,6 +9,7 @@ on:
 
 permissions:
   contents: write
+  pages: write
 
 concurrency:
   group: guardar-datos
@@ -36,3 +37,8 @@ jobs:
           git add datos fuentes docs
           git diff --cached --quiet || git commit -m "Actualización $(date -u +%F)"
           git pull --rebase && git push
+      - name: Publicar la página nueva en GitHub Pages
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X POST "repos/${{ github.repository }}/pages/builds" || echo "aviso: no se pudo pedir la publicación"
