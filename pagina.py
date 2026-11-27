@@ -1,6 +1,6 @@
 """La página única (docs/index.html): todo en un solo lugar, en este orden.
 
-1. Curva soberana en dólares (TIR contra duration, con botón MD/Macaulay).
+1. Curva soberana en dólares (TIR contra duration modificada).
 2. Dólar que espera el mercado (LECAP/BONCAP contra dollar linked).
 3. Inflación que espera el mercado (LECAP/BONCAP contra CER).
 4. ¿Quién le ganó a la inflación? (rendimientos.py).

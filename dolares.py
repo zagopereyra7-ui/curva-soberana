@@ -180,12 +180,6 @@ def armar(d: dict, preliminar: bool) -> str:
         a = ajuste([(f["md"], f["tir"]) for f in bonos if not f["revisar"]]) if ajusta else None
         series.append({"grupo": grupo, "nombre": nombre, "clase": clase, "bonos": bonos, "ajuste": a})
     tir = {f["ticker"]: f for f in filas}
-    # Misma curva con duration de Macaulay en el eje x (MD × (1 + TIR)): es el plazo promedio de cobro, sin la TIR adentro.
-    series_mac = []
-    for s0 in series:
-        bonos = [{**f, "md": f["md"] * (1 + f["tir"] / 100)} for f in s0["bonos"]]
-        a = ajuste([(f["md"], f["tir"]) for f in bonos if not f["revisar"]]) if s0["ajuste"] else None
-        series_mac.append({**s0, "bonos": bonos, "ajuste": a})
 
     def fila(f, s):
         estado = ("No se grafica: " + html.escape(f["motivo"])) if f.get("solo_tabla") else "Fuera del ajuste: " + html.escape(f.get("motivo") or "") if f["revisar"] else ("Cobra todo antes del cambio de gobierno (10/12/2027)" if f["antes_elecciones"] else "")
@@ -210,15 +204,6 @@ def armar(d: dict, preliminar: bool) -> str:
         if ny in tir and ar in tir:
             dif = (tir[ar]["tir"] - tir[ny]["tir"]) * 100
             pares += f'<tr><td>{ny} / {ar}</td><td class="n">{pct(tir[ny]["tir"])}</td><td class="n">{pct(tir[ar]["tir"])}</td><td class="n">{dif:+.0f} pb</td></tr>'
-
-    antes = [f for f in filas if f["antes_elecciones"] and not f.get("solo_tabla")]
-    nota_elec = ""
-    if antes:
-        lista = ", ".join(f'{f["ticker"]} ({pct(f["tir"])})' for f in sorted(antes, key=lambda f: f["md"]))
-        verbo, su = ("cobra", "su") if len(antes) == 1 else ("cobran", "su")
-        nota_elec = (f'<div class="nota"><b>Antes y después del cambio de gobierno de diciembre de 2027.</b> {lista} {verbo} todo antes de que asuma el próximo gobierno (10/12/2027): '
-                     f'{su} TIR mide el riesgo de pago de corto plazo, casi sin riesgo político. Los que vencen después pagan una prima por la '
-                     'incertidumbre electoral. La distancia entre los dos grupos es una forma de medir cuánto pesa la elección en los precios.</div>')
 
     leyenda = "".join(f'<span class="ley"><span class="dot {s["clase"]}"></span>{s["nombre"]}</span>' for s in series if s["bonos"])
     cierre = date.fromisoformat(d["cierre"]).strftime("%d/%m/%Y")
@@ -256,13 +241,10 @@ td.n,th.n{{text-align:right;white-space:nowrap}} tr.gris td{{color:var(--mut)}}
 
 <h2>Rendimiento contra duration</h2>
 <div>{leyenda}<span class="ley"><span class="anillo"></span>cobra todo antes del cambio de gobierno (dic-2027)</span></div>
-<div class="toggle" role="group" aria-label="Eje horizontal"><button type="button" data-g="g-md" class="on">Duration modificada</button><button type="button" data-g="g-mac">Duration de Macaulay</button></div>
-<div id="g-md">{svg(series)}</div><div id="g-mac" hidden>{svg(series_mac, "duration de Macaulay (años)")}</div>
-<p class="mut"><b>Duration modificada</b>: cuánto cae el precio (en %) si la TIR sube 1 punto; mide riesgo. <b>Macaulay</b>: en cuántos años cobrás la plata en promedio; mide plazo. La modificada es la de Macaulay dividida por (1 + TIR): con TIR de 15-20% queda entre 13 y 20% más corta, y un bono que rinde más se corre a la izquierda solo por rendir más (mirá GD30 y AL30: mismos pagos).</p>
-<script>document.querySelectorAll('.toggle button').forEach(b=>b.onclick=()=>{{document.querySelectorAll('.toggle button').forEach(x=>{{x.classList.toggle('on',x===b);document.getElementById(x.dataset.g).hidden=x!==b}})}})</script>
+{svg(series)}
+<p class="mut"><b>Duration modificada</b>: cuánto cae el precio (en %) si la TIR sube 1 punto; mide riesgo.</p>
 <p class="mut">Cada curva es una parábola ajustada a los bonos líquidos de esa ley (como la línea de tendencia de Excel): sirve para ver
 qué bono rinde más o menos que sus vecinos, no para extrapolar. Círculo vacío = bono fuera del ajuste por poca liquidez.</p>
-{nota_elec}
 
 <h2>Ley Nueva York contra ley argentina</h2>
 <p>El mismo flujo de fondos rinde distinto según la ley: el AL paga más porque en un default se reestructura más fácil, y el AL30 además
