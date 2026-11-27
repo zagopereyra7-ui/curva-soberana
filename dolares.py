@@ -7,7 +7,7 @@ Formato pedido por el usuario (20/11/2026), como el gráfico habitual de los inf
   - marca de los bonos que cobran TODO antes del cambio de gobierno (10/12/2027): su TIR casi no tiene
     riesgo político, es la referencia de "riesgo país sin riesgo electoral". El AO27 vence el 29/10/2027, después
     de las elecciones (24/10) pero antes de que asuma el gobierno nuevo: lo paga el gobierno actual.
-Ajuste: parábola en MD por mínimos cuadrados (como la línea de tendencia polinómica de Excel), solo con
+Ajuste: curva logarítmica TIR = a + b·ln(MD) por mínimos cuadrados (como la línea de tendencia logarítmica de Excel), solo con
 bonos líquidos. Es una guía visual, no un modelo: no se extrapola fuera del rango de cada ley.
 
 Correr: python dolares.py  -> docs/dolares.html (o docs/dolares_preliminar.html con la rueda abierta)
@@ -101,15 +101,21 @@ def ultimo_pago(f: dict) -> date:
 
 
 def ajuste(puntos: list[tuple[float, float]]):
-    """Parábola TIR = a + b·MD + c·MD². Con menos de 3 bonos, recta."""
+    """Curva TIR = a + b·ln(MD), como la que usa el mercado: sube (o baja) y se aplana con el plazo, sin la joroba
+    de la parábola, que en la punta larga se doblaba hacia abajo sin que ningún bono lo justificara."""
+    puntos = [p for p in puntos if p[0] > 0]
     if len(puntos) < 2:
         return None
     x = np.array([p[0] for p in puntos])
     y = np.array([p[1] for p in puntos])
-    grado = 2 if len(puntos) >= 4 else 1
-    coef = np.polyfit(x, y, grado)
+    coef = np.polyfit(np.log(x), y, 1)
     return {"coef": coef, "desde": float(x.min()), "hasta": float(x.max()),
-            "rmse": float(np.sqrt(np.mean((np.polyval(coef, x) - y) ** 2)))}
+            "rmse": float(np.sqrt(np.mean((np.polyval(coef, np.log(x)) - y) ** 2)))}
+
+
+def en_curva(a: dict, md: float) -> float:
+    """TIR de la curva ajustada a esa duration."""
+    return float(np.polyval(a["coef"], np.log(md)))
 
 
 def svg(series: list[dict], eje_x: str = "duration modificada (años)") -> str:
@@ -137,7 +143,7 @@ def svg(series: list[dict], eje_x: str = "duration modificada (años)") -> str:
         if a:
             xs = np.linspace(a["desde"], a["hasta"], 40)
             g.append(f'<polyline class="linea {s["clase"]}" points="' +
-                     " ".join(f"{X(x):.1f},{Y(float(np.polyval(a['coef'], x))):.1f}" for x in xs) + '"/>')
+                     " ".join(f"{X(x):.1f},{Y(en_curva(a, x)):.1f}" for x in xs) + '"/>')
     puestas: list[tuple[float, float]] = []
 
     def lugar(x: float, y: float) -> tuple[float, float, str]:
@@ -184,7 +190,7 @@ def armar(d: dict, preliminar: bool) -> str:
     def fila(f, s):
         estado = ("No se grafica: " + html.escape(f["motivo"])) if f.get("solo_tabla") else "Fuera del ajuste: " + html.escape(f.get("motivo") or "") if f["revisar"] else ("Cobra todo antes del cambio de gobierno (10/12/2027)" if f["antes_elecciones"] else "")
         a = s.get("ajuste")
-        dist = "" if not a or f["revisar"] else f'{(f["tir"] - float(np.polyval(a["coef"], f["md"]))) * 100:+.0f} pb'
+        dist = "" if not a or f["revisar"] else f'{(f["tir"] - en_curva(a, f["md"])) * 100:+.0f} pb'
         return (f'<tr class="{"gris" if f["revisar"] else ""}"><td><b>{f["ticker"]}</b></td><td>{date.fromisoformat(f["vto"]):%d/%m/%Y}</td>'
                 f'<td class="n">{num(f["precio"])}</td><td class="n">{pct(f["tir"])}</td><td class="n">{num(f["md"])}</td>'
                 f'<td class="n">{dist}</td><td class="n">{f.get("ops") or 0}</td><td class="n">{pct(f.get("spread"))}</td><td>{estado}</td></tr>')
@@ -243,8 +249,8 @@ td.n,th.n{{text-align:right;white-space:nowrap}} tr.gris td{{color:var(--mut)}}
 <div>{leyenda}<span class="ley"><span class="anillo"></span>cobra todo antes del cambio de gobierno (dic-2027)</span></div>
 {svg(series)}
 <p class="mut"><b>Duration modificada</b>: cuánto cae el precio (en %) si la TIR sube 1 punto; mide riesgo.</p>
-<p class="mut">Cada curva es una parábola ajustada a los bonos líquidos de esa ley (como la línea de tendencia de Excel): sirve para ver
-qué bono rinde más o menos que sus vecinos, no para extrapolar. Círculo vacío = bono fuera del ajuste por poca liquidez.</p>
+<p class="mut">Cada curva es la línea de tendencia de los bonos líquidos de esa ley (logarítmica, como la de Excel: se mueve fuerte en los plazos cortos y se aplana en los largos, sin doblarse).
+No pasa exacto por cada bono: la distancia a la curva muestra qué bono rinde más (arriba, "barato") o menos (abajo, "caro") que sus vecinos. Círculo vacío = bono fuera del ajuste por poca liquidez.</p>
 
 <h2>Ley Nueva York contra ley argentina</h2>
 <p>El mismo flujo de fondos rinde distinto según la ley: el AL paga más porque en un default se reestructura más fácil, y el AL30 además

@@ -65,8 +65,11 @@ def armar(d: dict, ns, rem, preliminar: bool, ia, res) -> str:
 {RN.ESTILOS}
 .nav{{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 4px}} .nav a{{font-size:13px;padding:5px 10px;border:1px solid var(--line);border-radius:16px;text-decoration:none;color:var(--fg);background:var(--card)}}
 h2[id]{{scroll-margin-top:12px}}
+.intro{{font-size:16px;max-width:760px;margin:10px 0 4px}}
 </style></head><body>{aviso}<main>
 <h1>Bonos argentinos: curvas y expectativas</h1>
+<p class="intro">Este monitor toma todos los días los precios de los bonos del Tesoro y del BCRA y calcula cuánto rinden, qué dólar y qué inflación espera el mercado, y cómo se comparan con lo que proyectan los economistas del REM.
+La IA lee las resoluciones del Boletín Oficial y los resultados de las licitaciones para cargar las condiciones de cada bono, y todos los números salen de fórmulas fijas que se controlan contra los textos oficiales.</p>
 <div class="mut">Precios de cierre del {cierre} (data912) · CER y dólar oficial: BCRA · {rem_txt} · se actualiza solo cada día hábil a las 19:30 · generado {datetime.now():%d/%m/%Y %H:%M}</div>
 {nav}
 {parrafo}
