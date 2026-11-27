@@ -116,7 +116,19 @@ def rueda_cerrada() -> bool:
     return not F.es_habil(ahora.date()) or (ahora.hour, ahora.minute) >= (17, 30)
 
 
-CLAVES_CARGA = ("precios", "cierre", "liq", "cer", "a3500", "filas", "tit", "controles")
+CLAVES_CARGA = ("precios", "cierre", "liq", "cer", "a3500", "filas", "tit", "controles", "canje")
+
+
+def canje_cable(precios: dict) -> float:
+    """Precio cable implícito = precio en dólar MEP (especie D) x (AL30C / AL30D).
+    Bloomberg y los informes usan el precio en dólares del exterior (cable). La especie C local opera poco en la
+    mayoría de los bonos, así que se toma el precio D (líquido) y se lo pasa a cable con la relación del par más
+    operado (AL30; si no, GD30). Con esto la TIR coincide con la de Bloomberg (verificado el 27/11/2026)."""
+    for t in ("AL30", "GD30"):
+        c, d = (precios.get(t + "C") or {}).get("c"), (precios.get(t + "D") or {}).get("c")
+        if c and d and 0.8 < c / d <= 1.05:
+            return c / d
+    return 1.0
 
 
 def cargar() -> dict:
@@ -127,6 +139,7 @@ def cargar() -> dict:
         for r in bajar(f"https://data912.com/live/{ep}"):
             precios[r["symbol"]] = r
     cierre = fecha_precio("GD30D")
+    canje = canje_cable(precios)
     liq = c.liquidacion_t1(date.fromisoformat(cierre))
     cer = I.serie_bcra(30, "2020-08-01", (liq + timedelta(days=60)).isoformat())
     a3500 = I.serie_bcra(5, "2026-10-01", liq.isoformat())  # desde el inicio del registro de expectativas
@@ -140,14 +153,14 @@ def cargar() -> dict:
             p = precios.get(ticker + "D")
             if not p or not p.get("c"):
                 continue
-            r = c.valuar(f, p["c"], liq)
+            r = c.valuar(f, p["c"] * canje, liq)
             filas.append({"ticker": ticker, "curva": "dolares", "grupo": "GD (ley NY)" if ley.endswith("York") else "AL/AE (ley arg.)",
                           "precio": r.precio, "tir": r.tir * 100, "md": r.duration_mod,
                           "dias": (r.vencimiento - liq).days, "vto": r.vencimiento.isoformat(),
                           "var": p.get("pct_change") or 0.0, "fuente": "Decretos 676 y 701/2020 (carga manual)",
                           "detalle": f"Paridad {r.paridad * 100:.1f}%"})
             filas[-1]["spread"], filas[-1]["ops"], filas[-1]["motivo_liquidez"], filas[-1]["puntas"] = liquidez(p, rueda)
-            filas[-1]["calc"] = {"tipo": "canje", "precio_calc": p["c"], "ley": ley,
+            filas[-1]["calc"] = {"tipo": "canje", "precio_calc": p["c"] * canje, "precio_mep": p["c"], "canje_cable": canje, "ley": ley,
                                  "residual": r.residual, "corridos": r.intereses_corridos, "paridad": r.paridad,
                                  "flujos": [[fl.fecha_pago.isoformat(), round(fl.interes + fl.amortizacion, 6)]
                                             for fl in c.flujos(f) if fl.fecha_pago > liq]}
@@ -171,7 +184,7 @@ def cargar() -> dict:
         if not p or not p.get("c"):
             continue
         try:
-            v = I.valuar(r["ticker"], t, p["c"], liq, tasas, cer, a3500)
+            v = I.valuar(r["ticker"], t, p["c"] * (canje if r["tipo"] == "bono_dolares" else 1), liq, tasas, cer, a3500)
         except (KeyError, ValueError):
             continue
         if not v:
@@ -191,7 +204,7 @@ def cargar() -> dict:
             filas[-1]["calc"]["licitacion"] = {k: tasas[r["ticker"]].get(k) for k in ("tem_capitalizacion_pct", "tirea_pct", "tasa_cupon_pct")}
 
     marcar_fuera_de_curva(filas)
-    return dict(zip(CLAVES_CARGA, (precios, cierre, liq, cer, a3500, filas, tit, controles)))
+    return dict(zip(CLAVES_CARGA, (precios, cierre, liq, cer, a3500, filas, tit, controles, canje)))
 
 
 def main() -> None:
@@ -199,7 +212,7 @@ def main() -> None:
     if not guardar:
         print("Rueda abierta o sin abrir: se genera la página pero NO se guardan los historiales.")
     d = cargar()
-    precios, cierre, liq, cer, a3500, filas, tit, controles = (d[k] for k in CLAVES_CARGA)
+    precios, cierre, liq, cer, a3500, filas, tit, controles, _ = (d[k] for k in CLAVES_CARGA)
 
     # 3) expectativas implícitas: tasa fija vs CER (inflación) y vs dollar linked (devaluación)
     # Bonos con cupón (TX28, TX31, TY30P) fuera de los pares: comparar TIR de bonos con cupón y durations

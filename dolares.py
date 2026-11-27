@@ -73,10 +73,10 @@ def filas_bopreal(d: dict) -> list[dict]:
             if not p or not p.get("c"):
                 continue
             try:
-                tir, md = I._tir(fl, p["c"], d["liq"])
+                tir, md = I._tir(fl, p["c"] * d.get("canje", 1.0), d["liq"])
             except ValueError:
                 continue
-            f = {"ticker": strip + "D", "curva": "dolares", "grupo": "BOPREAL (BCRA)", "precio": p["c"],
+            f = {"ticker": strip + "D", "curva": "dolares", "grupo": "BOPREAL (BCRA)", "precio": p["c"] * d.get("canje", 1.0),
                  "tir": tir * 100, "md": md, "vto": max(serie["amort"]).isoformat(), "var": p.get("pct_change") or 0.0}
             f["spread"], f["ops"], _, _ = A.liquidez(p)
             # En el gráfico va un solo strip por serie (el resto rinde casi igual y se superpondría); todos van en la tabla.
@@ -243,12 +243,12 @@ td.n,th.n{{text-align:right;white-space:nowrap}} tr.gris td{{color:var(--mut)}}
 .nota{{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--warn);border-radius:8px;padding:10px 14px;margin:12px 0}}
 </style></head><body>{aviso}<main>
 <h1>Curva de bonos soberanos en dólares</h1>
-<div class="mut">Precios de cierre del {cierre} (data912, especie en dólares MEP) · generado {datetime.now():%d/%m/%Y %H:%M}</div>
+<div class="mut">Precios de cierre del {cierre} (data912; precio cable implícito: especie en dólar MEP × AL30C/AL30D, como Bloomberg) · generado {datetime.now():%d/%m/%Y %H:%M}</div>
 
 <h2>Rendimiento contra duration</h2>
 <div>{leyenda}<span class="ley"><span class="anillo"></span>cobra todo antes del cambio de gobierno (dic-2027)</span></div>
 {svg(series)}
-<p class="mut"><b>Duration modificada</b>: cuánto cae el precio (en %) si la TIR sube 1 punto; mide riesgo.</p>
+<p class="mut"><b>Duration modificada</b>: cuánto cae el precio (en %) si la TIR sube 1 punto; mide riesgo. <b>TIR</b>: efectiva anual, con precio en dólares cable (el de Bloomberg; Bloomberg la muestra con capitalización semestral, que da medio punto menos).</p>
 <p class="mut">Cada curva es la línea de tendencia de los bonos líquidos de esa ley (logarítmica, como la de Excel: se mueve fuerte en los plazos cortos y se aplana en los largos, sin doblarse).
 No pasa exacto por cada bono: la distancia a la curva muestra qué bono rinde más (arriba, "barato") o menos (abajo, "caro") que sus vecinos. Círculo vacío = bono fuera del ajuste por poca liquidez.</p>
 
