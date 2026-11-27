@@ -240,7 +240,7 @@ def seccion_dolar(d: dict, rem: dict | None, g_dev: str = "", t_dl: str = "") ->
     ref = conf[-1] if conf else pts[-1]
     corto = min(pts, key=lambda p: abs(p["dias"] - 90))
 
-    def kpi(p, titulo):
+    def kpi(p, titulo, nota=""):
         meses = p["dias"] / (365 / 12)
         mens = ((1 + p["suba"] / 100) ** (1 / meses) - 1) * 100
         r = ""
@@ -249,8 +249,15 @@ def seccion_dolar(d: dict, rem: dict | None, g_dev: str = "", t_dl: str = "") ->
             r = (f'<div class="mut">REM {plata(p["rem"])} · el mercado espera un dólar {abs(dif):.1f}% '
                  f'{"más alto" if dif > 0 else "más bajo"}</div>').replace(".", ",").replace(",", ".", 0)
         return (f'<div class="kpi"><div class="mut">{titulo} <span class="mut">({fecha(p["fecha_tc"].isoformat())}, {p["ticker"]})</span></div>'
-                f'<div class="big">{plata(p["tc"])}</div><div>{pct(p["suba"], 1)} de suba · {pct(mens)} por mes</div>{r}</div>')
-    kpis = kpi(corto, "En unos 3 meses") + (kpi(ref, "El plazo más largo con dollar linked líquidos") if ref is not corto else "")
+                f'<div class="big">{plata(p["tc"])}</div><div>{pct(p["suba"], 1)} de suba · {pct(mens)} por mes</div>{r}{nota}</div>')
+    # Primero el dato confiable; el de 3 meses va al lado solo como referencia si sus dollar linked operan poco
+    # (antes "el plazo más largo" podía quedar antes que "3 meses" y no se entendía).
+    if corto["confiable"] or not conf:
+        kpis = kpi(corto, "En unos 3 meses") + (kpi(ref, "El plazo más largo con dato confiable") if conf and ref["dias"] > corto["dias"] else "")
+    else:
+        kpis = (kpi(ref, "El plazo más largo con dato confiable")
+                + kpi(corto, "En unos 3 meses: indicativo",
+                      '<div class="mut"><b>Tomalo como referencia:</b> los dollar linked de ese plazo operan poco y el número puede moverse mucho.</div>'))
     txt = []
     con_rem = [p for p in conf if p["rem"]]
     if con_rem:
