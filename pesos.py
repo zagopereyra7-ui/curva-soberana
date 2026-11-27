@@ -389,7 +389,11 @@ def fila_bono(f: dict, extra: str) -> str:
 def armar(d: dict, ns: dict | None, rem: dict | None, preliminar: bool, ia: dict | None = None, res: dict | None = None) -> str:
     filas = d["filas"]
     fija = sorted([f for f in filas if f["curva"] == "pesos_fija" and not (f.get("calc") or {}).get("cupon")], key=lambda f: f["dias"])
-    cer = sorted([f for f in filas if f["curva"] == "cer"], key=lambda f: f["dias"])
+    # Los CER a menos de 30 días se muestran afuera: el CER con el que pagan ya está publicado (son tasa fija en la
+    # práctica) y su TIR anualizada a tan pocos días es ruido de precio. Mismo criterio que los dollar linked.
+    corto = "Vence en menos de 30 días: el CER con el que paga ya está publicado y su TIR anualizada no dice nada"
+    cer = sorted([({**f, "revisar": True, "motivo": corto} if f["dias"] < 30 and not f["revisar"] else f)
+                  for f in filas if f["curva"] == "cer"], key=lambda f: f["dias"])
     usados = {b["ticker"] for b in (ns or {}).get("cer_bonos", [])}
     afuera = {a["ticker"]: a["motivo"] for a in (ns or {}).get("cer_afuera", [])}
     tem = lambda f: ((1 + f["tir"] / 100) ** (30 / 365) - 1) * 100
@@ -400,7 +404,7 @@ def armar(d: dict, ns: dict | None, rem: dict | None, preliminar: bool, ia: dict
 
     def uso_cer(f):
         if f["revisar"]:
-            return "–"
+            return "No: vence en menos de 30 días" if f.get("motivo") == corto else "–"
         if (f.get("calc") or {}).get("cupon"):
             return "No (tiene cupón)"
         if f["ticker"] in usados:
@@ -492,7 +496,7 @@ que el mercado tiene "en el precio". Llega hasta <b>{hasta}</b>: más allá no h
 <div class="kpis">{kpi("Próximos 3 meses")}{kpi("Próximos 6 meses")}</div>
 <div><span class="ley"><span class="lin"></span>LECAP/BONCAP (tasa fija, nominal)</span><span class="ley"><span class="lin c2"></span>CER (tasa real, sobre inflación)</span></div>
 {g_inf}
-<p class="mut">La distancia entre las dos curvas es, a grandes rasgos, la inflación anual que el mercado tiene en el precio. Círculo vacío = bono fuera de la curva (poca liquidez).</p>
+<p class="mut">La distancia entre las dos curvas es, a grandes rasgos, la inflación anual que el mercado tiene en el precio. Círculo vacío = bono fuera de la curva (poca liquidez, muy lejos de sus vecinos o a menos de 30 días de vencer).</p>
 <details class="detalle"><summary>Ver el detalle: períodos, LECAP/BONCAP y CER</summary>
 <h3>Inflación por período</h3>
 <div class="tabla"><table><tr><th>Período</th><th class="n">Mercado acumulada</th><th class="n">Mercado por mes</th><th class="n">REM acumulada</th><th class="n">REM por mes</th></tr>{t_per}</table></div>
