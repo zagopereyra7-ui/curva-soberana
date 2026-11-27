@@ -395,7 +395,10 @@ def fila_bono(f: dict, extra: str) -> str:
 
 def armar(d: dict, ns: dict | None, rem: dict | None, preliminar: bool, ia: dict | None = None, res: dict | None = None) -> str:
     filas = d["filas"]
-    fija = sorted([f for f in filas if f["curva"] == "pesos_fija" and not (f.get("calc") or {}).get("cupon")], key=lambda f: f["dias"])
+    # LECAP a menos de 7 días: la curva fija ya no las usa (nelson_siegel), y se muestran afuera para que se vea.
+    fija = sorted([({**f, "revisar": True, "motivo": "Vence en menos de 7 días: a tan poco plazo la TIR anualizada es ruido de precio"}
+                    if f["dias"] < 7 and not f["revisar"] else f)
+                   for f in filas if f["curva"] == "pesos_fija" and not (f.get("calc") or {}).get("cupon")], key=lambda f: f["dias"])
     # Los CER a menos de 30 días se muestran afuera: el CER con el que pagan ya está publicado (son tasa fija en la
     # práctica) y su TIR anualizada a tan pocos días es ruido de precio. Mismo criterio que los dollar linked.
     corto = "Vence en menos de 30 días: el CER con el que paga ya está publicado y su TIR anualizada no dice nada"
